@@ -2,12 +2,11 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { NavigationContainer } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
 import { Dimensions } from 'react-native';
-import Svg, { Use, Image } from 'react-native-svg';
+import Svg, { Image } from 'react-native-svg';
 
-const NavBar = ({ navigation }) => {
+const NavBar = ({ navigation, route }) => {
     const { name: routeName } = useRoute();
     console.log(routeName);
     return (
@@ -21,7 +20,7 @@ const NavBar = ({ navigation }) => {
                 {/* <MaterialCommunityIcons style={[styles.icon, routeName === 'Home' && styles.active]} name="home" /> */}
                 <Svg width={50} height={50} style={[styles.icon, styles.daioLogo]}>
                     <Image
-                        href={require('../Assets/logo.svg')}
+                        href={require('../Assets/logo.png')}
                         width={50}
                         height={50}
                         style={[routeName === 'Home' && styles.active]}
@@ -42,12 +41,14 @@ const windowWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     navbar: {
         width: windowWidth,
-        transform: [{ translateX: -windowWidth / 2 }],
         height: 70,
         position: 'absolute',
         bottom: 0,
         backgroundColor: '#f0f0aa',
-        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+        // boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+        shadowColor: 'rgba(0, 0, 0, 0.35)',
+        shadowOffset: { width: 0, height: 5 },
+        shadowRadius: 15,
         flexDirection: 'row'
     },
     button: {
@@ -62,11 +63,11 @@ const styles = StyleSheet.create({
         color: '#aaa'
     },
     active: {
-        filter: 'brightness(0.5)',
+        color: '#888'
     },
     daioLogo: {
         //make saturation 0
-        filter: 'saturate(0.4)',
+        tintColor: 'gray',
     }
 
 })
