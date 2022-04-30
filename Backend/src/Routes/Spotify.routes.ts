@@ -12,7 +12,8 @@ import { getByArtistName,
     previousSong, 
     getByAlbum,
     currentPlaybackState,
-    getActiveDevices 
+    getActiveDevices,
+    getBySong 
 } from "../Controllers/Spotify.controller";
 
 const routerSpotify = Router();
@@ -20,6 +21,7 @@ const routerSpotify = Router();
 
 routerSpotify.get('/artist/:artist', getByArtistName);
 routerSpotify.get('/album/:album', getByAlbum)
+routerSpotify.get('/song/:song', getBySong)
 routerSpotify.get('/login', login);
 routerSpotify.get('/callback', callback);
 routerSpotify.get('/top', topUser);

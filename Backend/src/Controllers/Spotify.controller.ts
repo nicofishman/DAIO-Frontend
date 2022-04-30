@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 const redirectUri = "http://localhost:3000/spotify/callback";
 
 
-const spotifyApi = new SpotifyWebApi({
+const spotifyApi: SpotifyWebApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     redirectUri: redirectUri,
@@ -27,7 +27,7 @@ const resSend = (res: Response, data: Object) => {
     res.end(JSON.stringify(data, null, 2));
 };
 
-const scopes = [
+const scopes: string[] = [
     "ugc-image-upload",
     "user-read-playback-state",
     "user-modify-playback-state",
@@ -108,7 +108,6 @@ export const getAccessToken = (_req: Request, res: Response) => {
 };
 
 export const getByAlbum = (req: Request, res: Response) => {
-    console.log("album", req.params.album);
     if (spotifyApi.getAccessToken() == null) {
         res.cookie("redirect", `/spotify/album/${req.params.album}`);
         res.redirect("/spotify/login");
@@ -116,6 +115,23 @@ export const getByAlbum = (req: Request, res: Response) => {
         res.clearCookie("redirect");
         spotifyApi
             .searchAlbums(req.params.album)
+            .then((data) => {
+                resSend(res, data);
+            })
+            .catch((err) => {
+                resSend(res, err);
+            });
+    }
+};
+
+export const getBySong = (req: Request, res: Response) => {
+    if (spotifyApi.getAccessToken() == null) {
+        res.cookie("redirect", `/spotify/song/${req.params.song}`);
+        res.redirect("/spotify/login");
+    } else {
+        res.clearCookie("redirect");
+        spotifyApi
+            .searchTracks(req.params.song)
             .then((data) => {
                 resSend(res, data);
             })
@@ -197,7 +213,7 @@ export const me = (_req: Request, res: Response) => {
     }
 };
 
-export const currentPlaying = (_req: Request, res: Response, toFunction = false) => {
+export const currentPlaying = (_req: Request, res: Response, toFunction = false): void | Promise<SpotifyApi.CurrentlyPlayingResponse>  => {
     if (spotifyApi.getAccessToken() == null) {
         res.cookie("redirect", "/spotify/currentplaying");
         res.redirect("/spotify/login");
@@ -218,8 +234,7 @@ export const currentPlaying = (_req: Request, res: Response, toFunction = false)
                 }
             );
         } else {
-            const currentPlayingTrack = spotifyApi.getMyCurrentPlayingTrack().then((data) => data.body);
-            resSend(res, currentPlayingTrack);
+            return spotifyApi.getMyCurrentPlayingTrack().then((data) => data.body);
         }
     }
 };
