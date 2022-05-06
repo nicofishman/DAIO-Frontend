@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import routerSpotify from './Routes/Spotify.routes';
+import routerCredentials from './Routes/Credentials.routes';
 
 const app = express();
 app.use(express.json()); // Middleware to parse JSON
@@ -11,6 +12,7 @@ app.use(cookieParser()); // Middleware to enable cookies
 const PORT = 3000;
 
 app.use('/spotify', routerSpotify);
+app.use('/credentials', routerCredentials);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

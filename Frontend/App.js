@@ -8,16 +8,19 @@ import Chat from './src/Components/Views/Chat';
 import NavBar from './src/Components/NavBar';
 import { getAll } from './backend'
 import { useState, useEffect } from 'react';
+import { onLogin } from './src/Handlers/AuthHandler';
+import Auth from './src/Components/Views/Auth';
 
 export default function App() {
     const Stack = createNativeStackNavigator();
-    
     const [peliculas, setPeliculas] = useState()
-    useEffect (() => getAll(setPeliculas), [])
+    useEffect(async () => {
+        getAll(setPeliculas)
+    }, [])
 
     return (
         <View style={styles.container}>
-            <View>
+            {/* <View>
                 <Text>{peliculas !== {} && JSON.stringify(peliculas)}</Text>
             </View>
 
@@ -26,13 +29,13 @@ export default function App() {
 
 
             <TouchableOpacity
-                onPress={() => alert('Hello, world!')}
+                onPress={() => onLogin()}
                 style={styles.button}>
                 <Text style={styles.buttonText}>Pick a photo</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
-            
-            {/*<NavigationContainer>
+            <Auth></Auth>
+            {/* <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen
                         name="Chat"
@@ -49,7 +52,7 @@ export default function App() {
                     <Stack.Screen name="Config" component={Config} />
                     <Stack.Screen name="Chat" component={Chat} />
                 </Stack.Navigator>
-            </NavigationContainer>*/}
+            </NavigationContainer> */}
             <StatusBar style="auto" />
         </View>
     );
@@ -68,8 +71,8 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 5,
     },
-        buttonText: {
+    buttonText: {
         fontSize: 20,
         color: '#fff',
-    }, 
+    },
 });

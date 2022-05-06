@@ -2,12 +2,10 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import 'dotenv/config';
 import { Request, Response } from 'express';
 
-const redirectUri = 'http://localhost:3000/spotify/callback';
-
 const spotifyApi: SpotifyWebApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    redirectUri,
+    redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
 const getActiveDeviceId = async () => {
@@ -195,21 +193,23 @@ export const topUser = (_req: Request, res: Response) => {
     }
 };
 
-export const me = (_req: Request, res: Response) => {
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/me');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        spotifyApi.getMe().then(
-            function (data) {
-                res.end(JSON.stringify(data.body));
-            },
-            function (err) {
-                console.log('Something went wrong!', err);
-            }
-        );
+export const me = (req: Request, res: Response) => {
+    const accessToken = req.get('accessToken');
+    if (accessToken == null) {
+        resSend(res, { error: 'No access token' });
+        return;
     }
+    console.log(accessToken);
+    spotifyApi.setAccessToken(accessToken);
+    spotifyApi.getMe().then(
+        function (data) {
+            console.log(data.body);
+            res.end(JSON.stringify(data.body));
+        },
+        function (err) {
+            console.log('Something went wrong!', err);
+        }
+    );
 };
 
 export const currentPlaying = (_req: Request, res: Response, toFunction = false): void | Promise<SpotifyWebApi> | any => { // TODO: SACAR EL ANY
