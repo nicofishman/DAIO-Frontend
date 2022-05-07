@@ -8,17 +8,6 @@ const spotifyApi: SpotifyWebApi = new SpotifyWebApi({
     redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
-const getActiveDeviceId = async () => {
-    const devices = await spotifyApi.getMyDevices();
-    const activeDevice = devices.body.devices.find(
-        (device) => device.is_active
-    );
-    if (activeDevice === undefined) {
-        return null;
-    }
-    return activeDevice.id;
-};
-
 const resSend = (res: Response, data: Object) => {
     res.set({ 'content-type': 'application/json; charset=utf-8' });
     res.end(JSON.stringify(data, null, 2));
@@ -85,7 +74,6 @@ export const callback = (req: Request, res: Response) => {
                 const data = await spotifyApi.refreshAccessToken();
                 const accessToken = data.body.access_token;
 
-                console.log('accessToken: ' + accessToken);
                 console.log('The token has been refreshed!');
                 spotifyApi.setAccessToken(accessToken);
             }, (expiresIn / 2) * 1000);
@@ -172,7 +160,7 @@ export const getActiveDevices = (_req: Request, res: Response) => {
     }
 };
 
-export const topUser = (_req: Request, res: Response) => {
+export const userTopArtists = (_req: Request, res: Response) => {
     const topArtists: string[] = [];
     if (spotifyApi.getAccessToken() == null) {
         res.cookie('redirect', '/spotify/top');
@@ -194,137 +182,20 @@ export const topUser = (_req: Request, res: Response) => {
 };
 
 export const me = (req: Request, res: Response) => {
+    console.count('me');
     const accessToken = req.get('accessToken');
     if (accessToken == null) {
         resSend(res, { error: 'No access token' });
         return;
     }
-    console.log(accessToken);
+    spotifyApi.resetAccessToken();
     spotifyApi.setAccessToken(accessToken);
     spotifyApi.getMe().then(
         function (data) {
-            console.log(data.body);
             res.end(JSON.stringify(data.body));
         },
         function (err) {
             console.log('Something went wrong!', err);
         }
     );
-};
-
-export const currentPlaying = (_req: Request, res: Response, toFunction = false): void | Promise<SpotifyWebApi> | any => { // TODO: SACAR EL ANY
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/currentplaying');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        if (!toFunction) {
-            spotifyApi.getMyCurrentPlayingTrack().then(
-                function (data) {
-                    if (data.body) {
-                        resSend(res, data.body);
-                    } else {
-                        resSend(res, 'No Device is playing');
-                    }
-                },
-                function (err) {
-                    console.log('Something went wrong!', err);
-                    resSend(res, err);
-                }
-            );
-        } else {
-            return spotifyApi.getMyCurrentPlayingTrack().then((data) => data.body);
-        }
-    }
-};
-
-export const currentPlaybackState = (_req: Request, res: Response) => {
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/currentplaybackstate');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        spotifyApi.getMyCurrentPlaybackState().then(
-            function (data) {
-                resSend(res, data.body);
-            },
-            function (err) {
-                console.log('Something went wrong!', err);
-            }
-        );
-    }
-};
-
-export const pauseSong = async (req: Request, res: Response) => {
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/pause');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        const activeDevice = await getActiveDeviceId();
-        if (!activeDevice) {
-            resSend(res, 'No Device is playing');
-            return;
-        }
-        const currentPlayingSong = await currentPlaying(req, res, true);
-        if (!currentPlayingSong?.is_playing) {
-            resSend(res, 'No song is playing');
-            return;
-        }
-        spotifyApi.pause();
-        resSend(res, 'Succesfully paused song');
-    }
-};
-
-export const nextSong = async (_req: Request, res: Response) => {
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/next');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        const activeDevice = await getActiveDeviceId();
-        if (!activeDevice) {
-            resSend(res, 'No Device is playing');
-            return;
-        }
-        spotifyApi.skipToNext();
-        resSend(res, 'Succesfully skipped song');
-    }
-};
-
-export const previousSong = async (_req: Request, res: Response) => {
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/previous');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        const activeDevice = await getActiveDeviceId();
-        if (!activeDevice) {
-            resSend(res, 'No Device is playing');
-            return;
-        }
-        spotifyApi.skipToPrevious();
-        resSend(res, 'Succesfully skipped song');
-    }
-};
-
-export const playSong = async (req: Request, res: Response) => {
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/play');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        const activeDevice = await getActiveDeviceId();
-        if (!activeDevice) {
-            resSend(res, 'No Device is playing');
-            return;
-        }
-        const currentPlayingSong = await currentPlaying(req, res, true);
-        if (currentPlayingSong?.is_playing) {
-            resSend(res, 'Song is already playing');
-            return;
-        }
-        spotifyApi.play();
-        resSend(res, 'Succesfully played song');
-    }
 };

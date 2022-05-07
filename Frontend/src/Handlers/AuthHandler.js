@@ -32,7 +32,6 @@ export const onLogin = async () => {
     const authConfig = await getAuthConfig();
     try {
         const result = await authorize(authConfig);
-        console.log(result);
         alert(JSON.stringify(result));
         return result;
     } catch (error) {
@@ -49,7 +48,13 @@ const refreshLogin = async (refreshToken) => {
 }
 
 export const getUserData = async (accessToken) => {
-    console.log('accessToken: ' + accessToken);
+    console.log('getUserData');
     const userData = await axios.get('http://192.168.0.15:3000/spotify/me', { headers: { accessToken: accessToken } });
     return userData.data;
+}
+
+export const getUserTopArtists = async (accessToken) => {
+    console.log('getUserTopArtists');
+    const userTopArtists = await axios.get('http://192.168.0.15:3000/spotify/topartists', { headers: { accessToken: accessToken } });
+    return userTopArtists.data;
 }

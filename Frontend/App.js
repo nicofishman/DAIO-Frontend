@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { onLogin } from './src/Handlers/AuthHandler';
 import Auth from './src/Components/Views/Auth';
 
+
 export default function App() {
     const Stack = createNativeStackNavigator();
     const [peliculas, setPeliculas] = useState()
