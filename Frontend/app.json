@@ -25,7 +25,8 @@
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
             },
-            "package": "com.nicofishman.proyecto1"
+            "googleServicesFile": "./android/app/google-services.json",
+            "package": "com.daio.project"
         },
         "web": {
             "favicon": "./assets/favicon.png"
