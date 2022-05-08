@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
 import { Button, Text } from 'react-native';
-import { getSpotifyCredentials, getUserData, getUserTopArtists } from '../../Handlers/AuthHandler'
+import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks } from '../../Handlers/AuthHandler'
 import * as SecureStore from 'expo-secure-store';
+import SpotifyLogin from './../SpotifyLogin';
 
 async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
 }
 
-async function getValueFor(key, setData, setUserTopArtists) {
+async function getValueFor(key, setData, setUserTopArtists, setUserTopTracks) {
     let result = await SecureStore.getItemAsync(key);
-    if (result) {
+    if (result && result.length > 0) {
         const data = await getUserData(result);
         setData(data);
         const topArtists = await getUserTopArtists(result);
         setUserTopArtists(topArtists)
+        const topTracks = await getUserTopTracks(result);
+        setUserTopTracks(topTracks)
         return result;
     } else {
-        return null;
+        setData(null);
+        return;
     }
 }
 
@@ -32,19 +36,21 @@ export default function App() {
     const [data, setData] = useState('User is not logged in');
     const [userTopArtists, setUserTopArtists] = useState([]);
     const [accessToken, setAccessToken] = useState(undefined);
-
+    const [userTopTracks, setUserTopTracks] = useState([]);
 
     const [credentials, setCredentials] = useState({})
+
     useEffect(async () => {
         const credentials = await getSpotifyCredentials()
         setCredentials(credentials)
-        const access_token = await getValueFor('access_token', setData, setUserTopArtists);
+        const access_token = await getValueFor('access_token', setData, setUserTopArtists, setUserTopTracks);
         if (access_token) {
             setAccessToken(access_token)
         } else {
             setAccessToken(undefined)
         }
     }, []);
+
     const [request, response, promptAsync] = useAuthRequest(
         {
             responseType: ResponseType.Token,
@@ -60,36 +66,48 @@ export default function App() {
         discovery
     );
 
+    const logOut = async () => {
+        console.log('Logging out');
+        SecureStore.setItemAsync('access_token', '').then(() => {
+            setAccessToken(undefined);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    const getAccessToken = async () => {
+        SecureStore.getItemAsync('access_token').then(data => console.log(`access: '${data}'`));
+    }
+
+    // useEffect(() => {
+    //     console.log('accessToken: ', accessToken);
+    // }, [accessToken]);
+
     useEffect(async () => {
         if (response?.type === 'success') {
-            console.log('success', response.params.accessToken);
             const { access_token } = response.params;
             await save('access_token', access_token)
             setAccessToken(access_token)
-            const data = await getUserData(access_token);
-            setData(data);
+            await getValueFor('access_token', setData, setUserTopArtists, setUserTopTracks);
         }
-    }, [request]);
+    }, [request, response]);
 
 
     return (
         <>
-            {accessToken !== undefined ?
+            {accessToken && data ?
                 (
                     <>
-
                         <Text>{data.display_name}</Text>
-                        <Text>{JSON.stringify(data)}</Text>
-                        <Text>{JSON.stringify(userTopArtists)}</Text>
+                        {/* <Text>{JSON.stringify(userTopArtists) + '\n'}</Text> */}
+                        {/* <Text>{JSON.stringify(userTopTracks)}</Text> */}
+                        <SpotifyLogin title='Log Out' request={request} fnOnPress={logOut} />
                     </>
                 ) :
-                <Button
-                    disabled={!request}
-                    title="Login"
-                    onPress={() => {
-                        promptAsync();
-                    }}
-                />
+                <>
+                    <SpotifyLogin title='Login Spotify' request={request} fnOnPress={promptAsync} />
+                    <SpotifyLogin title='Get Access Token' request={request} fnOnPress={getAccessToken} />
+                </>
             }
 
         </>

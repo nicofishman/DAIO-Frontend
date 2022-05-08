@@ -160,30 +160,56 @@ export const getActiveDevices = (_req: Request, res: Response) => {
     }
 };
 
-export const userTopArtists = (_req: Request, res: Response) => {
+export const userTopArtists = (req: Request, res: Response) => {
     const topArtists: string[] = [];
-    if (spotifyApi.getAccessToken() == null) {
-        res.cookie('redirect', '/spotify/top');
-        res.redirect('/spotify/login');
-    } else {
-        res.clearCookie('redirect');
-        spotifyApi.getMyTopArtists({ limit: 50 }).then(
-            function (data) {
-                data.body.items.forEach((artist) => {
-                    topArtists.push(artist.name);
-                });
-                res.end(JSON.stringify(topArtists));
-            },
-            function (err) {
-                console.log('Something went wrong!', err);
-            }
-        );
+    const accessToken = req.get('accessToken');
+    // console.log('userTopArtists', accessToken?.length);
+    if (accessToken == null) {
+        console.log('accessToken is null');
+        resSend(res, { error: 'No access token' });
+        return;
     }
+    spotifyApi.resetAccessToken();
+    spotifyApi.setAccessToken(accessToken);
+    spotifyApi.getMyTopArtists({ limit: 50 }).then(
+        function (data) {
+            data.body.items.forEach((artist) => {
+                topArtists.push(artist.name);
+            });
+            res.end(JSON.stringify(topArtists));
+        },
+        function (err) {
+            console.log('Something went wrong!, userTopArtists', err);
+        }
+    );
+};
+
+export const userTopTracks = (req: Request, res: Response) => {
+    const topTracks: string[] = [];
+    const accessToken = req.get('accessToken');
+    // console.log('userTopTracks', accessToken?.length);
+    if (accessToken == null) {
+        resSend(res, { error: 'No access token' });
+        return;
+    }
+    spotifyApi.resetAccessToken();
+    spotifyApi.setAccessToken(accessToken);
+    spotifyApi.getMyTopTracks({ limit: 50 }).then(
+        function (data) {
+            data.body.items.forEach((track) => {
+                topTracks.push(track.name);
+            });
+            res.end(JSON.stringify(topTracks));
+        },
+        function (err) {
+            console.log('Something went wrong!, userTopTracks', err);
+        }
+    );
 };
 
 export const me = (req: Request, res: Response) => {
-    console.count('me');
     const accessToken = req.get('accessToken');
+    // console.log('me', accessToken?.length);
     if (accessToken == null) {
         resSend(res, { error: 'No access token' });
         return;

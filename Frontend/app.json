@@ -1,6 +1,9 @@
 {
     "expo": {
         "name": "proyecto1",
+        "plugins": [
+            "@react-native-google-signin/google-signin"
+        ],
         "slug": "proyecto1",
         "version": "1.0.0",
         "orientation": "portrait",
@@ -24,7 +27,9 @@
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
-            }
+            },
+            "googleServicesFile": "./android/app/google-services.json",
+            "package": "com.daio.project"
         },
         "web": {
             "favicon": "./assets/favicon.png"
