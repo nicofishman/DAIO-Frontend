@@ -168,7 +168,6 @@ export const userTopArtists = (req: Request, res: Response) => {
         console.log('accessToken is null');
         resSend(res, { error: 'No access token' });
         return;
-<<<<<<< HEAD
     }
     spotifyApi.resetAccessToken();
     spotifyApi.setAccessToken(accessToken);
@@ -195,34 +194,6 @@ export const userTopTracks = (req: Request, res: Response) => {
     }
     spotifyApi.resetAccessToken();
     spotifyApi.setAccessToken(accessToken);
-=======
-    }
-    spotifyApi.resetAccessToken();
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.getMyTopArtists({ limit: 50 }).then(
-        function (data) {
-            data.body.items.forEach((artist) => {
-                topArtists.push(artist.name);
-            });
-            res.end(JSON.stringify(topArtists));
-        },
-        function (err) {
-            console.log('Something went wrong!, userTopArtists', err);
-        }
-    );
-};
-
-export const userTopTracks = (req: Request, res: Response) => {
-    const topTracks: string[] = [];
-    const accessToken = req.get('accessToken');
-    // console.log('userTopTracks', accessToken?.length);
-    if (accessToken == null) {
-        resSend(res, { error: 'No access token' });
-        return;
-    }
-    spotifyApi.resetAccessToken();
-    spotifyApi.setAccessToken(accessToken);
->>>>>>> 0beed7cc09b5b8ff9a3a288a0a76f0849096538b
     spotifyApi.getMyTopTracks({ limit: 50 }).then(
         function (data) {
             data.body.items.forEach((track) => {
