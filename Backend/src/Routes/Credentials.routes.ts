@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { getCredentials } from '../Controllers/Credentials.controller';
+import { getSpotifyCredentials, getFirebaseCredentials } from '../Controllers/Credentials.controller';
 
 const routerCredentials = Router();
 
-routerCredentials.get('/', getCredentials);
+routerCredentials.get('/spotify', getSpotifyCredentials);
+routerCredentials.get('/firebase', getFirebaseCredentials);
 
 export default routerCredentials;

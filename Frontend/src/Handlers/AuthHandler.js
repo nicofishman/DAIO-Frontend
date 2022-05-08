@@ -24,8 +24,13 @@ const getAuthConfig = async () => {
 }
 
 export const getSpotifyCredentials = async () => {
-    const result = await axios.get('http://192.168.0.15:3000/credentials')
+    const result = await axios.get('http://192.168.0.15:3000/credentials/spotify')
     return result.data
+}
+
+export const getFirebaseCredentials = async () => {
+    const result = await axios.get('http://192.168.0.15:3000/credentials/firebase');
+    return result.data;
 }
 
 export const onLogin = async () => {
@@ -48,13 +53,16 @@ const refreshLogin = async (refreshToken) => {
 }
 
 export const getUserData = async (accessToken) => {
-    console.log('getUserData');
     const userData = await axios.get('http://192.168.0.15:3000/spotify/me', { headers: { accessToken: accessToken } });
     return userData.data;
 }
 
 export const getUserTopArtists = async (accessToken) => {
-    console.log('getUserTopArtists');
     const userTopArtists = await axios.get('http://192.168.0.15:3000/spotify/topartists', { headers: { accessToken: accessToken } });
     return userTopArtists.data;
+}
+
+export const getUserTopTracks = async (accessToken) => {
+    const userTopTracks = await axios.get('http://192.168.0.15:3000/spotify/toptracks', { headers: { accessToken: accessToken } });
+    return userTopTracks.data;
 }

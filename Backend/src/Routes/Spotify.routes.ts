@@ -4,6 +4,7 @@ import {
     login,
     callback,
     userTopArtists,
+    userTopTracks,
     getAccessToken,
     me,
     getByAlbum,
@@ -19,6 +20,7 @@ routerSpotify.get('/song/:song', getBySong);
 routerSpotify.get('/login', login);
 routerSpotify.get('/callback', callback);
 routerSpotify.get('/topartists', userTopArtists);
+routerSpotify.get('/toptracks', userTopTracks);
 routerSpotify.get('/token', getAccessToken);
 routerSpotify.get('/me', me);
 routerSpotify.get('/devices', getActiveDevices);
