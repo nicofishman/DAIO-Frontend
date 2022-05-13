@@ -5,6 +5,7 @@ import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks
 import * as SecureStore from 'expo-secure-store';
 import SpotifyLogin from '../SpotifyLogin';
 import { initalizeFirebase } from '../../Handlers/FirebaseHandler'
+import { NavigationRouteContext } from '@react-navigation/native';
 
 
 async function save(key, value) {
@@ -34,7 +35,7 @@ const discovery = {
 };
 
 
-export default function Login() {
+export default function Login({navigation}) {
     const [data, setData] = useState('User is not logged in');
     const [userTopArtists, setUserTopArtists] = useState([]);
     const [accessToken, setAccessToken] = useState(undefined);
@@ -78,7 +79,7 @@ export default function Login() {
     }
 
     const getAccessToken = async () => {
-        SecureStore.getItemAsync('access_token').then(data => console.log(`access: '${data}'`));
+        navigation.navigate("Pochi")
     }
 
     // useEffect(() => {

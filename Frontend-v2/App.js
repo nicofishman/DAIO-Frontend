@@ -12,19 +12,17 @@ import Config from './src/Components/Views/Config';
 import Chat from './src/Components/Views/Chat';
 import NavBar from './src/Components/NavBar';
 import Pochi from './src/Components/Views/Pochi';
+import Match from './src/Components/Views/Match'
 
 
 export default function App() {
     const Stack = createNativeStackNavigator();
-    const [peliculas, setPeliculas] = useState()
-    useEffect(async () => {
-        getAll(setPeliculas)
-    }, [])
 
     return (
         <>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName='Pochi' screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Match" component={Match} />
                     <Stack.Screen name="Pochi" component={Pochi}/>
                     <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="Loading" component={LoadingScreen} />

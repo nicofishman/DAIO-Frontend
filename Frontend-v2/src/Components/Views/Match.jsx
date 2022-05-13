@@ -1,21 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 import NavBar from '../NavBar'
+import CardMatch from '../pochi/CardMatch'
 
-
-const Home = ({ navigation, route }) => {
+const Match = ({ navigation, route }) => {
 
     return (
         <>
             <View style={styles.container}>
-                <Text style={{ color: '#000' }}>CASA</Text>
+                <CardMatch/>
             </View>
             <NavBar navigation={navigation} route={route} />
         </>
     )
 }
 
-export default Home
+export default Match
 
 const styles = StyleSheet.create({
     container: {

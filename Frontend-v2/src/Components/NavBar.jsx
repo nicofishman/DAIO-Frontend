@@ -13,11 +13,11 @@ const NavBar = ({ navigation, route }) => {
         <View style={styles.navbar}>
             <TouchableOpacity style={styles.button}
                 onPress={() => navigation.navigate('Config')}
-            ><MaterialCommunityIcons style={[styles.icon, routeName === 'Config' && styles.active]} name="account-circle" /></TouchableOpacity>
+            >
+                <MaterialCommunityIcons style={[styles.icon, routeName === 'Config' && styles.active]} name="account-circle" /></TouchableOpacity>
             <TouchableOpacity style={styles.button}
                 onPress={() => navigation.navigate('Home')}
             >
-                {/* <MaterialCommunityIcons style={[styles.icon, routeName === 'Home' && styles.active]} name="home" /> */}
                 <Svg width={50} height={50} style={[styles.icon, styles.daioLogo]}>
                     <Image
                         href={require('../Assets/logo.png')}
@@ -29,7 +29,11 @@ const NavBar = ({ navigation, route }) => {
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}
                 onPress={() => navigation.navigate('Chat')}
-            ><Ionicons style={[styles.icon, routeName === 'Chat' && styles.active]} name="chatbubbles" /></TouchableOpacity>
+            >
+                <Ionicons style={[styles.icon, routeName === 'Chat' && styles.active]} name="chatbubbles" />
+            </TouchableOpacity>
+
+            
         </View>
     )
 }
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
         height: 70,
         position: 'absolute',
         bottom: 0,
-        backgroundColor: '#f0f0aa',
+        backgroundColor: '#ffffff',
         // boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
         shadowColor: 'rgba(0, 0, 0, 0.35)',
         shadowOffset: { width: 0, height: 5 },
@@ -55,15 +59,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRightColor: '#ccc',
-        borderRightWidth: 1
     },
     icon: {
         fontSize: 50,
         color: '#aaa'
     },
     active: {
-        color: '#888'
+        color: '#888',
+        
     },
     daioLogo: {
         //make saturation 0
