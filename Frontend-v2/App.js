@@ -11,6 +11,7 @@ import Home from './src/Components/Views/Home';
 import Config from './src/Components/Views/Config';
 import Chat from './src/Components/Views/Chat';
 import NavBar from './src/Components/NavBar';
+import Pochi from './src/Components/Views/Pochi';
 
 
 export default function App() {
@@ -23,7 +24,8 @@ export default function App() {
     return (
         <>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName='Loading' screenOptions={{ headerShown: false }}>
+                <Stack.Navigator initialRouteName='Pochi' screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Pochi" component={Pochi}/>
                     <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="Loading" component={LoadingScreen} />
                     <Stack.Screen name="Home" component={Home} />
@@ -33,18 +35,6 @@ export default function App() {
         </>
     );
     {/* <View>
-                <Text>{peliculas !== {} && JSON.stringify(peliculas)}</Text>
-            </View>
-
-
-
-
-
-            <TouchableOpacity
-                onPress={() => onLogin()}
-                style={styles.button}>
-                <Text style={styles.buttonText}>Pick a photo</Text>
-            </TouchableOpacity> */}
 
     {/* <NavigationContainer>
                 <Stack.Navigator>
@@ -55,15 +45,7 @@ export default function App() {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
-            <NavigationContainer>
-                <Stack.Navigator screenOptions={{
-                    headerShown: false
-                }}>
-                    <Stack.Screen name="Home" component={Home} />
-                    <Stack.Screen name="Config" component={Config} />
-                    <Stack.Screen name="Chat" component={Chat} />
-                </Stack.Navigator>
-            </NavigationContainer> */}
+            <NavigationContainer>*/}
     // );
 }
 
