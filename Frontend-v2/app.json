@@ -3,6 +3,7 @@
         "name": "Frontend-v2",
         "slug": "Frontend-v2",
         "version": "1.0.0",
+        "scheme": "expo.dev",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "light",

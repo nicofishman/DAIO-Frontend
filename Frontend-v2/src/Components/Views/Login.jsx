@@ -94,6 +94,10 @@ export default function Login() {
         }
     }, [request, response]);
 
+    useEffect(() => {
+        if (data) console.log(data)
+    }, [data]);
+
 
     return (
         <>
