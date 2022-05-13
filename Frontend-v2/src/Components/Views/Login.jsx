@@ -95,6 +95,10 @@ export default function Login({navigation}) {
         }
     }, [request, response]);
 
+    useEffect(() => {
+        if (data) console.log(data)
+    }, [data]);
+
 
     return (
         <>
