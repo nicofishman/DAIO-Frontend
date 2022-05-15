@@ -23,10 +23,12 @@ export default function App() {
             <NavigationContainer>
                 <Stack.Navigator initialRouteName='Pochi' screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="Match" component={Match} />
-                    <Stack.Screen name="Pochi" component={Pochi}/>
+                    <Stack.Screen name="Pochi" component={Pochi} />
                     <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="Loading" component={LoadingScreen} />
-                    <Stack.Screen name="Home" component={Home} />
+                    {/* <Stack.Screen name="Home" component={Home} /> */}
+                    <Stack.Screen name="Config" component={Config} />
+                    <Stack.Screen name="Chat" component={Chat} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />

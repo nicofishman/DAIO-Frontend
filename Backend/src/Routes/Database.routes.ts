@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { getUsers, setUser } from '../Controllers/Database.controller';
+import { getUsers, addUser } from '../Controllers/Database.controller';
 
 const databaseRouter = Router();
 
 databaseRouter.get('/getusers', getUsers);
-databaseRouter.get('/setuser', setUser);
+databaseRouter.post('/adduser', addUser);
 
 export default databaseRouter;

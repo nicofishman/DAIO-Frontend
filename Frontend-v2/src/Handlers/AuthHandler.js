@@ -67,3 +67,11 @@ export const getUserTopTracks = async (accessToken) => {
     const userTopTracks = await axios.get('http://192.168.0.15:3000/spotify/toptracks', { headers: { accessToken: accessToken } });
     return userTopTracks.data;
 }
+
+export const addUser = async (userData) => {
+    try {
+        await axios.post('http://192.168.0.15:3000/database/adduser', userData);
+    } catch (error) {
+        console.log(error);
+    }
+}

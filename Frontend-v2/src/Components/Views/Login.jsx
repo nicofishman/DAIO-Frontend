@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
 import { View, Text, StyleSheet } from 'react-native';
-import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks } from '../../Handlers/AuthHandler'
+import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser } from '../../Handlers/AuthHandler'
 import * as SecureStore from 'expo-secure-store';
 import SpotifyLogin from '../SpotifyLogin';
 import { initalizeFirebase } from '../../Handlers/FirebaseHandler'
@@ -12,11 +12,22 @@ async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
 }
 
-async function getValueFor(key, setData, setUserTopArtists, setUserTopTracks) {
+async function addUserToDatabase(data) {
+    const userData = {
+        spotifyId: data.id,
+        username: data.display_name,
+        avatarId: Math.floor(Math.random() * 15),
+        description: data.email
+    }
+    await addUser(userData)
+}
+
+async function makeLogin(key, setData, setUserTopArtists, setUserTopTracks) {
     let result = await SecureStore.getItemAsync(key);
     if (result && result.length > 0) {
         const data = await getUserData(result);
         setData(data);
+        await addUserToDatabase(data);
         const topArtists = await getUserTopArtists(result);
         setUserTopArtists(topArtists)
         const topTracks = await getUserTopTracks(result);
@@ -35,7 +46,7 @@ const discovery = {
 };
 
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
     const [data, setData] = useState('User is not logged in');
     const [userTopArtists, setUserTopArtists] = useState([]);
     const [accessToken, setAccessToken] = useState(undefined);
@@ -46,7 +57,7 @@ export default function Login({navigation}) {
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials()
         setCredentials(spotifyCredentials)
-        const access_token = await getValueFor('access_token', setData, setUserTopArtists, setUserTopTracks);
+        const access_token = await makeLogin('access_token', setData, setUserTopArtists, setUserTopTracks);
         if (access_token) {
             setAccessToken(access_token)
         } else {
@@ -91,13 +102,9 @@ export default function Login({navigation}) {
             const { access_token } = response.params;
             await save('access_token', access_token)
             setAccessToken(access_token)
-            await getValueFor('access_token', setData, setUserTopArtists, setUserTopTracks);
+            await makeLogin('access_token', setData, setUserTopArtists, setUserTopTracks);
         }
     }, [request, response]);
-
-    useEffect(() => {
-        if (data) console.log(data)
-    }, [data]);
 
 
     return (
@@ -105,7 +112,7 @@ export default function Login({navigation}) {
             {accessToken && data ?
                 (
                     <View style={styles.container}>
-                        <Text>{data.display_name}</Text>
+                        <Text>{JSON.stringify(data, null, "\t")}</Text>
                         {/* <Text>{JSON.stringify(userTopArtists) + '\n'}</Text> */}
                         {/* <Text>{JSON.stringify(userTopTracks)}</Text> */}
                         <SpotifyLogin title='Log Out' request={request} fnOnPress={logOut} />
@@ -113,7 +120,7 @@ export default function Login({navigation}) {
                 ) :
                 <View style={styles.container}>
                     <SpotifyLogin title='Spotify Login' request={request} fnOnPress={spotifyPromptAsync} />
-                    <SpotifyLogin title='Google Login' request={request} fnOnPress={getAccessToken} />
+                    {/* <SpotifyLogin title='Google Login' request={request} fnOnPress={getAccessToken} /> */}
                 </View>
             }
 

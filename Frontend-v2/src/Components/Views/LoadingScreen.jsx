@@ -8,7 +8,7 @@ const LoadingScreen = ({ navigation }) => {
     useEffect(async () => {
         const firebaseApp = await initializeFirebase();
         getAuth(firebaseApp).onAuthStateChanged(user => {
-            console.log(user)
+            console.log('user', user)
             if (user) {
                 console.log('user logged in')
                 navigation.navigate('Home')
@@ -20,7 +20,6 @@ const LoadingScreen = ({ navigation }) => {
     }, [])
     return (
         <View style={styles.container}>
-            <Text>Hola Papá</Text>
             <ActivityIndicator size='large' color='#000' />
             {/* <Text>LoadingScreen</Text> */}
         </View>

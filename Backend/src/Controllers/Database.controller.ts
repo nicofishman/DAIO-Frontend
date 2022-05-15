@@ -1,13 +1,7 @@
 import 'dotenv/config';
 import { Request, Response } from 'express';
 import mysql, { MysqlError } from 'mysql';
-
-type User = {
-    spotifyId: string,
-    username: string,
-    avatarId: 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15,
-    description: string
-}
+import { User } from '../types';
 
 export const getUsers = async (_req: Request, res: Response): Promise<void> => {
     const con = mysql.createConnection({
@@ -24,13 +18,12 @@ export const getUsers = async (_req: Request, res: Response): Promise<void> => {
         if (err) throw err;
         console.log(result);
         res.json(result);
+        con.end();
     });
-    con.end();
 };
 
-export const setUser = async (req: Request, res: Response): Promise<void> => {
-    const user: any = req.body;
-    console.log(user);
+export const addUser = async (req: Request, res: Response): Promise<void> => {
+    const user: User = req.body;
     const con = mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
@@ -41,10 +34,21 @@ export const setUser = async (req: Request, res: Response): Promise<void> => {
         if (err) throw err;
         console.log('Connected!');
     });
-    con.query(`INSERT INTO users (spotifyId, username, avatarId, description) VALUES (${user.spotifyId}, ${user.username}, ${user.avatarId}, ${user.description})`, function (err: MysqlError, result: User[]) {
+
+    const userBySpotifyIdQuery = `SELECT * FROM users WHERE spotifyId = '${user.spotifyId}'`;
+    con.query(userBySpotifyIdQuery, function (err: MysqlError, result: User[]) {
         if (err) throw err;
-        console.log(result);
-        res.json(result);
+        if (result.length === 0) {
+            const addUserQuery = `INSERT INTO users (spotifyId, username, avatarId, description) VALUES ('${user.spotifyId}', '${user.username}', ${user.avatarId}, '${user.description}')`;
+            con.query(addUserQuery, function (err: MysqlError, result: User[]) {
+                if (err) throw err;
+                console.log(result);
+                res.json(result);
+            });
+        } else {
+            console.log('User already exists');
+            res.json('User Already Exists');
+        }
+        con.end();
     });
-    con.end();
 };

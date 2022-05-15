@@ -8,7 +8,6 @@ import Svg, { Image } from 'react-native-svg';
 
 const NavBar = ({ navigation, route }) => {
     const { name: routeName } = useRoute();
-    console.log(routeName);
     return (
         <View style={styles.navbar}>
             <TouchableOpacity style={styles.button}
@@ -16,14 +15,14 @@ const NavBar = ({ navigation, route }) => {
             >
                 <MaterialCommunityIcons style={[styles.icon, routeName === 'Config' && styles.active]} name="account-circle" /></TouchableOpacity>
             <TouchableOpacity style={styles.button}
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => navigation.navigate('Match')}
             >
                 <Svg width={50} height={50} style={[styles.icon, styles.daioLogo]}>
                     <Image
                         href={require('../Assets/logo.png')}
                         width={50}
                         height={50}
-                        style={[routeName === 'Home' && styles.active]}
+                        style={[routeName === 'Match' && styles.active]}
                     />
                 </Svg>
             </TouchableOpacity>
@@ -33,7 +32,7 @@ const NavBar = ({ navigation, route }) => {
                 <Ionicons style={[styles.icon, routeName === 'Chat' && styles.active]} name="chatbubbles" />
             </TouchableOpacity>
 
-            
+
         </View>
     )
 }
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
     },
     active: {
         color: '#888',
-        
     },
     daioLogo: {
         //make saturation 0
