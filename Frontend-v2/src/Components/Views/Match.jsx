@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import NavBar from "../NavBar";
 import CardMatch from "../pochi/CardMatch";
@@ -9,9 +9,8 @@ const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
 
     useEffect(() => {
-        (async() => {
+        (async () => {
             const users = await getUsers()
-            console.log(users)
             setCardToMatch(users);
         })()
     }, []);
@@ -26,16 +25,16 @@ const Match = ({ navigation, route }) => {
     }
     function StatusCard({ text }) {
         return (
-        <View>
-            <Text style={styles.cardsText}>{text}</Text>
-        </View>
+            <View>
+                <Text style={styles.cardsText}>{text}</Text>
+            </View>
         );
     }
 
     return (
         <>
             <View style={styles.container}>
-                <SwipeCards 
+                <SwipeCards
                     cards={cardToMatch}
                     renderCard={(cardData) => <CardMatch data={cardData} />}
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
@@ -45,9 +44,9 @@ const Match = ({ navigation, route }) => {
                         yup: { show: false, onAction: handleYup },
                     }}
 
-                stack={true}
-                stackDepth={2}
-                stackOffsetX={0}
+                    stack={true}
+                    stackDepth={2}
+                    stackOffsetX={0}
                 />
             </View>
             <NavBar navigation={navigation} route={route} />

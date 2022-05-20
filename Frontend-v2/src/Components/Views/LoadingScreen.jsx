@@ -11,7 +11,7 @@ const LoadingScreen = ({ navigation }) => {
             console.log('user', user)
             if (user) {
                 console.log('user logged in')
-                navigation.navigate('Home')
+                navigation.navigate('Match')
             } else {
                 console.log('user not logged in')
                 navigation.navigate('Login')
