@@ -5,7 +5,7 @@ const CardMatch = ({ data }) => {
 
     return (
         <View style={styles.card}>
-            <Text style={styles.textName}>{data.name}</Text>
+            <Text style={styles.textName}>{data.username}</Text>
             <Text style={styles.textDesc}>{data.description}</Text>
         </View>
         /*<DraxProvider>
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     card: {
         flex: 1,
         width: 370,
+        height: 600,
         alignItems: "center",
         backgroundColor: "#f3f3f3",
         marginTop: 100,
