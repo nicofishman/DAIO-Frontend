@@ -41,8 +41,8 @@ const Match = ({ navigation, route }) => {
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
                     renderNoMoreCards={() => <StatusCard text="No more cards..." />}
                     actions={{
-                        nope: { onAction: handleNope },
-                        yup: { onAction: handleYup },
+                        nope: {  show: false, onAction: handleNope },
+                        yup: { show: false, onAction: handleYup },
                     }}
 
                 stack={true}
