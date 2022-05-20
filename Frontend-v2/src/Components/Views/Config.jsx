@@ -1,20 +1,12 @@
 import { StyleSheet, Text, TextInput, View, ScrollView, Dimensions } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar'
 import { searchTrack } from '../../Handlers/AuthHandler';
 import * as SecureStore from 'expo-secure-store';
 
 const Config = ({ navigation, route }) => {
     const [text, setText] = useState("");
-    const [search, setSearch] = useState({})
-    const [screenHeight, setScreenHeight] = useState(0)
-    const { height } = Dimensions.get("window");
-
-    const onContentSizeChange = (contentWidth, contentHeight) => {
-        setScreenHeight(contentHeight);
-    };
-
-
+    const [search, setSearch] = useState(undefined)
 
     const onChangeText = async (e) => {
         setText(e);
@@ -23,25 +15,25 @@ const Config = ({ navigation, route }) => {
         setSearch(res);
     }
 
-    const scrollEnabled = screenHeight > height;
-
     return (
-        <View style={styles.container}>
-            <ScrollView
-                style={{ flex: 1, }}
-                contentContainerStyle={styles.container}
-                scrollEnabled={scrollEnabled}
-                onContentSizeChange={onContentSizeChange}
-            >
+        <>
+            <View style={styles.container}>
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangeText}
                     value={text}
                 />
-                <Text>{JSON.stringify(search, null, "\t")}</Text>
-            </ScrollView>
+                {search && search.body.tracks.items.map((item, index) => {
+                    return index <= 3 ? (
+                        <View key={index} style={styles.card}>
+                            <Text>{item.name}</Text>
+                            <Text>{item.artists[0].name}</Text>
+                        </View>
+                    ) : null
+                })}
+            </View>
             <NavBar navigation={navigation} route={route} />
-        </View>
+        </>
     )
 }
 
@@ -63,5 +55,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: '#f3f3f3',
         width: 300,
+    },
+    card: {
+        height: 100,
+        width: 300,
+        backgroundColor: '#ccc',
+        flexDirection: 'column',
     }
 })

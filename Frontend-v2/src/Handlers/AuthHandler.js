@@ -27,7 +27,7 @@ const getAuthConfig = async () => {
 export const searchTrack = async (query, accessToken) => {
     const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/song/${query}`, {
         headers: {
-            accessToken: accessToken,
+            accessToken: accessToken, //sexo
         },
     });
     return result.data;
