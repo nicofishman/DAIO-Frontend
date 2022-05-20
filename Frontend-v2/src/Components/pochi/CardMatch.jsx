@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Alert, Pressable } from 'react-native'
-import { DraxProvider, DraxView } from 'react-native-drax';
 
-const CardMatch = ({ onPress }) => {
+const CardMatch = ({ data }) => {
+
     return (
         <View style={styles.card}>
-            <Text style={styles.textName}>Jorge</Text>
-            <Text style={styles.textDesc}>Mido un metro ochenta y uno, tengo un sillón azul. En mi cuarto hay un baúl y me gusta el almendrado. Me despierto alunado y mi madre es medio terca.</Text>
+            <Text style={styles.textName}>{data.name}</Text>
+            <Text style={styles.textDesc}>{data.description}</Text>
         </View>
         /*<DraxProvider>
             <DraxView>

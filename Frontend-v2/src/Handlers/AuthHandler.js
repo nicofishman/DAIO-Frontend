@@ -25,12 +25,12 @@ const getAuthConfig = async () => {
 }
 
 export const getSpotifyCredentials = async () => {
-    const result = await axios.get('http://192.168.0.15:3000/credentials/spotify')
+    const result = await axios.get('http://daio-backend.herokuapp.com/credentials/spotify')
     return result.data
 }
 
 export const getFirebaseCredentials = async () => {
-    const result = await axios.get('http://192.168.0.15:3000/credentials/firebase');
+    const result = await axios.get('http://daio-backend.herokuapp.com/credentials/firebase');
     return result.data;
 }
 
@@ -54,23 +54,29 @@ const refreshLogin = async (refreshToken) => {
 }
 
 export const getUserData = async (accessToken) => {
-    const userData = await axios.get('http://192.168.0.15:3000/spotify/me', { headers: { accessToken: accessToken } });
+    const userData = await axios.get('http://daio-backend.herokuapp.com/spotify/me', { headers: { accessToken: accessToken } });
     return userData.data;
 }
 
 export const getUserTopArtists = async (accessToken) => {
-    const userTopArtists = await axios.get('http://192.168.0.15:3000/spotify/topartists', { headers: { accessToken: accessToken } });
+    const userTopArtists = await axios.get('http://daio-backend.herokuapp.com/spotify/topartists', { headers: { accessToken: accessToken } });
     return userTopArtists.data;
 }
 
 export const getUserTopTracks = async (accessToken) => {
-    const userTopTracks = await axios.get('http://192.168.0.15:3000/spotify/toptracks', { headers: { accessToken: accessToken } });
+    const userTopTracks = await axios.get('http://daio-backend.herokuapp.com/spotify/toptracks', { headers: { accessToken: accessToken } });
     return userTopTracks.data;
+}
+
+export const getUsers = async () => {
+    console.log('getuserrr');
+    const result = await axios.get('http://daio-backend.herokuapp.com/database/adduser')
+    return result.data;
 }
 
 export const addUser = async (userData) => {
     try {
-        await axios.post('http://192.168.0.15:3000/database/adduser', userData);
+        await axios.post('http://daio-backend.herokuapp.com/database/adduser', userData);
     } catch (error) {
         console.log(error);
     }
