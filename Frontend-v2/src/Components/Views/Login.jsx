@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser } from '../../Handlers/AuthHandler'
 import * as SecureStore from 'expo-secure-store';
 import SpotifyLogin from '../SpotifyLogin';
@@ -116,6 +116,7 @@ export default function Login({ navigation }) {
                         {/* <Text>{JSON.stringify(userTopArtists) + '\n'}</Text> */}
                         {/* <Text>{JSON.stringify(userTopTracks)}</Text> */}
                         <SpotifyLogin title='Log Out' request={request} fnOnPress={logOut} />
+                        <Button title='Match' onPress={() => navigation.navigate('Match')} />
                     </View>
                 ) :
                 <View style={styles.container}>

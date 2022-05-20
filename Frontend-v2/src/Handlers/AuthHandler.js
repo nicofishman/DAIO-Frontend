@@ -24,6 +24,15 @@ const getAuthConfig = async () => {
     return spotifyAuthConfig;
 }
 
+export const searchTrack = async (query, accessToken) => {
+    const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/song/${query}`, {
+        headers: {
+            accessToken: accessToken,
+        },
+    });
+    return result.data;
+}
+
 export const getSpotifyCredentials = async () => {
     const result = await axios.get('http://daio-backend.herokuapp.com/credentials/spotify')
     return result.data

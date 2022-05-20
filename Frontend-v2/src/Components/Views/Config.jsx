@@ -2,7 +2,7 @@ import { StyleSheet, Text, TextInput, View, ScrollView, Dimensions } from 'react
 import React, { useState } from 'react'
 import NavBar from '../NavBar'
 import { searchTrack } from '../../Handlers/AuthHandler';
-
+import * as SecureStore from 'expo-secure-store';
 
 const Config = ({ navigation, route }) => {
     const [text, setText] = useState("");
@@ -15,9 +15,11 @@ const Config = ({ navigation, route }) => {
     };
 
 
+
     const onChangeText = async (e) => {
         setText(e);
-        const res = await searchTrack(e);
+        const accessToken = await SecureStore.getItemAsync('access_token');
+        const res = await searchTrack(e, accessToken);
         setSearch(res);
     }
 
