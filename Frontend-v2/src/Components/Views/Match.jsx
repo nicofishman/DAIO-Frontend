@@ -9,26 +9,21 @@ const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
 
     useEffect(() => {
-        setTimeout(async () => {
+        (async() => {
             const users = await getUsers()
             console.log(users)
             setCardToMatch(users);
-        }, 3000);
+        })()
     }, []);
 
     function handleYup(card) {
-        console.log(`Yup for ${cardToMatch.name}`);
+        console.log(`Yup for ${card.username}`);
         return true; // return false if you wish to cancel the action
     }
     function handleNope(card) {
-        console.log(`Nope for ${cardToMatch.name}`);
+        console.log(`Nope for ${card.username}`);
         return true;
     }
-    function handleMaybe(card) {
-        console.log(`Maybe for ${cardToMatch.name}`);
-        return true;
-    }
-
     function StatusCard({ text }) {
         return (
         <View>
@@ -43,16 +38,16 @@ const Match = ({ navigation, route }) => {
                 <SwipeCards 
                     cards={cardToMatch}
                     renderCard={(cardData) => <CardMatch data={cardData} />}
-                    keyExtractor={(cardData) => String(cardData.text)}
+                    keyExtractor={(cardData) => String(cardData.spotifyId)}
                     renderNoMoreCards={() => <StatusCard text="No more cards..." />}
                     actions={{
                         nope: { onAction: handleNope },
                         yup: { onAction: handleYup },
-                        maybe: { onAction: handleMaybe },
                     }}
 
                 stack={true}
-                stackDepth={3}
+                stackDepth={2}
+                stackOffsetX={0}
                 />
             </View>
             <NavBar navigation={navigation} route={route} />
@@ -61,7 +56,7 @@ const Match = ({ navigation, route }) => {
 };
 
 export default Match;
-
+0
 const styles = StyleSheet.create({
     container: {
         flex: 1,
