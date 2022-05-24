@@ -63,6 +63,7 @@ const refreshLogin = async (refreshToken) => {
 }
 
 export const getUserData = async (accessToken) => {
+    console.log(accessToken)
     const userData = await axios.get('http://daio-backend.herokuapp.com/spotify/me', { headers: { accessToken: accessToken } });
     return userData.data;
 }

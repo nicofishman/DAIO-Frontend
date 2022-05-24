@@ -3,32 +3,43 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar'
 import { searchTrack } from '../../Handlers/AuthHandler';
 import * as SecureStore from 'expo-secure-store';
+import { getUserData } from './../../Handlers/AuthHandler';
+import SongSearch from '../SongSearch';
 
 const Config = ({ navigation, route }) => {
     const [text, setText] = useState("");
     const [search, setSearch] = useState(undefined)
+    const [user, setUser] = useState(undefined)
+
+    useEffect(() => {
+        (async () => {
+            let result = await SecureStore.getItemAsync("access_token");
+            const user = await getUserData(result);
+            setUser(user);
+        })();
+    }, [])
 
     const onChangeText = async (e) => {
         setText(e);
+        if (text.length === 0) return
         const accessToken = await SecureStore.getItemAsync('access_token');
         const res = await searchTrack(e, accessToken);
+        // console.log(res);
         setSearch(res);
     }
 
     return (
         <>
             <View style={styles.container}>
+                <Text>{JSON.stringify(user?.display_name || 'null')}</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangeText}
                     value={text}
                 />
-                {search && search.body.tracks.items.map((item, index) => {
-                    return index <= 3 ? (
-                        <View key={index} style={styles.card}>
-                            <Text>{item.name}</Text>
-                            <Text>{item.artists[0].name}</Text>
-                        </View>
+                {search && search.tracks.items.map((item, index) => {
+                    return index <= 4 ? (
+                        <SongSearch song={item} key={index} />
                     ) : null
                 })}
             </View>
