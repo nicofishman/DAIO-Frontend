@@ -47,7 +47,7 @@ const Config = ({ navigation, route }) => {
                     <Ionicons style={styles.iconSearch} name="search-outline"></Ionicons>
                 </View>
                 <View style={styles.line}></View>
-                {testJson.tracks.items.map((item, index) => {
+                {search?.tracks.items.map((item, index) => {
                     return index <= 4 ? (
                         <SongSearch song={item} key={index} />
                     ) : null
@@ -70,6 +70,8 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         padding: 5,
+        color: '#e0e0e0',
+        fontSize: 18,
     },
     inputBar: {
         flexDirection: 'row',
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     iconSearch: {
-        fontSize: 35,
+        fontSize: 30,
         justifyContent: 'center',
         alignContent: 'center',
         marginRight: 10
