@@ -27,7 +27,7 @@ const NavBar = ({ navigation, route }) => {
                 </Svg>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}
-                onPress={() => navigation.navigate('Chat')}
+                onPress={() => navigation.push('Chat')}
             >
                 <Ionicons style={[styles.icon, routeName === 'Chat' && styles.active]} name="chatbubbles" />
             </TouchableOpacity>

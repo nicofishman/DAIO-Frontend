@@ -7,6 +7,7 @@ import { getUsers } from "../../Handlers/AuthHandler";
 
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
+    
 
     useEffect(() => {
         (async () => {
@@ -14,6 +15,7 @@ const Match = ({ navigation, route }) => {
             setCardToMatch(users);
         })()
     }, []);
+
 
     function handleYup(card) {
         console.log(`Yup for ${card.username}`);

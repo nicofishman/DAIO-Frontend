@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 
 const SongSearch = ({ song }) => {
@@ -10,10 +10,14 @@ const SongSearch = ({ song }) => {
             artists += ', '
         }
     })
+    console.log(song.album.images[0].url);
     return (
-        <View style={styles.container}>
-            <Text style={styles.box} numberOfLines={1}><Text style={styles.title}>{song.name} - </Text><Text style={styles.artists}>{artists}</Text></Text>
-
+        <View style={[styles.container, styles.shadowBox]}>
+            <Image style={styles.image} source={{"uri": song.album.images[0].url}}/>
+            <View style={styles.textSong}>
+                <Text style={styles.title}>{song.name}</Text>
+                <Text style={styles.artists}>{artists}</Text>
+            </View>
         </View>
     )
 }
@@ -22,27 +26,44 @@ export default SongSearch
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         width: 300,
-        height: 50,
+        height: 60,
+        flexDirection: 'row',
+        backgroundColor: '#615e5e',
         borderRadius: 5,
-        backgroundColor: '#fff',
-        margin: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 10,
+        marginBottom: 15,
+    },
+    textSong: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        marginLeft: 10,
     },
     box: {
-        marginLeft: 10,
     },
     title: {
         fontSize: 13,
         fontWeight: 'bold',
+        color: '#e0e0e0'
     },
     artists: {
         fontSize: 12,
         color: '#999',
+    },
+    image: {
+        height: 60,
+        width: 60,
+        borderBottomLeftRadius: 5,
+        borderTopLeftRadius: 5
+    },
+    shadowBox: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.32,
+        shadowRadius: 5.46,
+        elevation: 4,
     }
 })

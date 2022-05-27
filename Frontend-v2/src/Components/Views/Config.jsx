@@ -5,6 +5,7 @@ import { searchTrack } from '../../Handlers/AuthHandler';
 import * as SecureStore from 'expo-secure-store';
 import { getUserData } from './../../Handlers/AuthHandler';
 import SongSearch from '../SongSearch';
+import testJson from '../pochi/TEST.json'
 
 const Config = ({ navigation, route }) => {
     const [text, setText] = useState("");
@@ -37,7 +38,7 @@ const Config = ({ navigation, route }) => {
                     onChangeText={onChangeText}
                     value={text}
                 />
-                {search && search.tracks.items.map((item, index) => {
+                {testJson.tracks.items.map((item, index) => {
                     return index <= 4 ? (
                         <SongSearch song={item} key={index} />
                     ) : null
@@ -53,7 +54,7 @@ export default Config
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red',
+        backgroundColor: '#3b3b3b',
         alignItems: 'center',
         justifyContent: 'center',
     },
