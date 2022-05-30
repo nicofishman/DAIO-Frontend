@@ -33,6 +33,15 @@ export const searchTrack = async (query, accessToken) => {
     return result.data;
 }
 
+export const searchArtist = async (query, accessToken) => {
+    const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/artist/${query}`, {
+        headers: {
+            accessToken: accessToken, //sexo
+        },
+    });
+    return result.data;
+}
+
 export const getSpotifyCredentials = async () => {
     const result = await axios.get('http://daio-backend.herokuapp.com/credentials/spotify')
     return result.data
