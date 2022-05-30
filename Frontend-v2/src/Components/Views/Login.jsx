@@ -73,9 +73,7 @@ export default function Login({ navigation }) {
             // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
             // this must be set to false
             usePKCE: false,
-            redirectUri: makeRedirectUri({
-                scheme: 'your.app'
-            }),
+            redirectUri: makeRedirectUri(credentials.redirectUri),
         },
         discovery
     );
