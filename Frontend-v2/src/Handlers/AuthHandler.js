@@ -87,9 +87,9 @@ export const getUserTopTracks = async (accessToken) => {
     return userTopTracks.data;
 }
 
-export const getUsers = async () => {
+export const getUsers = async (accessToken) => {
     console.log('getuserrr');
-    const result = await axios.get('http://daio-backend.herokuapp.com/database/getusers')
+    const result = await axios.get('http://daio-backend.herokuapp.com/database/getusersandinfo', { headers: { accessToken: accessToken } });
     return result.data;
 }
 

@@ -4,14 +4,17 @@ import NavBar from "../NavBar";
 import CardMatch from "../pochi/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
 import { getUsers } from "../../Handlers/AuthHandler";
+import * as SecureStore from 'expo-secure-store';
+
 
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
-    
+
 
     useEffect(() => {
         (async () => {
-            const users = await getUsers()
+            const accessToken = await SecureStore.getItemAsync('access_token');
+            const users = await getUsers(accessToken)
             setCardToMatch(users);
         })()
     }, []);
@@ -42,7 +45,7 @@ const Match = ({ navigation, route }) => {
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
                     renderNoMoreCards={() => <StatusCard text="No more cards..." />}
                     actions={{
-                        nope: {  show: false, onAction: handleNope },
+                        nope: { show: false, onAction: handleNope },
                         yup: { show: false, onAction: handleYup },
                     }}
 

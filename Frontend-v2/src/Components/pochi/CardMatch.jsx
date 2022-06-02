@@ -9,43 +9,39 @@ const CardMatch = ({ data }) => {
             <Text style={styles.textDesc}>{data.description}</Text>
             <View style={styles.cardMusic}>
                 <View style={styles.songsAll}>
-                    <View style={[styles.songCard, styles.songCardActive]}>
-                        <Text style={styles.titleSong}>Titulo de la cancion</Text>
-                        <Text style={styles.artistSong}>Nombre del artista</Text>
-                    </View>
-                    <View style={[styles.songCard, styles.shadowBox]}>
-                        <Text style={styles.titleSong}>Titulo de la cancion</Text>
-                        <Text style={styles.artistSong}>Nombre del artista</Text>
-                    </View>
-                    <View style={[styles.songCard, styles.shadowBox]}>
-                        <Text style={styles.titleSong}>Titulo de la cancion</Text>
-                        <Text style={styles.artistSong}>Nombre del artista</Text>
-                    </View>
-                    <View style={[styles.songCard, styles.shadowBox]}>
-                        <Text style={styles.titleSong}>Titulo de la cancion</Text>
-                        <Text style={styles.artistSong}>Nombre del artista</Text>
-                    </View>
-                    <View style={[styles.songCard, styles.shadowBox]}>
-                        <Text style={styles.titleSong}>Titulo de la cancion</Text>
-                        <Text style={styles.artistSong}>Nombre del artista</Text>
-                    </View>
+                    {
+                        data.canciones.map((song, index) => {
+                            let artists = ''
+                            song.artists.forEach((artist, index) => {
+                                artists += artist.name
+                                if (index !== song.artists.length - 1) {
+                                    artists += ', '
+                                }
+                            })
+                            return (
+                                <View key={index} style={[styles.songCard, styles.shadowBox]}>
+                                    <Text style={styles.titleSong}>{song.name}</Text>
+                                    <Text style={styles.artistSong}>{artists}</Text>
+                                </View>
+                            )
+                        })
+                    }
                 </View>
                 <View style={styles.artistAll}>
-                    <Image
-                        style={styles.artistImg}
-                        source={require('../../Assets/imageExample.jpg')}
-                    />
-                    <Image
-                        style={styles.artistImg}
-                        source={require('../../Assets/imageExample.jpg')}
-                    />
-                    <Image
-                        style={styles.artistImg}
-                        source={require('../../Assets/imageExample.jpg')}
-                    />
+                    {
+                        data.artistas.map((artist, index) => {
+                            return (
+                                <Image
+                                    key={index}
+                                    style={styles.artistImg}
+                                    source={{ "uri": artist.images[0].url }}
+                                />
+                            )
+                        })
+                    }
                 </View>
             </View>
-        </View>
+        </View >
         /*<DraxProvider>
             <DraxView>
             </DraxView>
@@ -80,13 +76,13 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlign: "justify"
     },
-    titleSong:{
+    titleSong: {
         fontSize: 16,
         marginLeft: 10,
         marginTop: 10,
         color: '#1c1c1c',
     },
-    artistSong:{
+    artistSong: {
         fontSize: 14,
         marginLeft: 10,
         color: '#6e6e6e',
