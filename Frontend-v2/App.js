@@ -14,32 +14,38 @@ import Chat from './src/Components/Views/Chat';
 import NavBar from './src/Components/NavBar';
 import Pochi from './src/Components/Views/Pochi';
 import Match from './src/Components/Views/Match'
-import Register from './src/Components/Views/Register';
+import RegisterFirst from './src/Components/Views/Register-first';
+import { RegisterProvider } from './src/Context/RegisterContext';
 
 
 export default function App() {
     const Stack = createNativeStackNavigator();
     const Tab = createBottomTabNavigator();
 
+
     return (
         <>
-            <NavigationContainer>
-                <Stack.Navigator initialRouteName='Pochi' screenOptions={{ headerShown: false }}>
-                    <Stack.Screen name="Pochi" component={Pochi} />
-                    <Stack.Screen name="Login" component={Login} />
-                    <Stack.Screen name="Loading" component={LoadingScreen} />
-                    <Stack.Screen name="Config" component={Config} />
-                    <Stack.Screen name="Match" component={Match} />
-                    <Stack.Screen name="Chat" component={Chat} />
-                    <Stack.Screen name="Register" component={Register} />
-                    {/* <Stack.Screen name="Home" component={Home} /> */}
-                </Stack.Navigator>
-                {/* <Tab.Navigator>
+            <RegisterProvider>
+                <NavigationContainer>
+                    <Stack.Navigator initialRouteName='Pochi' screenOptions={{ headerShown: false }}>
+                        <Stack.Screen name="Pochi" component={Pochi} />
+                        <Stack.Screen name="Login" component={Login} />
+                        <Stack.Screen name="Loading" component={LoadingScreen} />
+                        <Stack.Screen name="Config" component={Config} />
+                        <Stack.Screen name="Match" component={Match} />
+                        <Stack.Screen name="Chat" component={Chat} />
+
+                        <Stack.Screen name="RegisterFirst" component={RegisterFirst} />
+                        {/* <Stack.Screen name="Home" component={Home} /> */}
+                    </Stack.Navigator>
+                    {/* <Tab.Navigator>
                     <Tab.Screen name="Config" component={Config}/>
                     <Tab.Screen name="Match" component={Match} />
                     <Tab.Screen name="Chat" component={Chat} />
                 </Tab.Navigator> */}
-            </NavigationContainer>
+                </NavigationContainer>
+            </RegisterProvider>
+
             <StatusBar style="auto" />
         </>
     );

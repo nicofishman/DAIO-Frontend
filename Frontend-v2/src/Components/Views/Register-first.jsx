@@ -1,0 +1,64 @@
+import { StyleSheet, TextInput, View } from 'react-native'
+import React, { useState } from 'react'
+import { useRegisterContext } from '../../Context/RegisterContext'
+
+
+
+
+const RegisterFirst = ({ navigation }) => {
+    const { nombre, descripcion, handleChangeNombre, handleChangeDesc } = useRegisterContext();
+    return (
+        <View style={styles.container}>
+            <TextInput
+                style={[styles.input, styles.inputNombre]}
+                onChangeText={handleChangeNombre}
+                value={nombre}
+                caretHidden={true}
+                placeholder={`Nombre`}
+                placeholderTextColor="#999"
+            />
+            <TextInput
+                style={[styles.input, styles.inputDesc]}
+                placeholder={`Descripción`}
+                onChangeText={handleChangeDesc}
+                value={descripcion}
+                multiline={true}
+                numberOfLines={8}
+            />
+        </View>
+    )
+}
+
+export default RegisterFirst
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#3b3b3b',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    input: {
+        marginTop: 47,
+        borderRadius: 4,
+        backgroundColor: "#ffffff",
+        shadowColor: "rgba(0, 0, 0, 0.25)",
+        shadowOffset: {
+            width: 2,
+            height: 2
+        },
+        shadowRadius: 3,
+        shadowOpacity: 1,
+        padding: 10,
+    },
+    inputNombre: {
+        width: 264,
+        height: 51,
+    },
+    inputDesc: {
+        width: 264,
+        height: 185,
+        textAlignVertical: 'top'
+    }
+})

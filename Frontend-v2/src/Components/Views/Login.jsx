@@ -10,32 +10,32 @@ async function save(key, value) {
     await AsyncStorage.setItem(key, value);
 }
 
-async function addUserToDatabase(data) {
-    const userData = {
-        spotifyId: data.id,
-        username: data.display_name,
-        avatarId: Math.floor(Math.random() * 15),
-        description: data.email
-    }
-    await addUser(userData)
-}
+// async function addUserToDatabase(data) {
+//     const userData = {
+//         spotifyId: data.id,
+//         username: data.display_name,
+//         avatarId: Math.floor(Math.random() * 15),
+//         description: data.email
+//     }
+//     await addUser(userData)
+// }
 
-async function makeLogin(key, setData, setUserTopArtists, setUserTopTracks) {
-    let result = await AsyncStorage.getItem(key);
-    if (result && result.length > 0) {
-        const data = await getUserData(result);
-        setData(data);
-        await addUserToDatabase(data);
-        const topArtists = await getUserTopArtists(result);
-        setUserTopArtists(topArtists)
-        const topTracks = await getUserTopTracks(result);
-        setUserTopTracks(topTracks)
-        return result;
-    } else {
-        setData(null);
-        return;
-    }
-}
+// async function makeLogin(key, setData, setUserTopArtists, setUserTopTracks) {
+//     let result = await AsyncStorage.getItem(key);
+//     if (result && result.length > 0) {
+//         const data = await getUserData(result);
+//         setData(data);
+//         await addUserToDatabase(data);
+//         const topArtists = await getUserTopArtists(result);
+//         setUserTopArtists(topArtists)
+//         const topTracks = await getUserTopTracks(result);
+//         setUserTopTracks(topTracks)
+//         return result;
+//     } else {
+//         setData(null);
+//         return;
+//     }
+// }
 
 // Endpoint
 const discovery = {
@@ -55,7 +55,7 @@ export default function Login({ navigation }) {
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials()
         setCredentials(spotifyCredentials)
-        const access_token = await makeLogin('access_token', setData, setUserTopArtists, setUserTopTracks);
+        const access_token = await AsyncStorage.getItem('access_token');
         if (access_token) {
             setAccessToken(access_token)
         } else {
@@ -90,17 +90,17 @@ export default function Login({ navigation }) {
             const { access_token } = response.params;
             await save('access_token', access_token)
             setAccessToken(access_token)
-            await makeLogin('access_token', setData, setUserTopArtists, setUserTopTracks);
+            handleLogin(access_token)
+            // await makeLogin('access_token', setData, setUserTopArtists, setUserTopTracks);
         }
     }, [request, response]);
 
-    const handleLogin = async () => {
-        const user = await getUserData(accessToken);
+    const handleLogin = async (token) => {
+        const user = await getUserData(token);
         const usersInDb = await getUsers();
-        console.log(usersInDb);
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
-            navigation.navigate('Register', { user, accessToken });
+            navigation.navigate('RegisterFirst', { user, accessToken });
         } else {
             navigation.navigate('Match');
         }
@@ -113,15 +113,12 @@ export default function Login({ navigation }) {
                 (
                     <View style={styles.container}>
                         <Text>{JSON.stringify(data, null, "\t")}</Text>
-                        {/* <Text>{JSON.stringify(userTopArtists) + '\n'}</Text> */}
-                        {/* <Text>{JSON.stringify(userTopTracks)}</Text> */}
                         <SpotifyLogin title='Log Out' fnOnPress={logOut} />
                         <Button title='Match' onPress={handleLogin} />
                     </View>
                 ) :
                 <View style={styles.container}>
                     <SpotifyLogin title='Spotify Login' fnOnPress={spotifyPromptAsync} />
-                    {/* <SpotifyLogin title='Google Login' request={request} fnOnPress={getAccessToken} /> */}
                 </View>
             }
 
