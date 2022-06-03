@@ -27,7 +27,7 @@ const getAuthConfig = async () => {
 export const searchTrack = async (query, accessToken) => {
     const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/song/${query}`, {
         headers: {
-            accessToken: accessToken, //sexo
+            accessToken: accessToken,
         },
     });
     return result.data;
@@ -36,7 +36,7 @@ export const searchTrack = async (query, accessToken) => {
 export const searchArtist = async (query, accessToken) => {
     const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/artist/${query}`, {
         headers: {
-            accessToken: accessToken, //sexo
+            accessToken: accessToken,
         },
     });
     return result.data;

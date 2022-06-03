@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser } from '../../Handlers/AuthHandler'
-import * as SecureStore from 'expo-secure-store';
 import SpotifyLogin from '../SpotifyLogin';
-import { initalizeFirebase } from '../../Handlers/FirebaseHandler'
-import { NavigationRouteContext } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 async function save(key, value) {
-    await SecureStore.setItemAsync(key, value);
+    await AsyncStorage.setItem(key, value);
 }
 
 async function addUserToDatabase(data) {
@@ -23,7 +21,7 @@ async function addUserToDatabase(data) {
 }
 
 async function makeLogin(key, setData, setUserTopArtists, setUserTopTracks) {
-    let result = await SecureStore.getItemAsync(key);
+    let result = await AsyncStorage.getItem(key);
     if (result && result.length > 0) {
         const data = await getUserData(result);
         setData(data);
@@ -80,20 +78,12 @@ export default function Login({ navigation }) {
 
     const logOut = async () => {
         console.log('Logging out');
-        SecureStore.setItemAsync('access_token', '').then(() => {
+        await AsyncStorage.setItem('access_token', '').then(() => {
             setAccessToken(undefined);
         }).catch(err => {
             console.log(err);
         });
     }
-
-    const getAccessToken = async () => {
-        navigation.navigate("Pochi")
-    }
-
-    // useEffect(() => {
-    //     console.log('accessToken: ', accessToken);
-    // }, [accessToken]);
 
     useEffect(async () => {
         if (response?.type === 'success') {

@@ -1,23 +1,14 @@
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 import React, { useEffect } from 'react'
-import { getAuth } from 'firebase/auth'
-import { initializeFirebase } from '../../Handlers/FirebaseHandler'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoadingScreen = ({ navigation }) => {
-    useEffect(async () => {
-        const firebaseApp = await initializeFirebase();
-        getAuth(firebaseApp).onAuthStateChanged(user => {
-            console.log('user', user)
-            if (user) {
-                console.log('user logged in')
-                navigation.navigate('Match')
-            } else {
-                console.log('user not logged in')
-                navigation.navigate('Login')
-            }
-        })
-    }, [])
+    useEffect(() => {
+        (async () => {
+            const accessToken = await AsyncStorage.getItem("access_token");
+            navigation.navigate(accessToken ? 'Match' : 'Login');
+        })()
+    }, []);
     return (
         <View style={styles.container}>
             <ActivityIndicator size='large' color='#000' />

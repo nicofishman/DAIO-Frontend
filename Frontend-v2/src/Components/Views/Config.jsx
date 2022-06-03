@@ -2,12 +2,10 @@ import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar'
 import { searchTrack, searchArtist } from '../../Handlers/AuthHandler';
-import * as SecureStore from 'expo-secure-store';
 import { getUserData } from './../../Handlers/AuthHandler';
 import SongSearch from '../SongSearch';
 import ArtistSearch from '../ArtistSearch';
-import testJson from '../pochi/TEST.json'
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const Config = ({ navigation, route }) => {
@@ -19,7 +17,7 @@ const Config = ({ navigation, route }) => {
 
     useEffect(() => {
         (async () => {
-            let result = await SecureStore.getItemAsync("access_token");
+            let result = await AsyncStorage.getItem("access_token");
             setAccessToken(result)
             const user = await getUserData(result);
             setUser(user);
@@ -28,6 +26,7 @@ const Config = ({ navigation, route }) => {
 
     useEffect(() => {
         setSearch(undefined)
+        setText(undefined)
     }, [type])
 
     const onChangeText = async (e) => {
@@ -69,7 +68,7 @@ const Config = ({ navigation, route }) => {
                     <Ionicons style={styles.iconSearch} name="search-outline"></Ionicons>
                 </View>
                 <View style={styles.line}></View>
-                {search !== undefined &&
+                {search ?
                     type === 'cancion' ? search?.tracks.items.map((item, index) => {
                         return index <= 4 ? (
                             <SongSearch song={item} key={index} />
@@ -79,6 +78,7 @@ const Config = ({ navigation, route }) => {
                             <ArtistSearch artist={item} key={index} />
                         ) : null
                     })
+                    : null
                 }
             </View>
             <NavBar navigation={navigation} route={route} />
