@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser } from '../../Handlers/AuthHandler'
+import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser, getUsers } from '../../Handlers/AuthHandler'
 import SpotifyLogin from '../SpotifyLogin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -94,6 +94,18 @@ export default function Login({ navigation }) {
         }
     }, [request, response]);
 
+    const handleLogin = async () => {
+        const user = await getUserData(accessToken);
+        const usersInDb = await getUsers();
+        console.log(usersInDb);
+        const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
+        if (!isUserInDb) {
+            navigation.navigate('Register', { user, accessToken });
+        } else {
+            navigation.navigate('Match');
+        }
+    }
+
 
     return (
         <>
@@ -103,12 +115,12 @@ export default function Login({ navigation }) {
                         <Text>{JSON.stringify(data, null, "\t")}</Text>
                         {/* <Text>{JSON.stringify(userTopArtists) + '\n'}</Text> */}
                         {/* <Text>{JSON.stringify(userTopTracks)}</Text> */}
-                        <SpotifyLogin title='Log Out' request={request} fnOnPress={logOut} />
-                        <Button title='Match' onPress={() => navigation.navigate('Match')} />
+                        <SpotifyLogin title='Log Out' fnOnPress={logOut} />
+                        <Button title='Match' onPress={handleLogin} />
                     </View>
                 ) :
                 <View style={styles.container}>
-                    <SpotifyLogin title='Spotify Login' request={request} fnOnPress={spotifyPromptAsync} />
+                    <SpotifyLogin title='Spotify Login' fnOnPress={spotifyPromptAsync} />
                     {/* <SpotifyLogin title='Google Login' request={request} fnOnPress={getAccessToken} /> */}
                 </View>
             }

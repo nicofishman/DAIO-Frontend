@@ -2,16 +2,16 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SpotifyLogin = ({ title, request, fnOnPress }) => {
+const SpotifyLogin = ({ title, fnOnPress }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.button}
-                disabled={!request}
+                // disabled={!request}
                 title={title}
-            onPress={() => {
-                fnOnPress();
-            }}
+                onPress={() => {
+                    fnOnPress();
+                }}
             >
                 <Icon style={styles.icon} name="spotify" />
                 <Text style={styles.text}>{title}</Text>

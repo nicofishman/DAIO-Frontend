@@ -72,24 +72,32 @@ const refreshLogin = async (refreshToken) => {
 }
 
 export const getUserData = async (accessToken) => {
-    console.log(accessToken)
+    console.log('getuserdata')
     const userData = await axios.get('http://daio-backend.herokuapp.com/spotify/me', { headers: { accessToken: accessToken } });
     return userData.data;
 }
 
 export const getUserTopArtists = async (accessToken) => {
+    console.log('getTopArtists');
     const userTopArtists = await axios.get('http://daio-backend.herokuapp.com/spotify/topartists', { headers: { accessToken: accessToken } });
     return userTopArtists.data;
 }
 
 export const getUserTopTracks = async (accessToken) => {
+    console.log('getTopTracks');
     const userTopTracks = await axios.get('http://daio-backend.herokuapp.com/spotify/toptracks', { headers: { accessToken: accessToken } });
     return userTopTracks.data;
 }
 
-export const getUsers = async (accessToken) => {
-    console.log('getuserrr');
+export const getUsersAndInfo = async (accessToken) => {
+    console.log('getusersandinfo');
     const result = await axios.get('http://daio-backend.herokuapp.com/database/getusersandinfo', { headers: { accessToken: accessToken } });
+    return result.data;
+}
+
+export const getUsers = async () => {
+    console.log('getusers');
+    const result = await axios.get('http://daio-backend.herokuapp.com/database/getusers');
     return result.data;
 }
 

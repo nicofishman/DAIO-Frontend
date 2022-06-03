@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import NavBar from "../NavBar";
 import CardMatch from "../pochi/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
-import { getUsers } from "../../Handlers/AuthHandler";
+import { getUsersAndInfo } from "../../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -14,7 +14,7 @@ const Match = ({ navigation, route }) => {
     useEffect(() => {
         (async () => {
             const accessToken = await AsyncStorage.getItem('access_token');
-            const users = await getUsers(accessToken)
+            const users = await getUsersAndInfo(accessToken)
             setCardToMatch(users);
         })()
     }, []);

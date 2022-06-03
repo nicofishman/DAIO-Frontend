@@ -14,6 +14,7 @@ import Chat from './src/Components/Views/Chat';
 import NavBar from './src/Components/NavBar';
 import Pochi from './src/Components/Views/Pochi';
 import Match from './src/Components/Views/Match'
+import Register from './src/Components/Views/Register';
 
 
 export default function App() {
@@ -27,9 +28,10 @@ export default function App() {
                     <Stack.Screen name="Pochi" component={Pochi} />
                     <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="Loading" component={LoadingScreen} />
-                    <Stack.Screen name="Config" component={Config}/>
+                    <Stack.Screen name="Config" component={Config} />
                     <Stack.Screen name="Match" component={Match} />
                     <Stack.Screen name="Chat" component={Chat} />
+                    <Stack.Screen name="Register" component={Register} />
                     {/* <Stack.Screen name="Home" component={Home} /> */}
                 </Stack.Navigator>
                 {/* <Tab.Navigator>
