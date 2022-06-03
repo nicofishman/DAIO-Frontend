@@ -34,15 +34,8 @@ export default function App() {
                         <Stack.Screen name="Config" component={Config} />
                         <Stack.Screen name="Match" component={Match} />
                         <Stack.Screen name="Chat" component={Chat} />
-
                         <Stack.Screen name="RegisterFirst" component={RegisterFirst} />
-                        {/* <Stack.Screen name="Home" component={Home} /> */}
                     </Stack.Navigator>
-                    {/* <Tab.Navigator>
-                    <Tab.Screen name="Config" component={Config}/>
-                    <Tab.Screen name="Match" component={Match} />
-                    <Tab.Screen name="Chat" component={Chat} />
-                </Tab.Navigator> */}
                 </NavigationContainer>
             </RegisterProvider>
 
