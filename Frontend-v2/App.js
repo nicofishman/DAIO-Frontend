@@ -14,7 +14,7 @@ import Chat from './src/Components/Views/Chat';
 import NavBar from './src/Components/NavBar';
 import Pochi from './src/Components/Views/Pochi';
 import Match from './src/Components/Views/Match'
-import RegisterFirst from './src/Components/Views/Register-first';
+import RegisterFirst from './src/Components/Views/RegisterFirst';
 import { RegisterProvider } from './src/Context/RegisterContext';
 
 

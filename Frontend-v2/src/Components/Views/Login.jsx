@@ -53,7 +53,7 @@ export default function Login({ navigation }) {
     const [credentials, setCredentials] = useState({})
 
     useEffect(async () => {
-        const spotifyCredentials = await getSpotifyCredentials()
+        const spotifyCredentials = await getSpotifyCredentials();
         setCredentials(spotifyCredentials)
         const access_token = await AsyncStorage.getItem('access_token');
         if (access_token) {
@@ -62,6 +62,7 @@ export default function Login({ navigation }) {
             setAccessToken(undefined)
         }
     }, []);
+
 
     const [request, response, spotifyPromptAsync] = useAuthRequest(
         {
@@ -75,6 +76,7 @@ export default function Login({ navigation }) {
         },
         discovery
     );
+
 
     const logOut = async () => {
         console.log('Logging out');
@@ -97,6 +99,7 @@ export default function Login({ navigation }) {
 
     const handleLogin = async (token) => {
         const user = await getUserData(token);
+        console.log(user.display_name);
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
