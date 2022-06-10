@@ -4,38 +4,12 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser, getUsers } from '../../Handlers/AuthHandler'
 import SpotifyLogin from '../SpotifyLogin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRegisterContext } from '../../Context/RegisterContext';
 
 
 async function save(key, value) {
     await AsyncStorage.setItem(key, value);
 }
-
-// async function addUserToDatabase(data) {
-//     const userData = {
-//         spotifyId: data.id,
-//         username: data.display_name,
-//         avatarId: Math.floor(Math.random() * 15),
-//         description: data.email
-//     }
-//     await addUser(userData)
-// }
-
-// async function makeLogin(key, setData, setUserTopArtists, setUserTopTracks) {
-//     let result = await AsyncStorage.getItem(key);
-//     if (result && result.length > 0) {
-//         const data = await getUserData(result);
-//         setData(data);
-//         await addUserToDatabase(data);
-//         const topArtists = await getUserTopArtists(result);
-//         setUserTopArtists(topArtists)
-//         const topTracks = await getUserTopTracks(result);
-//         setUserTopTracks(topTracks)
-//         return result;
-//     } else {
-//         setData(null);
-//         return;
-//     }
-// }
 
 // Endpoint
 const discovery = {
@@ -46,11 +20,11 @@ const discovery = {
 
 export default function Login({ navigation }) {
     const [data, setData] = useState('User is not logged in');
-    const [userTopArtists, setUserTopArtists] = useState([]);
     const [accessToken, setAccessToken] = useState(undefined);
-    const [userTopTracks, setUserTopTracks] = useState([]);
 
     const [credentials, setCredentials] = useState({})
+
+    const { setUsername, handleChangeNombre } = useRegisterContext()
 
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials();
@@ -103,6 +77,8 @@ export default function Login({ navigation }) {
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
+            setUsername(user.id)
+            handleChangeNombre(user.id)
             navigation.navigate('RegisterFirst', { user, accessToken });
         } else {
             navigation.navigate('Match');

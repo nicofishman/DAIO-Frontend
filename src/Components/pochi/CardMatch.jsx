@@ -5,8 +5,8 @@ const CardMatch = ({ data }) => {
 
     const [visualArtist, setVisualArtist] = useState(0);
     const [visualSong, setVisualSong] = useState(-1);
-    
-    
+
+
 
 
     return (
@@ -16,7 +16,7 @@ const CardMatch = ({ data }) => {
             <View style={styles.cardMusic}>
                 <View style={styles.songsAll}>
                     {
-                        data.canciones.sort((a, b) => a.orden-b.orden).map((song, index) => {
+                        data.canciones.sort((a, b) => a.orden - b.orden).map((song, index) => {
                             let artists = ''
                             song.artists.forEach((artist, index) => {
                                 artists += artist.name
@@ -35,7 +35,7 @@ const CardMatch = ({ data }) => {
                 </View>
                 <View style={styles.artistAll}>
                     {
-                        data.artistas.sort((a, b) => a.orden-b.orden).map((artist, index) => {
+                        data.artistas.sort((a, b) => a.orden - b.orden).map((artist, index) => {
                             return (
                                 <TouchableHighlight
                                     onPress={(visual) => {
@@ -45,11 +45,11 @@ const CardMatch = ({ data }) => {
                                             setVisualArtist(index)
                                         }
                                     }}
-                                    >   
-                                    <View style={styles.artistDetails}>
+                                >
+                                    {/* <View style={styles.artistDetails}>
                                     </View>
-                                            {/* visualArtist === index ? */}
-                                        
+                                            visualArtist === index ? */}
+
                                     <Image
                                         key={index}
                                         style={styles.artistImg}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlign: "justify",
         overflow: "hidden",
-    
+
     },
     titleSong: {
         fontSize: 16,
