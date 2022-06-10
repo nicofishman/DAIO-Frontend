@@ -15,7 +15,9 @@ import NavBar from './src/Components/NavBar';
 import Pochi from './src/Components/Views/Pochi';
 import Match from './src/Components/Views/Match'
 import RegisterFirst from './src/Components/Views/RegisterFirst';
+import RegisterSecond from './src/Components/Views/RegisterSecond';
 import { RegisterProvider } from './src/Context/RegisterContext';
+
 
 
 export default function App() {
@@ -35,6 +37,7 @@ export default function App() {
                         <Stack.Screen name="Match" component={Match} />
                         <Stack.Screen name="Chat" component={Chat} />
                         <Stack.Screen name="RegisterFirst" component={RegisterFirst} />
+                        <Stack.Screen name="RegisterSecond" component={RegisterSecond} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </RegisterProvider>

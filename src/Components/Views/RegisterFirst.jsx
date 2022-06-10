@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Text } from 'react-native'
+import { StyleSheet, TextInput, View, Alert, Text } from 'react-native'
 import React from 'react'
 import { useRegisterContext } from '../../Context/RegisterContext'
 import ButtonContinue from '../pochi/ButtonContinue'
@@ -11,8 +11,6 @@ const RegisterFirst = ({ navigation }) => {
     const continuar = () => {
         if (nombre.length > 0 && descripcion.length > 0) {
             navigation.navigate('RegisterSecond')
-        } else {
-            Alert.alert('Error', 'Debes completar todos los campos')
         }
     }
 
@@ -26,7 +24,7 @@ const RegisterFirst = ({ navigation }) => {
                 />
             </Svg>
             <TextInput
-                style={[styles.input, styles.inputNombre]}
+                style={[styles.input, styles.inputNombre, nombre.length <= 0 && styles.inputWarning]}
                 onChangeText={handleChangeNombre}
                 value={nombre}
                 caretHidden={true}
@@ -34,22 +32,17 @@ const RegisterFirst = ({ navigation }) => {
                 placeholderTextColor="#999"
             />
             <TextInput
-                style={[styles.input, styles.inputDesc]}
+                style={[styles.input, styles.inputDesc, descripcion.length <= 0 && styles.inputRed]}
                 placeholder={`Descripción`}
                 onChangeText={handleChangeDesc}
                 value={descripcion}
                 multiline={true}
                 numberOfLines={8}
             />
-            {/* <Text style={{
-                fontSize: 12,
-                color: '#999',
-                position: 'absolute',
-                bottom: 0,
-                right: 0
-            }}>
-                {charsLeft}
-            </Text> */}
+            {
+                descripcion.length <= 0 &&
+                <Text style={styles.error}>El campo no puede estar vacío</Text>
+            }
             <ButtonContinue onPress={continuar} />
         </View>
     )
@@ -111,5 +104,25 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textTransform: 'uppercase',
         fontWeight: 'bold',
+    },
+    error: {
+        color: '#eb4034',
+        width: 264,
+        fontWeight: 'bold',
+        textAlign: 'right',
+    },
+    inputRed: {
+        borderColor: '#eb4034',
+        borderWidth: 2,
+    },
+    inputWarning: {
+        borderColor: '#FFCC00',
+        borderWidth: 1,
+    },
+    warning: {
+        color: '#FFCC00',
+        width: 264,
+        fontWeight: 'bold',
+        textAlign: 'right',
     }
 })

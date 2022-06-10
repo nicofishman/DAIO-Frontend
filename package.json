@@ -10,6 +10,7 @@
         "eject": "expo eject"
     },
     "dependencies": {
+        "@expo-google-fonts/capriola": "^0.2.2",
         "@react-native-async-storage/async-storage": "~1.15.0",
         "@react-navigation/bottom-tabs": "^6.3.1",
         "@react-navigation/native": "^6.0.10",
@@ -19,6 +20,7 @@
         "expo": "~44.0.0",
         "expo-auth-session": "~3.5.0",
         "expo-constants": "~13.0.1",
+        "expo-font": "~10.0.4",
         "expo-random": "~12.1.1",
         "expo-status-bar": "~1.2.0",
         "expo-updates": "~0.11.7",

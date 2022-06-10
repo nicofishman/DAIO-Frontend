@@ -1,14 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Alert, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Button, Alert, TouchableHighlight } from 'react-native'
 
 const ButtonContinue = ({ onPress }) => {
     return (
-        <Pressable
+        <TouchableHighlight
             style={styles.buttonContinue}
             onPress={onPress}
         >
             <Text style={styles.textButton}>CONTINUAR</Text>
-        </Pressable>
+        </TouchableHighlight>
     );
 }
 
