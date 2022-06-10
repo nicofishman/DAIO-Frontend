@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View, Text, TouchableHighlight } from 'react-native'
 import React, { useState } from 'react'
 import { useRegisterContext } from '../../Context/RegisterContext'
-
+import { ButtonContinue } from '../pochi/ButtonContinue'
 const RegisterFirst = ({ navigation }) => {
     const { nombre, descripcion, handleChangeNombre, handleChangeDesc, charsLeft } = useRegisterContext();
     return (
@@ -32,11 +32,7 @@ const RegisterFirst = ({ navigation }) => {
                     {charsLeft}
                 </Text>
             </TextInput>
-            <TouchableHighlight
-                style={styles.button}
-            >
-                <Text style={styles.buttonText}>Continuar</Text>
-            </TouchableHighlight>
+            <ButtonContinue onPress={()=>{}}/>
         </View>
     )
 }

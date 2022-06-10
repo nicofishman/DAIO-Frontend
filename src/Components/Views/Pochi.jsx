@@ -5,10 +5,10 @@ import ButtonContinue from '../pochi/ButtonContinue'
 const Pochi = ({navigation}) => {
     return (
         <View style={styles.loading}>
-            <ButtonContinue
+            {/* <ButtonContinue
                 onPress={()=>navigation.navigate("Match")}
             ></ButtonContinue>
-            <Text>as</Text>
+            <Text>as</Text> */}
             <Button
                 onPress={()=>navigation.navigate("Loading")}
                 title="Loading"

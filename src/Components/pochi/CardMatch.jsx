@@ -1,7 +1,13 @@
-import React from 'react'
-import { StyleSheet, Text, View, Button, Alert, Image } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Button, Alert, Image, TouchableHighlight } from 'react-native'
 
 const CardMatch = ({ data }) => {
+
+    const [visualArtist, setVisualArtist] = useState(0);
+    const [visualSong, setVisualSong] = useState(-1);
+    
+    
+
 
     return (
         <View style={styles.card}>
@@ -10,7 +16,7 @@ const CardMatch = ({ data }) => {
             <View style={styles.cardMusic}>
                 <View style={styles.songsAll}>
                     {
-                        data.canciones.map((song, index) => {
+                        data.canciones.sort((a, b) => a.orden-b.orden).map((song, index) => {
                             let artists = ''
                             song.artists.forEach((artist, index) => {
                                 artists += artist.name
@@ -21,7 +27,7 @@ const CardMatch = ({ data }) => {
                             return (
                                 <View key={index} style={[styles.songCard, styles.shadowBox]}>
                                     <Text style={styles.titleSong}>{song.name}</Text>
-                                    <Text style={styles.artistSong}>{artists}</Text>
+                                    <Text style={styles.artistSong} numberOfLines={1}>{artists}</Text>
                                 </View>
                             )
                         })
@@ -29,13 +35,27 @@ const CardMatch = ({ data }) => {
                 </View>
                 <View style={styles.artistAll}>
                     {
-                        data.artistas.map((artist, index) => {
+                        data.artistas.sort((a, b) => a.orden-b.orden).map((artist, index) => {
                             return (
-                                <Image
-                                    key={index}
-                                    style={styles.artistImg}
-                                    source={{ "uri": artist.images[0].url }}
-                                />
+                                <TouchableHighlight
+                                    onPress={(visual) => {
+                                        if (visual === index) {
+                                            setVisualArtist(-1)
+                                        } else {
+                                            setVisualArtist(index)
+                                        }
+                                    }}
+                                    >   
+                                    <View style={styles.artistDetails}>
+                                    </View>
+                                            {/* visualArtist === index ? */}
+                                        
+                                    <Image
+                                        key={index}
+                                        style={styles.artistImg}
+                                        source={{ "uri": artist.images[0].url }}
+                                    />
+                                </TouchableHighlight>
                             )
                         })
                     }
@@ -55,7 +75,8 @@ export default CardMatch
 const styles = StyleSheet.create({
     card: {
         width: 370,
-        height: 560,
+        bottom: '-10%',
+        height: '90%',
         alignItems: "center",
         backgroundColor: "#f3f3f3",
         borderRadius: 20
@@ -74,7 +95,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginTop: 10,
         marginBottom: 20,
-        textAlign: "justify"
+        textAlign: "justify",
+        overflow: "hidden",
+    
     },
     titleSong: {
         fontSize: 16,
@@ -89,7 +112,8 @@ const styles = StyleSheet.create({
     },
     cardMusic: {
         flex: 1,
-        width: 334,
+        width: '90%',
+        // width: 334,
         backgroundColor: "#ECECEC",
         flexDirection: 'row',
     },
@@ -130,5 +154,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.32,
         shadowRadius: 5.46,
         elevation: 4,
+    },
+    artistDetails: {
+        width: 100,
     }
 })
