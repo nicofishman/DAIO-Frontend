@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Button, Alert, Image, TouchableWithoutFeedback, ImageBackground } from 'react-native'
 
-const CardMatch = ({ data }) => {
+const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualSong}) => {
 
-    const [visualArtist, setVisualArtist] = useState(0);
-    const [visualSong, setVisualSong] = useState(0);
 
 
 
@@ -35,19 +33,17 @@ const CardMatch = ({ data }) => {
                                                 <ImageBackground 
                                                     source={{ "uri": song.album.img }} 
                                                     resizeMode='cover' 
-                                                    style={{width: '20%', height: '20%'}}>
-                                                <View key={index} style={[styles.songCardDetails, styles.shadowBox]}>
-                                                    <Text style={styles.titleSong}numberOfLines={2}>{song.name}</Text>
-                                                    <View style={{flexDirection:'row', marginTop: 'auto'}}>
-                                                        <Image style={styles.songImgDetails} source={{ "uri": song.album.img }}/>
-                                                        <View style={{flexDirection:'column'}}>
-                                                            <Text style={[styles.artistSong, styles.artistSongDetails]} numberOfLines={2}>{artists}</Text>
-                                                            <Text style={styles.songDuration}>{minutes}:{seconds}</Text>
+                                                    style={[styles.imageBackground, {height: styles.songCardDetails.height}]} imageStyle={{opacity: 0.2, overflow: 'hidden'}}>
+                                                    <View key={index} style={[styles.songCardDetails, {opacity: 1}]}>
+                                                        <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
+                                                        <View style={{flexDirection:'row', top: 10}}>
+                                                            <Image style={styles.songImgDetails} source={{ "uri": song.album.img }}/>
+                                                            <View style={{flexDirection:'column'}}>
+                                                                <Text style={[styles.artistSong, styles.artistSongDetails]} numberOfLines={2}>{artists}</Text>
+                                                                <Text style={styles.songDuration}>{minutes}:{seconds}</Text>
+                                                            </View>
                                                         </View>
                                                     </View>
-
-                                                </View>
-
                                                 </ImageBackground>
                                             </TouchableWithoutFeedback>
                                             :
@@ -147,7 +143,7 @@ const styles = StyleSheet.create({
     artistSongDetails: {
         fontSize: 14,
         marginLeft: 10,
-        color: '#6e6e6e',
+        color: '#4d4d4d',
         width: '55%',
     },
     cardMusic: {
@@ -200,11 +196,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#42f56f',
         height: 80,
         width: '100%',
+        
     },
     songCardDetails: {
         width: 190,
         height: 105,
-        backgroundColor: 'red',
         marginBottom: 2,
         borderRadius: 10,
     },
@@ -213,18 +209,21 @@ const styles = StyleSheet.create({
         height: 50,
         marginLeft: 10,
         borderRadius: 4
-        // width: '100%',
-        // height: '100%',
-        // zIndex: -1,
     },
     songDetailDescription: {
         flexDirection: 'row',
     },
     songDuration: {
         fontSize: 14,
-        marginLeft: 'auto',
+        marginLeft: 90,
         marginTop: 'auto',
         color: '#6e6e6e',
         width: '55%',
+    },
+    imageBackground: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 10,
+        overflow: 'hidden',
     }
 })
