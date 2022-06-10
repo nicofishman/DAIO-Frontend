@@ -13,16 +13,19 @@ import ButtonContinue from '../pochi/ButtonContinue';
 const RegisterSecond = ({ navigation }) => {
     const [text, setText] = useState("");
     const [search, setSearch] = useState(undefined)
-    const [user, setUser] = useState(undefined)
     const [type, setType] = useState('cancion')
     const [accessToken, setAccessToken] = useState(null)
+    const [topTracks, setTopTracks] = useState([])
+    const [topArtists, setTopArtists] = useState([])
 
     useEffect(() => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");
             setAccessToken(result)
-            const user = await getUserData(result);
-            setUser(user);
+            // const userArtists = await getUserArtists(result);
+            // setTopArtists(userArtists);
+            // const userTracks = await getUserTracks(result);
+            // setTopTracks(userTracks);
         })();
     }, [])
 

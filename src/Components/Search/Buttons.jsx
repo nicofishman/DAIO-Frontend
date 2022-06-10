@@ -10,16 +10,17 @@ const Buttons = ({ active, setActive }) => {
     });
     return (
         <View style={{ flexDirection: 'row' }}>
-            <TouchableWithoutFeedback
-                onPress={setActive('cancion')}
-                style={[styles.button, active === 'cancion' ? styles.active : null]}
-            >
-                <Text style={styles.text}>CANCIONES</Text>
-            </TouchableWithoutFeedback>
-            <View style={{ marginLeft: 10 }}>
+            <View style={[styles.button, active !== 'cancion' && styles.inactive]}>
                 <TouchableWithoutFeedback
-                    onPress={setActive('cancion')}
-                    style={[styles.button, active === 'cancion' ? styles.active : null]}
+                    onPress={() => setActive('cancion')}
+                >
+                    <Text style={styles.text}>CANCIONES</Text>
+                </TouchableWithoutFeedback>
+            </View>
+            <View style={styles.verticleLine}></View>
+            <View style={[styles.button, { marginLeft: 5 }, active !== 'artista' && styles.inactive]}>
+                <TouchableWithoutFeedback
+                    onPress={() => setActive('artista')}
                 >
                     <Text style={styles.text}>ARTISTAS</Text>
                 </TouchableWithoutFeedback>
@@ -43,7 +44,12 @@ const styles = StyleSheet.create({
             height: 1
         },
         shadowRadius: 6,
-        shadowOpacity: 1
+        shadowOpacity: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    inactive: {
+        opacity: 1,
     },
     text: {
         width: 159,
@@ -54,6 +60,11 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         letterSpacing: 0,
         textAlign: "center",
-        // color: "#404040"
+        color: "#000",
+    },
+    verticalLine: {
+        height: '100%',
+        width: 10,
+        backgroundColor: '#000',
     }
 })
