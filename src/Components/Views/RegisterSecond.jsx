@@ -6,7 +6,7 @@ import { getUserData } from './../../Handlers/AuthHandler';
 import SongSearch from '../SongSearch';
 import ArtistSearch from '../ArtistSearch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Buttons from '../Search/Buttons';
 import ButtonContinue from '../pochi/ButtonContinue';
 

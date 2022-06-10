@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
 
+    const [visualArtist, setVisualArtist] = useState(0);
+    const [visualSong, setVisualSong] = useState(0);
 
     useEffect(() => {
         (async () => {
@@ -22,10 +24,14 @@ const Match = ({ navigation, route }) => {
 
     function handleYup(card) {
         console.log(`Yup for ${card.username}`);
+        setVisualArtist(-1);
+        setVisualSong(-1);
         return true; // return false if you wish to cancel the action
     }
     function handleNope(card) {
         console.log(`Nope for ${card.username}`);
+        setVisualArtist(-1);
+        setVisualSong(-1);
         return true;
     }
     function StatusCard({ text }) {
@@ -41,7 +47,7 @@ const Match = ({ navigation, route }) => {
             <View style={styles.container}>
                 <SwipeCards
                     cards={cardToMatch}
-                    renderCard={(cardData) => <CardMatch data={cardData} />}
+                    renderCard={(cardData) => <CardMatch data={cardData} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong}/>}
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
                     renderNoMoreCards={() => <StatusCard text="No more cards..." />}
                     actions={{
@@ -50,7 +56,7 @@ const Match = ({ navigation, route }) => {
                     }}
 
                     stack={true}
-                    stackDepth={2}
+                    stackDepth={1}
                     stackOffsetX={0}
                 />
             </View>
