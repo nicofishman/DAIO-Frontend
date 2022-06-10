@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Button, Alert, Image, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, Button, Alert, Image, TouchableWithoutFeedback, ImageBackground } from 'react-native'
 
 const CardMatch = ({ data }) => {
 
@@ -24,20 +24,36 @@ const CardMatch = ({ data }) => {
                                     artists += ', '
                                 }
                             })
+                            const seconds = Math.floor((song.duration / 1000) % 60);
+                            const minutes = Math.floor((song.duration / (1000 * 60)) % 60);
+
                             return (
                                 <>
                                     {
                                         visualSong === index ?
                                             <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
+                                                <ImageBackground 
+                                                    source={{ "uri": song.album.img }} 
+                                                    resizeMode='cover' 
+                                                    style={{width: '20%', height: '20%'}}>
                                                 <View key={index} style={[styles.songCardDetails, styles.shadowBox]}>
-                                                    <Text style={styles.titleSong}>{song.name}</Text>
-                                                    <Text style={styles.artistSong} numberOfLines={1}>{artists}</Text>
+                                                    <Text style={styles.titleSong}numberOfLines={2}>{song.name}</Text>
+                                                    <View style={{flexDirection:'row', marginTop: 'auto'}}>
+                                                        <Image style={styles.songImgDetails} source={{ "uri": song.album.img }}/>
+                                                        <View style={{flexDirection:'column'}}>
+                                                            <Text style={[styles.artistSong, styles.artistSongDetails]} numberOfLines={2}>{artists}</Text>
+                                                            <Text style={styles.songDuration}>{minutes}:{seconds}</Text>
+                                                        </View>
+                                                    </View>
+
                                                 </View>
+
+                                                </ImageBackground>
                                             </TouchableWithoutFeedback>
                                             :
                                             <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
                                                 <View key={index} style={[styles.songCard, styles.shadowBox]}>
-                                                    <Text style={styles.titleSong}>{song.name}</Text>
+                                                    <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
                                                     <Text style={styles.artistSong} numberOfLines={1}>{artists}</Text>
                                                 </View>
                                             </TouchableWithoutFeedback>
@@ -82,6 +98,8 @@ const CardMatch = ({ data }) => {
                     }
                 </View>
             </View>
+            <View style={{width:'100%', height:'8%'}}>
+            </View>
         </View >
     );
 }
@@ -124,6 +142,13 @@ const styles = StyleSheet.create({
         fontSize: 14,
         marginLeft: 10,
         color: '#6e6e6e',
+        width: '90%',
+    },
+    artistSongDetails: {
+        fontSize: 14,
+        marginLeft: 10,
+        color: '#6e6e6e',
+        width: '55%',
     },
     cardMusic: {
         flex: 1,
@@ -146,7 +171,6 @@ const styles = StyleSheet.create({
     songsAll: {
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        marginTop: 20,
         marginLeft: 15
     },
     songCard: {
@@ -179,9 +203,28 @@ const styles = StyleSheet.create({
     },
     songCardDetails: {
         width: 190,
-        height: 80,
-        backgroundColor: '#f1f1f1',
+        height: 105,
+        backgroundColor: 'red',
         marginBottom: 2,
         borderRadius: 10,
+    },
+    songImgDetails: {
+        width: 50,
+        height: 50,
+        marginLeft: 10,
+        borderRadius: 4
+        // width: '100%',
+        // height: '100%',
+        // zIndex: -1,
+    },
+    songDetailDescription: {
+        flexDirection: 'row',
+    },
+    songDuration: {
+        fontSize: 14,
+        marginLeft: 'auto',
+        marginTop: 'auto',
+        color: '#6e6e6e',
+        width: '55%',
     }
 })
