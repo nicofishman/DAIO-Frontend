@@ -5,6 +5,7 @@ export function RegisterProvider(props) {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [charsLeft, setCharsLeft] = useState(150);
+    const [username, setUsername] = useState("")
 
     const handleChangeNombre = (e) => {
         setNombre(e);
@@ -18,7 +19,7 @@ export function RegisterProvider(props) {
     }
 
     return (
-        <RegisterContext.Provider value={{ nombre, descripcion, handleChangeNombre, handleChangeDesc }}>
+        <RegisterContext.Provider value={{ nombre, descripcion, handleChangeNombre, handleChangeDesc, username, setUsername }}>
             {props.children}
         </RegisterContext.Provider>
     )

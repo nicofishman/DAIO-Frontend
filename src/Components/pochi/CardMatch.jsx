@@ -4,9 +4,15 @@ import { StyleSheet, Text, View, Button, Alert, Image, TouchableWithoutFeedback 
 const CardMatch = ({ data }) => {
 
     const [visualArtist, setVisualArtist] = useState(0);
+<<<<<<< HEAD
     const [visualSong, setVisualSong] = useState(0);
     
     
+=======
+    const [visualSong, setVisualSong] = useState(-1);
+
+
+>>>>>>> 67bcfdaa35694314ed609729688d41bfc554c0d6
 
 
     return (
@@ -16,7 +22,7 @@ const CardMatch = ({ data }) => {
             <View style={styles.cardMusic}>
                 <View style={styles.songsAll}>
                     {
-                        data.canciones.sort((a, b) => a.orden-b.orden).map((song, index) => {
+                        data.canciones.sort((a, b) => a.orden - b.orden).map((song, index) => {
                             let artists = ''
                             song.artists.forEach((artist, index) => {
                                 artists += artist.name
@@ -49,7 +55,7 @@ const CardMatch = ({ data }) => {
                 </View>
                 <View style={styles.artistAll}>
                     {
-                        data.artistas.sort((a, b) => a.orden-b.orden).map((artist, index) => {
+                        data.artistas.sort((a, b) => a.orden - b.orden).map((artist, index) => {
                             return (
                                 <TouchableWithoutFeedback
                                     onPress={(visual) => {
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlign: "justify",
         overflow: "hidden",
-    
+
     },
     titleSong: {
         fontSize: 16,

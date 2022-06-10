@@ -1,17 +1,36 @@
-import { StyleSheet, TextInput, View, Text, TouchableHighlight } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, TextInput, View, Text } from 'react-native'
+import React from 'react'
 import { useRegisterContext } from '../../Context/RegisterContext'
-import { ButtonContinue } from '../pochi/ButtonContinue'
+import ButtonContinue from '../pochi/ButtonContinue'
+import Svg, { Image } from 'react-native-svg';
+
+
 const RegisterFirst = ({ navigation }) => {
-    const { nombre, descripcion, handleChangeNombre, handleChangeDesc, charsLeft } = useRegisterContext();
+    const { nombre, descripcion, handleChangeNombre, handleChangeDesc, username, charsLeft } = useRegisterContext();
+
+    const continuar = () => {
+        if (nombre.length > 0 && descripcion.length > 0) {
+            navigation.navigate('RegisterSecond')
+        } else {
+            Alert.alert('Error', 'Debes completar todos los campos')
+        }
+    }
+
     return (
         <View style={styles.container}>
+            <Svg width={100} height={100}>
+                <Image
+                    href={require('../../Assets/Avatars/Default.png')}
+                    width={100}
+                    height={100}
+                />
+            </Svg>
             <TextInput
                 style={[styles.input, styles.inputNombre]}
                 onChangeText={handleChangeNombre}
                 value={nombre}
                 caretHidden={true}
-                placeholder={`Nombre`}
+                placeholder={username}
                 placeholderTextColor="#999"
             />
             <TextInput
@@ -21,18 +40,17 @@ const RegisterFirst = ({ navigation }) => {
                 value={descripcion}
                 multiline={true}
                 numberOfLines={8}
-            >
-                <Text style={{
-                    fontSize: 12,
-                    color: '#999',
-                    position: 'absolute',
-                    bottom: 0,
-                    right: 0
-                }}>
-                    {charsLeft}
-                </Text>
-            </TextInput>
-            <ButtonContinue onPress={()=>{}}/>
+            />
+            {/* <Text style={{
+                fontSize: 12,
+                color: '#999',
+                position: 'absolute',
+                bottom: 0,
+                right: 0
+            }}>
+                {charsLeft}
+            </Text> */}
+            <ButtonContinue onPress={continuar} />
         </View>
     )
 }
@@ -46,6 +64,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#3b3b3b',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    avatar: {
+        width: 100,
+        height: 100,
     },
     input: {
         marginTop: 47,
