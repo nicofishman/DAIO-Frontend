@@ -1,5 +1,6 @@
-import { authorize, refresh } from 'react-native-app-auth';
+import { authorize } from 'react-native-app-auth';
 import axios from 'axios';
+import querystring from 'querystring';
 
 const getAuthConfig = async () => {
     const credentials = await getSpotifyCredentials();
@@ -23,6 +24,21 @@ const getAuthConfig = async () => {
     };
     return spotifyAuthConfig;
 }
+
+const checkRefreshToken = async (refreshDate, refreshToken) => {
+    if (new Date() > refreshDate) {
+        const newRefreshTokenResponse = await refreshLogin(refreshToken);
+        return {
+            accessToken: newRefreshTokenResponse.access_token,
+            refreshToken: newRefreshTokenResponse.refresh_token,
+            refreshDate: new Date(new Date().getTime() + (newRefreshTokenResponse.expires_in * 1000)),
+        };
+    }
+    return {
+        refreshToken: refreshToken,
+    };
+}
+
 
 export const searchTrack = async (query, accessToken) => {
     const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/song/${query}`, {
@@ -64,11 +80,26 @@ export const onLogin = async () => {
 }
 
 const refreshLogin = async (refreshToken) => {
-    const authConfig = await getAuthConfig();
-    const result = await refresh(authConfig, {
-        refreshToken: refreshToken,
-    });
-    return result;
+    const creds = await getSpotifyCredentials();
+    const url = 'https://accounts.spotify.com/api/token';
+    const postData = {
+        refresh_token: refreshToken,
+        grant_type: 'refresh_token',
+    }
+    const options = {
+        headers: {
+            'Authorization': 'Basic ' + creds.encodedClientIdAndSecret,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+    };
+    const responseToken = await axios.post(url, querystring.stringify(postData), options)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.log(error.response.data);
+        });
+    return responseToken;
 }
 
 export const getUserData = async (accessToken) => {
