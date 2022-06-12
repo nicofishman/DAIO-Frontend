@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Button, Alert, Image, TouchableWithoutFeedback, ImageBackground } from 'react-native'
 
-const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualSong}) => {
+const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualSong }) => {
 
 
 
@@ -16,9 +16,9 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                     {
                         data.canciones.sort((a, b) => a.orden - b.orden).map((song, index) => {
                             let artists = ''
-                            song.artists.forEach((artist, index) => {
+                            song.artists.forEach((artist, artistIndex) => {
                                 artists += artist.name
-                                if (index !== song.artists.length - 1) {
+                                if (artistIndex !== song.artists.length - 1) {
                                     artists += ', '
                                 }
                             })
@@ -27,32 +27,31 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
 
                             return (
                                 <>
-                                    {
-                                        visualSong === index ?
-                                            <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
-                                                <ImageBackground 
-                                                    source={{ "uri": song.album.img }} 
-                                                    resizeMode='cover' 
-                                                    style={[styles.imageBackground, {height: styles.songCardDetails.height}]} imageStyle={{opacity: 0.2, overflow: 'hidden'}}>
-                                                    <View key={index} style={[styles.songCardDetails, {opacity: 1}]}>
-                                                        <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
-                                                        <View style={{flexDirection:'row', top: 10}}>
-                                                            <Image style={styles.songImgDetails} source={{ "uri": song.album.img }}/>
-                                                            <View style={{flexDirection:'column'}}>
-                                                                <Text style={[styles.artistSong, styles.artistSongDetails]} numberOfLines={2}>{artists}</Text>
-                                                                <Text style={styles.songDuration}>{minutes}:{seconds}</Text>
-                                                            </View>
+                                    {visualSong === index ?
+                                        <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
+                                            <ImageBackground
+                                                source={{ "uri": song.album.img }}
+                                                resizeMode='cover'
+                                                style={[styles.imageBackground, { height: styles.songCardDetails.height }]} imageStyle={{ opacity: 0.2, overflow: 'hidden' }}>
+                                                <View key={index} style={[styles.songCardDetails, { opacity: 1 }]}>
+                                                    <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
+                                                    <View style={{ flexDirection: 'row', top: 10 }}>
+                                                        <Image style={styles.songImgDetails} source={{ "uri": song.album.img }} />
+                                                        <View style={{ flexDirection: 'column' }}>
+                                                            <Text style={[styles.artistSong, styles.artistSongDetails]} numberOfLines={2}>{artists}</Text>
+                                                            <Text style={styles.songDuration}>{minutes}:{seconds}</Text>
                                                         </View>
                                                     </View>
-                                                </ImageBackground>
-                                            </TouchableWithoutFeedback>
-                                            :
-                                            <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
-                                                <View key={index} style={[styles.songCard, styles.shadowBox]}>
-                                                    <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
-                                                    <Text style={styles.artistSong} numberOfLines={1}>{artists}</Text>
                                                 </View>
-                                            </TouchableWithoutFeedback>
+                                            </ImageBackground>
+                                        </TouchableWithoutFeedback>
+                                        :
+                                        <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
+                                            <View key={index} style={[styles.songCard, styles.shadowBox]}>
+                                                <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
+                                                <Text style={styles.artistSong} numberOfLines={1}>{artists}</Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                     }
                                 </>
                             )
@@ -64,6 +63,7 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                         data.artistas.sort((a, b) => a.orden - b.orden).map((artist, index) => {
                             return (
                                 <TouchableWithoutFeedback
+                                    key={index}
                                     onPress={() => {
                                         if (visualArtist === index) {
                                             setVisualArtist(-1)
@@ -75,15 +75,8 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                         <View style={styles.artistDetails}>
                                             <Text>{artist.name}</Text>
                                         </View>
-                                        {/* { visualArtist === index ?
-                                        <View style={styles.artistDetails}>
-                                        </View>
-                                        :
-                                        <View style={styles.artistAll}>
-                                        </View>
-                                    } */}
                                         <Image
-                                            key={index}
+                                            key={artist.images[0].url}
                                             style={styles.artistImg}
                                             source={{ "uri": artist.images[0].url }}
                                         />
@@ -94,7 +87,7 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                     }
                 </View>
             </View>
-            <View style={{width:'100%', height:'8%'}}>
+            <View style={{ width: '100%', height: '8%' }}>
             </View>
         </View >
     );
@@ -196,7 +189,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#42f56f',
         height: 80,
         width: '100%',
-        
+
     },
     songCardDetails: {
         width: 190,

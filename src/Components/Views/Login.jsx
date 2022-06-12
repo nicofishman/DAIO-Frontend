@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser, getUsers, onLogin } from '../../Handlers/AuthHandler'
 import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser, getUsers } from '../../Handlers/AuthHandler'
-import SpotifyLogin from '../SpotifyLogin';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRegisterContext } from '../../Context/RegisterContext';
-
+import { View, Text, StyleSheet, Button } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import SpotifyLogin from '../SpotifyLogin';
+import querystring from 'querystring';
 
 async function save(key, value) {
     await AsyncStorage.setItem(key, value);
@@ -38,9 +39,9 @@ export default function Login({ navigation }) {
     }, []);
 
 
-    const [request, response, spotifyPromptAsync] = useAuthRequest(
+    const [requestCode, responseCode, spotifyPromptAsync] = useAuthRequest(
         {
-            responseType: ResponseType.Token,
+            responseType: "code",
             clientId: credentials.clientId,
             scopes: ['user-read-email', 'playlist-modify-public'],
             // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
@@ -61,15 +62,42 @@ export default function Login({ navigation }) {
         });
     }
 
+    const getTokenWithCode = async (code) => {
+        const url = discovery.tokenEndpoint;
+        const postData = {
+            code: code,
+            redirect_uri: makeRedirectUri(credentials.redirectUri),
+            grant_type: 'authorization_code',
+        }
+        const options = {
+            headers: {
+                'Authorization': 'Basic ' + credentials.encodedClientIdAndSecret,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        };
+        const responseToken = await axios.post(url, querystring.stringify(postData), options)
+            .then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error.response.data);
+            });
+        return responseToken;
+    }
+
     useEffect(async () => {
-        if (response?.type === 'success') {
-            const { access_token } = response.params;
+        if (responseCode?.type === 'success') {
+            console.log(responseCode.params.code);
+            const { code } = responseCode.params;
+            const { access_token, refresh_token, expires_in } = await getTokenWithCode(code);
+            console.log({ access_token, refresh_token, expires_in })
             await save('access_token', access_token)
+            await save('refresh_token', refresh_token)
+            await save('refresh_date', (new Date().getTime() + expires_in * 1000).toString())
             setAccessToken(access_token)
             handleLogin(access_token)
-            // await makeLogin('access_token', setData, setUserTopArtists, setUserTopTracks);
         }
-    }, [request, response]);
+    }, [responseCode]);
 
     const handleLogin = async (token) => {
         const user = await getUserData(token);
