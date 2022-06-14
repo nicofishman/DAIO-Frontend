@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import NavBar from "../NavBar";
-import CardMatch from "../pochi/CardMatch";
+import NavBar from "../Components/NavBar";
+import CardMatch from "../Components/pochi/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
-import { getUsersAndInfo } from "../../Handlers/AuthHandler";
+import { getUsersAndInfo } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -47,7 +47,7 @@ const Match = ({ navigation, route }) => {
             <View style={styles.container}>
                 <SwipeCards
                     cards={cardToMatch}
-                    renderCard={(cardData) => <CardMatch data={cardData} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong}/>}
+                    renderCard={(cardData) => <CardMatch data={cardData} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong} />}
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
                     renderNoMoreCards={() => <StatusCard text="No more cards..." />}
                     actions={{

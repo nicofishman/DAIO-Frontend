@@ -6,16 +6,17 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getAll } from './backend'
 import { useState, useEffect } from 'react';
 
-import Login from './src/Components/Views/Login';
-import LoadingScreen from './src/Components/Views/LoadingScreen';
-import Home from './src/Components/Views/Home';
-import Config from './src/Components/Views/Config';
-import Chat from './src/Components/Views/Chat';
+import Login from './src/Views/Login';
+import LoadingScreen from './src/Views/LoadingScreen';
+import Home from './src/Views/Home';
+import Config from './src/Views/Config';
+import Chat from './src/Views/Chat';
 import NavBar from './src/Components/NavBar';
-import Pochi from './src/Components/Views/Pochi';
-import Match from './src/Components/Views/Match'
-import RegisterFirst from './src/Components/Views/RegisterFirst';
-import RegisterSecond from './src/Components/Views/RegisterSecond';
+import Pochi from './src/Views/Pochi';
+import Match from './src/Views/Match'
+import RegisterFirst from './src/Views/RegisterFirst';
+import RegisterSecond from './src/Views/RegisterSecond';
+import RegisterSearch from './src/Views/RegisterSearch';
 import { RegisterProvider } from './src/Context/RegisterContext';
 
 
@@ -38,6 +39,7 @@ export default function App() {
                         <Stack.Screen name="Chat" component={Chat} />
                         <Stack.Screen name="RegisterFirst" component={RegisterFirst} />
                         <Stack.Screen name="RegisterSecond" component={RegisterSecond} />
+                        <Stack.Screen name="RegisterSearch" component={RegisterSearch} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </RegisterProvider>

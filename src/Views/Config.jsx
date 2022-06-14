@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar'
-import { searchTrack, searchArtist } from '../../Handlers/AuthHandler';
-import { getUserData } from './../../Handlers/AuthHandler';
-import SongSearch from '../SongSearch';
-import ArtistSearch from '../ArtistSearch';
+import NavBar from '../Components/NavBar'
+import { searchTrack, searchArtist } from '../Handlers/AuthHandler';
+import { getUserData } from '../Handlers/AuthHandler';
+import SongSearch from '../Components/SongSearch';
+import ArtistSearch from '../Components/ArtistSearch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 

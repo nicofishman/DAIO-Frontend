@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View, Alert, Text } from 'react-native'
 import React from 'react'
-import { useRegisterContext } from '../../Context/RegisterContext'
-import ButtonContinue from '../pochi/ButtonContinue'
+import { useRegisterContext } from '../Context/RegisterContext'
+import ButtonContinue from '../Components/pochi/ButtonContinue'
 import Svg, { Image } from 'react-native-svg';
 
 
@@ -18,7 +18,7 @@ const RegisterFirst = ({ navigation }) => {
         <View style={styles.container}>
             <Svg width={100} height={100}>
                 <Image
-                    href={require('../../Assets/Avatars/Default.png')}
+                    href={require('../Assets/Avatars/Default.png')}
                     width={100}
                     height={100}
                 />

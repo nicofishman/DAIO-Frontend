@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     useFonts,
 } from 'expo-font'
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     text: {
         width: 159,
         height: 16,
-        fontFamily: 'Capriola_400Regular',
+        // fontFamily: 'Capriola_400Regular' ?? 'Comic Sans Ms',
         fontSize: 12.7,
         fontWeight: "normal",
         fontStyle: "normal",

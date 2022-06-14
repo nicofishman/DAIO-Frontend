@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import NavBar from '../NavBar'
-import SpotifyLogin from '../SpotifyLogin'
+import NavBar from '../Components/NavBar'
+import SpotifyLogin from '../Components/SpotifyLogin'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Chat = ({ navigation, route }) => {

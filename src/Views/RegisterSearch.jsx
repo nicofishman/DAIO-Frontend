@@ -1,16 +1,16 @@
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar'
-import { searchTrack, searchArtist } from '../../Handlers/AuthHandler';
-import { getUserData } from './../../Handlers/AuthHandler';
-import SongSearch from '../SongSearch';
-import ArtistSearch from '../ArtistSearch';
+import NavBar from '../Components/NavBar'
+import { searchTrack, searchArtist } from '../Handlers/AuthHandler';
+import { getUserTopArtists, getUserTopTracks } from '../Handlers/AuthHandler';
+import SongSearch from '../Components/SongSearch';
+import ArtistSearch from '../Components/ArtistSearch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Buttons from '../Search/Buttons';
-import ButtonContinue from '../pochi/ButtonContinue';
+import Buttons from '../Components/Search/Buttons';
+import ButtonContinue from '../Components/pochi/ButtonContinue';
 
-const RegisterSecond = ({ navigation }) => {
+const RegisterSearch = ({ navigation }) => {
     const [text, setText] = useState("");
     const [search, setSearch] = useState(undefined)
     const [type, setType] = useState('cancion')
@@ -22,10 +22,10 @@ const RegisterSecond = ({ navigation }) => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");
             setAccessToken(result)
-            // const userArtists = await getUserArtists(result);
-            // setTopArtists(userArtists);
-            // const userTracks = await getUserTracks(result);
-            // setTopTracks(userTracks);
+            const userArtists = await getUserTopArtists(result);
+            setTopArtists(userArtists);
+            const userTracks = await getUserTopTracks(result);
+            setTopTracks(userTracks);
         })();
     }, [])
 
@@ -88,7 +88,7 @@ const RegisterSecond = ({ navigation }) => {
     )
 }
 
-export default RegisterSecond
+export default RegisterSearch
 
 const styles = StyleSheet.create({
     container: {

@@ -1,11 +1,11 @@
-import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser, getUsers, onLogin } from '../../Handlers/AuthHandler'
+import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser, getUsers, onLogin } from '../Handlers/AuthHandler'
 import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
-import { useRegisterContext } from '../../Context/RegisterContext';
+import { useRegisterContext } from '../Context/RegisterContext';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import SpotifyLogin from '../SpotifyLogin';
+import SpotifyLogin from '../Components/SpotifyLogin';
 import querystring from 'querystring';
 
 async function save(key, value) {
@@ -43,7 +43,7 @@ export default function Login({ navigation }) {
         {
             responseType: "code",
             clientId: credentials.clientId,
-            scopes: ['user-read-email', 'playlist-modify-public'],
+            scopes: ['user-read-email', 'playlist-modify-public', 'user-top-read'],
             // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
             // this must be set to false
             usePKCE: false,

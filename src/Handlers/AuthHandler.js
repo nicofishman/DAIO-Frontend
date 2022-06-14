@@ -1,6 +1,7 @@
 import { authorize } from 'react-native-app-auth';
 import axios from 'axios';
 import querystring from 'querystring';
+import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 const getAuthConfig = async () => {
     const credentials = await getSpotifyCredentials();
@@ -25,9 +26,14 @@ const getAuthConfig = async () => {
     return spotifyAuthConfig;
 }
 
-const checkRefreshToken = async (refreshDate, refreshToken) => {
+const checkRefreshToken = async () => {
+    const refreshDate = AsyncStorage.getItem('refresh_date');
     if (new Date() > refreshDate) {
+        const refreshToken = await AsyncStorage.getItem('refresh_token');
         const newRefreshTokenResponse = await refreshLogin(refreshToken);
+        await AsyncStorage.setItem('refresh_token', newRefreshTokenResponse.refresh_token);
+        await AsyncStorage.setItem('access_token', newRefreshTokenResponse.access_token);
+        await AsyncStorage.setItem('refresh_date', new Date(new Date().getTime() + (newRefreshTokenResponse.expires_in * 1000)).toISOString());
         return {
             accessToken: newRefreshTokenResponse.access_token,
             refreshToken: newRefreshTokenResponse.refresh_token,

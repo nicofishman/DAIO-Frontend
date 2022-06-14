@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
-import ButtonContinue from '../pochi/ButtonContinue'
+import ButtonContinue from '../Components/pochi/ButtonContinue'
 
-const Pochi = ({navigation}) => {
+const Pochi = ({ navigation }) => {
     return (
         <View style={styles.loading}>
             {/* <ButtonContinue
@@ -10,7 +10,7 @@ const Pochi = ({navigation}) => {
             ></ButtonContinue>
             <Text>as</Text> */}
             <Button
-                onPress={()=>navigation.navigate("Loading")}
+                onPress={() => navigation.navigate("Loading")}
                 title="Loading"
             ></Button>
         </View>

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import NavBar from '../NavBar'
+import NavBar from '../Components/NavBar'
 
 
 const Home = ({ navigation, route }) => {

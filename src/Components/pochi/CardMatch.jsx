@@ -2,11 +2,6 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, Button, Alert, Image, TouchableWithoutFeedback, ImageBackground } from 'react-native'
 
 const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualSong }) => {
-
-
-
-
-
     return (
         <View style={styles.card}>
             <Text style={styles.textName}>{data.username}</Text>
@@ -26,14 +21,14 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                             const minutes = Math.floor((song.duration / (1000 * 60)) % 60);
 
                             return (
-                                <>
+                                <View key={index}>
                                     {visualSong === index ?
                                         <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
                                             <ImageBackground
                                                 source={{ "uri": song.album.img }}
                                                 resizeMode='cover'
                                                 style={[styles.imageBackground, { height: styles.songCardDetails.height }]} imageStyle={{ opacity: 0.2, overflow: 'hidden' }}>
-                                                <View key={index} style={[styles.songCardDetails, { opacity: 1 }]}>
+                                                <View style={[styles.songCardDetails, { opacity: 1 }]}>
                                                     <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
                                                     <View style={{ flexDirection: 'row', top: 10 }}>
                                                         <Image style={styles.songImgDetails} source={{ "uri": song.album.img }} />
@@ -53,7 +48,7 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                             </View>
                                         </TouchableWithoutFeedback>
                                     }
-                                </>
+                                </View>
                             )
                         })
                     }
