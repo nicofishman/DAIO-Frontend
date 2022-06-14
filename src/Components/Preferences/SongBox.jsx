@@ -1,26 +1,45 @@
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, TouchableHighlight } from 'react-native'
+import React, { useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useRegisterContext } from '../../Context/RegisterContext';
 
-const SongBox = ({ songs, selected, setSelected }) => {
+const SongBox = ({ selected, setSelected }) => {
+    const { songPreference, setSongPreference } = useRegisterContext()
+    const [contador, setContador] = useState(0);
+
+    const removeSong = (id) => {
+        console.log(id);
+        setSongPreference(songPreference.filter(song => song.id !== id))
+    }
+
     return (
         <TouchableWithoutFeedback onPress={() => setSelected('canciones')}>
             <View style={[styles.box, selected && styles.selected]}>
                 <Text>Canciones</Text>
                 <View style={styles.songsBox}>
                     {
-                        songs.map((song, index) => {
-                            const displayText = song.name + ' - ' + song.artists.join(', ')
+                        new Array(5).fill(0).map((_, index) => {
+                            const song = songPreference[index];
+                            const displayText = song && song.name + ' - ' + song.artists.join(', ')
                             return (
-                                <View key={index} style={styles.songRow}>
-                                    <View style={styles.songTextBox}>
-                                        <Text numberOfLines={1} style={styles.text}>{displayText}</Text>
+                                song ?
+                                    <View key={index} style={styles.songRow}>
+                                        <View style={styles.songTextBox}>
+                                            <Text numberOfLines={1} style={styles.text}>{displayText}</Text>
+                                        </View>
+                                        <TouchableWithoutFeedback onPress={() => removeSong(song.id)}>
+                                            <View style={styles.trashBox}>
+                                                <Icon name="trash-alt" style={styles.trash} />
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                    </View> :
+                                    <View key={index} style={{ alignItems: 'center' }}>
+                                        <View style={styles.add}>
+                                            <Icon key={index} name="plus" style={styles.add} />
+                                        </View>
                                     </View>
-                                    <View style={styles.trashBox}>
-                                        <Icon name="trash-alt" style={styles.trash} />
-                                    </View>
-                                </View>
                             )
+
                         })
                     }
                 </View>
@@ -50,6 +69,14 @@ const styles = StyleSheet.create({
     },
     selected: {
         backgroundColor: 'red'
+    },
+    add: {
+        width: 43,
+        borderRadius: 4,
+        color: '#fff',
+        fontSize: 20,
+        padding: 5,
+        backgroundColor: '#98ffa8',
     },
     songsBox: {
         width: 312,

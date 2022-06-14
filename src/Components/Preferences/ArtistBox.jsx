@@ -1,26 +1,45 @@
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useRegisterContext } from '../../Context/RegisterContext';
 
-const ArtistBox = ({ artists, selected, setSelected }) => {
+
+const ArtistBox = ({ selected, setSelected }) => {
+    const { artistPreference, setArtistPreference } = useRegisterContext();
+
+    const removeArtist = (id) => {
+        console.log(id);
+        setArtistPreference(artistPreference.filter(artist => artist.id !== id))
+    }
+
     return (
         <TouchableWithoutFeedback onPress={() => setSelected('artistas')}>
             <View style={[styles.box, selected && styles.selected]}>
                 <Text>Artistas</Text>
                 <View style={styles.artistBox}>
                     {
-                        artists.map((artist, index) => {
+                        new Array(3).fill(0).map((_, index) => {
+                            const artist = artistPreference[index];
                             return (
-                                <View key={index} style={styles.card}>
-                                    <View>
-                                        <Image style={styles.image} source={{ uri: artist.img }} />
-                                        <View style={styles.trashBox}>
-                                            <Icon name="trash-alt" style={styles.trash} />
+                                artist ?
+                                    <View key={index} style={styles.card}>
+                                        <View>
+                                            <Image style={styles.image} source={{ uri: artist.img }} />
+                                            <TouchableWithoutFeedback onPress={() => removeArtist(artist.id)}>
+                                                <View style={styles.trashBox}>
+                                                    <Icon name="trash-alt" style={styles.trash} />
+                                                </View>
+                                            </TouchableWithoutFeedback>
+                                        </View>
+
+                                        <Text numberOfLines={2} style={styles.text}>{artist.name}</Text>
+                                    </View> :
+
+                                    <View key={index} style={{ justifyContent: 'center' }}>
+                                        <View style={styles.add}>
+                                            <Icon name="plus" style={styles.add} />
                                         </View>
                                     </View>
-
-                                    <Text numberOfLines={1} style={styles.text}>{artist.name}</Text>
-                                </View>
                             )
                         })
                     }
@@ -49,6 +68,14 @@ const styles = StyleSheet.create({
     },
     selected: {
         backgroundColor: 'yellow',
+    },
+    add: {
+        width: 43,
+        borderRadius: 4,
+        color: '#fff',
+        fontSize: 20,
+        padding: 5,
+        backgroundColor: '#98ffa8',
     },
     artistBox: {
         flexDirection: 'row',
