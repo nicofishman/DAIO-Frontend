@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useMemo } from 'react';
+import { createContext, useState, useContext, useMemo, useEffect } from 'react';
 export const RegisterContext = createContext();
 
 export function RegisterProvider(props) {
@@ -9,6 +9,10 @@ export function RegisterProvider(props) {
 
     const [songPreference, setSongPreference] = useState([]);
     const [artistPreference, setArtistPreference] = useState([]);
+
+    useEffect(() => {
+        console.log('artistPreference', artistPreference);
+    }, [artistPreference]);
 
     const handleChangeNombre = (e) => {
         setNombre(e);

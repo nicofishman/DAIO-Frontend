@@ -1,45 +1,32 @@
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import NavBar from '../Components/NavBar'
 import { searchTrack, searchArtist } from '../Handlers/AuthHandler';
-import { getUserTopArtists, getUserTopTracks } from '../Handlers/AuthHandler';
 import SongSearch from '../Components/SongSearch';
 import ArtistSearch from '../Components/ArtistSearch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Buttons from '../Components/Search/Buttons';
 import ButtonContinue from '../Components/pochi/ButtonContinue';
+import { useRegisterContext } from '../Context/RegisterContext';
 
-const RegisterSearch = ({ navigation }) => {
+const RegisterSearch = ({ navigation, route }) => {
     const [text, setText] = useState("");
     const [search, setSearch] = useState(undefined)
-    const [type, setType] = useState('cancion')
     const [accessToken, setAccessToken] = useState(null)
-    const [topTracks, setTopTracks] = useState([])
-    const [topArtists, setTopArtists] = useState([])
+    const { type } = route.params
 
     useEffect(() => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");
             setAccessToken(result)
-            const userArtists = await getUserTopArtists(result);
-            setTopArtists(userArtists);
-            const userTracks = await getUserTopTracks(result);
-            setTopTracks(userTracks);
+            const { songPreference, artistPreference } = useRegisterContext();
+            setArrayToAdd(type === 'cancion' ? songPreference : type === 'artista' && artistPreference)
         })();
     }, [])
 
-    useEffect(() => {
-        setSearch(undefined)
-        setText(undefined)
-    }, [type])
-
     const onChangeText = async (e) => {
         setText(e);
-        console.log(`"${e}"`);
         if (text.length === 0 || !e) {
             setSearch(undefined);
-            console.log('vaciooooooooo');
             return;
         }
         if (type === 'cancion') {
@@ -54,10 +41,6 @@ const RegisterSearch = ({ navigation }) => {
     return (
         <>
             <View style={styles.container}>
-                {/* <Text>{JSON.stringify(user?.display_name || 'null')}</Text> */}
-                <View style={styles.buttonGroup}>
-                    <Buttons active={type} setActive={setType} />
-                </View>
                 <View style={styles.inputBar}>
                     <TextInput
                         style={styles.input}

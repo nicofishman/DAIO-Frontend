@@ -1,14 +1,37 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useRegisterContext } from '../Context/RegisterContext';
+import { useNavigation } from '@react-navigation/native';
 
 const ArtistSearch = ({ artist }) => {
+    const { setArtistPreference, artistPreference } = useRegisterContext();
+    const navigation = useNavigation();
+
+    const handleSelect = () => {
+        setArtistPreference([...artistPreference, {
+            id: artist.id,
+            name: artist.name,
+            img: artist.images[0].url
+        }]);
+        navigation.goBack();
+    }
+
+    if (!artist.images.length > 0) return null;
     return (
         <View style={[styles.container, styles.shadowBox]}>
-            {artist.images[0].url &&
-                <Image style={styles.image} source={{ "uri": artist.images[0].url }} />
-            }
-            <View style={styles.textSong}>
-                <Text style={styles.title}>{artist.name}</Text>
+            <View style={{ justifyContent: 'flex-start', flexDirection: 'row' }}>
+                {artist.images[0].url &&
+                    <Image style={styles.image} source={{ uri: artist.images[0].url }} />
+                }
+                <View style={styles.textSong}>
+                    <Text style={styles.title}>{artist.name}</Text>
+                </View>
+            </View>
+            <View>
+                <TouchableWithoutFeedback onPress={handleSelect}>
+                    <AntDesign style={styles.icon} name="pluscircleo" />
+                </TouchableWithoutFeedback>
             </View>
         </View>
     )
@@ -18,7 +41,7 @@ export default ArtistSearch
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         width: 300,
         height: 60,
         flexDirection: 'row',
@@ -57,5 +80,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.32,
         shadowRadius: 5.46,
         elevation: 4,
+    },
+    icon: {
+        fontSize: 20,
+        color: '#e0e0e0',
+        marginRight: 10,
+        marginTop: 20,
     }
 })

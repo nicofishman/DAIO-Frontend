@@ -1,15 +1,23 @@
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, ActivityIndicator } from 'react-native'
+import React, { useEffect } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useRegisterContext } from '../../Context/RegisterContext';
+import { useNavigation } from '@react-navigation/native';
 
 
-const ArtistBox = ({ selected, setSelected }) => {
+const ArtistBox = ({ selected, setSelected, loading }) => {
     const { artistPreference, setArtistPreference } = useRegisterContext();
+    const navigation = useNavigation();
 
     const removeArtist = (id) => {
         console.log(id);
         setArtistPreference(artistPreference.filter(artist => artist.id !== id))
+    }
+
+    const navegarASearch = () => {
+        navigation.navigate("RegisterSearch", {
+            type: "artista",
+        });
     }
 
     return (
@@ -21,25 +29,28 @@ const ArtistBox = ({ selected, setSelected }) => {
                         new Array(3).fill(0).map((_, index) => {
                             const artist = artistPreference[index];
                             return (
-                                artist ?
-                                    <View key={index} style={styles.card}>
-                                        <View>
-                                            <Image style={styles.image} source={{ uri: artist.img }} />
-                                            <TouchableWithoutFeedback onPress={() => removeArtist(artist.id)}>
-                                                <View style={styles.trashBox}>
-                                                    <Icon name="trash-alt" style={styles.trash} />
+                                loading ?
+                                    <ActivityIndicator key={index} size='small' color='#98ffa8' /> :
+                                    artist ?
+                                        <View key={index} style={styles.card}>
+                                            <View>
+                                                <Image style={styles.image} source={{ uri: artist.img }} />
+                                                <TouchableWithoutFeedback onPress={() => removeArtist(artist.id)}>
+                                                    <View style={styles.trashBox}>
+                                                        <Icon name="trash-alt" style={styles.trash} />
+                                                    </View>
+                                                </TouchableWithoutFeedback>
+                                            </View>
+                                            <Text numberOfLines={2} style={styles.text}>{artist.name}</Text>
+                                        </View> :
+
+                                        <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
+                                            <View style={{ justifyContent: 'center' }}>
+                                                <View style={styles.add}>
+                                                    <Icon name="plus" style={styles.add} />
                                                 </View>
-                                            </TouchableWithoutFeedback>
-                                        </View>
-
-                                        <Text numberOfLines={2} style={styles.text}>{artist.name}</Text>
-                                    </View> :
-
-                                    <View key={index} style={{ justifyContent: 'center' }}>
-                                        <View style={styles.add}>
-                                            <Icon name="plus" style={styles.add} />
-                                        </View>
-                                    </View>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                             )
                         })
                     }
