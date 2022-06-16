@@ -2,20 +2,16 @@ import { createContext, useState, useContext, useMemo, useEffect } from 'react';
 export const RegisterContext = createContext();
 
 export function RegisterProvider(props) {
-    const [nombre, setNombre] = useState("");
+    const [username, setUsername] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [charsLeft, setCharsLeft] = useState(150);
-    const [username, setUsername] = useState("");
+    const [spotifyId, setSpotifyId] = useState("");
 
     const [songPreference, setSongPreference] = useState([]);
     const [artistPreference, setArtistPreference] = useState([]);
 
-    useEffect(() => {
-        console.log('artistPreference', artistPreference);
-    }, [artistPreference]);
-
     const handleChangeNombre = (e) => {
-        setNombre(e);
+        setUsername(e);
     }
 
     const handleChangeDesc = (e) => {
@@ -26,18 +22,18 @@ export function RegisterProvider(props) {
     }
 
     const value = useMemo(() => ({
-        nombre,
+        username,
         descripcion,
         charsLeft,
-        username,
+        spotifyId,
         songPreference,
         artistPreference,
         handleChangeNombre,
         handleChangeDesc,
-        setUsername,
+        setSpotifyId,
         setSongPreference,
         setArtistPreference
-    }), [nombre, descripcion, charsLeft, username, songPreference, artistPreference]);
+    }), [username, descripcion, charsLeft, spotifyId, songPreference, artistPreference]);
 
     return (
         <RegisterContext.Provider value={value}>

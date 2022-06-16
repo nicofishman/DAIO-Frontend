@@ -5,10 +5,10 @@ import ButtonContinue from '../Components/pochi/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const RegisterFirst = ({ navigation }) => {
-    const { nombre, descripcion, handleChangeNombre, handleChangeDesc, username, charsLeft } = useRegisterContext();
+    const { username, descripcion, handleChangeNombre, handleChangeDesc, spotifyId, charsLeft } = useRegisterContext();
 
     const continuar = () => {
-        if (nombre.length > 0 && descripcion.length > 0) {
+        if (username.length > 0 && descripcion.length > 0) {
             navigation.navigate('RegisterSecond')
         }
     }
@@ -26,11 +26,11 @@ const RegisterFirst = ({ navigation }) => {
                 />
             </View>
             <TextInput
-                style={[styles.input, styles.inputNombre, nombre.length <= 0 && styles.inputWarning]}
+                style={[styles.input, styles.inputNombre, username.length <= 0 && styles.inputWarning]}
                 onChangeText={handleChangeNombre}
-                value={nombre}
+                value={username}
                 caretHidden={true}
-                placeholder={username}
+                placeholder={spotifyId}
                 placeholderTextColor="#999"
             />
             <TextInput

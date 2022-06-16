@@ -1,5 +1,5 @@
-import { getSpotifyCredentials, getUserData, getUserTopArtists, getUserTopTracks, addUser, getUsers, onLogin } from '../Handlers/AuthHandler'
-import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
+import { getSpotifyCredentials, getUserData, getUsers } from '../Handlers/AuthHandler'
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { useRegisterContext } from '../Context/RegisterContext';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,7 +25,7 @@ export default function Login({ navigation }) {
 
     const [credentials, setCredentials] = useState({})
 
-    const { setUsername, handleChangeNombre } = useRegisterContext()
+    const { setSpotifyId, handleChangeNombre } = useRegisterContext()
 
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials();
@@ -105,7 +105,7 @@ export default function Login({ navigation }) {
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
-            setUsername(user.id)
+            setSpotifyId(user.id)
             handleChangeNombre(user.id)
             navigation.navigate('RegisterFirst', { user, accessToken });
         } else {

@@ -1,15 +1,37 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ArtistBox from '../Components/Preferences/ArtistBox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getUserTopArtists, getUserTopTracks } from '../Handlers/AuthHandler';
+import { addUser, getUserTopArtists, getUserTopTracks } from '../Handlers/AuthHandler';
 import SongBox from '../Components/Preferences/SongBox';
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/pochi/ButtonContinue';
 
 const RegisterSecond = ({ navigation }) => {
-    const { setSongPreference, setArtistPreference } = useRegisterContext();
+    const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId } = useRegisterContext();
     const [loading, setLoading] = useState(true);
+
+    const finishRegister = async () => {
+        const trackData = songPreference.map(song => {
+            return {
+                trackId: song.id,
+            }
+        })
+        const artistData = artistPreference.map(artist => {
+            return {
+                artistId: artist.id,
+            }
+        })
+        await addUser({
+            spotifyId,
+            username,
+            description: descripcion,
+            avatarId: Math.floor(Math.random() * 10),
+            tracks: trackData,
+            artists: artistData
+        })
+        navigation.navigate('Match')
+    }
 
     useEffect(() => {
         (async () => {
@@ -26,7 +48,7 @@ const RegisterSecond = ({ navigation }) => {
         <View style={styles.container}>
             <ArtistBox loading={loading} />
             <SongBox loading={loading} />
-            <ButtonContinue onPress={() => navigation.navigate("Match")} />
+            <ButtonContinue onPress={() => finishRegister()} />
         </View>
     )
 }
