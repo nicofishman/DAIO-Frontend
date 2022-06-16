@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useRegisterContext } from '../../Context/RegisterContext';
 import { useNavigation } from '@react-navigation/native';
 
-const SongBox = ({ selected, setSelected, loading }) => {
+const SongBox = ({ loading }) => {
     const { songPreference, setSongPreference } = useRegisterContext()
     const navigation = useNavigation();
 
@@ -20,43 +20,41 @@ const SongBox = ({ selected, setSelected, loading }) => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => setSelected('canciones')}>
-            <View style={[styles.box, selected && styles.selected]}>
-                <Text>Canciones</Text>
-                <View style={styles.songsBox}>
-                    {
-                        new Array(5).fill(0).map((_, index) => {
-                            const song = songPreference[index];
-                            const displayText = song && song.name + ' - ' + song.artists.join(', ')
-                            return (
-                                loading ?
-                                    <ActivityIndicator key={index} size='small' color='#98ffa8' /> :
-                                    song ?
-                                        <View key={index} style={styles.songRow}>
-                                            <View style={styles.songTextBox}>
-                                                <Text numberOfLines={1} style={styles.text}>{displayText}</Text>
-                                            </View>
-                                            <TouchableWithoutFeedback onPress={() => removeSong(song.id)}>
-                                                <View style={styles.trashBox}>
-                                                    <Icon name="trash-alt" style={styles.trash} />
-                                                </View>
-                                            </TouchableWithoutFeedback>
-                                        </View> :
-
-                                        <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
-                                            <View style={{ alignItems: 'center' }}>
-                                                <View style={styles.add}>
-                                                    <Icon name="plus" style={styles.add} />
-                                                </View>
+        <View style={styles.box}>
+            <Text>Canciones</Text>
+            <View style={styles.songsBox}>
+                {
+                    new Array(5).fill(0).map((_, index) => {
+                        const song = songPreference[index];
+                        const displayText = song && song.name + ' - ' + song.artists.join(', ')
+                        return (
+                            loading ?
+                                <ActivityIndicator key={index} size='small' color='#98ffa8' /> :
+                                song ?
+                                    <View key={index} style={styles.songRow}>
+                                        <View style={styles.songTextBox}>
+                                            <Text numberOfLines={1} style={styles.text}>{displayText}</Text>
+                                        </View>
+                                        <TouchableWithoutFeedback onPress={() => removeSong(song.id)}>
+                                            <View style={styles.trashBox}>
+                                                <Icon name="trash-alt" style={styles.trash} />
                                             </View>
                                         </TouchableWithoutFeedback>
-                            )
+                                    </View> :
 
-                        })
-                    }
-                </View>
+                                    <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
+                                        <View style={{ alignItems: 'center' }}>
+                                            <View style={styles.add}>
+                                                <Icon name="plus" style={styles.add} />
+                                            </View>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                        )
+
+                    })
+                }
             </View>
-        </TouchableWithoutFeedback>
+        </View>
     )
 
 }
@@ -66,7 +64,7 @@ export default SongBox
 const styles = StyleSheet.create({
     box: {
         width: 332,
-        height: 256,
+        height: 300,
         marginTop: 20,
         justifyContent: 'center',
         borderRadius: 4,
@@ -92,10 +90,9 @@ const styles = StyleSheet.create({
     },
     songsBox: {
         width: 312,
-        height: 211,
+        height: 250,
         justifyContent: 'space-around',
         borderRadius: 4,
-        backgroundColor: "#ffffff",
         shadowColor: "rgba(0, 0, 0, 0.25)",
         shadowOffset: {
             width: 2,
@@ -106,7 +103,7 @@ const styles = StyleSheet.create({
     },
     songTextBox: {
         width: 290,
-        height: 29,
+        height: 40,
         borderRadius: 4,
         backgroundColor: "#f3f3f3",
         shadowColor: "rgba(0, 0, 0, 0.25)",
@@ -116,28 +113,28 @@ const styles = StyleSheet.create({
         },
         justifyContent: 'center',
         shadowRadius: 3,
-        shadowOpacity: 1
+        shadowOpacity: 1,
+        marginRight: 5,
     },
     songRow: {
         flexDirection: 'row',
     },
     text: {
-        marginHorizontal: 4
+        marginHorizontal: 7
     },
     trashBox: {
-        position: 'absolute',
         right: 5,
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
     },
     trash: {
         borderRadius: 4,
         color: '#fff',
-        fontSize: 20,
-        padding: 5,
+        fontSize: 28,
+        padding: 6,
         backgroundColor: '#f67171',
     },
 })

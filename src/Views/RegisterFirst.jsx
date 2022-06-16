@@ -1,9 +1,8 @@
-import { StyleSheet, TextInput, View, Alert, Text } from 'react-native'
+import { StyleSheet, TextInput, View, Image, Text } from 'react-native'
 import React from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/pochi/ButtonContinue'
-import Svg, { Image } from 'react-native-svg';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const RegisterFirst = ({ navigation }) => {
     const { nombre, descripcion, handleChangeNombre, handleChangeDesc, username, charsLeft } = useRegisterContext();
@@ -16,13 +15,16 @@ const RegisterFirst = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Svg width={100} height={100}>
+            <View style={{ position: "relative" }}>
                 <Image
-                    href={require('../Assets/Avatars/Default.png')}
-                    width={100}
-                    height={100}
+                    source={require('../Assets/Avatars/Default.png')}
+                    style={styles.avatar}
                 />
-            </Svg>
+                <MaterialIcons name="edit"
+                    style={styles.edit}
+
+                />
+            </View>
             <TextInput
                 style={[styles.input, styles.inputNombre, nombre.length <= 0 && styles.inputWarning]}
                 onChangeText={handleChangeNombre}
@@ -54,13 +56,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#3b3b3b',
+        backgroundColor: '#d4d4d4',
         alignItems: 'center',
         justifyContent: 'center',
     },
     avatar: {
-        width: 100,
-        height: 100,
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+    },
+    edit: {
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+        backgroundColor: "#b1b1b1",
+        padding: 10,
+        color: "white",
+        fontSize: 23,
+        borderRadius: 50
     },
     input: {
         marginTop: 47,
@@ -109,7 +122,7 @@ const styles = StyleSheet.create({
         color: '#eb4034',
         width: 264,
         fontWeight: 'bold',
-        textAlign: 'right',
+        textAlign: 'left',
     },
     inputRed: {
         borderColor: '#eb4034',

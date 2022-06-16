@@ -9,12 +9,7 @@ import ButtonContinue from '../Components/pochi/ButtonContinue';
 
 const RegisterSecond = ({ navigation }) => {
     const { setSongPreference, setArtistPreference } = useRegisterContext();
-    const [selected, setSelected] = useState('canciones');
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        console.log(selected);
-    }, [selected])
 
     useEffect(() => {
         (async () => {
@@ -29,8 +24,8 @@ const RegisterSecond = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <ArtistBox selected={selected === 'artistas'} loading={loading} setSelected={setSelected} />
-            <SongBox selected={selected === 'canciones'} loading={loading} setSelected={setSelected} />
+            <ArtistBox loading={loading} />
+            <SongBox loading={loading} />
             <ButtonContinue onPress={() => navigation.navigate("Match")} />
         </View>
     )
@@ -41,7 +36,7 @@ export default RegisterSecond
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#d4d4d4',
         alignItems: 'center',
         justifyContent: 'center',
     },

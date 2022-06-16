@@ -57,26 +57,36 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                     {
                         data.artistas.sort((a, b) => a.orden - b.orden).map((artist, index) => {
                             return (
-                                <TouchableWithoutFeedback
-                                    key={index}
-                                    onPress={() => {
-                                        if (visualArtist === index) {
-                                            setVisualArtist(-1)
-                                        } else {
-                                            setVisualArtist(index)
-                                        }
-                                    }}>
-                                    <>
-                                        <View style={styles.artistDetails}>
-                                            <Text>{artist.name}</Text>
+                                <View key={index} style={{ position: 'relative', alignItems: 'flex-end' }}>
+                                    <TouchableWithoutFeedback
+                                        key={index}
+                                        onPress={() => {
+                                            if (visualArtist === index) {
+                                                setVisualArtist(-1)
+                                            } else {
+                                                setVisualArtist(index)
+                                            }
+                                        }}>
+                                        <View >
+                                            <Image
+                                                key={artist.images[0].url}
+                                                style={styles.artistImg}
+                                                source={{ uri: artist.images[0].url }}
+                                            />
                                         </View>
-                                        <Image
-                                            key={artist.images[0].url}
-                                            style={styles.artistImg}
-                                            source={{ "uri": artist.images[0].url }}
-                                        />
-                                    </>
-                                </TouchableWithoutFeedback>
+                                    </TouchableWithoutFeedback>
+                                    {
+                                        visualArtist === index &&
+                                        <View style={styles.artistDetails}>
+                                            <Text style={styles.artistDetailsName}>{artist.name}</Text>
+                                            <View style={styles.artistDetailsText}>
+                                                <Text style={styles.artistDetailsText}>
+                                                    {artist.genres.slice(0, 2).join(', ')}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    }
+                                </View>
                             )
                         })
                     }
@@ -155,14 +165,15 @@ const styles = StyleSheet.create({
     songsAll: {
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        marginLeft: 15
+        marginLeft: 15,
+        zIndex: -10
     },
     songCard: {
         width: 190,
         height: 60,
         backgroundColor: '#ffffff',
         marginBottom: 2,
-        borderRadius: 10
+        borderRadius: 10,
     },
     songCardActive: {
         height: 80,
@@ -181,10 +192,18 @@ const styles = StyleSheet.create({
     artistDetails: {
         display: 'flex',
         position: 'absolute',
-        backgroundColor: '#42f56f',
-        height: 80,
-        width: '100%',
-
+        backgroundColor: '#1f1f1f',
+        color: '#fff',
+        height: 100,
+        width: 300,
+        paddingLeft: 10,
+        paddingTop: 10,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+        borderTopRightRadius: 50,
+        borderBottomRightRadius: 50,
+        zIndex: -1,
+        right: 20,
     },
     songCardDetails: {
         width: 190,
@@ -213,5 +232,13 @@ const styles = StyleSheet.create({
         height: '100%',
         borderRadius: 10,
         overflow: 'hidden',
+    },
+    artistDetailsName: {
+        fontSize: 22,
+        color: '#fff',
+    },
+    artistDetailsText: {
+        color: '#fff',
+        width: '75%',
     }
 })
