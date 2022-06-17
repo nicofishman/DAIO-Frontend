@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import NavBar from "../Components/NavBar";
-import CardMatch from "../Components/pochi/CardMatch";
+import NavBar from "../Components/Common/NavBar";
+import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
 import { getUsersAndInfo } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';

@@ -11,7 +11,7 @@ import LoadingScreen from './src/Views/LoadingScreen';
 import Home from './src/Views/Home';
 import Config from './src/Views/Config';
 import Chat from './src/Views/Chat';
-import NavBar from './src/Components/NavBar';
+import NavBar from './src/Components/Common/NavBar';
 import Pochi from './src/Views/Pochi';
 import Match from './src/Views/Match'
 import RegisterFirst from './src/Views/RegisterFirst';

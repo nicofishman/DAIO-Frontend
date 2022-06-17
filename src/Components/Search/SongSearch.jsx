@@ -1,31 +1,31 @@
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useRegisterContext } from '../Context/RegisterContext';
+import { useRegisterContext } from '../../Context/RegisterContext';
 import { useNavigation } from '@react-navigation/native';
 
-const ArtistSearch = ({ artist }) => {
-    const { setArtistPreference, artistPreference } = useRegisterContext();
+const SongSearch = ({ song }) => {
+    const { setSongPreference, songPreference } = useRegisterContext();
     const navigation = useNavigation();
 
     const handleSelect = () => {
-        setArtistPreference([...artistPreference, {
-            id: artist.id,
-            name: artist.name,
-            img: artist.images[0].url
+        setSongPreference([...songPreference, {
+            id: song.id,
+            name: song.name,
+            img: song.album.images[0].url,
+            artists: song.artists.map(artist => artist.name)
         }]);
         navigation.goBack();
     }
 
-    if (!artist.images.length > 0) return null;
+    let artists = song.artists.map(art => art.name).join(', ');
     return (
         <View style={[styles.container, styles.shadowBox]}>
             <View style={{ justifyContent: 'flex-start', flexDirection: 'row' }}>
-                {artist.images[0].url &&
-                    <Image style={styles.image} source={{ uri: artist.images[0].url }} />
-                }
+                <Image style={styles.image} source={{ "uri": song.album.images[0].url }} />
                 <View style={styles.textSong}>
-                    <Text style={styles.title}>{artist.name}</Text>
+                    <Text style={styles.title}>{song.name}</Text>
+                    <Text style={styles.artists}>{artists}</Text>
                 </View>
             </View>
             <View>
@@ -37,7 +37,7 @@ const ArtistSearch = ({ artist }) => {
     )
 }
 
-export default ArtistSearch
+export default SongSearch
 
 const styles = StyleSheet.create({
     container: {

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import NavBar from '../Components/NavBar'
+import NavBar from '../Components/Common/NavBar'
 import SpotifyLogin from '../Components/SpotifyLogin'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

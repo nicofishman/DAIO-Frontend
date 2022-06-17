@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { addUser, getUserTopArtists, getUserTopTracks } from '../Handlers/AuthHandler';
 import SongBox from '../Components/Preferences/SongBox';
 import { useRegisterContext } from '../Context/RegisterContext';
-import ButtonContinue from '../Components/pochi/ButtonContinue';
+import ButtonContinue from '../Components/Common/ButtonContinue';
 
 const RegisterSecond = ({ navigation }) => {
     const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId } = useRegisterContext();

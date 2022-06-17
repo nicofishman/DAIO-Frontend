@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, View, Image, Text } from 'react-native'
 import React from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
-import ButtonContinue from '../Components/pochi/ButtonContinue'
+import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const RegisterFirst = ({ navigation }) => {

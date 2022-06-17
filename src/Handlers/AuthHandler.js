@@ -134,10 +134,10 @@ export const getUsers = async () => {
 }
 
 export const addUser = async (userData) => {
-    console.log(userData);
-    // try {
-    //     await axios.post('http://daio-backend.herokuapp.com/database/adduser', userData);
-    // } catch (error) {
-    //     console.log(error);
-    // }
+    // console.log(userData);
+    try {
+        await axios.post('http://daio-backend.herokuapp.com/database/adduser', userData);
+    } catch (error) {
+        console.log(error);
+    }
 }

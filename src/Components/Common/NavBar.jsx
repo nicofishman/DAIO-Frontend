@@ -19,7 +19,7 @@ const NavBar = ({ navigation, route }) => {
             >
                 <Svg width={50} height={50} style={[styles.icon, styles.daioLogo]}>
                     <Image
-                        href={require('../Assets/logo.png')}
+                        href={require('../../Assets/logo.png')}
                         width={50}
                         height={50}
                         style={[routeName === 'Match' && styles.active]}

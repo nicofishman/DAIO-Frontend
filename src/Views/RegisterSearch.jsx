@@ -1,11 +1,11 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { searchTrack, searchArtist } from '../Handlers/AuthHandler';
-import SongSearch from '../Components/SongSearch';
-import ArtistSearch from '../Components/ArtistSearch';
+import SongSearch from '../Components/Search/SongSearch';
+import ArtistSearch from '../Components/Search/ArtistSearch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import ButtonContinue from '../Components/pochi/ButtonContinue';
+import ButtonContinue from '../Components/Common/ButtonContinue';
 import { useRegisterContext } from '../Context/RegisterContext';
 
 const RegisterSearch = ({ navigation, route }) => {
