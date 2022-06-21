@@ -5,7 +5,7 @@ const Pochi = ({ navigation }) => {
     return (
         <View style={styles.loading}>
             <Button
-                onPress={() => navigation.navigate("Loading")}
+                onPress={() => navigation.navigate("Main", { screen: 'Loading' })}
                 title="Loading"
             ></Button>
         </View>

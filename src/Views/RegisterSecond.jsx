@@ -30,7 +30,7 @@ const RegisterSecond = ({ navigation }) => {
             tracks: trackData,
             artists: artistData
         })
-        navigation.navigate('Match')
+        navigation.navigate('Main', { screen: 'Match' })
     }
 
     useEffect(() => {
@@ -58,7 +58,7 @@ export default RegisterSecond
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#d4d4d4',
+        backgroundColor: '#a4d4d4',
         alignItems: 'center',
         justifyContent: 'center',
     },

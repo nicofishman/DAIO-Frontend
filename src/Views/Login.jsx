@@ -105,11 +105,12 @@ export default function Login({ navigation }) {
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
+            console.log('User is not in db', user.id);
             setSpotifyId(user.id)
             handleChangeNombre(user.id)
-            navigation.navigate('RegisterFirst', { user, accessToken });
+            navigation.navigate('Register', { screen: 'RegisterFirst' }, { user, accessToken });
         } else {
-            navigation.navigate('Match');
+            navigation.navigate('Main', { screen: 'Match' });
         }
     }
 

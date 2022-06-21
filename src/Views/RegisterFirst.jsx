@@ -7,6 +7,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 const RegisterFirst = ({ navigation }) => {
     const { username, descripcion, handleChangeNombre, handleChangeDesc, spotifyId, charsLeft } = useRegisterContext();
 
+    console.log(spotifyId, username);
+
     const continuar = () => {
         if (username.length > 0 && descripcion.length > 0) {
             navigation.navigate('RegisterSecond')

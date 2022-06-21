@@ -6,16 +6,18 @@ import { useRoute } from '@react-navigation/native';
 import { Dimensions } from 'react-native';
 import Svg, { Image } from 'react-native-svg';
 
-const NavBar = ({ navigation, route }) => {
+const NavBar = (props) => {
     const { name: routeName } = useRoute();
+    if (!props.navigation) return null
     return (
+
         <View style={styles.navbar}>
             <TouchableOpacity style={styles.button}
-                onPress={() => navigation.navigate('Config')}
+                onPress={() => props.navigation.navigate('Config')}
             >
                 <MaterialCommunityIcons style={[styles.icon, routeName === 'Config' && styles.active]} name="account-circle" /></TouchableOpacity>
             <TouchableOpacity style={styles.button}
-                onPress={() => navigation.navigate('Match')}
+                onPress={() => props.navigation.navigate('Match')}
             >
                 <Svg width={50} height={50} style={[styles.icon, styles.daioLogo]}>
                     <Image
@@ -27,7 +29,7 @@ const NavBar = ({ navigation, route }) => {
                 </Svg>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}
-                onPress={() => navigation.navigate('Chat')}
+                onPress={() => props.navigation.navigate('Chat')}
             >
                 <Ionicons style={[styles.icon, routeName === 'Chat' && styles.active]} name="chatbubbles" />
             </TouchableOpacity>

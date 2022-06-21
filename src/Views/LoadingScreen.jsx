@@ -5,8 +5,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const LoadingScreen = ({ navigation }) => {
     useEffect(() => {
         (async () => {
-            const accessToken = await AsyncStorage.getItem("access_token");
-            navigation.navigate(accessToken ? 'Match' : 'Login');
+            const refreshDate = await AsyncStorage.getItem("refreshDate");
+
+            console.log(refreshDate, "refreshDate", new Date().getTime());
+            if (refreshDate) {
+                if (refreshDate - new Date().getTime() > 0) {
+                    navigation.navigate("Main", { screen: 'Match' });
+                } else {
+                    navigation.navigate("Login");
+                }
+            } else {
+                navigation.navigate('Login');
+            }
         })()
     }, []);
     return (
