@@ -105,6 +105,7 @@ export default function Login({ navigation }) {
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
+            //TODO: SETSPOTIFYID ESTA VACIO
             console.log('User is not in db', user.id);
             setSpotifyId(user.id)
             handleChangeNombre(user.id)

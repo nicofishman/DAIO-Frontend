@@ -23,7 +23,10 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                             return (
                                 <View key={index}>
                                     {visualSong === index ?
-                                        <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
+                                        <TouchableWithoutFeedback onPress={() => {
+                                            setVisualSong(index);
+                                            setVisualArtist(-1);
+                                        }}>
                                             <ImageBackground
                                                 source={{ "uri": song.album.img }}
                                                 resizeMode='cover'

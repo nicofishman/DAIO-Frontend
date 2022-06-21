@@ -10,8 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
 
-    const [visualArtist, setVisualArtist] = useState(0);
-    const [visualSong, setVisualSong] = useState(0);
+    const [visualArtist, setVisualArtist] = useState(-1);
+    const [visualSong, setVisualSong] = useState(-1);
 
     useEffect(() => {
         (async () => {
