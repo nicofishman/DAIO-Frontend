@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import NavBar from "../Components/Common/NavBar";
 import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
-import { getUsersAndInfo } from "../Handlers/AuthHandler";
+import { addInteraction, getUsersAndInfo } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -22,14 +22,28 @@ const Match = ({ navigation, route }) => {
     }, []);
 
 
-    function handleYup(card) {
-        console.log(`Yup for ${card.username}`);
+    async function handleYup(card) {
+        const spotifyId = await AsyncStorage.getItem('spotify_id');
+        console.log(`Yup for ${spotifyId} -> ${card.spotifyId}`);
+        const response = await addInteraction({
+            madeBy: spotifyId,
+            interactedWith: card.spotifyId,
+            decision: true
+        })
+        console.log(response);
         setVisualArtist(-1);
         setVisualSong(-1);
         return true; // return false if you wish to cancel the action
     }
-    function handleNope(card) {
-        console.log(`Nope for ${card.username}`);
+    async function handleNope(card) {
+        const spotifyId = await AsyncStorage.getItem('spotify_id');
+        console.log(`Nope for ${spotifyId} -> ${card.spotifyId}`);
+        const response = await addInteraction({
+            madeBy: spotifyId,
+            interactedWith: card.spotifyId,
+            decision: true
+        })
+        console.log(response);
         setVisualArtist(-1);
         setVisualSong(-1);
         return true;

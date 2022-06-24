@@ -9,13 +9,11 @@ import { RegisterProvider } from '../Context/RegisterContext';
 const LoginStackNavigator = () => {
     const LoginStack = createNativeStackNavigator();
     return (
-        <RegisterProvider>
-            <LoginStack.Navigator initialRouteName='Pochi'>
-                <LoginStack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-                <LoginStack.Screen name="Loading" component={LoadingScreen} options={{ headerShown: false }} />
-                <LoginStack.Screen name="Pochi" component={Pochi} options={{ headerShown: false }} />
-            </LoginStack.Navigator>
-        </RegisterProvider>
+        <LoginStack.Navigator initialRouteName='Pochi'>
+            <LoginStack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+            <LoginStack.Screen name="Loading" component={LoadingScreen} options={{ headerShown: false }} />
+            <LoginStack.Screen name="Pochi" component={Pochi} options={{ headerShown: false }} />
+        </LoginStack.Navigator>
     )
 }
 

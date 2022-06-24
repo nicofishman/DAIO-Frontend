@@ -1,5 +1,5 @@
-import { StyleSheet, TextInput, View, Image, Text, ImageBackground, Dimensions } from 'react-native'
-import React from 'react'
+import { StyleSheet, TextInput, View, Image, Text } from 'react-native'
+import React, { useEffect } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -7,8 +7,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 const RegisterFirst = ({ navigation }) => {
     const { username, descripcion, handleChangeNombre, handleChangeDesc, spotifyId, charsLeft } = useRegisterContext();
 
-    console.log(spotifyId, username);
 
+    useEffect(() => {
+        console.log('RegisterFirst', spotifyId);
+    }, [spotifyId])
     const continuar = () => {
         if (username.length > 0 && descripcion.length > 0) {
             navigation.navigate('RegisterSecond')

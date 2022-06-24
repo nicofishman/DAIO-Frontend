@@ -94,6 +94,8 @@ export default function Login({ navigation }) {
             await save('access_token', access_token)
             await save('refresh_token', refresh_token)
             await save('refresh_date', (new Date().getTime() + expires_in * 1000).toString())
+            const userData = await getUserData(access_token);
+            await save('spotify_id', userData.id);
             setAccessToken(access_token)
             handleLogin(access_token)
         }
