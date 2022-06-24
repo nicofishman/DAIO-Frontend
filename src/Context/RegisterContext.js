@@ -5,7 +5,7 @@ export function RegisterProvider(props) {
     const [username, setUsername] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [charsLeft, setCharsLeft] = useState(150);
-    const [spotifyId, setSpotifyId] = useState("");
+    const [spotifyId, setSpotifyId] = useState();
 
     const [songPreference, setSongPreference] = useState([]);
     const [artistPreference, setArtistPreference] = useState([]);
@@ -21,19 +21,29 @@ export function RegisterProvider(props) {
         }
     }
 
-    const value = useMemo(() => ({
-        username,
-        descripcion,
-        charsLeft,
-        spotifyId,
-        songPreference,
-        artistPreference,
-        handleChangeNombre,
-        handleChangeDesc,
-        setSpotifyId,
-        setSongPreference,
-        setArtistPreference
-    }), [username, descripcion, charsLeft, spotifyId, songPreference, artistPreference]);
+    useEffect(() => {
+        if (spotifyId !== "") {
+            console.log("spotifyId: " + spotifyId);
+        }
+    }, [spotifyId]);
+
+    const value = useMemo(() => {
+        console.log("RegisterContext: " + spotifyId);
+
+        return {
+            username,
+            descripcion,
+            charsLeft,
+            spotifyId,
+            songPreference,
+            artistPreference,
+            handleChangeNombre,
+            handleChangeDesc,
+            setSpotifyId,
+            setSongPreference,
+            setArtistPreference
+        }
+    }, [username, descripcion, charsLeft, spotifyId, songPreference, artistPreference]);
 
     return (
         <RegisterContext.Provider value={value}>

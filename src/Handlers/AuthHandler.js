@@ -1,7 +1,7 @@
 import { authorize } from 'react-native-app-auth';
 import axios from 'axios';
 import querystring from 'querystring';
-import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const getAuthConfig = async () => {
     const credentials = await getSpotifyCredentials();
@@ -27,12 +27,14 @@ const getAuthConfig = async () => {
 }
 
 const checkRefreshToken = async () => {
-    console.log('refreshing');
-    const refreshDate = AsyncStorage.getItem('refresh_date');
+    const refreshDate = await AsyncStorage.getItem('refresh_date');
+    console.log(refreshDate);
     if (new Date() > refreshDate) {
+        console.log('refreshing');
         const refreshToken = await AsyncStorage.getItem('refresh_token');
         const newRefreshTokenResponse = await refreshLogin(refreshToken);
-        await AsyncStorage.setItem('refresh_token', newRefreshTokenResponse.refresh_token);
+        console.log('???', newRefreshTokenResponse);
+        // await AsyncStorage.setItem('refresh_token', newRefreshTokenResponse.refresh_token);
         await AsyncStorage.setItem('access_token', newRefreshTokenResponse.access_token);
         await AsyncStorage.setItem('refresh_date', new Date(new Date().getTime() + (newRefreshTokenResponse.expires_in * 1000)).toISOString());
         return {
@@ -40,23 +42,32 @@ const checkRefreshToken = async () => {
             refreshToken: newRefreshTokenResponse.refresh_token,
             refreshDate: new Date(new Date().getTime() + (newRefreshTokenResponse.expires_in * 1000)),
         };
+    } else {
+        return {
+            accessToken: await AsyncStorage.getItem('access_token'),
+            refreshToken: await AsyncStorage.getItem('refresh_token'),
+            refreshDate: await AsyncStorage.getItem('refresh_date'),
+        }
     }
 }
 
 
-export const searchTrack = async (query, accessToken) => {
+export const searchTrack = async (query) => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    console.log(accessTokenRes);
     const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/song/${query}`, {
         headers: {
-            accessToken: accessToken,
+            accessToken: accessTokenRes,
         },
     });
     return result.data;
 }
 
-export const searchArtist = async (query, accessToken) => {
+export const searchArtist = async (query) => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
     const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/artist/${query}`, {
         headers: {
-            accessToken: accessToken,
+            accessToken: accessTokenRes,
         },
     });
     return result.data;
@@ -65,11 +76,6 @@ export const searchArtist = async (query, accessToken) => {
 export const getSpotifyCredentials = async () => {
     const result = await axios.get('http://daio-backend.herokuapp.com/credentials/spotify')
     return result.data
-}
-
-export const getFirebaseCredentials = async () => {
-    const result = await axios.get('http://daio-backend.herokuapp.com/credentials/firebase');
-    return result.data;
 }
 
 export const onLogin = async () => {
@@ -106,25 +112,27 @@ const refreshLogin = async (refreshToken) => {
     return responseToken;
 }
 
-export const getUserData = async (accessToken) => {
-    // const accessToken = await AsyncStorage.getItem('access_token');
-    const userData = await axios.get('http://daio-backend.herokuapp.com/spotify/me', { headers: { accessToken: accessToken } });
+export const getUserData = async () => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const userData = await axios.get('http://daio-backend.herokuapp.com/spotify/me', { headers: { accessToken: accessTokenRes } });
     return userData.data;
 }
 
-export const getUserTopArtists = async (accessToken) => {
-    const userTopArtists = await axios.get('http://daio-backend.herokuapp.com/spotify/topartists', { headers: { accessToken: accessToken } });
+export const getUserTopArtists = async () => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const userTopArtists = await axios.get('http://daio-backend.herokuapp.com/spotify/topartists', { headers: { accessToken: accessTokenRes } });
     return userTopArtists.data;
 }
 
-export const getUserTopTracks = async (accessToken) => {
-    const userTopTracks = await axios.get('http://daio-backend.herokuapp.com/spotify/toptracks', { headers: { accessToken: accessToken } });
+export const getUserTopTracks = async () => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const userTopTracks = await axios.get('http://daio-backend.herokuapp.com/spotify/toptracks', { headers: { accessToken: accessTokenRes } });
     return userTopTracks.data;
 }
 
-export const getUsersAndInfo = async (accessToken) => {
-    // const accessToken = await AsyncStorage.getItem('access_token');
-    const result = await axios.get('http://daio-backend.herokuapp.com/database/getusersandinfo', { headers: { accessToken: accessToken } });
+export const getUsersAndInfo = async () => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const result = await axios.get('http://daio-backend.herokuapp.com/database/getusersandinfo', { headers: { accessToken: accessTokenRes } });
     return result.data;
 }
 
