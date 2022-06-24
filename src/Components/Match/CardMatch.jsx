@@ -37,7 +37,7 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                                         <Image style={styles.songImgDetails} source={{ "uri": song.album.img }} />
                                                         <View style={{ flexDirection: 'column' }}>
                                                             <Text style={[styles.artistSong, styles.artistSongDetails]} numberOfLines={2}>{artists}</Text>
-                                                            <Text style={styles.songDuration}>{minutes}:{seconds}</Text>
+                                                            <Text style={styles.songDuration}>{minutes}:{seconds > 10 ? seconds : `0${seconds}`}</Text>
                                                         </View>
                                                     </View>
                                                 </View>

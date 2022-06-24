@@ -6,11 +6,12 @@ import MainBottomTabNavigator from './src/Navigators/MainBottomTabNavigator';
 
 import RegisterNavigation from './src/Navigators/RegisterNavigation';
 import LoginStackNavigator from './src/Navigators/LoginStackNavigator';
+import { RegisterProvider } from './src/Context/RegisterContext';
 
 export default function App() {
     const Stack = createNativeStackNavigator();
     return (
-        <>
+        <RegisterProvider>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName='LoginStackNavigator' screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="LoginNavigator" component={LoginStackNavigator} options={{ headerShown: false }} />
@@ -22,7 +23,7 @@ export default function App() {
             </NavigationContainer>
 
             <StatusBar style="auto" />
-        </>
+        </RegisterProvider>
     );
 }
 

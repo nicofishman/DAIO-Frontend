@@ -9,13 +9,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const RegisterNavigation = () => {
     const RegisterStack = createNativeStackNavigator();
     return (
-        <RegisterProvider>
-            <RegisterStack.Navigator>
-                <RegisterStack.Screen name="RegisterFirst" component={RegisterFirst} />
-                <RegisterStack.Screen name="RegisterSecond" component={RegisterSecond} />
-                <RegisterStack.Screen name="RegisterSearch" component={RegisterSearch} />
-            </RegisterStack.Navigator>
-        </RegisterProvider>
+        <RegisterStack.Navigator>
+            <RegisterStack.Screen name="RegisterFirst" component={RegisterFirst} />
+            <RegisterStack.Screen name="RegisterSecond" component={RegisterSecond} />
+            <RegisterStack.Screen name="RegisterSearch" component={RegisterSearch} />
+        </RegisterStack.Navigator>
     );
 }
 

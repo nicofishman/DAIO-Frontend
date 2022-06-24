@@ -149,3 +149,13 @@ export const addUser = async (userData) => {
         console.log(error);
     }
 }
+
+export const addInteraction = async (interactionData) => {
+    // console.log(userData);
+    try {
+        const res = await axios.post('http://daio-backend.herokuapp.com/database/addinteraction', interactionData);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+    }
+}

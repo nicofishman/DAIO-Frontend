@@ -10,7 +10,7 @@ const RegisterFirst = ({ navigation }) => {
 
     useEffect(() => {
         console.log('RegisterFirst', spotifyId);
-    }, [])
+    }, [spotifyId])
     const continuar = () => {
         if (username.length > 0 && descripcion.length > 0) {
             navigation.navigate('RegisterSecond')

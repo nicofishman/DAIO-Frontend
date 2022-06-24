@@ -21,29 +21,19 @@ export function RegisterProvider(props) {
         }
     }
 
-    useEffect(() => {
-        if (spotifyId !== "") {
-            console.log("spotifyId: " + spotifyId);
-        }
-    }, [spotifyId]);
-
-    const value = useMemo(() => {
-        console.log("RegisterContext: " + spotifyId);
-
-        return {
-            username,
-            descripcion,
-            charsLeft,
-            spotifyId,
-            songPreference,
-            artistPreference,
-            handleChangeNombre,
-            handleChangeDesc,
-            setSpotifyId,
-            setSongPreference,
-            setArtistPreference
-        }
-    }, [username, descripcion, charsLeft, spotifyId, songPreference, artistPreference]);
+    const value = {
+        username,
+        descripcion,
+        charsLeft,
+        spotifyId,
+        songPreference,
+        artistPreference,
+        handleChangeNombre,
+        handleChangeDesc,
+        setSpotifyId,
+        setSongPreference,
+        setArtistPreference
+    };
 
     return (
         <RegisterContext.Provider value={value}>
