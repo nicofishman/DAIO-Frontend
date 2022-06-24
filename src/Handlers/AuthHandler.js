@@ -150,8 +150,14 @@ export const addUser = async (userData) => {
     }
 }
 
+export const getNotInteractedUsers = async (userId) => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const result = await axios.get(`http://daio-backend.herokuapp.com/database/notmatchedusers`, { headers: { accessToken: accessTokenRes, userId: userId } });
+    return result.data;
+}
+
 export const addInteraction = async (interactionData) => {
-    // console.log(userData);
+    console.log(interactionData);
     try {
         const res = await axios.post('http://daio-backend.herokuapp.com/database/addinteraction', interactionData);
         return res.data;

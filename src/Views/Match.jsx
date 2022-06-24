@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import NavBar from "../Components/Common/NavBar";
 import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
-import { addInteraction, getUsersAndInfo } from "../Handlers/AuthHandler";
+import { addInteraction, getNotInteractedUsers, getUsersAndInfo } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -15,8 +15,8 @@ const Match = ({ navigation, route }) => {
 
     useEffect(() => {
         (async () => {
-            const accessToken = await AsyncStorage.getItem('access_token');
-            const users = await getUsersAndInfo(accessToken)
+            const spotifyId = await AsyncStorage.getItem('spotify_id');
+            const users = await getNotInteractedUsers(spotifyId)
             setCardToMatch(users);
         })()
     }, []);
@@ -26,7 +26,7 @@ const Match = ({ navigation, route }) => {
         const spotifyId = await AsyncStorage.getItem('spotify_id');
         console.log(`Yup for ${spotifyId} -> ${card.spotifyId}`);
         const response = await addInteraction({
-            madeBy: spotifyId,
+            userId: spotifyId,
             interactedWith: card.spotifyId,
             decision: true
         })
@@ -39,9 +39,9 @@ const Match = ({ navigation, route }) => {
         const spotifyId = await AsyncStorage.getItem('spotify_id');
         console.log(`Nope for ${spotifyId} -> ${card.spotifyId}`);
         const response = await addInteraction({
-            madeBy: spotifyId,
+            userId: spotifyId,
             interactedWith: card.spotifyId,
-            decision: true
+            decision: false
         })
         console.log(response);
         setVisualArtist(-1);
