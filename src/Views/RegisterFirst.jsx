@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Image, Text } from 'react-native'
+import { StyleSheet, TextInput, View, Image, Text, Dimensions } from 'react-native'
 import React, { useEffect } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
