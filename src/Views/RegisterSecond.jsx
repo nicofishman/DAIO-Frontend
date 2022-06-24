@@ -58,8 +58,9 @@ export default RegisterSecond
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#a4d4d4',
+        backgroundColor: '#fcfcfc',
         alignItems: 'center',
         justifyContent: 'center',
     },
+    
 })

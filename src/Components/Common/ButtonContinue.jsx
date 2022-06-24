@@ -1,14 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Alert, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View, Button, Alert, TouchableOpacity } from 'react-native'
 
 const ButtonContinue = ({ onPress }) => {
     return (
-        <TouchableHighlight
+        <TouchableOpacity
             style={styles.buttonContinue}
             onPress={onPress}
         >
             <Text style={styles.textButton}>CONTINUAR</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
     );
 }
 
@@ -20,8 +20,10 @@ const styles = StyleSheet.create({
         width: 224,
         height: 47,
         borderRadius: 38,
-        backgroundColor: "#ffffff",
+        backgroundColor: "#b3b3b3",
         marginTop: 40,
+        borderColor: "#949494",
+        borderWidth: 2
     },
     textButton: {
         flex: 1,

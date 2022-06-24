@@ -11,7 +11,7 @@ const RegisterNavigation = () => {
     return (
         <RegisterProvider>
             <RegisterStack.Navigator>
-                <RegisterStack.Screen name="RegisterFirst" component={RegisterFirst} />
+                <RegisterStack.Screen name="RegisterFirst" component={RegisterFirst} options={{ headerShown: false }}/>
                 <RegisterStack.Screen name="RegisterSecond" component={RegisterSecond} />
                 <RegisterStack.Screen name="RegisterSearch" component={RegisterSearch} />
             </RegisterStack.Navigator>

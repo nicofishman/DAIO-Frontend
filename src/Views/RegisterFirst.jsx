@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Image, Text } from 'react-native'
+import { StyleSheet, TextInput, View, Image, Text, ImageBackground, Dimensions } from 'react-native'
 import React from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
@@ -17,7 +17,8 @@ const RegisterFirst = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={{ position: "relative" }}>
+            {/* <ImageBackground style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')}> */}
+            <View style={{ position: "relative", }}>
                 <Image
                     source={require('../Assets/Avatars/Default.png')}
                     style={styles.avatar}
@@ -27,45 +28,72 @@ const RegisterFirst = ({ navigation }) => {
 
                 />
             </View>
-            <TextInput
-                style={[styles.input, styles.inputNombre, username.length <= 0 && styles.inputWarning]}
-                onChangeText={handleChangeNombre}
-                value={username}
-                caretHidden={true}
-                placeholder={spotifyId}
-                placeholderTextColor="#999"
-            />
-            <TextInput
-                style={[styles.input, styles.inputDesc, descripcion.length <= 0 && styles.inputRed]}
-                placeholder={`Descripción`}
-                onChangeText={handleChangeDesc}
-                value={descripcion}
-                multiline={true}
-                numberOfLines={8}
-            />
+            <View style={styles.inputAll}>
+                <Text style={styles.textTitle}>Nombre</Text>
+                <TextInput
+                    style={[styles.input, styles.inputNombre, username.length <= 0 && styles.inputWarning]}
+                    onChangeText={handleChangeNombre}
+                    value={username}
+                    caretHidden={true}
+                    placeholder={spotifyId}
+                    placeholderTextColor="#d4d4d4"
+                />
+            </View>
+            <View style={styles.inputAll}>
+                <Text style={styles.textTitle}>Descripcion</Text>
+                <TextInput
+                    style={[styles.input, styles.inputDesc, descripcion.length <= 0 && styles.inputRed]}
+                    placeholder={`Descripción`}
+                    onChangeText={handleChangeDesc}
+                    value={descripcion}
+                    multiline={true}
+                    numberOfLines={8}
+                />
+            </View>
+
             {
                 descripcion.length <= 0 &&
                 <Text style={styles.error}>El campo no puede estar vacío</Text>
             }
             <ButtonContinue onPress={continuar} />
+            <Image style={styles.backgroundImg} blurRadius={1.5} source={require('../Assets/register/registerFirstBackground.png')} />
+            {/* </ImageBackground> */}
         </View>
     )
 }
 
 export default RegisterFirst
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#d4d4d4',
+        backgroundColor: '#fcfcfc',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    backgroundImg: {
+        position: 'absolute',
+        zIndex: -10,
+        resizeMode: 'cover',
+        top: 60,
+        width: windowWidth,
+        height: 165
+    },
+    inputAll: {
+        marginTop: 45,
+    },
+    textTitle: {
+        color: "#1f1f1f",
+        marginBottom: 5
     },
     avatar: {
         width: 120,
         height: 120,
-        borderRadius: 60,
+
     },
     edit: {
         position: "absolute",
@@ -78,9 +106,8 @@ const styles = StyleSheet.create({
         borderRadius: 50
     },
     input: {
-        marginTop: 47,
         borderRadius: 4,
-        backgroundColor: "#ffffff",
+        backgroundColor: "#f2f2f2",
         shadowColor: "rgba(0, 0, 0, 0.25)",
         shadowOffset: {
             width: 2,
