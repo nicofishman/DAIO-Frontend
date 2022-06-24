@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Image, Dimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ArtistBox from '../Components/Preferences/ArtistBox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -49,11 +49,15 @@ const RegisterSecond = ({ navigation }) => {
             <ArtistBox loading={loading} />
             <SongBox loading={loading} />
             <ButtonContinue onPress={() => finishRegister()} />
+            <Image style={styles.backgroundImg} blurRadius={2} source={require('../Assets/register/registerSecondBackground.png')} />
         </View>
     )
 }
 
 export default RegisterSecond
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
@@ -62,5 +66,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    
+    backgroundImg: {
+        position: 'absolute',
+        zIndex: -10,
+        resizeMode: 'cover',
+        width: windowWidth,
+        height: 165
+    },
 })

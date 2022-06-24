@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
         width: 224,
         height: 47,
         borderRadius: 38,
-        backgroundColor: "#b3b3b3",
+        backgroundColor: "#d1d1d1",
         marginTop: 40,
-        borderColor: "#949494",
-        borderWidth: 2
+        // borderColor: "#c4c4c4",
+        // borderWidth: 2
     },
     textButton: {
         flex: 1,

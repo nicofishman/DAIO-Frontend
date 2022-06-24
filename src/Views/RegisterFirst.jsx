@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Image, Text } from 'react-native'
+import { StyleSheet, TextInput, View, Image, Text, Dimensions } from 'react-native'
 import React, { useEffect } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
@@ -58,7 +58,7 @@ const RegisterFirst = ({ navigation }) => {
                 <Text style={styles.error}>El campo no puede estar vacío</Text>
             }
             <ButtonContinue onPress={continuar} />
-            <Image style={styles.backgroundImg} blurRadius={1.5} source={require('../Assets/register/registerFirstBackground.png')} />
+            <Image style={styles.backgroundImg} blurRadius={2} source={require('../Assets/register/registerFirstBackground.png')} />
             {/* </ImageBackground> */}
         </View>
     )
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: -10,
         resizeMode: 'cover',
-        top: 60,
         width: windowWidth,
         height: 165
     },

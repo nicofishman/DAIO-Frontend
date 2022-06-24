@@ -29,7 +29,7 @@ const ArtistBox = ({ loading }) => {
                         const artist = artistPreference[index];
                         return (
                             loading ?
-                                <ActivityIndicator key={index} size='small' color='#98ffa8' /> :
+                                <ActivityIndicator key={index} size='small' color='#ff9999' /> :
                                 artist ?
                                     <View key={index} style={styles.card}>
                                         <View>
@@ -44,8 +44,8 @@ const ArtistBox = ({ loading }) => {
                                     </View> :
 
                                     <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
-                                        <View style={{ justifyContent: 'center' }}>
-                                            <View style={styles.add}>
+                                        <View style={{ justifyContent: 'center', paddingVertical: 30 }}>
+                                            <View style={styles.addView}>
                                                 <Icon name="plus" style={styles.add} />
                                             </View>
                                         </View>
@@ -78,13 +78,16 @@ const styles = StyleSheet.create({
     selected: {
         backgroundColor: 'yellow',
     },
-    add: {
+    addView: {
         width: 43,
         borderRadius: 4,
-        color: '#fff',
-        fontSize: 20,
         padding: 5,
         backgroundColor: '#98ffa8',
+    },
+    add: {
+        color: '#fff',
+        fontSize: 20,
+        padding: 7,
     },
     artistBox: {
         flexDirection: 'row',
@@ -104,7 +107,9 @@ const styles = StyleSheet.create({
         height: 30,
     },
     trash: {
-        borderRadius: 4,
+        borderRadius: 10,
+        bottom: -4,
+        right: -4,
         color: '#fff',
         fontSize: 20,
         padding: 5,

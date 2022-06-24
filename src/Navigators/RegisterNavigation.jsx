@@ -10,9 +10,9 @@ const RegisterNavigation = () => {
     const RegisterStack = createNativeStackNavigator();
     return (
         <RegisterStack.Navigator>
-            <RegisterStack.Screen name="RegisterFirst" component={RegisterFirst} />
-            <RegisterStack.Screen name="RegisterSecond" component={RegisterSecond} />
-            <RegisterStack.Screen name="RegisterSearch" component={RegisterSearch} />
+            <RegisterStack.Screen name="RegisterFirst" component={RegisterFirst} options={{ headerShown: false }} />
+            <RegisterStack.Screen name="RegisterSecond" component={RegisterSecond} options={{ headerShown: false }} />
+            <RegisterStack.Screen name="RegisterSearch" component={RegisterSearch} options={{ headerShown: false }} />
         </RegisterStack.Navigator>
     );
 }

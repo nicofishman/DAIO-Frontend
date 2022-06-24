@@ -29,7 +29,7 @@ const SongBox = ({ loading }) => {
                         const displayText = song && song.name + ' - ' + song.artists.join(', ')
                         return (
                             loading ?
-                                <ActivityIndicator key={index} size='small' color='#98ffa8' /> :
+                                <ActivityIndicator key={index} size='small' color='#ff9999' /> :
                                 song ?
                                     <View key={index} style={styles.songRow}>
                                         <View style={styles.songTextBox}>
@@ -44,8 +44,8 @@ const SongBox = ({ loading }) => {
 
                                     <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
                                         <View style={{ alignItems: 'center' }}>
-                                            <View style={styles.add}>
-                                                <Icon name="plus" style={styles.add} />
+                                            <View style={styles.addView}>
+                                                <Icon name="plus" style={styles.add}/>
                                             </View>
                                         </View>
                                     </TouchableWithoutFeedback>
@@ -80,13 +80,16 @@ const styles = StyleSheet.create({
     selected: {
         backgroundColor: 'red'
     },
-    add: {
-        width: 43,
+    addView: {
+        width: 40,
         borderRadius: 4,
-        color: '#fff',
-        fontSize: 20,
         padding: 5,
         backgroundColor: '#98ffa8',
+    },
+    add: {
+        color: '#fff',
+        fontSize: 20,
+        padding: 6,
     },
     songsBox: {
         width: 312,
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 7
     },
     trashBox: {
-        right: 5,
+        right: 3,
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
