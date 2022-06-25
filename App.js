@@ -6,14 +6,18 @@ import MainBottomTabNavigator from './src/Navigators/MainBottomTabNavigator';
 
 import RegisterNavigation from './src/Navigators/RegisterNavigation';
 import LoginStackNavigator from './src/Navigators/LoginStackNavigator';
+import RegisterFirst from './src/Views/RegisterFirst';
 import { RegisterProvider } from './src/Context/RegisterContext';
+import RegisterSecond from './src/Views/RegisterSecond';
 
 export default function App() {
     const Stack = createNativeStackNavigator();
     return (
         <RegisterProvider>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName='LoginStackNavigator' screenOptions={{ headerShown: false }}>
+                <Stack.Navigator initialRouteName='LoginNavigator' screenOptions={{ headerShown: false }}>
+                    {/* <Stack.Screen name="RegisterSecond" component={RegisterSecond} options={{ headerShown: false }} /> */}
+                    
                     <Stack.Screen name="LoginNavigator" component={LoginStackNavigator} options={{ headerShown: false }} />
                     <Stack.Screen name='Main' component={MainBottomTabNavigator} options={{ headerShown: false }}
                     />

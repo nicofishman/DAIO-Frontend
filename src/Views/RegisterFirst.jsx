@@ -3,24 +3,30 @@ import React, { useEffect } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import {
+    useFonts,
+} from 'expo-font'
 
 const RegisterFirst = ({ navigation }) => {
-    const { username, descripcion, handleChangeNombre, handleChangeDesc, spotifyId, charsLeft } = useRegisterContext();
+    const { username, handleChangeNombre, spotifyId } = useRegisterContext();
 
+    let [fontsLoaded] = useFonts({
+        Capriola_400Regular: require('../../assets/fonts/Capriola-Regular.ttf'),
+    });
 
     useEffect(() => {
         console.log('RegisterFirst', spotifyId);
     }, [spotifyId])
+
     const continuar = () => {
-        if (username.length > 0 && descripcion.length > 0) {
-            navigation.navigate('RegisterSecond')
+        if (username.length > 0) {
+            navigation.navigate('RegisterDescription')
         }
     }
 
     return (
         <View style={styles.container}>
-            {/* <ImageBackground style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')}> */}
-            <View style={{ position: "relative", }}>
+            <View style={{ position: "relative", top: 200}}>
                 <Image
                     source={require('../Assets/Avatars/Default.png')}
                     style={styles.avatar}
@@ -33,19 +39,19 @@ const RegisterFirst = ({ navigation }) => {
             <View style={styles.inputAll}>
                 <Text style={styles.textTitle}>Nombre</Text>
                 <TextInput
-                    style={[styles.input, styles.inputNombre, username.length <= 0 && styles.inputWarning]}
+                    style={[styles.input, styles.inputNombre, username.length <= 0 && styles.inputRed]}
                     onChangeText={handleChangeNombre}
                     value={username}
                     caretHidden={true}
-                    placeholder={spotifyId}
+                    placeholder={'Ingresa tu nombre'}
                     placeholderTextColor="#d4d4d4"
                 />
             </View>
-            <View style={styles.inputAll}>
+            {/* <View style={styles.inputAll}>
                 <Text style={styles.textTitle}>Descripcion</Text>
                 <TextInput
                     style={[styles.input, styles.inputDesc, descripcion.length <= 0 && styles.inputRed]}
-                    placeholder={`Descripción`}
+                    placeholder={'"Mido un metro ochenta y uno..."'}
                     onChangeText={handleChangeDesc}
                     value={descripcion}
                     multiline={true}
@@ -56,10 +62,11 @@ const RegisterFirst = ({ navigation }) => {
             {
                 descripcion.length <= 0 &&
                 <Text style={styles.error}>El campo no puede estar vacío</Text>
-            }
-            <ButtonContinue onPress={continuar} />
-            <Image style={styles.backgroundImg} blurRadius={2} source={require('../Assets/register/registerFirstBackground.png')} />
-            {/* </ImageBackground> */}
+            } */}
+            <View  style={{ flex: 1, position: 'absolute', bottom: 30}} >
+                <ButtonContinue onPress={continuar} />
+            </View>
+            <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
         </View>
     )
 }
@@ -75,47 +82,44 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fcfcfc',
         alignItems: 'center',
-        justifyContent: 'center',
+        fontFamily: 'Capriola_400Regular' ?? 'Comic Sans Ms',
+    },
+    avatar: {
+        width: 160,
+        height: 160,
+        top: -100,
+        borderRadius: 80,
+    },
+    edit: {
+        position: "absolute",
+        borderRadius: 50,
+        bottom: 90,
+        right: 0,
+        padding: 10,
+        fontSize: 38,
+        color: "#000",
+        backgroundColor: "white",
     },
     backgroundImg: {
         position: 'absolute',
         zIndex: -10,
         resizeMode: 'cover',
         width: windowWidth,
-        height: 165
+        height: 165,
+        top: 140,
     },
     inputAll: {
-        marginTop: 45,
+        top: 150,
     },
     textTitle: {
+        fontSize: 26,
+        fontWeight: 'bold',
         color: "#1f1f1f",
         marginBottom: 5
     },
-    avatar: {
-        width: 120,
-        height: 120,
-
-    },
-    edit: {
-        position: "absolute",
-        bottom: 0,
-        right: 0,
-        backgroundColor: "#b1b1b1",
-        padding: 10,
-        color: "white",
-        fontSize: 23,
-        borderRadius: 50
-    },
     input: {
-        borderRadius: 4,
-        backgroundColor: "#f2f2f2",
-        shadowColor: "rgba(0, 0, 0, 0.25)",
-        shadowOffset: {
-            width: 2,
-            height: 2
-        },
-        shadowRadius: 3,
-        shadowOpacity: 1,
+        borderBottomWidth: 2,
+        borderBottomColor: '#000',
         padding: 10,
     },
     inputNombre: {
@@ -155,12 +159,11 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
     inputRed: {
-        borderColor: '#eb4034',
-        borderWidth: 2,
+        borderBottomColor: '#eb4034',
     },
     inputWarning: {
-        borderColor: '#FFCC00',
-        borderWidth: 1,
+        borderBottomColor:'#FFCC00',
+        borderRadius: 4,
     },
     warning: {
         color: '#FFCC00',

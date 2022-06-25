@@ -32,6 +32,7 @@
         "react-native": "0.64.3",
         "react-native-app-auth": "^6.4.3",
         "react-native-drax": "^0.9.3",
+        "react-native-paper": "^4.12.1",
         "react-native-safe-area-context": "^3.3.2",
         "react-native-screens": "~3.10.1",
         "react-native-svg": "12.1.1",

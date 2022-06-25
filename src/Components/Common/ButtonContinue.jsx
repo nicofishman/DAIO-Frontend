@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Alert, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Button, Alert, TouchableOpacity, Dimensions } from 'react-native'
 
 const ButtonContinue = ({ onPress }) => {
     return (
@@ -15,15 +15,17 @@ const ButtonContinue = ({ onPress }) => {
 
 export default ButtonContinue
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     buttonContinue: {
-        width: 224,
-        height: 47,
+        width: windowWidth/1.5,
+        height: windowHeight/15,
         borderRadius: 38,
-        backgroundColor: "#d1d1d1",
-        marginTop: 40,
-        // borderColor: "#c4c4c4",
-        // borderWidth: 2
+        backgroundColor: "#fff",
+        borderColor: "#5E9DB5",
+        borderWidth: 3
     },
     textButton: {
         flex: 1,
