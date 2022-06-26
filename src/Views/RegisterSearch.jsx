@@ -14,6 +14,8 @@ const RegisterSearch = ({ navigation, route }) => {
     const [accessToken, setAccessToken] = useState(null)
     const { type } = route.params
 
+    // NO PERMITIR ARTISTA-CANCION SI ESTA ELEGIDO YA
+    
     useEffect(() => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");

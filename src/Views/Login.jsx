@@ -30,6 +30,7 @@ export default function Login({ navigation }) {
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials();
         setCredentials(spotifyCredentials)
+        console.log(makeRedirectUri(spotifyCredentials.redirectUri))
         const access_token = await AsyncStorage.getItem('access_token');
         if (access_token) {
             setAccessToken(access_token)

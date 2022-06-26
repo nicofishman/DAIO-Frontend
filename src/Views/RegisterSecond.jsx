@@ -22,14 +22,14 @@ const RegisterSecond = ({ navigation }) => {
                 artistId: artist.id,
             }
         })
-        // await addUser({
-        //     spotifyId,
-        //     username,
-        //     description: descripcion,
-        //     avatarId: Math.floor(Math.random() * 10),
-        //     tracks: trackData,
-        //     artists: artistData
-        // })
+        await addUser({
+            spotifyId,
+            username,
+            description: descripcion,
+            avatarId: Math.floor(Math.random() * 10),
+            tracks: trackData,
+            artists: artistData
+        })
         navigation.navigate('Main', { screen: 'Match' })
     }
 

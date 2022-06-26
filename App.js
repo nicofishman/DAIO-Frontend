@@ -9,20 +9,22 @@ import LoginStackNavigator from './src/Navigators/LoginStackNavigator';
 import RegisterFirst from './src/Views/RegisterFirst';
 import { RegisterProvider } from './src/Context/RegisterContext';
 import RegisterSecond from './src/Views/RegisterSecond';
+import 'react-native-gesture-handler';
 
 export default function App() {
     const Stack = createNativeStackNavigator();
+
+   
+
+    
+
     return (
         <RegisterProvider>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName='LoginNavigator' screenOptions={{ headerShown: false }}>
-                    {/* <Stack.Screen name="RegisterSecond" component={RegisterSecond} options={{ headerShown: false }} /> */}
-                    
+                <Stack.Navigator initialRouteName='LoginNavigator'>
                     <Stack.Screen name="LoginNavigator" component={LoginStackNavigator} options={{ headerShown: false }} />
-                    <Stack.Screen name='Main' component={MainBottomTabNavigator} options={{ headerShown: false }}
-                    />
-                    <Stack.Screen name="Register" component={RegisterNavigation} options={{ headerShown: false }}
-                    />
+                    <Stack.Screen name='Main' component={MainBottomTabNavigator} options={{ headerShown: false }}/>
+                    <Stack.Screen name="Register" component={RegisterNavigation} options={{ headerShown: false }}/>
                 </Stack.Navigator>
             </NavigationContainer>
 

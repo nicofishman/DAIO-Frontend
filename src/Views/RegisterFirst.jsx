@@ -3,28 +3,27 @@ import React, { useEffect } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import {
-    useFonts,
-} from 'expo-font'
+import { 
+    Capriola_400Regular 
+  } from '@expo-google-fonts/capriola'
+import { useFonts } from 'expo-font'
+
 
 const RegisterFirst = ({ navigation }) => {
     const { username, handleChangeNombre, spotifyId } = useRegisterContext();
-
-    let [fontsLoaded] = useFonts({
-        Capriola_400Regular: require('../../assets/fonts/Capriola-Regular.ttf'),
-    });
-
-    useEffect(() => {
-        console.log('RegisterFirst', spotifyId);
-    }, [spotifyId])
-
+    // const [loaded] = useFonts({
+    //     Capriola_400Regular
+    // });
+    // if (!loaded) {
+    //     return <AppLoading />;
+    // }
     const continuar = () => {
         if (username.length > 0) {
             navigation.navigate('RegisterDescription')
         }
     }
-
     return (
+        
         <View style={styles.container}>
             <View style={{ position: "relative", top: 200}}>
                 <Image
@@ -47,22 +46,6 @@ const RegisterFirst = ({ navigation }) => {
                     placeholderTextColor="#d4d4d4"
                 />
             </View>
-            {/* <View style={styles.inputAll}>
-                <Text style={styles.textTitle}>Descripcion</Text>
-                <TextInput
-                    style={[styles.input, styles.inputDesc, descripcion.length <= 0 && styles.inputRed]}
-                    placeholder={'"Mido un metro ochenta y uno..."'}
-                    onChangeText={handleChangeDesc}
-                    value={descripcion}
-                    multiline={true}
-                    numberOfLines={8}
-                />
-            </View>
-
-            {
-                descripcion.length <= 0 &&
-                <Text style={styles.error}>El campo no puede estar vacío</Text>
-            } */}
             <View  style={{ flex: 1, position: 'absolute', bottom: 30}} >
                 <ButtonContinue onPress={continuar} />
             </View>
@@ -82,7 +65,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fcfcfc',
         alignItems: 'center',
-        fontFamily: 'Capriola_400Regular' ?? 'Comic Sans Ms',
+        // fontFamily: 'Capriola_400Regular' ?? 'Comic Sans Ms',
     },
     avatar: {
         width: 160,
@@ -112,15 +95,19 @@ const styles = StyleSheet.create({
         top: 150,
     },
     textTitle: {
-        fontSize: 26,
+        fontSize: 28,
         fontWeight: 'bold',
         color: "#1f1f1f",
-        marginBottom: 5
+        marginBottom: 5,
+        // fontFamily: 'Capriola_400Regular'
     },
     input: {
         borderBottomWidth: 2,
         borderBottomColor: '#000',
-        padding: 10,
+        paddingTop:10,
+        paddingBottom:10,
+        fontSize: 22,
+
     },
     inputNombre: {
         width: 264,
