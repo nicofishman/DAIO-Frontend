@@ -18,7 +18,10 @@ const RegisterDescription = ({ navigation }) => {
         }
     }
     const volver = () => {
-        navigation.goBack()
+        setprogressBarD(0);
+        setTimeout(() => {
+            navigation.goBack()
+        }, 250);
     }
 
     return (
@@ -48,6 +51,7 @@ const RegisterDescription = ({ navigation }) => {
                     multiline={true}
                     numberOfLines={8}
                 />
+
                 <View style={styles.charsLeft}>
                     <Text style={styles.charsLeftText}>
                         {charsLeft}/150

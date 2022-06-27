@@ -11,7 +11,7 @@ import { useFonts } from 'expo-font'
 import { NavigationHelpersContext } from '@react-navigation/native'
 
 const RegisterFirst = ({ navigation }) => {
-    const { username, handleChangeNombre, spotifyId } = useRegisterContext();
+    const { username, handleChangeNombre, avatarId, setAvatarId } = useRegisterContext();
     const [progressBarD, setprogressBarD] = useState(0);
 
     // const [loaded] = useFonts({
@@ -20,6 +20,9 @@ const RegisterFirst = ({ navigation }) => {
     // if (!loaded) {
     //     return <AppLoading />;
     // }
+    useEffect(() => {
+        setprogressBarD(0);
+    }, [])
     const continuar = () => {
         if (username.length > 0) {
             setprogressBarD(0.33)

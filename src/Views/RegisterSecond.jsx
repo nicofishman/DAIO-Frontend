@@ -10,7 +10,7 @@ import * as Progress from 'react-native-progress';
 import ButtonBack from '../Components/Common/ButtonBack';
 
 const RegisterSecond = ({ navigation }) => {
-    const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId } = useRegisterContext();
+    const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId, avatarId } = useRegisterContext();
     const [loading, setLoading] = useState(true);
     const [progressBarD, setprogressBarD] = useState(0.66);
 
@@ -29,7 +29,7 @@ const RegisterSecond = ({ navigation }) => {
         //     spotifyId,
         //     username,
         //     description: descripcion,
-        //     avatarId: Math.floor(Math.random() * 10),
+        //     avatarId: avatarId,
         //     tracks: trackData,
         //     artists: artistData
         // })
@@ -50,7 +50,10 @@ const RegisterSecond = ({ navigation }) => {
         })();
     }, [])
     const volver = () => {
-        navigation.goBack()
+        setprogressBarD(0.66);
+        setTimeout(() => {
+            navigation.goBack()
+        }, 250);
     }
 
     return (
