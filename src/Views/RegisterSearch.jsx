@@ -67,7 +67,9 @@ const RegisterSearch = ({ navigation, route }) => {
                     })
                     : null
                 }
-                <ButtonContinue onPress={() => navigation.navigate("Match")} />
+                <View style={{ position: 'absolute', bottom: 20}} >
+                    <ButtonContinue onPress={() => navigation.navigate("Match")} />
+                </View>
             </View>
         </>
     )

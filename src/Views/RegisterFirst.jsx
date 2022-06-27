@@ -1,16 +1,22 @@
-import { StyleSheet, TextInput, View, Image, Text, Dimensions } from 'react-native'
-import React, { useEffect } from 'react'
+import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import * as Progress from 'react-native-progress';
 import { 
     Capriola_400Regular 
   } from '@expo-google-fonts/capriola'
 import { useFonts } from 'expo-font'
-
+import { NavigationHelpersContext } from '@react-navigation/native'
 
 const RegisterFirst = ({ navigation }) => {
     const { username, handleChangeNombre, spotifyId } = useRegisterContext();
+    const [progressBarD, setprogressBarD] = useState(progress);
+    useEffect(() => {
+        setprogressBarD(progress);
+    }, [progressBarD])
+
     // const [loaded] = useFonts({
     //     Capriola_400Regular
     // });
@@ -22,10 +28,22 @@ const RegisterFirst = ({ navigation }) => {
             navigation.navigate('RegisterDescription')
         }
     }
+
     return (
-        
         <View style={styles.container}>
-            <View style={{ position: "relative", top: 200}}>
+            <StatusBar
+                backgroundColor="#ffffff"
+            />
+            <Progress.Bar 
+                position="relative"
+                progress={progressBarD} 
+                width={windowWidth} 
+                borderRadius={0}
+                borderWidth={0}
+                top={31}
+                color='rgb(94, 157, 181)'
+            />
+            <View style={{ top: 190 }}>
                 <Image
                     source={require('../Assets/Avatars/Default.png')}
                     style={styles.avatar}
@@ -35,18 +53,21 @@ const RegisterFirst = ({ navigation }) => {
 
                 />
             </View>
-            <View style={styles.inputAll}>
+            <View style={{top: 150}}>
                 <Text style={styles.textTitle}>Nombre</Text>
                 <TextInput
-                    style={[styles.input, styles.inputNombre, username.length <= 0 && styles.inputRed]}
+                    style={[styles.input, username.length <= 0 && styles.inputRed]}
                     onChangeText={handleChangeNombre}
                     value={username}
                     caretHidden={true}
                     placeholder={'Ingresa tu nombre'}
                     placeholderTextColor="#d4d4d4"
+                    spellCheck={false}
+                    autoCorrect={false}
                 />
+                <Text style={[{marginTop: 4}, username.length <= 0 ? styles.inputColorRed : styles.inputColorWhite]}>Debes ingresar un nombre para continuar.</Text>
             </View>
-            <View  style={{ flex: 1, position: 'absolute', bottom: 30}} >
+            <View  style={{ position: 'absolute', bottom: 20}} >
                 <ButtonContinue onPress={continuar} />
             </View>
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
@@ -91,9 +112,6 @@ const styles = StyleSheet.create({
         height: 165,
         top: 140,
     },
-    inputAll: {
-        top: 150,
-    },
     textTitle: {
         fontSize: 28,
         fontWeight: 'bold',
@@ -104,58 +122,20 @@ const styles = StyleSheet.create({
     input: {
         borderBottomWidth: 2,
         borderBottomColor: '#000',
+        color: '#000',
         paddingTop:10,
         paddingBottom:10,
         fontSize: 22,
-
-    },
-    inputNombre: {
         width: 264,
         height: 51,
-    },
-    inputDesc: {
-        width: 264,
-        height: 185,
-        textAlignVertical: 'top',
-    },
-    button: {
-        width: 264,
-        height: 47,
-        marginTop: 40,
-        borderRadius: 38,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: "#ffffff",
-        shadowColor: "rgba(0, 0, 0, 0.25)",
-        shadowOffset: {
-            width: 2,
-            height: 2
-        },
-        shadowRadius: 3,
-        shadowOpacity: 1
-    },
-    buttonText: {
-        fontSize: 18,
-        textTransform: 'uppercase',
-        fontWeight: 'bold',
-    },
-    error: {
-        color: '#eb4034',
-        width: 264,
-        fontWeight: 'bold',
-        textAlign: 'left',
     },
     inputRed: {
         borderBottomColor: '#eb4034',
     },
-    inputWarning: {
-        borderBottomColor:'#FFCC00',
-        borderRadius: 4,
+    inputColorRed: {
+        color: '#eb4034'
     },
-    warning: {
-        color: '#FFCC00',
-        width: 264,
-        fontWeight: 'bold',
-        textAlign: 'right',
-    }
+    inputColorWhite: {
+        color: '#ffffff'
+    },
 })
