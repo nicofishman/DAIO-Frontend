@@ -8,7 +8,7 @@ const ButtonContinue = ({ onPress }) => {
     const handleAnimationIn = () => {
         Animated.timing(animationBackground, {
             toValue: 1,
-            duration: 200,
+            duration: 100,
             useNativeDriver: false
         }).start()
         Animated.timing(animationTextColor, {
@@ -20,12 +20,12 @@ const ButtonContinue = ({ onPress }) => {
     const handleAnimationOut = () => {
         Animated.timing(animationBackground, {
             toValue: 0,
-            duration: 200,
+            duration: 150,
             useNativeDriver: false
         }).start()
         Animated.timing(animationTextColor, {
             toValue: 0,
-            duration: 400,
+            duration: 300,
             useNativeDriver: false
         }).start()
     }
@@ -76,11 +76,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: 80,
         borderRadius: 50,
     }
-    // buttonContinue: {
-    //     width: windowWidth/1.5,
-    //     height: windowHeight/15,
-    //     borderRadius: 38,
-    //     borderColor: "#5E9DB5",
-    //     borderWidth: 3
-    // },
 })

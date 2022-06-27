@@ -2,23 +2,46 @@ import { StyleSheet, Button, Text, View, TextInput, Dimensions, Image } from 're
 import React from 'react'
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
-
+import ButtonBack from '../Components/Common/ButtonBack'
+import * as Progress from 'react-native-progress';
 
 const RegisterDescription = ({ navigation }) => {
     const { descripcion, handleChangeDesc, charsLeft } = useRegisterContext();
+    const [progressBarD, setprogressBarD] = useState(0);
+    useEffect(() => {
+        setprogressBarD(0.33);
+    }, [])
 
-    const nextPage = () => {
-        if (descripcion.length > 0) {
-            navigation.navigate('RegisterSecond');
+    const continuar = () => {
+        if (descripcion.length >= 0) {
+            navigation.navigate('RegisterSecond')
         }
+    }
+    const volver = () => {
+        navigation.goBack()
     }
 
     return (
         <View style={styles.container}>
-            <View style={styles.inputAll}>
+            <StatusBar
+                backgroundColor="#ffffff"
+            />
+            <Progress.Bar
+                position="absolute"
+                progress={progressBarD}
+                width={windowWidth}
+                borderRadius={0}
+                borderWidth={0}
+                top={31}
+                color='rgb(94, 157, 181)'
+            />
+            <View style={{ position: 'absolute', top: 60, left: 30 }} >
+                <ButtonBack onPress={volver} />
+            </View>
+            <View style={{ top: 80 }}>
                 <Text style={styles.textTitle}>Descripción</Text>
                 <TextInput
-                    style={[styles.input, styles.inputDesc, descripcion.length <= 0 && styles.inputRed]}
+                    style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
                     placeholder={'"Mido un metro ochenta y uno..."'}
                     onChangeText={handleChangeDesc}
                     value={descripcion}
@@ -57,8 +80,8 @@ const styles = StyleSheet.create({
         zIndex: -10,
         resizeMode: 'cover',
         width: windowWidth,
-        height: 165,
-        top: 140,
+        height: 260,
+        top: 50,
     },
     textTitle: {
         fontSize: 28,
