@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar } from 'react-native'
+import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
@@ -33,9 +33,9 @@ const RegisterFirst = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <StatusBar
-                backgroundColor="#ffffff"
+                backgroundColor="transparent"
             />
             <Progress.Bar
                 position="relative"
@@ -43,7 +43,7 @@ const RegisterFirst = ({ navigation }) => {
                 width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
-                top={31}
+                top={50}
                 color='rgb(94, 157, 181)'
             />
             <View style={{ top: 190 }}>
@@ -72,7 +72,7 @@ const RegisterFirst = ({ navigation }) => {
             </View>
             <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
-        </View>
+        </SafeAreaView>
     )
 }
 

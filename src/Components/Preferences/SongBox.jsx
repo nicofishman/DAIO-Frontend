@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useRegisterContext } from '../../Context/RegisterContext';
 import { useNavigation } from '@react-navigation/native';
 
-const SongBox = ({ loading }) => {
+const SongBox = () => {
     const { songPreference, setSongPreference } = useRegisterContext()
     const navigation = useNavigation();
 
@@ -28,27 +28,25 @@ const SongBox = ({ loading }) => {
                         const song = songPreference[index];
                         const displayText = song && song.name + ' - ' + song.artists.join(', ')
                         return (
-                            loading ?
-                                <ActivityIndicator key={index} size='small' color='#ff9999' /> :
-                                song ?
-                                    <View key={index} style={styles.songRow}>
-                                        <View style={styles.songTextBox}>
-                                            <Text numberOfLines={1} style={styles.text}>{displayText}</Text>
-                                        </View>
-                                        <TouchableWithoutFeedback onPress={() => removeSong(song.id)}>
-                                            <View style={styles.trashBox}>
-                                                <Icon name="trash-alt" style={styles.trash} />
-                                            </View>
-                                        </TouchableWithoutFeedback>
-                                    </View> :
-
-                                    <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
-                                        <View style={{ alignItems: 'center' }}>
-                                            <View style={styles.addView}>
-                                                <Icon name="plus" style={styles.add}/>
-                                            </View>
+                            song ?
+                                <View key={index} style={styles.songRow}>
+                                    <View style={styles.songTextBox}>
+                                        <Text numberOfLines={1} style={styles.text}>{displayText}</Text>
+                                    </View>
+                                    <TouchableWithoutFeedback onPress={() => removeSong(song.id)}>
+                                        <View style={styles.trashBox}>
+                                            <Icon name="trash-alt" style={styles.trash} />
                                         </View>
                                     </TouchableWithoutFeedback>
+                                </View> :
+
+                                <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <View style={styles.addView}>
+                                            <Icon name="plus" style={styles.add} />
+                                        </View>
+                                    </View>
+                                </TouchableWithoutFeedback>
                         )
 
                     })

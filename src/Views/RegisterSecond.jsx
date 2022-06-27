@@ -1,4 +1,4 @@
-import { StyleSheet, View, StatusBar, Image, Dimensions, Text } from 'react-native'
+import { StyleSheet, View, StatusBar, Image, Dimensions, Text, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ArtistBox from '../Components/Preferences/ArtistBox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -50,7 +50,7 @@ const RegisterSecond = ({ navigation }) => {
         })();
     }, [])
     const volver = () => {
-        setprogressBarD(0.66);
+        setprogressBarD(0.33);
         setTimeout(() => {
             navigation.goBack()
         }, 250);
@@ -59,7 +59,7 @@ const RegisterSecond = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <StatusBar
-                backgroundColor="#ffffff"
+                backgroundColor="transparent"
             />
             <Progress.Bar
                 position="absolute"
@@ -67,7 +67,7 @@ const RegisterSecond = ({ navigation }) => {
                 width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
-                top={31}
+                top={50}
                 color='rgb(94, 157, 181)'
             />
             <View style={{ position: 'absolute', top: 60, left: 30 }} >
@@ -75,8 +75,13 @@ const RegisterSecond = ({ navigation }) => {
             </View>
             <Text style={styles.textTitle}>Elegí la música que más te representa</Text>
 
-            <ArtistBox loading={loading} />
-            <SongBox loading={loading} />
+            {
+                loading ? <ActivityIndicator size='small' color='#ff9999' /> :
+                    <>
+                        <ArtistBox />
+                        <SongBox />
+                    </>
+            }
             <ButtonContinue onPress={() => finishRegister()} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerSecondBackground.png')} />
         </View>

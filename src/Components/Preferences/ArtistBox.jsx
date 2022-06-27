@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
 import React, { useEffect } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useRegisterContext } from '../../Context/RegisterContext';
 import { useNavigation } from '@react-navigation/native';
 
 
-const ArtistBox = ({ loading }) => {
+const ArtistBox = () => {
     const { artistPreference, setArtistPreference } = useRegisterContext();
     const navigation = useNavigation();
 
@@ -28,28 +28,26 @@ const ArtistBox = ({ loading }) => {
                     new Array(3).fill(0).map((_, index) => {
                         const artist = artistPreference[index];
                         return (
-                            loading ?
-                                <ActivityIndicator key={index} size='small' color='#ff9999' /> :
-                                artist ?
-                                    <View key={index} style={styles.card}>
-                                        <View>
-                                            <Image style={styles.image} source={{ uri: artist.img }} />
-                                            <TouchableWithoutFeedback onPress={() => removeArtist(artist.id)}>
-                                                <View style={styles.trashBox}>
-                                                    <Icon name="trash-alt" style={styles.trash} />
-                                                </View>
-                                            </TouchableWithoutFeedback>
-                                        </View>
-                                        <Text numberOfLines={2} style={styles.text}>{artist.name}</Text>
-                                    </View> :
-
-                                    <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
-                                        <View style={{ justifyContent: 'center', paddingVertical: 30 }}>
-                                            <View style={styles.addView}>
-                                                <Icon name="plus" style={styles.add} />
+                            artist ?
+                                <View key={index} style={styles.card}>
+                                    <View>
+                                        <Image style={styles.image} source={{ uri: artist.img }} />
+                                        <TouchableWithoutFeedback onPress={() => removeArtist(artist.id)}>
+                                            <View style={styles.trashBox}>
+                                                <Icon name="trash-alt" style={styles.trash} />
                                             </View>
+                                        </TouchableWithoutFeedback>
+                                    </View>
+                                    <Text numberOfLines={2} style={styles.text}>{artist.name}</Text>
+                                </View> :
+
+                                <TouchableWithoutFeedback key={index} onPress={() => navegarASearch()}>
+                                    <View style={{ justifyContent: 'center', paddingVertical: 30 }}>
+                                        <View style={styles.addView}>
+                                            <Icon name="plus" style={styles.add} />
                                         </View>
-                                    </TouchableWithoutFeedback>
+                                    </View>
+                                </TouchableWithoutFeedback>
                         )
                     })
                 }

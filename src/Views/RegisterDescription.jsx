@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, Image } from 'react-native'
+import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, Image, SafeAreaView } from 'react-native'
 import React, { useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
@@ -25,17 +25,14 @@ const RegisterDescription = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
-            <StatusBar
-                backgroundColor="#ffffff"
-            />
+        <SafeAreaView style={styles.container}>
             <Progress.Bar
                 position="absolute"
                 progress={progressBarD}
                 width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
-                top={31}
+                top={50}
                 color='rgb(94, 157, 181)'
             />
             <View style={{ position: 'absolute', top: 60, left: 30 }} >
@@ -71,7 +68,12 @@ const RegisterDescription = ({ navigation }) => {
             <ButtonContinue onPress={continuar} />
             {/* <Button title="Go back" onPress={() => navigation.goBack()} /> */}
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
-        </View>
+
+            <StatusBar
+                barStyle="dark-content"
+                backgroundColor={'transparent'}
+            />
+        </SafeAreaView>
     )
 }
 
