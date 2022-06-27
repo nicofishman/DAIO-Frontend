@@ -4,18 +4,15 @@ import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Progress from 'react-native-progress';
-import { 
-    Capriola_400Regular 
-  } from '@expo-google-fonts/capriola'
+import {
+    Capriola_400Regular
+} from '@expo-google-fonts/capriola'
 import { useFonts } from 'expo-font'
 import { NavigationHelpersContext } from '@react-navigation/native'
 
 const RegisterFirst = ({ navigation }) => {
     const { username, handleChangeNombre, spotifyId } = useRegisterContext();
-    const [progressBarD, setprogressBarD] = useState(progress);
-    useEffect(() => {
-        setprogressBarD(progress);
-    }, [progressBarD])
+    const [progressBarD, setprogressBarD] = useState(0);
 
     // const [loaded] = useFonts({
     //     Capriola_400Regular
@@ -25,7 +22,10 @@ const RegisterFirst = ({ navigation }) => {
     // }
     const continuar = () => {
         if (username.length > 0) {
-            navigation.navigate('RegisterDescription')
+            setprogressBarD(0.33)
+            setTimeout(() => {
+                navigation.navigate('RegisterDescription')
+            }, 500);
         }
     }
 
@@ -34,10 +34,10 @@ const RegisterFirst = ({ navigation }) => {
             <StatusBar
                 backgroundColor="#ffffff"
             />
-            <Progress.Bar 
+            <Progress.Bar
                 position="relative"
-                progress={progressBarD} 
-                width={windowWidth} 
+                progress={progressBarD}
+                width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
                 top={31}
@@ -53,7 +53,7 @@ const RegisterFirst = ({ navigation }) => {
 
                 />
             </View>
-            <View style={{top: 150}}>
+            <View style={{ top: 150 }}>
                 <Text style={styles.textTitle}>Nombre</Text>
                 <TextInput
                     style={[styles.input, username.length <= 0 && styles.inputRed]}
@@ -65,9 +65,9 @@ const RegisterFirst = ({ navigation }) => {
                     spellCheck={false}
                     autoCorrect={false}
                 />
-                <Text style={[{marginTop: 4}, username.length <= 0 ? styles.inputColorRed : styles.inputColorWhite]}>Debes ingresar un nombre para continuar.</Text>
+                <Text style={[{ marginTop: 4 }, username.length <= 0 ? styles.inputColorRed : styles.inputColorWhite]}>Debes ingresar un nombre para continuar.</Text>
             </View>
-            <View  style={{ position: 'absolute', bottom: 20}} >
+            <View style={{ position: 'absolute', bottom: 20 }} >
                 <ButtonContinue onPress={continuar} />
             </View>
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         borderBottomColor: '#000',
         color: '#000',
-        paddingTop:10,
-        paddingBottom:10,
+        paddingTop: 10,
+        paddingBottom: 10,
         fontSize: 22,
         width: 264,
         height: 51,

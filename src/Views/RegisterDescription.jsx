@@ -7,14 +7,14 @@ import * as Progress from 'react-native-progress';
 
 const RegisterDescription = ({ navigation }) => {
     const { descripcion, handleChangeDesc, charsLeft } = useRegisterContext();
-    const [progressBarD, setprogressBarD] = useState(0);
-    useEffect(() => {
-        setprogressBarD(0.33);
-    }, [])
-    
+    const [progressBarD, setprogressBarD] = useState(0.33);
+
     const continuar = () => {
-        if (descripcion.length >= 0) {
-            navigation.navigate('RegisterSecond')
+        if (descripcion.length > 0) {
+            setprogressBarD(0.66);
+            setTimeout(() => {
+                navigation.navigate('RegisterSecond')
+            }, 500);
         }
     }
     const volver = () => {
@@ -26,19 +26,19 @@ const RegisterDescription = ({ navigation }) => {
             <StatusBar
                 backgroundColor="#ffffff"
             />
-            <Progress.Bar 
+            <Progress.Bar
                 position="absolute"
-                progress={progressBarD} 
-                width={windowWidth} 
+                progress={progressBarD}
+                width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
                 top={31}
                 color='rgb(94, 157, 181)'
             />
-            <View style={{ position: 'absolute', top:60, left: 30 }} >
+            <View style={{ position: 'absolute', top: 60, left: 30 }} >
                 <ButtonBack onPress={volver} />
             </View>
-            <View style={{top: 80}}>
+            <View style={{ top: 80 }}>
                 <Text style={styles.textTitle}>Descripción</Text>
                 <TextInput
                     style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
@@ -57,15 +57,15 @@ const RegisterDescription = ({ navigation }) => {
                 {
                     descripcion.length <= 0 &&
                     <Text style={styles.noDescription}>
-                            <Text style={styles.noDescription}>Escriba una breve descripción de su persona</Text>
-                            <Text style={styles.noDescription}>, así los demas usuarios podran </Text>
-                            <Text style={styles.noDescriptionUnderine}>conocerte mejor</Text>
-                            <Text style={styles.noDescription}>.</Text>
-                        </Text>
+                        <Text style={styles.noDescription}>Escriba una breve descripción de su persona</Text>
+                        <Text style={styles.noDescription}>, así los demas usuarios podran </Text>
+                        <Text style={styles.noDescriptionUnderine}>conocerte mejor</Text>
+                        <Text style={styles.noDescription}>.</Text>
+                    </Text>
                 }
             </View>
-            <View style={{ position: 'absolute', bottom: 20}} >
-                    <ButtonContinue onPress={continuar} />
+            <View style={{ position: 'absolute', bottom: 20 }} >
+                <ButtonContinue onPress={continuar} />
             </View>
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerDescriptionBackground.png')} />
 
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         // fontFamily: 'Capriola_400Regular'
     },
     inputDesc: {
-        width: windowWidth*0.8,
+        width: windowWidth * 0.8,
         height: 185,
         textAlignVertical: 'top',
         paddingTop: 10,
@@ -111,31 +111,31 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: '#F5F5F5',
         top: 100,
-        
+
     },
     inputYellow: {
         borderColor: '#F1F1F1',
         borderWidth: 2,
-        
+
     },
     charsLeft: {
-        bottom: 0, 
-        top: 70, 
-        right: 15 
+        bottom: 0,
+        top: 70,
+        right: 15
     },
     charsLeftText: {
-        textAlign: 'right', 
+        textAlign: 'right',
         color: '#8f8f8f'
     },
     noDescription: {
-        width: windowWidth*0.8,
+        width: windowWidth * 0.8,
         color: '#8f8f8f',
         bottom: -85,
         paddingLeft: 2,
         fontStyle: 'italic',
     },
     noDescriptionUnderine: {
-        width: windowWidth*0.8,
+        width: windowWidth * 0.8,
         color: '#8f8f8f',
         bottom: -85,
         fontStyle: 'italic',

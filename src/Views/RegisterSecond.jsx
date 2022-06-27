@@ -12,10 +12,7 @@ import ButtonBack from '../Components/Common/ButtonBack';
 const RegisterSecond = ({ navigation }) => {
     const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId } = useRegisterContext();
     const [loading, setLoading] = useState(true);
-    const [progressBarD, setprogressBarD] = useState(0.33);
-    useEffect(() => {
-        setprogressBarD(0.66);
-    }, [])
+    const [progressBarD, setprogressBarD] = useState(0.66);
 
     const finishRegister = async () => {
         const trackData = songPreference.map(song => {
@@ -36,7 +33,10 @@ const RegisterSecond = ({ navigation }) => {
         //     tracks: trackData,
         //     artists: artistData
         // })
-        navigation.navigate('Main', { screen: 'Match' })
+        setprogressBarD(1);
+        setTimeout(() => {
+            navigation.navigate('Main', { screen: 'Match' })
+        }, 500);
     }
 
     useEffect(() => {
@@ -58,23 +58,23 @@ const RegisterSecond = ({ navigation }) => {
             <StatusBar
                 backgroundColor="#ffffff"
             />
-            <Progress.Bar 
+            <Progress.Bar
                 position="absolute"
-                progress={progressBarD} 
-                width={windowWidth} 
+                progress={progressBarD}
+                width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
                 top={31}
                 color='rgb(94, 157, 181)'
             />
-            <View style={{ position: 'absolute', top:60, left: 30 }} >
+            <View style={{ position: 'absolute', top: 60, left: 30 }} >
                 <ButtonBack onPress={volver} />
             </View>
             <Text style={styles.textTitle}>Elegí la música que más te representa</Text>
-            
+
             <ArtistBox loading={loading} />
             <SongBox loading={loading} />
-            <View style={{ position: 'absolute', bottom: 20}} >
+            <View style={{ position: 'absolute', bottom: 20 }} >
                 <ButtonContinue onPress={() => finishRegister()} />
             </View>
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerSecondBackground.png')} />
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         height: 165
     },
     textTitle: {
-        width: windowWidth*.75,
+        width: windowWidth * .75,
         fontSize: 28,
         fontWeight: 'bold',
         color: "#1f1f1f",
