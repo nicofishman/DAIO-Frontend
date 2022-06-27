@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Dimensions } from 'react-native'
+import { StyleSheet, View, Button, Image, Dimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ArtistBox from '../Components/Preferences/ArtistBox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -48,6 +48,7 @@ const RegisterSecond = ({ navigation }) => {
         <View style={styles.container}>
             <ArtistBox loading={loading} />
             <SongBox loading={loading} />
+            <Button title="ANASHEEEE" onPress={() => navigation.goBack()} />
             <ButtonContinue onPress={() => finishRegister()} />
             <Image style={styles.backgroundImg} blurRadius={2} source={require('../Assets/register/registerSecondBackground.png')} />
         </View>

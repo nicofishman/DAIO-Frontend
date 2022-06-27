@@ -3,9 +3,9 @@ import React, { useEffect } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { 
-    Capriola_400Regular 
-  } from '@expo-google-fonts/capriola'
+import {
+    Capriola_400Regular
+} from '@expo-google-fonts/capriola'
 import { useFonts } from 'expo-font'
 
 
@@ -23,9 +23,9 @@ const RegisterFirst = ({ navigation }) => {
         }
     }
     return (
-        
+
         <View style={styles.container}>
-            <View style={{ position: "relative", top: 200}}>
+            <View style={{ position: "relative", top: 200 }}>
                 <Image
                     source={require('../Assets/Avatars/Default.png')}
                     style={styles.avatar}
@@ -46,9 +46,7 @@ const RegisterFirst = ({ navigation }) => {
                     placeholderTextColor="#d4d4d4"
                 />
             </View>
-            <View  style={{ flex: 1, position: 'absolute', bottom: 30}} >
-                <ButtonContinue onPress={continuar} />
-            </View>
+            <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
         </View>
     )
@@ -104,8 +102,8 @@ const styles = StyleSheet.create({
     input: {
         borderBottomWidth: 2,
         borderBottomColor: '#000',
-        paddingTop:10,
-        paddingBottom:10,
+        paddingTop: 10,
+        paddingBottom: 10,
         fontSize: 22,
 
     },
@@ -149,7 +147,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#eb4034',
     },
     inputWarning: {
-        borderBottomColor:'#FFCC00',
+        borderBottomColor: '#FFCC00',
         borderRadius: 4,
     },
     warning: {
