@@ -15,7 +15,7 @@ const RegisterSearch = ({ navigation, route }) => {
     const { type } = route.params
 
     // NO PERMITIR ARTISTA-CANCION SI ESTA ELEGIDO YA
-    
+
     useEffect(() => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");
@@ -67,9 +67,6 @@ const RegisterSearch = ({ navigation, route }) => {
                     })
                     : null
                 }
-                <View style={{ position: 'absolute', bottom: 20}} >
-                    <ButtonContinue onPress={() => navigation.navigate("Match")} />
-                </View>
             </View>
         </>
     )

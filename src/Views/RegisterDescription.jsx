@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, Dimensions, StatusBar, Image } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { StyleSheet, Button, Text, View, TextInput, Dimensions, Image } from 'react-native'
+import React from 'react'
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import ButtonBack from '../Components/Common/ButtonBack'
@@ -47,7 +47,6 @@ const RegisterDescription = ({ navigation }) => {
                     value={descripcion}
                     multiline={true}
                     numberOfLines={8}
-                    maxLength={150}
                 />
                 <View style={styles.charsLeft}>
                     <Text style={styles.charsLeftText}>
@@ -67,8 +66,14 @@ const RegisterDescription = ({ navigation }) => {
             <View style={{ position: 'absolute', bottom: 20 }} >
                 <ButtonContinue onPress={continuar} />
             </View>
-            <Image style={styles.backgroundImg} source={require('../Assets/register/registerDescriptionBackground.png')} />
-
+            {
+                descripcion.length <= 0 &&
+                <Text style={styles.error}>El campo no puede estar vacío</Text>
+            }
+            {/* <Button title='Go Back' onPress={() => navigation.goBack()} /> */}
+            <ButtonContinue onPress={nextPage} />
+            {/* <Button title="Go back" onPress={() => navigation.goBack()} /> */}
+            <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
         </View>
     )
 }
@@ -84,6 +89,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fcfcfc',
         alignItems: 'center',
+        justifyContent: 'center',
         // fontFamily: 'Capriola_400Regular' ?? 'Comic Sans Ms',
     },
     backgroundImg: {
@@ -99,7 +105,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: "#1f1f1f",
         marginBottom: 5,
-        top: 90,
         // fontFamily: 'Capriola_400Regular'
     },
     inputDesc: {

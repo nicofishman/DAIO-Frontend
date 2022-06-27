@@ -70,6 +70,7 @@ const RegisterFirst = ({ navigation }) => {
             <View style={{ position: 'absolute', bottom: 20 }} >
                 <ButtonContinue onPress={continuar} />
             </View>
+            <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
         </View>
     )
@@ -132,10 +133,8 @@ const styles = StyleSheet.create({
     inputRed: {
         borderBottomColor: '#eb4034',
     },
-    inputColorRed: {
-        color: '#eb4034'
-    },
-    inputColorWhite: {
-        color: '#ffffff'
+    inputWarning: {
+        borderBottomColor: '#FFCC00',
+        borderRadius: 4,
     },
 })

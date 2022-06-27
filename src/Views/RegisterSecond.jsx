@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, Dimensions, StatusBar } from 'react-native'
+import { StyleSheet, View, Button, Image, Dimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ArtistBox from '../Components/Preferences/ArtistBox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
