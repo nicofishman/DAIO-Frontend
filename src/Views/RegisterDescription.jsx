@@ -1,5 +1,5 @@
-import { StyleSheet, Button, Text, View, TextInput, Dimensions, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, Image } from 'react-native'
+import React, { useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import ButtonBack from '../Components/Common/ButtonBack'
@@ -38,7 +38,7 @@ const RegisterDescription = ({ navigation }) => {
             <View style={{ position: 'absolute', top: 60, left: 30 }} >
                 <ButtonBack onPress={volver} />
             </View>
-            <View style={{ top: 80 }}>
+            <View style={{ top: -100 }}>
                 <Text style={styles.textTitle}>Descripción</Text>
                 <TextInput
                     style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
@@ -63,15 +63,8 @@ const RegisterDescription = ({ navigation }) => {
                     </Text>
                 }
             </View>
-            <View style={{ position: 'absolute', bottom: 20 }} >
-                <ButtonContinue onPress={continuar} />
-            </View>
-            {
-                descripcion.length <= 0 &&
-                <Text style={styles.error}>El campo no puede estar vacío</Text>
-            }
             {/* <Button title='Go Back' onPress={() => navigation.goBack()} /> */}
-            <ButtonContinue onPress={nextPage} />
+            <ButtonContinue onPress={continuar} />
             {/* <Button title="Go back" onPress={() => navigation.goBack()} /> */}
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
         </View>

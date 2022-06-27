@@ -67,9 +67,6 @@ const RegisterFirst = ({ navigation }) => {
                 />
                 <Text style={[{ marginTop: 4 }, username.length <= 0 ? styles.inputColorRed : styles.inputColorWhite]}>Debes ingresar un nombre para continuar.</Text>
             </View>
-            <View style={{ position: 'absolute', bottom: 20 }} >
-                <ButtonContinue onPress={continuar} />
-            </View>
             <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
         </View>
