@@ -60,12 +60,9 @@ const RegisterSecond = ({ navigation }) => {
                 backgroundColor="transparent"
             />
             <Progress.Bar
-                position="absolute"
                 progress={progressBar}
                 width={windowWidth}
-                borderRadius={0}
-                borderWidth={0}
-                top={50}
+                style={styles.progressBar}
                 color='rgb(94, 157, 181)'
             />
             <View style={{ position: 'absolute', top: 60, left: 30 }} >
@@ -112,5 +109,11 @@ const styles = StyleSheet.create({
         color: "#1f1f1f",
         top: -10
         // fontFamily: 'Capriola_400Regular'
+    },
+    progressBar: {
+        borderRadius: 0,
+        borderWidth: 0,
+        top: StatusBar.currentHeight,
+        position: "absolute"
     },
 })

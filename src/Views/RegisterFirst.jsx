@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar, SafeAreaView } from 'react-native'
+import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar, SafeAreaView, TouchableWithoutFeedback } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
@@ -12,13 +12,24 @@ import { NavigationHelpersContext } from '@react-navigation/native'
 
 const RegisterFirst = ({ navigation }) => {
     const { username, handleChangeNombre, avatarId, setAvatarId, progressBar, setProgressBar } = useRegisterContext();
+    const [isOpenAvatarPicker, setIsOpenAvatarPicker] = useState(false);
+    const [iconText, setIconText] = useState('edit');
+    let ImageArray = [];
+    
+    for (var i = 0; i < 9; i++) {
+       ImageArray.push(`../Assets/Avatars/AvatarsToChoose/${i}.png`)
+    }
 
-    // const [loaded] = useFonts({
-    //     Capriola_400Regular
-    // });
-    // if (!loaded) {
-    //     return <AppLoading />;
-    // }
+    useEffect(() => {
+        if(isOpenAvatarPicker){
+            setIconText('close');
+        } else {
+            setIconText('edit');
+        }
+        console.log(isOpenAvatarPicker);
+    }, [isOpenAvatarPicker])
+    
+
     const continuar = () => {
         setProgressBar(0.33)
         setTimeout(() => {
@@ -29,23 +40,42 @@ const RegisterFirst = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <Progress.Bar
-                position="relative"
                 progress={progressBar}
                 width={windowWidth}
-                borderRadius={0}
-                borderWidth={0}
-                top={50}
                 color='rgb(94, 157, 181)'
+                style={styles.progressBar}
             />
             <View style={{ top: 190 }}>
-                <Image
-                    source={require('../Assets/Avatars/Default.png')}
-                    style={styles.avatar}
-                />
-                <MaterialIcons name="edit"
-                    style={styles.edit}
-
-                />
+                <TouchableWithoutFeedback onPress={() => setIsOpenAvatarPicker(!isOpenAvatarPicker)}>
+                    <View>
+                        <Image
+                            source={require('../Assets/Avatars/Default.png')}
+                            style={styles.avatar}
+                        />
+                        {isOpenAvatarPicker && 
+                            <MaterialIcons 
+                                name={iconText}
+                                style={styles.edit}
+                            />
+                        }
+                    </View>
+                </TouchableWithoutFeedback>
+                <View style={{backgroundColor: 'blue', flexDirection: "column", bottom: 0,}}>
+                    {
+                        ImageArray.map((image, index) => {
+                            return (
+                                console.log(image),
+                                <Image 
+                                    key={index} 
+                                    source={require('../Assets/Avatars/AvatarsToChoose/1.png')}
+                                    style={{width: windowWidth/4, height: windowHeight, backgroundColor: "red"}} 
+                                />
+                            )
+                        })
+                        // isOpenAvatarPicker && (
+                        // )
+                    }
+                </View>
             </View>
             <View style={{ top: 150 }}>
                 <Text style={styles.textTitle}>Nombre</Text>
@@ -133,5 +163,11 @@ const styles = StyleSheet.create({
     inputWarning: {
         borderBottomColor: '#FFCC00',
         borderRadius: 4,
+    },
+    progressBar: {
+        borderRadius: 0,
+        borderWidth: 0,
+        top: StatusBar.currentHeight,
+        position: "relative"
     },
 })

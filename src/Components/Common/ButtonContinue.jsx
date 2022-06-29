@@ -8,7 +8,7 @@ const ButtonContinue = ({ onPress }) => {
     const handleAnimationIn = () => {
         Animated.timing(animationBackground, {
             toValue: 1,
-            duration: 100,
+            duration: 80,
             useNativeDriver: false
         }).start()
         Animated.timing(animationTextColor, {
@@ -20,7 +20,7 @@ const ButtonContinue = ({ onPress }) => {
     const handleAnimationOut = () => {
         Animated.timing(animationBackground, {
             toValue: 0,
-            duration: 150,
+            duration: 200,
             useNativeDriver: false
         }).start()
         Animated.timing(animationTextColor, {

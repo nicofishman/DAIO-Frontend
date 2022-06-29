@@ -9,10 +9,15 @@ const RegisterDescription = ({ navigation }) => {
     const { descripcion, handleChangeDesc, charsLeft, progressBar, setProgressBar } = useRegisterContext();
 
     const continuar = () => {
-        setProgressBar(0.66);
-        setTimeout(() => {
-            navigation.navigate('RegisterSecond')
-        }, 500);
+        if (descripcion.length > 0) {
+            setProgressBar(0.66);
+            setTimeout(() => {
+                navigation.navigate('RegisterSecond')
+            }, 500);
+        }
+        else{
+            alert('Debes ingresar una descripción');
+        }
     }
     const volver = () => {
         setProgressBar(0);
@@ -22,15 +27,12 @@ const RegisterDescription = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <Progress.Bar
-                position="absolute"
                 progress={progressBar}
                 width={windowWidth}
-                borderRadius={0}
-                borderWidth={0}
-                top={50}
+                style={styles.progressBar}
                 color='rgb(94, 157, 181)'
             />
-            <View style={{ position: 'absolute', top: 80, left: 30 }} >
+            <View style={{ position: 'absolute', top: windowHeight/12, left: 35 }} >
                 <ButtonBack onPress={volver} />
             </View>
             <ScrollView style={{ top: 150 }}>
@@ -49,6 +51,7 @@ const RegisterDescription = ({ navigation }) => {
                             {charsLeft}/150
                         </Text>
                     </View>
+                    
                 </View>
                 {
                     descripcion.length <= 0 &&
@@ -60,9 +63,7 @@ const RegisterDescription = ({ navigation }) => {
                     </Text>
                 }
             </ScrollView>
-            {/* <Button title='Go Back' onPress={() => navigation.goBack()} /> */}
             <ButtonContinue onPress={continuar} />
-            {/* <Button title="Go back" onPress={() => navigation.goBack()} /> */}
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
 
             <StatusBar
@@ -138,5 +139,11 @@ const styles = StyleSheet.create({
         bottom: -85,
         fontStyle: 'italic',
         textDecorationLine: 'underline',
-    }
+    },
+    progressBar: {
+        borderRadius: 0,
+        borderWidth: 0,
+        top: StatusBar.currentHeight,
+        position: "absolute"
+    },
 })
