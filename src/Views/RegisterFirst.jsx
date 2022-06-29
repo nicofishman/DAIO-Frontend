@@ -14,11 +14,48 @@ const RegisterFirst = ({ navigation }) => {
     const { username, handleChangeNombre, avatarId, setAvatarId, progressBar, setProgressBar } = useRegisterContext();
     const [isOpenAvatarPicker, setIsOpenAvatarPicker] = useState(false);
     const [iconText, setIconText] = useState('edit');
-    let ImageArray = [];
+    let sourceImage = ['../Assets/Avatars/AvatarsToChoose/avatar', avatarId, '.png'].join('');
     
-    for (var i = 0; i < 9; i++) {
-       ImageArray.push(`../Assets/Avatars/AvatarsToChoose/${i}.png`)
+    let AvatarArray = [
+        require('../Assets/Avatars/AvatarsToChoose/avatar1.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar2.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar3.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar4.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar5.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar6.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar7.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar8.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar9.png'),
+    ];
+
+    function mostrar() {
+        switch (avatarId) {
+            case -1:
+                return <Image source={require('../Assets/Avatars/Default.png')} style={styles.avatar} />
+            case 0:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar1.png')} style={styles.avatar} />
+            case 1:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar2.png')} style={styles.avatar} />
+            case 2:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar3.png')} style={styles.avatar} />
+            case 3:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar4.png')} style={styles.avatar} />
+            case 4:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar5.png')} style={styles.avatar} />
+            case 5:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar6.png')} style={styles.avatar} />
+            case 6:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar7.png')} style={styles.avatar} />
+            case 7:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar8.png')} style={styles.avatar} />
+            case 8:
+                return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar9.png')} style={styles.avatar} />
+        }
     }
+    useEffect(() => {
+        console.log(avatarId);
+        mostrar()
+    }, [avatarId])
 
     useEffect(() => {
         if(isOpenAvatarPicker){
@@ -26,9 +63,7 @@ const RegisterFirst = ({ navigation }) => {
         } else {
             setIconText('edit');
         }
-        console.log(isOpenAvatarPicker);
     }, [isOpenAvatarPicker])
-    
 
     const continuar = () => {
         setProgressBar(0.33)
@@ -48,52 +83,58 @@ const RegisterFirst = ({ navigation }) => {
             <View style={{ top: 190 }}>
                 <TouchableWithoutFeedback onPress={() => setIsOpenAvatarPicker(!isOpenAvatarPicker)}>
                     <View>
-                        <Image
-                            source={require('../Assets/Avatars/Default.png')}
-                            style={styles.avatar}
-                        />
-                        {isOpenAvatarPicker && 
-                            <MaterialIcons 
-                                name={iconText}
-                                style={styles.edit}
-                            />
+                        {
+                            //XD no hay imagenes dinamicas en rn
+                            mostrar()
                         }
+                        <MaterialIcons 
+                            name={iconText}
+                            style={styles.edit}
+                        />
+                        
                     </View>
                 </TouchableWithoutFeedback>
-                <View style={{backgroundColor: 'blue', flexDirection: "column", bottom: 0,}}>
+            </View>
+            {isOpenAvatarPicker ? (
+                <View style={{flexDirection: 'column', position: 'relative', top: 120, justifyContent: 'center', backgroundColor: 'rgba(201, 201, 201, 0.4)', borderRadius: 55, padding: 30}}>
+                    <View blurRadius={10} style={{flexWrap: 'wrap', width: 310, height: 650/2}}>
+                            {
+                                AvatarArray.map((image, index) => {
+                                    return (
+                                        <TouchableWithoutFeedback key={index} onPress={() => setAvatarId(index)}>
+                                            <Image 
+                                                key={index} 
+                                                source={image}
+                                                style={styles.avatarPick} 
+                                            />
+                                        </TouchableWithoutFeedback>
+                                    )
+                                })
+                            }
+                    </View>
+                    <Text style={{alignSelf: 'center', marginTop: 20}}>Elige un avatar para que te puedan identificar</Text>
+                </View>
+                
+            ) : (
+                <View style={{ top: 150 }}>
+                    <Text style={styles.textTitle}>Nombre</Text>
+                    <TextInput
+                        style={[styles.input, username.length <= 0 && styles.inputRed]}
+                        onChangeText={handleChangeNombre}
+                        value={username}
+                        caretHidden={true}
+                        placeholder={'Ingresa tu nombre'}
+                        placeholderTextColor="#d4d4d4"
+                        spellCheck={false}
+                        autoCorrect={false}
+                    />
                     {
-                        ImageArray.map((image, index) => {
-                            return (
-                                console.log(image),
-                                <Image 
-                                    key={index} 
-                                    source={require('../Assets/Avatars/AvatarsToChoose/1.png')}
-                                    style={{width: windowWidth/4, height: windowHeight, backgroundColor: "red"}} 
-                                />
-                            )
-                        })
-                        // isOpenAvatarPicker && (
-                        // )
+                        username.length === 0 &&
+                        <Text style={{ marginTop: 4, color: 'red', fontWeight: 'bold' }}>Debes ingresar un nombre para continuar.</Text>
                     }
                 </View>
-            </View>
-            <View style={{ top: 150 }}>
-                <Text style={styles.textTitle}>Nombre</Text>
-                <TextInput
-                    style={[styles.input, username.length <= 0 && styles.inputRed]}
-                    onChangeText={handleChangeNombre}
-                    value={username}
-                    caretHidden={true}
-                    placeholder={'Ingresa tu nombre'}
-                    placeholderTextColor="#d4d4d4"
-                    spellCheck={false}
-                    autoCorrect={false}
-                />
-                {
-                    username.length === 0 &&
-                    <Text style={{ marginTop: 4, color: 'red', fontWeight: 'bold' }}>Debes ingresar un nombre para continuar.</Text>
-                }
-            </View>
+            )
+        }
             <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
             <StatusBar
@@ -170,4 +211,12 @@ const styles = StyleSheet.create({
         top: StatusBar.currentHeight,
         position: "relative"
     },
+    avatarPick: {
+        width: 300/3, 
+        height: 650/6, 
+        flexGrow: 1, 
+        borderRadius: 80, 
+        resizeMode: 'contain',
+        marginRight: 5,
+    }
 })
