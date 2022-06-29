@@ -1,58 +1,54 @@
-import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, Image, SafeAreaView } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, Image, SafeAreaView, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import ButtonBack from '../Components/Common/ButtonBack'
 import * as Progress from 'react-native-progress';
 
 const RegisterDescription = ({ navigation }) => {
-    const { descripcion, handleChangeDesc, charsLeft } = useRegisterContext();
-    const [progressBarD, setprogressBarD] = useState(0.33);
+    const { descripcion, handleChangeDesc, charsLeft, progressBar, setProgressBar } = useRegisterContext();
 
     const continuar = () => {
-        if (descripcion.length > 0) {
-            setprogressBarD(0.66);
-            setTimeout(() => {
-                navigation.navigate('RegisterSecond')
-            }, 500);
-        }
+        setProgressBar(0.66);
+        setTimeout(() => {
+            navigation.navigate('RegisterSecond')
+        }, 500);
     }
     const volver = () => {
-        setprogressBarD(0);
-        setTimeout(() => {
-            navigation.goBack()
-        }, 250);
+        setProgressBar(0);
+        navigation.goBack()
     }
-
+    
     return (
         <SafeAreaView style={styles.container}>
             <Progress.Bar
                 position="absolute"
-                progress={progressBarD}
+                progress={progressBar}
                 width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
                 top={50}
                 color='rgb(94, 157, 181)'
             />
-            <View style={{ position: 'absolute', top: 60, left: 30 }} >
+            <View style={{ position: 'absolute', top: 80, left: 30 }} >
                 <ButtonBack onPress={volver} />
             </View>
-            <View style={{ top: -100 }}>
+            <ScrollView style={{ top: 150 }}>
                 <Text style={styles.textTitle}>Descripción</Text>
-                <TextInput
-                    style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
-                    placeholder={'"Mido un metro ochenta y uno..."'}
-                    onChangeText={handleChangeDesc}
-                    value={descripcion}
-                    multiline={true}
-                    numberOfLines={8}
-                />
-
-                <View style={styles.charsLeft}>
-                    <Text style={styles.charsLeftText}>
-                        {charsLeft}/150
-                    </Text>
+                <View position="relative">
+                    <TextInput
+                        style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
+                        placeholder={'"Mido un metro ochenta y uno..."'}
+                        onChangeText={handleChangeDesc}
+                        value={descripcion}
+                        multiline={true}
+                        numberOfLines={8}
+                    />
+                    <View style={styles.charsLeft}>
+                        <Text style={styles.charsLeftText}>
+                            {charsLeft}/150
+                        </Text>
+                    </View>
                 </View>
                 {
                     descripcion.length <= 0 &&
@@ -63,7 +59,7 @@ const RegisterDescription = ({ navigation }) => {
                         <Text style={styles.noDescription}>.</Text>
                     </Text>
                 }
-            </View>
+            </ScrollView>
             {/* <Button title='Go Back' onPress={() => navigation.goBack()} /> */}
             <ButtonContinue onPress={continuar} />
             {/* <Button title="Go back" onPress={() => navigation.goBack()} /> */}
@@ -114,8 +110,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 10,
         backgroundColor: '#F5F5F5',
-        top: 100,
-
     },
     inputYellow: {
         borderColor: '#F1F1F1',
@@ -123,9 +117,10 @@ const styles = StyleSheet.create({
 
     },
     charsLeft: {
+        right: 15,
         bottom: 0,
-        top: 70,
-        right: 15
+        marginBottom: 10,
+        position: 'absolute'
     },
     charsLeftText: {
         textAlign: 'right',
@@ -134,7 +129,6 @@ const styles = StyleSheet.create({
     noDescription: {
         width: windowWidth * 0.8,
         color: '#8f8f8f',
-        bottom: -85,
         paddingLeft: 2,
         fontStyle: 'italic',
     },

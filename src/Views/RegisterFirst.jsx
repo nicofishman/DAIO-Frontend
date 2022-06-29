@@ -11,8 +11,7 @@ import { useFonts } from 'expo-font'
 import { NavigationHelpersContext } from '@react-navigation/native'
 
 const RegisterFirst = ({ navigation }) => {
-    const { username, handleChangeNombre, avatarId, setAvatarId } = useRegisterContext();
-    const [progressBarD, setprogressBarD] = useState(0);
+    const { username, handleChangeNombre, avatarId, setAvatarId, progressBar, setProgressBar } = useRegisterContext();
 
     // const [loaded] = useFonts({
     //     Capriola_400Regular
@@ -20,26 +19,18 @@ const RegisterFirst = ({ navigation }) => {
     // if (!loaded) {
     //     return <AppLoading />;
     // }
-    useEffect(() => {
-        setprogressBarD(0);
-    }, [])
     const continuar = () => {
-        if (username.length > 0) {
-            setprogressBarD(0.33)
-            setTimeout(() => {
-                navigation.navigate('RegisterDescription')
-            }, 500);
-        }
+        setProgressBar(0.33)
+        setTimeout(() => {
+            navigation.navigate('RegisterDescription')
+        }, 500);
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar
-                backgroundColor="transparent"
-            />
             <Progress.Bar
                 position="relative"
-                progress={progressBarD}
+                progress={progressBar}
                 width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}
@@ -68,10 +59,16 @@ const RegisterFirst = ({ navigation }) => {
                     spellCheck={false}
                     autoCorrect={false}
                 />
-                <Text style={[{ marginTop: 4 }, username.length <= 0 ? styles.inputColorRed : styles.inputColorWhite]}>Debes ingresar un nombre para continuar.</Text>
+                {
+                    username.length === 0 &&
+                    <Text style={{ marginTop: 4, color: 'red', fontWeight: 'bold' }}>Debes ingresar un nombre para continuar.</Text>
+                }
             </View>
             <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
+            <StatusBar
+                backgroundColor="transparent"
+            />
         </SafeAreaView>
     )
 }

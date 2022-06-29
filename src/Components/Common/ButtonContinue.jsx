@@ -43,7 +43,7 @@ const ButtonContinue = ({ onPress }) => {
         color: boxInterpolationText
     };
     return (
-        <View style={{ flex: 1, position: 'absolute', bottom: 30 }} >
+        <View style={{ position: 'absolute', bottom: 20 }} >
             <TouchableWithoutFeedback
                 onPressIn={handleAnimationIn}
                 onPressOut={handleAnimationOut}

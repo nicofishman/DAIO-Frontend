@@ -10,9 +10,9 @@ import * as Progress from 'react-native-progress';
 import ButtonBack from '../Components/Common/ButtonBack';
 
 const RegisterSecond = ({ navigation }) => {
-    const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId, avatarId } = useRegisterContext();
+    const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId, avatarId, progressBar, setProgressBar } = useRegisterContext();
     const [loading, setLoading] = useState(true);
-    const [progressBarD, setprogressBarD] = useState(0.66);
+    
 
     const finishRegister = async () => {
         const trackData = songPreference.map(song => {
@@ -33,7 +33,7 @@ const RegisterSecond = ({ navigation }) => {
         //     tracks: trackData,
         //     artists: artistData
         // })
-        setprogressBarD(1);
+        setProgressBar(1);
         setTimeout(() => {
             navigation.navigate('Main', { screen: 'Match' })
         }, 500);
@@ -50,10 +50,8 @@ const RegisterSecond = ({ navigation }) => {
         })();
     }, [])
     const volver = () => {
-        setprogressBarD(0.33);
-        setTimeout(() => {
-            navigation.goBack()
-        }, 250);
+        setProgressBar(0.33);
+        navigation.goBack()
     }
 
     return (
@@ -63,7 +61,7 @@ const RegisterSecond = ({ navigation }) => {
             />
             <Progress.Bar
                 position="absolute"
-                progress={progressBarD}
+                progress={progressBar}
                 width={windowWidth}
                 borderRadius={0}
                 borderWidth={0}

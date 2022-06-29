@@ -7,6 +7,8 @@ export function RegisterProvider(props) {
     const [charsLeft, setCharsLeft] = useState(150);
     const [spotifyId, setSpotifyId] = useState();
     const [avatarId, setAvatarId] = useState(0);
+    const [progressBar, setProgressBar] = useState(0); //[porcentaje, screen]
+
 
     const [songPreference, setSongPreference] = useState([]);
     const [artistPreference, setArtistPreference] = useState([]);
@@ -35,7 +37,9 @@ export function RegisterProvider(props) {
         handleChangeDesc,
         setSpotifyId,
         setSongPreference,
-        setArtistPreference
+        setArtistPreference,
+        progressBar,
+        setProgressBar
     };
 
     return (
