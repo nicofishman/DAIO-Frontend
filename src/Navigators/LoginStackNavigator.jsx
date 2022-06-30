@@ -9,10 +9,10 @@ import { RegisterProvider } from '../Context/RegisterContext';
 const LoginStackNavigator = () => {
     const LoginStack = createNativeStackNavigator();
     return (
-        <LoginStack.Navigator initialRouteName='Pochi'>
+        <LoginStack.Navigator initialRouteName='Login'>
             <LoginStack.Screen name="Login" component={Login} options={{ headerShown: false }} />
             <LoginStack.Screen name="Loading" component={LoadingScreen} options={{ headerShown: false }} />
-            <LoginStack.Screen name="Pochi" component={Pochi} options={{ headerShown: false }} />
+            {/* <LoginStack.Screen name="Pochi" component={Pochi} options={{ headerShown: false }} /> */}
         </LoginStack.Navigator>
     )
 }
