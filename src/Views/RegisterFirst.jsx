@@ -28,7 +28,7 @@ const RegisterFirst = ({ navigation }) => {
         require('../Assets/Avatars/AvatarsToChoose/avatar9.png'),
     ];
 
-    function mostrar() {
+    function showIconSelected() {
         switch (avatarId) {
             case -1:
                 return <Image source={require('../Assets/Avatars/Default.png')} style={styles.avatar} />
@@ -54,7 +54,7 @@ const RegisterFirst = ({ navigation }) => {
     }
     useEffect(() => {
         console.log(avatarId);
-        mostrar()
+        showIconSelected()
     }, [avatarId])
 
     useEffect(() => {
@@ -85,7 +85,7 @@ const RegisterFirst = ({ navigation }) => {
                     <View>
                         {
                             //XD no hay imagenes dinamicas en rn
-                            mostrar()
+                            showIconSelected()
                         }
                         <MaterialIcons 
                             name={iconText}
@@ -138,7 +138,8 @@ const RegisterFirst = ({ navigation }) => {
             <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
             <StatusBar
-                backgroundColor="transparent"
+                barStyle="dark-content"
+                backgroundColor={'transparent'}
             />
         </SafeAreaView>
     )

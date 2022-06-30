@@ -32,12 +32,12 @@ const RegisterDescription = ({ navigation }) => {
                 style={styles.progressBar}
                 color='rgb(94, 157, 181)'
             />
-            <View style={{ position: 'absolute', top: windowHeight/12, left: 35 }} >
+            <View style={styles.buttonBack} >
                 <ButtonBack onPress={volver} />
             </View>
             <ScrollView style={{ top: 150 }}>
                 <Text style={styles.textTitle}>Descripción</Text>
-                <View position="relative">
+                <View>
                     <TextInput
                         style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
                         placeholder={'"Mido un metro ochenta y uno..."'}
@@ -51,7 +51,6 @@ const RegisterDescription = ({ navigation }) => {
                             {charsLeft}/150
                         </Text>
                     </View>
-                    
                 </View>
                 {
                     descripcion.length <= 0 &&
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fcfcfc',
         alignItems: 'center',
-        justifyContent: 'center',
         // fontFamily: 'Capriola_400Regular' ?? 'Comic Sans Ms',
     },
     backgroundImg: {
@@ -145,5 +143,10 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         top: StatusBar.currentHeight,
         position: "absolute"
+    },
+    buttonBack: { 
+        position: 'absolute', 
+        top: StatusBar.currentHeight+20, 
+        left: 35 
     },
 })

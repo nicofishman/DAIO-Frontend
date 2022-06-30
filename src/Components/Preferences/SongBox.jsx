@@ -21,7 +21,7 @@ const SongBox = () => {
 
     return (
         <View style={styles.box}>
-            <Text>Canciones</Text>
+            <Text style={{fontSize: 20, fontStyle: 'italic'}}>Canciones</Text>
             <View style={styles.songsBox}>
                 {
                     new Array(5).fill(0).map((_, index) => {

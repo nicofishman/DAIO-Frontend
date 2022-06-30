@@ -22,7 +22,7 @@ const ArtistBox = () => {
 
     return (
         <View style={styles.box}>
-            <Text>Artistas</Text>
+            <Text style={{fontSize: 20, fontStyle: 'italic'}}>Artistas</Text>
             <View style={styles.artistBox}>
                 {
                     new Array(3).fill(0).map((_, index) => {
