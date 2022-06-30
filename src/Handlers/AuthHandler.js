@@ -28,7 +28,6 @@ const getAuthConfig = async () => {
 
 const checkRefreshToken = async () => {
     const refreshDate = await AsyncStorage.getItem('refresh_date');
-    console.log(refreshDate);
     if (new Date() > refreshDate) {
         console.log('refreshing');
         const refreshToken = await AsyncStorage.getItem('refresh_token');
@@ -43,6 +42,11 @@ const checkRefreshToken = async () => {
             refreshDate: new Date(new Date().getTime() + (newRefreshTokenResponse.expires_in * 1000)),
         };
     } else {
+        // console.log({
+        //     accessToken: await AsyncStorage.getItem('access_token'),
+        //     refreshToken: await AsyncStorage.getItem('refresh_token'),
+        //     refreshDate: await AsyncStorage.getItem('refresh_date'),
+        // });
         return {
             accessToken: await AsyncStorage.getItem('access_token'),
             refreshToken: await AsyncStorage.getItem('refresh_token'),
@@ -54,7 +58,6 @@ const checkRefreshToken = async () => {
 
 export const searchTrack = async (query) => {
     const { accessToken: accessTokenRes } = await checkRefreshToken();
-    console.log(accessTokenRes);
     const result = await axios.get(`http://daio-backend.herokuapp.com/spotify/song/${query}`, {
         headers: {
             accessToken: accessTokenRes,
@@ -152,7 +155,9 @@ export const addUser = async (userData) => {
 
 export const getNotInteractedUsers = async (userId) => {
     const { accessToken: accessTokenRes } = await checkRefreshToken();
-    const result = await axios.get(`http://daio-backend.herokuapp.com/database/notmatchedusers`, { headers: { accessToken: accessTokenRes, userId: userId } });
+    // console.log('\n' + accessTokenRes + '\n');
+    const result = await axios.get('http://daio-backend.herokuapp.com/match/dameusuarios', { headers: { accessToken: accessTokenRes, userId: userId } });
+    // console.log(result.data);
     return result.data;
 }
 

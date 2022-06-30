@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar, SafeAreaView, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar, SafeAreaView, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
 import ButtonContinue from '../Components/Common/ButtonContinue'
@@ -15,17 +15,17 @@ const RegisterFirst = ({ navigation }) => {
     const [isOpenAvatarPicker, setIsOpenAvatarPicker] = useState(false);
     const [iconText, setIconText] = useState('edit');
     let sourceImage = ['../Assets/Avatars/AvatarsToChoose/avatar', avatarId, '.png'].join('');
-    
+
     let AvatarArray = [
-        require('../Assets/Avatars/AvatarsToChoose/avatar1.png'),
+        [require('../Assets/Avatars/AvatarsToChoose/avatar1.png'),
         require('../Assets/Avatars/AvatarsToChoose/avatar2.png'),
-        require('../Assets/Avatars/AvatarsToChoose/avatar3.png'),
-        require('../Assets/Avatars/AvatarsToChoose/avatar4.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar3.png')],
+        [require('../Assets/Avatars/AvatarsToChoose/avatar4.png'),
         require('../Assets/Avatars/AvatarsToChoose/avatar5.png'),
-        require('../Assets/Avatars/AvatarsToChoose/avatar6.png'),
-        require('../Assets/Avatars/AvatarsToChoose/avatar7.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar6.png')],
+        [require('../Assets/Avatars/AvatarsToChoose/avatar7.png'),
         require('../Assets/Avatars/AvatarsToChoose/avatar8.png'),
-        require('../Assets/Avatars/AvatarsToChoose/avatar9.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar9.png')]
     ];
 
     function showIconSelected() {
@@ -52,13 +52,13 @@ const RegisterFirst = ({ navigation }) => {
                 return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar9.png')} style={styles.avatar} />
         }
     }
-    useEffect(() => {
-        console.log(avatarId);
-        showIconSelected()
-    }, [avatarId])
+    // useEffect(() => {
+    //     console.log(avatarId);
+    //     showIconSelected()
+    // }, [avatarId])
 
     useEffect(() => {
-        if(isOpenAvatarPicker){
+        if (isOpenAvatarPicker) {
             setIconText('close');
         } else {
             setIconText('edit');
@@ -87,34 +87,46 @@ const RegisterFirst = ({ navigation }) => {
                             //XD no hay imagenes dinamicas en rn
                             showIconSelected()
                         }
-                        <MaterialIcons 
+                        <MaterialIcons
                             name={iconText}
                             style={styles.edit}
                         />
-                        
+
                     </View>
                 </TouchableWithoutFeedback>
             </View>
             {isOpenAvatarPicker ? (
-                <View style={{flexDirection: 'column', position: 'relative', top: 120, justifyContent: 'center', backgroundColor: 'rgba(201, 201, 201, 0.4)', borderRadius: 55, padding: 30}}>
-                    <View blurRadius={10} style={{flexWrap: 'wrap', width: 310, height: 650/2}}>
-                            {
-                                AvatarArray.map((image, index) => {
-                                    return (
-                                        <TouchableWithoutFeedback key={index} onPress={() => setAvatarId(index)}>
-                                            <Image 
-                                                key={index} 
-                                                source={image}
-                                                style={styles.avatarPick} 
-                                            />
-                                        </TouchableWithoutFeedback>
-                                    )
-                                })
-                            }
+                <View style={{
+                    flexDirection: 'column', position: 'relative', top: 120, justifyContent: 'center', backgroundColor: 'rgba(201, 201, 201, 0.4)', borderRadius: 55, padding: 30, overflow: 'scroll', maxHeight:
+                        400
+                }}>
+                    <View blurRadius={10} style={styles.avatarBox}>
+                        {
+                            AvatarArray.map((row, rowIndex) => {
+                                return (
+                                    <View key={row} style={{ flexDirection: 'row' }}>
+                                        {row.map((image, index) => {
+                                            return (
+                                                <TouchableWithoutFeedback key={index} onPress={() => {
+                                                    console.log(index, rowIndex);
+                                                    setAvatarId(index + (rowIndex * 3))
+                                                }}>
+                                                    <Image
+                                                        key={index}
+                                                        source={image}
+                                                        style={styles.avatarPick}
+                                                    />
+                                                </TouchableWithoutFeedback>
+                                            )
+                                        })}
+                                    </View>
+                                )
+                            })
+                        }
                     </View>
-                    <Text style={{alignSelf: 'center', marginTop: 20}}>Elige un avatar para que te puedan identificar</Text>
+                    <Text style={{ alignSelf: 'center', marginTop: 20 }}>Elige un avatar para que te puedan identificar</Text>
                 </View>
-                
+
             ) : (
                 <View style={{ top: 150 }}>
                     <Text style={styles.textTitle}>Nombre</Text>
@@ -134,7 +146,7 @@ const RegisterFirst = ({ navigation }) => {
                     }
                 </View>
             )
-        }
+            }
             <ButtonContinue onPress={continuar} />
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
             <StatusBar
@@ -163,6 +175,12 @@ const styles = StyleSheet.create({
         height: 160,
         top: -100,
         borderRadius: 80,
+    },
+    avatarBox: {
+        flexDirection: 'column',
+        // flexWrap: 'wrap',
+        width: 310,
+        height: 650 / 2
     },
     edit: {
         position: "absolute",
@@ -213,10 +231,10 @@ const styles = StyleSheet.create({
         position: "relative"
     },
     avatarPick: {
-        width: 300/3, 
-        height: 650/6, 
-        flexGrow: 1, 
-        borderRadius: 80, 
+        width: 300 / 3,
+        height: 650 / 6,
+        flexGrow: 1,
+        borderRadius: 80,
         resizeMode: 'contain',
         marginRight: 5,
     }

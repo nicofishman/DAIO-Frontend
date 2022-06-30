@@ -12,7 +12,7 @@ import ButtonBack from '../Components/Common/ButtonBack';
 const RegisterSecond = ({ navigation }) => {
     const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId, avatarId, progressBar, setProgressBar } = useRegisterContext();
     const [loading, setLoading] = useState(true);
-    
+
 
     const finishRegister = async () => {
         const trackData = songPreference.map(song => {
@@ -69,11 +69,11 @@ const RegisterSecond = ({ navigation }) => {
             {
                 loading ?
                     <>
-                        <ActivityIndicator style={{flex: 2.3}} size={70} color='#e38889' />
+                        <ActivityIndicator style={{ flex: 2.3 }} size={70} color='#e38889' />
                         {/* size prop only works on Android, for iOS use 'small | large', lo escribi yo pochi btw  */}
                     </>
                     :
-                    <View style={{top: windowHeight * 0.195}}>
+                    <View style={{ top: windowHeight * 0.195 }}>
                         <ArtistBox />
                         <SongBox />
                     </View>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fcfcfc',
         alignItems: 'center',
-        position:'relative'
+        position: 'relative'
     },
     backgroundImg: {
         position: 'absolute',
@@ -122,9 +122,9 @@ const styles = StyleSheet.create({
         top: StatusBar.currentHeight,
         position: "absolute"
     },
-    buttonBack: { 
-        position: 'absolute', 
-        top: StatusBar.currentHeight+20, 
-        left: 35 
+    buttonBack: {
+        position: 'absolute',
+        top: StatusBar.currentHeight + 20,
+        left: 35
     },
 })

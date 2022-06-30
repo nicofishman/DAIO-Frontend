@@ -1,5 +1,5 @@
-import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, Image, SafeAreaView, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, Image, SafeAreaView, ScrollView, Alert } from 'react-native'
+import React from 'react'
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import ButtonBack from '../Components/Common/ButtonBack'
@@ -15,15 +15,15 @@ const RegisterDescription = ({ navigation }) => {
                 navigation.navigate('RegisterSecond')
             }, 500);
         }
-        else{
-            alert('Debes ingresar una descripción');
+        else {
+            Alert.alert('Cuidado!', 'Debes ingresar una descripción');
         }
     }
     const volver = () => {
         setProgressBar(0);
         navigation.goBack()
     }
-    
+
     return (
         <SafeAreaView style={styles.container}>
             <Progress.Bar
@@ -144,9 +144,9 @@ const styles = StyleSheet.create({
         top: StatusBar.currentHeight,
         position: "absolute"
     },
-    buttonBack: { 
-        position: 'absolute', 
-        top: StatusBar.currentHeight+20, 
-        left: 35 
+    buttonBack: {
+        position: 'absolute',
+        top: StatusBar.currentHeight + 20,
+        left: 35
     },
 })
