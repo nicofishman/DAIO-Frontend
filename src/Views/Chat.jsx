@@ -8,7 +8,7 @@ const Chat = ({ navigation, route }) => {
     const logOut = async () => {
         console.log('Logging out');
         await AsyncStorage.setItem('access_token', '').then(() => {
-            navigation.navigate('Login');
+            navigation.navigate('LoginNavigator', { screen: 'CreateOrSignInAcount' });
         }).catch(err => {
             console.log(err);
         });
