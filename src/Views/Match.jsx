@@ -84,7 +84,7 @@ export default Match;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fafa",
+        backgroundColor: "#ffdbe7",
         alignItems: "center",
         justifyContent: "center",
     },

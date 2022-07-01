@@ -24,7 +24,7 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                 <View key={index}>
                                     {visualSong === index ?
                                         <TouchableWithoutFeedback onPress={() => {
-                                            setVisualSong(index);
+                                            setVisualSong(-1);
                                             setVisualArtist(-1);
                                         }}>
                                             <ImageBackground
@@ -44,7 +44,12 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                             </ImageBackground>
                                         </TouchableWithoutFeedback>
                                         :
-                                        <TouchableWithoutFeedback onPress={() => setVisualSong(index)}>
+                                        <TouchableWithoutFeedback 
+                                            onPress={() => {
+                                                setVisualArtist(-1);
+                                                setVisualSong(index);
+                                            }}
+                                        >
                                             <View key={index} style={[styles.songCard, styles.shadowBox]}>
                                                 <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
                                                 <Text style={styles.artistSong} numberOfLines={1}>{artists}</Text>
