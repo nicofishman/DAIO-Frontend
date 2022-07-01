@@ -129,7 +129,7 @@ const RegisterFirst = ({ navigation }) => {
 
             ) : (
                 <View style={{ top: 150 }}>
-                    <Text style={styles.textTitle}>Nombre</Text>
+                    <Text style={styles.textTitle}>Nombre de usuario</Text>
                     <TextInput
                         style={[styles.input, username.length <= 0 && styles.inputRed]}
                         onChangeText={handleChangeNombre}
