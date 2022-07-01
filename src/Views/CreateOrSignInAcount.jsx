@@ -134,7 +134,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
                 <Text style={{ width: windowWidth * 0.75, left: 10, fontSize: 12 }}>
                     <Text>Al apretar "Crear Cuenta" o "Iniciar Sesion", está aceptando nuestros </Text>
                     <Text style={{ fontStyle: 'italic', textDecorationLine: 'underline' }}>terminos y condiciones</Text>
-                    <Text>. En estos dejamos en claro todos los robos de datos y actividades ilegales contra su persona.</Text>
+                    <Text>. En estos dejamos en claro todos los robos de datos y actividades inmorales contra su persona.</Text>
                 </Text>
             </View>
             <View style={{ position: 'absolute', bottom: 80 }}>
