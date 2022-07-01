@@ -1,7 +1,7 @@
+import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
 import { getSpotifyCredentials, getUserData, getUsers } from '../Handlers/AuthHandler'
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { useRegisterContext } from '../Context/RegisterContext';
-import { View, Text, StyleSheet, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
@@ -25,6 +25,7 @@ export default function Login({ navigation }) {
     const [beingCalled, setBeingCalled] = useState(false)
 
     const [credentials, setCredentials] = useState({})
+    const [loading, setLoading] = useState(true)
 
     const { setSpotifyId, handleChangeNombre } = useRegisterContext()
 
@@ -41,7 +42,6 @@ export default function Login({ navigation }) {
         discovery
     );
     useEffect(async () => {
-
         const spotifyCredentials = await getSpotifyCredentials();
         setCredentials(spotifyCredentials)
         // console.log(makeRedirectUri(spotifyCredentials.redirectUri))
@@ -53,26 +53,14 @@ export default function Login({ navigation }) {
         }
     }, []);
 
-
-    useEffect(async () => {
-        console.log('?');
-        if (Object.keys(credentials).length > 0 && !beingCalled) {
-            setBeingCalled(true)
-            spotifyPromptAsync();
-        }
-    }, [credentials])
-
-
-
-
-    const logOut = async () => {
-        console.log('Logging out');
-        await AsyncStorage.setItem('access_token', '').then(() => {
-            setAccessToken(undefined);
-        }).catch(err => {
-            console.log(err);
-        });
-    }
+    // const logOut = async () => {
+    //     console.log('Logging out');
+    //     await AsyncStorage.setItem('access_token', '').then(() => {
+    //         setAccessToken(undefined);
+    //     }).catch(err => {
+    //         console.log(err);
+    //     });
+    // }
 
     const getTokenWithCode = async (code) => {
         const url = discovery.tokenEndpoint;
@@ -132,17 +120,15 @@ export default function Login({ navigation }) {
 
     return (
         <>
-            {accessToken && data ?
-                (
-                    <View style={styles.container}>
-                        <Text>{JSON.stringify(data, null, "\t")}</Text>
-                        <SpotifyLogin title='Log Out' fnOnPress={logOut} />
-                        <Button title='Match' onPress={handleLogin} />
-                    </View>
-                ) :
-                <View style={styles.container}>
-                    <SpotifyLogin title='Spotify Login' fnOnPress={spotifyPromptAsync} />
-                </View>
+            {
+                loading ?
+                    <ActivityIndicator style={{ flex: 2.3 }} size={70} color='#e38889' />
+                    :
+                    (
+                        <View style={styles.container}>
+                            <SpotifyLogin title='Spotify Login' fnOnPress={spotifyPromptAsync} />
+                        </View>
+                    )
             }
 
         </>
