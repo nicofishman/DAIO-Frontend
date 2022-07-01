@@ -88,9 +88,9 @@ const CreateOrSignInAcount = ({ navigation }) => {
             const { code } = responseCode.params;
             const { access_token, refresh_token, expires_in } = await getTokenWithCode(code);
             console.log({ access_token, refresh_token, expires_in })
-            await save('access_tokenspotify_id', access_token);
-            await save('refresh_tokenspotify_id', refresh_token);
-            await save('refresh_datespotify_id', (new Date().getTime() + expires_in * 1000).toString());
+            await AsyncStorage.setItem('access_token', access_token);
+            await AsyncStorage.setItem('refresh_token', refresh_token);
+            await AsyncStorage.setItem('refresh_date', (new Date().getTime() + expires_in * 1000).toString());
             const userData = await getUserData(access_token);
             await AsyncStorage.setItem('spotify_id', userData.id);
             setAccessToken(access_token)
@@ -100,8 +100,9 @@ const CreateOrSignInAcount = ({ navigation }) => {
 
     const handleLogin = async (token) => {
         const user = await getUserData(token);
-        console.log(user.display_name);
+        console.log(user);
         const usersInDb = await getUsers();
+        console.log(usersInDb);
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
             //TODO: SETSPOTIFYID ESTA VACIO
