@@ -28,11 +28,9 @@ const SongSearch = ({ song }) => {
                     <Text style={styles.artists}>{artists}</Text>
                 </View>
             </View>
-            <View style={styles.addSong}>
-                <TouchableWithoutFeedback onPress={handleSelect}>
-                    <AntDesign style={styles.icon} name="pluscircleo" />
-                </TouchableWithoutFeedback>
-            </View>
+            <TouchableWithoutFeedback style={styles.addSong} onPress={handleSelect}>
+                <AntDesign style={styles.icon} name="pluscircleo" />
+            </TouchableWithoutFeedback>
         </View>
     )
 }
@@ -81,9 +79,9 @@ const styles = StyleSheet.create({
         shadowRadius: 5.46,
         elevation: 4,
     },
-    addSong: { 
-        paddingHorizontal: 15, 
-        justifyContent: 'center', 
+    addSong: {
+        paddingHorizontal: 15,
+        justifyContent: 'center',
         backgroundColor: '#2b2b2b',
         borderBottomEndRadius: 5,
         borderTopRightRadius: 5,

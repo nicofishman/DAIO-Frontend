@@ -28,11 +28,9 @@ const ArtistSearch = ({ artist }) => {
                     <Text style={styles.title}>{artist.name}</Text>
                 </View>
             </View>
-            <View style={styles.addArtist}>
-                <TouchableWithoutFeedback onPress={handleSelect}>
-                    <AntDesign style={styles.icon} name="pluscircleo" />
-                </TouchableWithoutFeedback>
-            </View>
+            <TouchableWithoutFeedback style={styles.addArtist} onPress={handleSelect}>
+                <AntDesign style={styles.icon} name="pluscircleo" />
+            </TouchableWithoutFeedback>
         </View>
     )
 }
