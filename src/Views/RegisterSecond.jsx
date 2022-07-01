@@ -25,14 +25,14 @@ const RegisterSecond = ({ navigation }) => {
                 artistId: artist.id,
             }
         })
-        await addUser({
-            spotifyId,
-            username,
-            description: descripcion,
-            avatarId: avatarId,
-            tracks: trackData,
-            artists: artistData
-        })
+        // await addUser({
+        //     spotifyId,
+        //     username,
+        //     description: descripcion,
+        //     avatarId: avatarId,
+        //     tracks: trackData,
+        //     artists: artistData
+        // })
         setProgressBar(1);
         setTimeout(() => {
             navigation.navigate('Main', { screen: 'Match' })
