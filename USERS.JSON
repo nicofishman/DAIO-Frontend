@@ -1,0 +1,2946 @@
+[
+    {
+        "spotifyId": "test123Ficticio123",
+        "username": "POCHIU",
+        "description": "SSS",
+        "avatarId": "8",
+        "tracks": [
+            {
+                "trackId": "2UyiDAqoc1R4gz4noiJ35z",
+                "fkUser": "test123Ficticio123",
+                "orden": 1
+            },
+            {
+                "trackId": "10zSgbysU2KyVTrcRmtu62",
+                "fkUser": "test123Ficticio123",
+                "orden": 2
+            },
+            {
+                "trackId": "6tDDoYIxWvMLTdKpjFkc1B",
+                "fkUser": "test123Ficticio123",
+                "orden": 3
+            },
+            {
+                "trackId": "7xB3hSztVbX6xFvQqEGKud",
+                "fkUser": "test123Ficticio123",
+                "orden": 4
+            },
+            {
+                "trackId": "3nnDwYz3dEd4p2ESdpS1G0",
+                "fkUser": "test123Ficticio123",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "4STEdt6oH8RopaxpfWrO5Z",
+                "fkUser": "test123Ficticio123",
+                "orden": 1
+            },
+            {
+                "artistId": "13JJKrUewC1CJYmIDXQNoH",
+                "fkUser": "test123Ficticio123",
+                "orden": 2
+            },
+            {
+                "artistId": "6nVcjUJemqpJjc1WevwTvL",
+                "fkUser": "test123Ficticio123",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "2UyiDAqoc1R4gz4noiJ35z",
+                "name": "Las Flores (feat. Los Auténticos Decadentes)",
+                "preview_url": "https://p.scdn.co/mp3-preview/ab809032aceb04b5fefba3d24b714377578d3b25?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 213948,
+                "genres": [
+                    "argentine telepop",
+                    "cumbia pop",
+                    "pop argentino",
+                    "argentine rock",
+                    "cuarteto",
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "ska argentino"
+                ],
+                "album": {
+                    "id": "2Ly7wg5UWjJyyEgigWqvhO",
+                    "name": "Las Flores (feat. Los Auténticos Decadentes)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273fa26a6aa120f3ea9ece7f8d3"
+                },
+                "artists": [
+                    {
+                        "id": "6GYXfifD78PYARjZzxQzrG",
+                        "name": "Benjamín Amadeo"
+                    },
+                    {
+                        "id": "3HrbmsYpKjWH1lzhad7alj",
+                        "name": "Los Auténticos Decadentes"
+                    }
+                ]
+            },
+            {
+                "id": "10zSgbysU2KyVTrcRmtu62",
+                "name": "Por Mil Noches",
+                "preview_url": "https://p.scdn.co/mp3-preview/eefe56383a4c32c5cbc81350626061128275011e?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 283884,
+                "genres": [
+                    "argentine rock"
+                ],
+                "album": {
+                    "id": "44V33dl0drKUZAcrGcL0sN",
+                    "name": "Libertad",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27398f2e41c3e293608d75b5191"
+                },
+                "artists": [
+                    {
+                        "id": "1wKDGglKV4FsFS85r2Dmpr",
+                        "name": "Airbag"
+                    }
+                ]
+            },
+            {
+                "id": "6tDDoYIxWvMLTdKpjFkc1B",
+                "name": "telepatía",
+                "preview_url": "https://p.scdn.co/mp3-preview/41862cfbb8649fc56dc5e62355f810f99ab6606d?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 160191,
+                "genres": [
+                    "colombian pop",
+                    "dance pop",
+                    "pop"
+                ],
+                "album": {
+                    "id": "00wSTrFxoSzA7eeS1UxHgd",
+                    "name": "Sin Miedo (del Amor y Otros Demonios) ∞",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273044a5466dac00f7b3c570b99"
+                },
+                "artists": [
+                    {
+                        "id": "1U1el3k54VvEUzo3ybLPlM",
+                        "name": "Kali Uchis"
+                    }
+                ]
+            },
+            {
+                "id": "7xB3hSztVbX6xFvQqEGKud",
+                "name": "Lo malo de ser bueno",
+                "preview_url": "https://p.scdn.co/mp3-preview/7dff06261567545285c35473baacce7bc93e43d3?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 242120,
+                "genres": [
+                    "argentine rock",
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "album": {
+                    "id": "4X6PQwYWxtGGtKjAfX6wa6",
+                    "name": "Porfiado",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273e32b600cf149063d811341e3"
+                },
+                "artists": [
+                    {
+                        "id": "13JJKrUewC1CJYmIDXQNoH",
+                        "name": "El Cuarteto De Nos"
+                    }
+                ]
+            },
+            {
+                "id": "3nnDwYz3dEd4p2ESdpS1G0",
+                "name": "Reyes de la Noche",
+                "preview_url": "https://p.scdn.co/mp3-preview/7c7cb049cf03571fbf1de3b0e4da0d76e0a111de?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 250173,
+                "genres": [
+                    "argentine rock",
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "album": {
+                    "id": "5RQqvJeGRUrvVbvKGlMceO",
+                    "name": "Toro Rojo",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27380e9f4458a8e2f581a8f8cbe"
+                },
+                "artists": [
+                    {
+                        "id": "2wjmZuSHtRx96Qxb8HiP2o",
+                        "name": "Guasones"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "4STEdt6oH8RopaxpfWrO5Z",
+                "name": "Cruzando El Charco",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb47b0c5ec7a1f3bb6ae91f890",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517447b0c5ec7a1f3bb6ae91f890",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17847b0c5ec7a1f3bb6ae91f890",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "cumbia pop"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "13JJKrUewC1CJYmIDXQNoH",
+                "name": "El Cuarteto De Nos",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb5d4c8dfb673ce995cb260365",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051745d4c8dfb673ce995cb260365",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1785d4c8dfb673ce995cb260365",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "argentine rock",
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "6nVcjUJemqpJjc1WevwTvL",
+                "name": "La Vela Puerca",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb1bb85fb4349fd61b46151fb4",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051741bb85fb4349fd61b46151fb4",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1781bb85fb4349fd61b46151fb4",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 35.93
+    },
+    {
+        "spotifyId": "galocoriamaiorano",
+        "username": "galonte",
+        "description": "Me gusta messi, el fernet y el pedazo",
+        "avatarId": "7",
+        "tracks": [
+            {
+                "trackId": "7khHivwiH8Kz3KZgPordXA",
+                "fkUser": "galocoriamaiorano",
+                "orden": 1
+            },
+            {
+                "trackId": "5n8Aro6j1bEGIy7Tpo7FV7",
+                "fkUser": "galocoriamaiorano",
+                "orden": 2
+            },
+            {
+                "trackId": "1EoEU4HY57qaITp06TkC6B",
+                "fkUser": "galocoriamaiorano",
+                "orden": 3
+            },
+            {
+                "trackId": "2webodQDHTFeymfO3JdZsg",
+                "fkUser": "galocoriamaiorano",
+                "orden": 4
+            },
+            {
+                "trackId": "3ke6it1vTmHtz2ApcIVUz5",
+                "fkUser": "galocoriamaiorano",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "7dGJo4pcD2V6oG8kP0tJRR",
+                "fkUser": "galocoriamaiorano",
+                "orden": 1
+            },
+            {
+                "artistId": "5K4W6rqBFWDnAN6FQUkS6x",
+                "fkUser": "galocoriamaiorano",
+                "orden": 2
+            },
+            {
+                "artistId": "0EmeFodog0BfCgMzAIvKQp",
+                "fkUser": "galocoriamaiorano",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "7khHivwiH8Kz3KZgPordXA",
+                "name": "Tu Turraka",
+                "preview_url": "https://p.scdn.co/mp3-preview/c2f0aa60024309610814067c2a00c838de98734b?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 107256,
+                "genres": [],
+                "album": {
+                    "id": "1TQHvAc577hiHq3f0gWOsb",
+                    "name": "Tu Turraka",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273e91c0b6706436c64063091d3"
+                },
+                "artists": [
+                    {
+                        "id": "4RCEOUB8tfcEPZb3NeNDwS",
+                        "name": "LINDA TATIANA"
+                    }
+                ]
+            },
+            {
+                "id": "5n8Aro6j1bEGIy7Tpo7FV7",
+                "name": "Fuck Tha Police",
+                "preview_url": "https://p.scdn.co/mp3-preview/8af78ec318e7bdba9c2bf498eab95a1df900d980?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 345717,
+                "genres": [
+                    "conscious hip hop",
+                    "gangster rap",
+                    "golden age hip hop",
+                    "hardcore hip hop",
+                    "hip hop",
+                    "old school hip hop",
+                    "rap",
+                    "west coast rap"
+                ],
+                "album": {
+                    "id": "0Y7qkJVZ06tS2GUCDptzyW",
+                    "name": "Straight Outta Compton",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273c79a70e8167cc1a4fab83781"
+                },
+                "artists": [
+                    {
+                        "id": "4EnEZVjo3w1cwcQYePccay",
+                        "name": "N.W.A."
+                    }
+                ]
+            },
+            {
+                "id": "1EoEU4HY57qaITp06TkC6B",
+                "name": "Goteo",
+                "preview_url": "https://p.scdn.co/mp3-preview/2bf4fe5a9bc88b6946290649b3c93a3a09391bf9?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 164457,
+                "genres": [
+                    "argentine hip hop",
+                    "trap argentino",
+                    "trap latino",
+                    "trap triste"
+                ],
+                "album": {
+                    "id": "6lfI4LBcu46SL3TzSw3rWg",
+                    "name": "Goteo",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273af4acb77d1a4b71f7f4a67d2"
+                },
+                "artists": [
+                    {
+                        "id": "1bAftSH8umNcGZ0uyV7LMg",
+                        "name": "Duki"
+                    }
+                ]
+            },
+            {
+                "id": "2webodQDHTFeymfO3JdZsg",
+                "name": "GALO CORIA",
+                "preview_url": "https://p.scdn.co/mp3-preview/f95eab811fbdcaa1a4fc34ea48d9b4e08d0f3e07?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 212408,
+                "genres": [],
+                "album": {
+                    "id": "69YZT4EFzjo4n9BMZd2qga",
+                    "name": "GALO CORIA",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27399f1963ef70e37d339157e90"
+                },
+                "artists": [
+                    {
+                        "id": "6uYXBU0S1UsyUbrcrt9zMp",
+                        "name": "The Marioanos"
+                    }
+                ]
+            },
+            {
+                "id": "3ke6it1vTmHtz2ApcIVUz5",
+                "name": "Snow Tha Product: Bzrp Music Sessions, Vol. 39",
+                "preview_url": "https://p.scdn.co/mp3-preview/8569ef9376f2f800d8a2e37cb6e9ddf8d2370dbc?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 177442,
+                "genres": [
+                    "argentine hip hop",
+                    "pop venezolano",
+                    "trap argentino",
+                    "rap latina",
+                    "trap queen"
+                ],
+                "album": {
+                    "id": "3GN1tT5enSZQ6lMDtls3an",
+                    "name": "Snow Tha Product: Bzrp Music Sessions, Vol. 39",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2730427a473bc9cec1a1df4d14b"
+                },
+                "artists": [
+                    {
+                        "id": "716NhGYqD1jl2wI1Qkgq36",
+                        "name": "Bizarrap"
+                    },
+                    {
+                        "id": "3p3jPcp8b7WL9XYj4xlsWj",
+                        "name": "Snow Tha Product"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "7dGJo4pcD2V6oG8kP0tJRR",
+                "name": "Eminem",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178a00b11c129b27a88fc72f36b",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "detroit hip hop",
+                    "hip hop",
+                    "rap"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "5K4W6rqBFWDnAN6FQUkS6x",
+                "name": "Kanye West",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb867008a971fae0f4d913f63a",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174867008a971fae0f4d913f63a",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178867008a971fae0f4d913f63a",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "chicago rap",
+                    "rap"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "0EmeFodog0BfCgMzAIvKQp",
+                "name": "Shakira",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb8136bed5d8a80791bbe9ae23",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051748136bed5d8a80791bbe9ae23",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1788136bed5d8a80791bbe9ae23",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "colombian pop",
+                    "dance pop",
+                    "latin",
+                    "latin pop",
+                    "pop"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 12.36
+    },
+    {
+        "spotifyId": "nicofish2",
+        "username": "rocknaclover",
+        "description": "Aguante papo y mi vieja",
+        "avatarId": "3",
+        "tracks": [
+            {
+                "trackId": "02qtMJUm3Mero9n1Yn6m0T",
+                "fkUser": "nicofish2",
+                "orden": 1
+            },
+            {
+                "trackId": "4J2xMy0kakU9sAin1uppxb",
+                "fkUser": "nicofish2",
+                "orden": 2
+            },
+            {
+                "trackId": "3TDVu80AX1ajC3BRJYlmeJ",
+                "fkUser": "nicofish2",
+                "orden": 3
+            },
+            {
+                "trackId": "11SyFXAlto6hoUX39CEuCQ",
+                "fkUser": "nicofish2",
+                "orden": 4
+            },
+            {
+                "trackId": "1Ig4pCPanhzXl7C86MmBUc",
+                "fkUser": "nicofish2",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "1db5TWniHR7iqwXer7AiQ2",
+                "fkUser": "nicofish2",
+                "orden": 1
+            },
+            {
+                "artistId": "59dLJG3ZVwkMZLFKByQCJB",
+                "fkUser": "nicofish2",
+                "orden": 2
+            },
+            {
+                "artistId": "3IyuxBX0pwXqbeFI4DWmhG",
+                "fkUser": "nicofish2",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "02qtMJUm3Mero9n1Yn6m0T",
+                "name": "Mi Vieja",
+                "preview_url": "https://p.scdn.co/mp3-preview/3dea6c87ba9dff01840800e8c5e5d69e95536de4?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 158666,
+                "genres": [
+                    "argentine heavy metal",
+                    "argentine rock",
+                    "latin alternative",
+                    "latin metal",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "album": {
+                    "id": "17JBvZkBeGTA5EIlmJ6yJx",
+                    "name": "Blues Local",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273fbad73ec8c95fad668bacfa8"
+                },
+                "artists": [
+                    {
+                        "id": "1db5TWniHR7iqwXer7AiQ2",
+                        "name": "Pappo"
+                    }
+                ]
+            },
+            {
+                "id": "4J2xMy0kakU9sAin1uppxb",
+                "name": "La Balsa",
+                "preview_url": "https://p.scdn.co/mp3-preview/9ea4682d65778038bb08228b96dfc3215fbc0cdd?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 176000,
+                "genres": [
+                    "argentine rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "album": {
+                    "id": "0vTTjKizDeDsQJKzdT7s8G",
+                    "name": "Los Gatos",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273b0bbe56fb6f5d9dae8bb1d0e"
+                },
+                "artists": [
+                    {
+                        "id": "7wL1RaL0IEr7bK2WKV9sEU",
+                        "name": "Los Gatos"
+                    }
+                ]
+            },
+            {
+                "id": "3TDVu80AX1ajC3BRJYlmeJ",
+                "name": "Ruta 66",
+                "preview_url": "https://p.scdn.co/mp3-preview/2b97ba36f5436e55695dba2b12b37cc01d154273?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 186906,
+                "genres": [
+                    "argentine punk",
+                    "argentine rock",
+                    "blues latinoamericano",
+                    "latin alternative",
+                    "latin metal",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "album": {
+                    "id": "3YiOZf1gNNtzbyCkLqzKi5",
+                    "name": "Pappo's Blues, Vol.8: Caso Cerrado",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2730684527581c6e0701b0876b5"
+                },
+                "artists": [
+                    {
+                        "id": "59dLJG3ZVwkMZLFKByQCJB",
+                        "name": "Pappo's Blues"
+                    }
+                ]
+            },
+            {
+                "id": "11SyFXAlto6hoUX39CEuCQ",
+                "name": "Sucio y Desprolijo",
+                "preview_url": "https://p.scdn.co/mp3-preview/c4a563cf81b2a10a8f8cbcd7a03ee5d3a4fd453d?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 273260,
+                "genres": [
+                    "argentine punk",
+                    "argentine rock",
+                    "blues latinoamericano",
+                    "latin alternative",
+                    "latin metal",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "album": {
+                    "id": "3TIorpubpykzUFdUNBLOdp",
+                    "name": "Pappo's Blues, Vol. 3",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273b1893b5bfbee9a435acb4660"
+                },
+                "artists": [
+                    {
+                        "id": "59dLJG3ZVwkMZLFKByQCJB",
+                        "name": "Pappo's Blues"
+                    }
+                ]
+            },
+            {
+                "id": "1Ig4pCPanhzXl7C86MmBUc",
+                "name": "Juntos a la Par",
+                "preview_url": "https://p.scdn.co/mp3-preview/04c1cd9426604cba4c8deef36682ae5c9ef8adfe?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 161133,
+                "genres": [
+                    "argentine heavy metal",
+                    "argentine rock",
+                    "latin alternative",
+                    "latin metal",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "album": {
+                    "id": "4AMgSDaOROvCGSNSz3rfYw",
+                    "name": "Buscando un Amor",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2736b36c0ceb0d41fe8a9c45546"
+                },
+                "artists": [
+                    {
+                        "id": "1db5TWniHR7iqwXer7AiQ2",
+                        "name": "Pappo"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "1db5TWniHR7iqwXer7AiQ2",
+                "name": "Pappo",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb542a5f586667963452614feb",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174542a5f586667963452614feb",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178542a5f586667963452614feb",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "argentine heavy metal",
+                    "argentine rock",
+                    "latin alternative",
+                    "latin metal",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "59dLJG3ZVwkMZLFKByQCJB",
+                "name": "Pappo's Blues",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab67616d0000b2730684527581c6e0701b0876b5",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "https://i.scdn.co/image/ab67616d00001e020684527581c6e0701b0876b5",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "https://i.scdn.co/image/ab67616d000048510684527581c6e0701b0876b5",
+                        "width": 64
+                    }
+                ],
+                "genres": [
+                    "argentine punk",
+                    "argentine rock",
+                    "blues latinoamericano",
+                    "latin alternative",
+                    "latin metal",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "3IyuxBX0pwXqbeFI4DWmhG",
+                "name": "Riff",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb433c175f003f1ce8e0a709f8",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174433c175f003f1ce8e0a709f8",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178433c175f003f1ce8e0a709f8",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "argentine heavy metal",
+                    "argentine metal",
+                    "argentine punk",
+                    "argentine rock",
+                    "latin metal",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 8.71
+    },
+    {
+        "spotifyId": "tietzemaxi",
+        "username": "tieste",
+        "description": "Me cansé de tomar agua, ahora tomo colegios",
+        "avatarId": "0",
+        "tracks": [
+            {
+                "trackId": "6I9VzXrHxO9rA9A5euc8Ak",
+                "fkUser": "tietzemaxi",
+                "orden": 1
+            },
+            {
+                "trackId": "3WC5CVAahvn98hiseoIvbw",
+                "fkUser": "tietzemaxi",
+                "orden": 2
+            },
+            {
+                "trackId": "7ef4DlsgrMEH11cDZd32M6",
+                "fkUser": "tietzemaxi",
+                "orden": 3
+            },
+            {
+                "trackId": "11mwFrKvLXCbcVGNxffGyP",
+                "fkUser": "tietzemaxi",
+                "orden": 4
+            },
+            {
+                "trackId": "2lnzGkdtDj5mtlcOW2yRtG",
+                "fkUser": "tietzemaxi",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "1HY2Jd0NmPuamShAr6KMms",
+                "fkUser": "tietzemaxi",
+                "orden": 2
+            },
+            {
+                "artistId": "6jJ0s89eD6GaHleKKya26X",
+                "fkUser": "tietzemaxi",
+                "orden": 3
+            },
+            {
+                "artistId": "26dSoYclwsYLMAKD3tpOr4",
+                "fkUser": "tietzemaxi",
+                "orden": 1
+            }
+        ],
+        "canciones": [
+            {
+                "id": "6I9VzXrHxO9rA9A5euc8Ak",
+                "name": "Toxic",
+                "preview_url": "https://p.scdn.co/mp3-preview/7e3699a5a8b20b5847234627839a1c68bfaf5fb4?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 198800,
+                "genres": [
+                    "dance pop",
+                    "pop",
+                    "post-teen pop"
+                ],
+                "album": {
+                    "id": "0z7pVBGOD7HCIB7S8eLkLI",
+                    "name": "In The Zone",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273efc6988972cb04105f002cd4"
+                },
+                "artists": [
+                    {
+                        "id": "26dSoYclwsYLMAKD3tpOr4",
+                        "name": "Britney Spears"
+                    }
+                ]
+            },
+            {
+                "id": "3WC5CVAahvn98hiseoIvbw",
+                "name": "22",
+                "preview_url": "https://p.scdn.co/mp3-preview/d58b17f44d65d56a95349d7c059c8ae915fbb8f7?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 232120,
+                "genres": [
+                    "pop"
+                ],
+                "album": {
+                    "id": "1KVKqWeRuXsJDLTW0VuD29",
+                    "name": "Red (Deluxe Edition)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273254c8a09649551438b20f4c0"
+                },
+                "artists": [
+                    {
+                        "id": "06HL4z0CvFAxyc27GXpf02",
+                        "name": "Taylor Swift"
+                    }
+                ]
+            },
+            {
+                "id": "7ef4DlsgrMEH11cDZd32M6",
+                "name": "One Kiss (with Dua Lipa)",
+                "preview_url": "https://p.scdn.co/mp3-preview/128a50f77ec0225f05a2bd1664cab327bc66bc5f?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 214846,
+                "genres": [
+                    "dance pop",
+                    "edm",
+                    "electro house",
+                    "house",
+                    "pop",
+                    "progressive house",
+                    "uk dance",
+                    "uk pop"
+                ],
+                "album": {
+                    "id": "7GEzhoTiqcPYkOprWQu581",
+                    "name": "One Kiss (with Dua Lipa)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273d09f96d82310d4d77c14c108"
+                },
+                "artists": [
+                    {
+                        "id": "7CajNmpbOovFoOoasH2HaY",
+                        "name": "Calvin Harris"
+                    },
+                    {
+                        "id": "6M2wZ9GZgrQXHCFfjv46we",
+                        "name": "Dua Lipa"
+                    }
+                ]
+            },
+            {
+                "id": "11mwFrKvLXCbcVGNxffGyP",
+                "name": "Genie In a Bottle",
+                "preview_url": "https://p.scdn.co/mp3-preview/723ddfcc9726f05377669f8fe11cf02e6b1e7add?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 217573,
+                "genres": [
+                    "dance pop",
+                    "pop",
+                    "post-teen pop"
+                ],
+                "album": {
+                    "id": "6fpPZS13ImRVpr7Tqs6yP9",
+                    "name": "Christina Aguilera (Expanded Edition)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273f89996e214be1763b2a9e948"
+                },
+                "artists": [
+                    {
+                        "id": "1l7ZsJRRS8wlW3WfJfPfNS",
+                        "name": "Christina Aguilera"
+                    }
+                ]
+            },
+            {
+                "id": "2lnzGkdtDj5mtlcOW2yRtG",
+                "name": "Whenever, Wherever",
+                "preview_url": "https://p.scdn.co/mp3-preview/a19675c31730744dc816dbf4e5ded615be1d740d?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 196160,
+                "genres": [
+                    "colombian pop",
+                    "dance pop",
+                    "latin",
+                    "latin pop",
+                    "pop"
+                ],
+                "album": {
+                    "id": "4DyMK9x2gnmRkRa16zHaEV",
+                    "name": "Laundry Service",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2731f400a1f4d821b00824cf58f"
+                },
+                "artists": [
+                    {
+                        "id": "0EmeFodog0BfCgMzAIvKQp",
+                        "name": "Shakira"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "26dSoYclwsYLMAKD3tpOr4",
+                "name": "Britney Spears",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebf2ac13247b26025069dbdc4e",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174f2ac13247b26025069dbdc4e",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178f2ac13247b26025069dbdc4e",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "dance pop",
+                    "pop",
+                    "post-teen pop"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "1HY2Jd0NmPuamShAr6KMms",
+                "name": "Lady Gaga",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebc8d3d98a1bccbe71393dbfbf",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174c8d3d98a1bccbe71393dbfbf",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178c8d3d98a1bccbe71393dbfbf",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "art pop",
+                    "dance pop",
+                    "pop"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "6jJ0s89eD6GaHleKKya26X",
+                "name": "Katy Perry",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebdc9dcb7e4a97b4552e1224d6",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174dc9dcb7e4a97b4552e1224d6",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178dc9dcb7e4a97b4552e1224d6",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "dance pop",
+                    "pop",
+                    "post-teen pop"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 6.84
+    },
+    {
+        "spotifyId": "sebipochi132",
+        "username": "sebipochi",
+        "description": "Mido un metro 81, etc.",
+        "avatarId": "5",
+        "tracks": [
+            {
+                "trackId": "3ehHqgYRzmeUi345MfHS2N",
+                "fkUser": "sebipochi132",
+                "orden": 1
+            },
+            {
+                "trackId": "4MPwBYidOWnwpKlqQYJEzX",
+                "fkUser": "sebipochi132",
+                "orden": 4
+            },
+            {
+                "trackId": "0KL8IuLe4uqj6kSRf9mFaj",
+                "fkUser": "sebipochi132",
+                "orden": 5
+            },
+            {
+                "trackId": "7u3MGFqVASpzdGjH7xTtvR",
+                "fkUser": "sebipochi132",
+                "orden": 3
+            },
+            {
+                "trackId": "49TvST0pVJdZ1ZztrT7DnQ",
+                "fkUser": "sebipochi132",
+                "orden": 2
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "2IKdK6PbitvCiXt1t2bPU6",
+                "fkUser": "sebipochi132",
+                "orden": 3
+            },
+            {
+                "artistId": "5C4PDR4LnhZTbVnKWXuDKD",
+                "fkUser": "sebipochi132",
+                "orden": 1
+            },
+            {
+                "artistId": "0LVrQUinPUBFvVD5pLqmWY",
+                "fkUser": "sebipochi132",
+                "orden": 2
+            }
+        ],
+        "canciones": [
+            {
+                "id": "3ehHqgYRzmeUi345MfHS2N",
+                "name": "París",
+                "preview_url": "https://p.scdn.co/mp3-preview/1a594a559e6947d1baa0194f2042d659c057642e?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 182187,
+                "genres": [
+                    "colombian pop",
+                    "latin",
+                    "latin pop",
+                    "argentine hip hop",
+                    "trap argentino",
+                    "trap latino",
+                    "trap triste"
+                ],
+                "album": {
+                    "id": "2dhk2kLdjVxWps1PW9WSTj",
+                    "name": "París",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27358032fedceb654907568bbd5"
+                },
+                "artists": [
+                    {
+                        "id": "5C4PDR4LnhZTbVnKWXuDKD",
+                        "name": "Morat"
+                    },
+                    {
+                        "id": "1bAftSH8umNcGZ0uyV7LMg",
+                        "name": "Duki"
+                    }
+                ]
+            },
+            {
+                "id": "49TvST0pVJdZ1ZztrT7DnQ",
+                "name": "Y qué",
+                "preview_url": "https://p.scdn.co/mp3-preview/92b68518b8733424d0c6525d7dd9b2b19ebc492e?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 187477,
+                "genres": [
+                    "argentine rock",
+                    "electronica argentina",
+                    "latin alternative",
+                    "latin rock",
+                    "pop electronico",
+                    "rock en espanol"
+                ],
+                "album": {
+                    "id": "7FYLw9fTOiYnJFbFk2Mntn",
+                    "name": "Infame",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2734febc01367fbd2d1ec9f1d60"
+                },
+                "artists": [
+                    {
+                        "id": "2F9pvj94b52wGKs0OqiNi2",
+                        "name": "Babasónicos"
+                    }
+                ]
+            },
+            {
+                "id": "7u3MGFqVASpzdGjH7xTtvR",
+                "name": "Vuelan Palos - En Vivo",
+                "preview_url": "https://p.scdn.co/mp3-preview/62cb0effd31a3973fea9c145efecbc97b70dbd4b?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 175632,
+                "genres": [
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "album": {
+                    "id": "1ChikOiYIV2jwzPLfeFVSj",
+                    "name": "20 Años: Festejar para Sobrevivir - en Vivo",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273fc4b3aaa7f202f999e89fd64"
+                },
+                "artists": [
+                    {
+                        "id": "6nVcjUJemqpJjc1WevwTvL",
+                        "name": "La Vela Puerca"
+                    }
+                ]
+            },
+            {
+                "id": "4MPwBYidOWnwpKlqQYJEzX",
+                "name": "Va A Escampar",
+                "preview_url": "https://p.scdn.co/mp3-preview/cca2744fcb8574a68eaeb0b59651eeffcd7fd446?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 281533,
+                "genres": [
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "album": {
+                    "id": "7LMidzEe6utRLx7hPiq2AL",
+                    "name": "A Contraluz",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27324a7874db45f85653ab70c4e"
+                },
+                "artists": [
+                    {
+                        "id": "6nVcjUJemqpJjc1WevwTvL",
+                        "name": "La Vela Puerca"
+                    }
+                ]
+            },
+            {
+                "id": "0KL8IuLe4uqj6kSRf9mFaj",
+                "name": "Va a Escampar - En Vivo",
+                "preview_url": "https://p.scdn.co/mp3-preview/6bdef9e7bf93210fd41c9619ad6298cf9e011516?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 323161,
+                "genres": [
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "album": {
+                    "id": "1ChikOiYIV2jwzPLfeFVSj",
+                    "name": "20 Años: Festejar para Sobrevivir - en Vivo",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273fc4b3aaa7f202f999e89fd64"
+                },
+                "artists": [
+                    {
+                        "id": "6nVcjUJemqpJjc1WevwTvL",
+                        "name": "La Vela Puerca"
+                    },
+                    {
+                        "id": "2sSK0x3cGIogax2VPqE5Gt",
+                        "name": "Ernesto Tabárez"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "5C4PDR4LnhZTbVnKWXuDKD",
+                "name": "Morat",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb6847cff2c1f6d85b6455ef23",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051746847cff2c1f6d85b6455ef23",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1786847cff2c1f6d85b6455ef23",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "colombian pop",
+                    "latin",
+                    "latin pop"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "0LVrQUinPUBFvVD5pLqmWY",
+                "name": "Doves",
+                "images": [
+                    {
+                        "height": 774,
+                        "url": "https://i.scdn.co/image/5673993c75d8a559888815db16b26bad9646b3c4",
+                        "width": 1000
+                    },
+                    {
+                        "height": 495,
+                        "url": "https://i.scdn.co/image/3a641bf8175b11b60e5171eb563e8b959767f58d",
+                        "width": 640
+                    },
+                    {
+                        "height": 155,
+                        "url": "https://i.scdn.co/image/24d1c0944ce51836239a195cf853b4ef936741bc",
+                        "width": 200
+                    },
+                    {
+                        "height": 50,
+                        "url": "https://i.scdn.co/image/4d8bc4a3d4ac624f3a36664b11efe46fc8f4df75",
+                        "width": 64
+                    }
+                ],
+                "genres": [
+                    "alternative dance",
+                    "alternative rock",
+                    "britpop",
+                    "electronica",
+                    "indie rock",
+                    "modern rock",
+                    "new rave",
+                    "pop rock",
+                    "rock"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "2IKdK6PbitvCiXt1t2bPU6",
+                "name": "Mesita",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebc14086a25b6bdf4329420d0d",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174c14086a25b6bdf4329420d0d",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178c14086a25b6bdf4329420d0d",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "rap uruguayo",
+                    "trap latino"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 5.88
+    },
+    {
+        "spotifyId": "nicofish123",
+        "username": "nicofish",
+        "description": "test123",
+        "avatarId": "8",
+        "tracks": [
+            {
+                "trackId": "4zdEcOj9IEAE1cWG7zzYxB",
+                "fkUser": "nicofish123",
+                "orden": 3
+            },
+            {
+                "trackId": "0KL8IuLe4uqj6kSRf9mFaj",
+                "fkUser": "nicofish123",
+                "orden": 4
+            },
+            {
+                "trackId": "1i5HfJZTxwFgRhBk7mqBT8",
+                "fkUser": "nicofish123",
+                "orden": 2
+            },
+            {
+                "trackId": "1wIUWGdTdhVk5gIPd0ULxX",
+                "fkUser": "nicofish123",
+                "orden": 1
+            },
+            {
+                "trackId": "3za3hxbolwmy9AeUpWzuRE",
+                "fkUser": "nicofish123",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "2x7PC78TmgqpEIjaGAZ0Oz",
+                "fkUser": "nicofish123",
+                "orden": 2
+            },
+            {
+                "artistId": "0LVrQUinPUBFvVD5pLqmWY",
+                "fkUser": "nicofish123",
+                "orden": 3
+            },
+            {
+                "artistId": "0AqlFI0tz2DsEoJlKSIiT9",
+                "fkUser": "nicofish123",
+                "orden": 1
+            }
+        ],
+        "canciones": [
+            {
+                "id": "1wIUWGdTdhVk5gIPd0ULxX",
+                "name": "Zafar",
+                "preview_url": "https://p.scdn.co/mp3-preview/03c80c2297ca0c16ac9872f87452c1f054182256?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 262000,
+                "genres": [
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "album": {
+                    "id": "7LMidzEe6utRLx7hPiq2AL",
+                    "name": "A Contraluz",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27324a7874db45f85653ab70c4e"
+                },
+                "artists": [
+                    {
+                        "id": "6nVcjUJemqpJjc1WevwTvL",
+                        "name": "La Vela Puerca"
+                    }
+                ]
+            },
+            {
+                "id": "1i5HfJZTxwFgRhBk7mqBT8",
+                "name": "Paris - Remix",
+                "preview_url": "https://p.scdn.co/mp3-preview/fa9937db3efed129e28a19cb5da8eb2823b6dada?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 118500,
+                "genres": [],
+                "album": {
+                    "id": "1USetO6NVLhzwqTrprhsl1",
+                    "name": "Paris",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27301bc5aec4a0795f954b2c73c"
+                },
+                "artists": [
+                    {
+                        "id": "6MY24yecZgQi22o9t9fs7o",
+                        "name": "Mauri Acosta Dj"
+                    },
+                    {
+                        "id": "0XaxR8QHgPtM3G2IQFneDa",
+                        "name": "Guido Koner DJ"
+                    },
+                    {
+                        "id": "2Ez0U9sXtJDtHl8FJRNXyQ",
+                        "name": "Santiago Zein"
+                    }
+                ]
+            },
+            {
+                "id": "4zdEcOj9IEAE1cWG7zzYxB",
+                "name": "A 1200 Km",
+                "preview_url": "https://p.scdn.co/mp3-preview/6e593610a2b14062f9e37eb024e177fe1231f74d?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 229842,
+                "genres": [
+                    "argentine alternative rock",
+                    "argentine indie",
+                    "latin rock"
+                ],
+                "album": {
+                    "id": "3uo5La74eGmsUeXJdRRO3g",
+                    "name": "Las Ligas Menores",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27304364593fe145a2068fbfa64"
+                },
+                "artists": [
+                    {
+                        "id": "3MNvKeLzGSvOPtXJAjCOzf",
+                        "name": "Las Ligas Menores"
+                    }
+                ]
+            },
+            {
+                "id": "0KL8IuLe4uqj6kSRf9mFaj",
+                "name": "Va a Escampar - En Vivo",
+                "preview_url": "https://p.scdn.co/mp3-preview/6bdef9e7bf93210fd41c9619ad6298cf9e011516?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 323161,
+                "genres": [
+                    "latin alternative",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock uruguayo"
+                ],
+                "album": {
+                    "id": "1ChikOiYIV2jwzPLfeFVSj",
+                    "name": "20 Años: Festejar para Sobrevivir - en Vivo",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273fc4b3aaa7f202f999e89fd64"
+                },
+                "artists": [
+                    {
+                        "id": "6nVcjUJemqpJjc1WevwTvL",
+                        "name": "La Vela Puerca"
+                    },
+                    {
+                        "id": "2sSK0x3cGIogax2VPqE5Gt",
+                        "name": "Ernesto Tabárez"
+                    }
+                ]
+            },
+            {
+                "id": "3za3hxbolwmy9AeUpWzuRE",
+                "name": "Consejo de Amor",
+                "preview_url": "https://p.scdn.co/mp3-preview/d997e6316a659163e4b52fc033a8f84ff789ae20?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 199720,
+                "genres": [
+                    "latin pop",
+                    "pop argentino",
+                    "colombian pop",
+                    "latin"
+                ],
+                "album": {
+                    "id": "2RuYsBRCgFEantZkX83W2Y",
+                    "name": "Quiero Volver",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273c7daed2782e9750ddb483e33"
+                },
+                "artists": [
+                    {
+                        "id": "7vXDAI8JwjW531ouMGbfcp",
+                        "name": "TINI"
+                    },
+                    {
+                        "id": "5C4PDR4LnhZTbVnKWXuDKD",
+                        "name": "Morat"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "0AqlFI0tz2DsEoJlKSIiT9",
+                "name": "Emilia",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebaf96d1453d77d1d758c224bd",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174af96d1453d77d1d758c224bd",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178af96d1453d77d1d758c224bd",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "pop argentino"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "2x7PC78TmgqpEIjaGAZ0Oz",
+                "name": "Trueno",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb18af5b851999c50e3b7b1cb4",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517418af5b851999c50e3b7b1cb4",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17818af5b851999c50e3b7b1cb4",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "argentine hip hop",
+                    "bases de freestyle",
+                    "trap argentino",
+                    "trap latino"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "0LVrQUinPUBFvVD5pLqmWY",
+                "name": "Doves",
+                "images": [
+                    {
+                        "height": 774,
+                        "url": "https://i.scdn.co/image/5673993c75d8a559888815db16b26bad9646b3c4",
+                        "width": 1000
+                    },
+                    {
+                        "height": 495,
+                        "url": "https://i.scdn.co/image/3a641bf8175b11b60e5171eb563e8b959767f58d",
+                        "width": 640
+                    },
+                    {
+                        "height": 155,
+                        "url": "https://i.scdn.co/image/24d1c0944ce51836239a195cf853b4ef936741bc",
+                        "width": 200
+                    },
+                    {
+                        "height": 50,
+                        "url": "https://i.scdn.co/image/4d8bc4a3d4ac624f3a36664b11efe46fc8f4df75",
+                        "width": 64
+                    }
+                ],
+                "genres": [
+                    "alternative dance",
+                    "alternative rock",
+                    "britpop",
+                    "electronica",
+                    "indie rock",
+                    "modern rock",
+                    "new rave",
+                    "pop rock",
+                    "rock"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 3.76
+    },
+    {
+        "spotifyId": "matirapo",
+        "username": "matirapo",
+        "description": "Hello World",
+        "avatarId": "9",
+        "tracks": [
+            {
+                "trackId": "6eiNg8p7GYO7x0GXM4zplv",
+                "fkUser": "matirapo",
+                "orden": 1
+            },
+            {
+                "trackId": "0lquZZjlBIrpOtkOiNFACQ",
+                "fkUser": "matirapo",
+                "orden": 2
+            },
+            {
+                "trackId": "6fQQwzmTf49SZRy6LEydpT",
+                "fkUser": "matirapo",
+                "orden": 3
+            },
+            {
+                "trackId": "7o6UDPFWtYrjUZnRvi1dvO",
+                "fkUser": "matirapo",
+                "orden": 4
+            },
+            {
+                "trackId": "4xvpttkjjEH0l2hrizYla7",
+                "fkUser": "matirapo",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "0wn2qDKzeFlhjRUtJAwJjp",
+                "fkUser": "matirapo",
+                "orden": 1
+            },
+            {
+                "artistId": "5VwCIS8jdx9ZHjApLFNrTZ",
+                "fkUser": "matirapo",
+                "orden": 2
+            },
+            {
+                "artistId": "4ssUf5gLb1GBLxi1BhPrVt",
+                "fkUser": "matirapo",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "6eiNg8p7GYO7x0GXM4zplv",
+                "name": "El Tesoro",
+                "preview_url": "https://p.scdn.co/mp3-preview/940b7a692dfa76584c3741dc4cecfd5c51bb1448?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 271400,
+                "genres": [
+                    "argentine alternative rock",
+                    "argentine indie",
+                    "argentine indie rock",
+                    "argentine rock",
+                    "indie platense",
+                    "latin rock",
+                    "rock en espanol",
+                    "rock nacional"
+                ],
+                "album": {
+                    "id": "5YCFp2g2ZZUc0bKNAWyYHN",
+                    "name": "La Sintesis O'Konor",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273cc7b2edf004b36a7cf00e000"
+                },
+                "artists": [
+                    {
+                        "id": "5rLsN2LxYaEPLa1N7I2mPB",
+                        "name": "El Mató a un Policía Motorizado"
+                    }
+                ]
+            },
+            {
+                "id": "0lquZZjlBIrpOtkOiNFACQ",
+                "name": "KIDS (feat. Blimes)",
+                "preview_url": "https://p.scdn.co/mp3-preview/9cfa5b5ca5e6552be10c9ba311393f31e32ea28f?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 250565,
+                "genres": [
+                    "israeli hip hop",
+                    "israeli indie"
+                ],
+                "album": {
+                    "id": "2q5LInjIt8EqR4QNGxH6hq",
+                    "name": "KIDS (Bonus Edition)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27318ba1b1d7fb2b16a0785359c"
+                },
+                "artists": [
+                    {
+                        "id": "5VwCIS8jdx9ZHjApLFNrTZ",
+                        "name": "Noga Erez"
+                    },
+                    {
+                        "id": "0vgKrXg0mdruX9v5DQkjQM",
+                        "name": "Blimes"
+                    }
+                ]
+            },
+            {
+                "id": "6fQQwzmTf49SZRy6LEydpT",
+                "name": "Que Lindo Es Acordarme De Vos",
+                "preview_url": "https://p.scdn.co/mp3-preview/5bc7ef3427fb7a7d57bbea1740ea22b397854f53?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 206600,
+                "genres": [
+                    "argentine alternative rock",
+                    "argentine indie",
+                    "latin rock"
+                ],
+                "album": {
+                    "id": "1K6DMhbzgcx1T8e4HPnOX4",
+                    "name": "El Big Blue",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273f0054dc14172ebe93d76ed1c"
+                },
+                "artists": [
+                    {
+                        "id": "0wn2qDKzeFlhjRUtJAwJjp",
+                        "name": "Bandalos Chinos"
+                    }
+                ]
+            },
+            {
+                "id": "7o6UDPFWtYrjUZnRvi1dvO",
+                "name": "איך אפשר",
+                "preview_url": "https://p.scdn.co/mp3-preview/effda99824c0b7b6eafca6d650182c2762e0c33b?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 246040,
+                "genres": [
+                    "israeli indie",
+                    "israeli pop"
+                ],
+                "album": {
+                    "id": "4hB7vlbuthvdZW3klKTPGt",
+                    "name": "ג'יין בורדו",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2731b2e455ebf25db530027c276"
+                },
+                "artists": [
+                    {
+                        "id": "2a76fsDcTl6A43zwaFNPr4",
+                        "name": "Jane Bordeaux"
+                    }
+                ]
+            },
+            {
+                "id": "4xvpttkjjEH0l2hrizYla7",
+                "name": "Perdido de Amor [Lost in Love]",
+                "preview_url": "https://p.scdn.co/mp3-preview/bb9f83b7fb2122b1e4a1f39fc5be787e7add26f2?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 206066,
+                "genres": [
+                    "bossa nova",
+                    "brazilian jazz",
+                    "jazz guitar",
+                    "samba-jazz",
+                    "violao"
+                ],
+                "album": {
+                    "id": "60xmVPU5u2ABpEqi2g8ZIn",
+                    "name": "Solo in Rio 1959",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273fc68119636179eb966102594"
+                },
+                "artists": [
+                    {
+                        "id": "174ThXFgQg2VCq9r3m8ceb",
+                        "name": "Luiz Bonfá"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "0wn2qDKzeFlhjRUtJAwJjp",
+                "name": "Bandalos Chinos",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb1a216112e18ad8f5e2adf755",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051741a216112e18ad8f5e2adf755",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1781a216112e18ad8f5e2adf755",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "argentine alternative rock",
+                    "argentine indie",
+                    "latin rock"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "5VwCIS8jdx9ZHjApLFNrTZ",
+                "name": "Noga Erez",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb2b4a28255822a88d0cb108b0",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051742b4a28255822a88d0cb108b0",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1782b4a28255822a88d0cb108b0",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "israeli hip hop",
+                    "israeli indie"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "4ssUf5gLb1GBLxi1BhPrVt",
+                "name": "Jorge Drexler",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebda79b27fb7ed372c7df916fc",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174da79b27fb7ed372c7df916fc",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178da79b27fb7ed372c7df916fc",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "cantautor",
+                    "latin afrobeat",
+                    "latin alternative",
+                    "rock en espanol"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 3.66
+    },
+    {
+        "spotifyId": "tobipere",
+        "username": "gordousuario",
+        "description": "La musica murió",
+        "avatarId": "0",
+        "tracks": [
+            {
+                "trackId": "2374M0fQpWi3dLnB54qaLX",
+                "fkUser": "tobipere",
+                "orden": 1
+            },
+            {
+                "trackId": "5vdp5UmvTsnMEMESIF2Ym7",
+                "fkUser": "tobipere",
+                "orden": 2
+            },
+            {
+                "trackId": "5WZDLZVCvY1rEyNir6k8Pg",
+                "fkUser": "tobipere",
+                "orden": 3
+            },
+            {
+                "trackId": "6EdSN1iGtLPhcz43QDRkdK",
+                "fkUser": "tobipere",
+                "orden": 4
+            },
+            {
+                "trackId": "4cOdK2wGLETKBW3PvgPWqT",
+                "fkUser": "tobipere",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "1dfeR4HaWDbWqFHLkxsg1d",
+                "fkUser": "tobipere",
+                "orden": 1
+            },
+            {
+                "artistId": "3CkvROUTQ6nRi9yQOcsB50",
+                "fkUser": "tobipere",
+                "orden": 2
+            },
+            {
+                "artistId": "2jzc5TC5TVFLXQlBNiIUzE",
+                "fkUser": "tobipere",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "2374M0fQpWi3dLnB54qaLX",
+                "name": "Africa",
+                "preview_url": "https://p.scdn.co/mp3-preview/5afc1a0779af1d85cf7ea38f7bc5f457cbbe9d8e?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 295893,
+                "genres": [
+                    "album rock",
+                    "classic rock",
+                    "mellow gold",
+                    "rock",
+                    "soft rock",
+                    "yacht rock"
+                ],
+                "album": {
+                    "id": "62U7xIHcID94o20Of5ea4D",
+                    "name": "Toto IV",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2734a052b99c042dc15f933145b"
+                },
+                "artists": [
+                    {
+                        "id": "0PFtn5NtBbbUNbU9EAmIWF",
+                        "name": "TOTO"
+                    }
+                ]
+            },
+            {
+                "id": "5vdp5UmvTsnMEMESIF2Ym7",
+                "name": "Another One Bites The Dust - Remastered 2011",
+                "preview_url": "https://p.scdn.co/mp3-preview/97f2edced887946611517d987559a016eb687340?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 214653,
+                "genres": [
+                    "classic rock",
+                    "glam rock",
+                    "rock"
+                ],
+                "album": {
+                    "id": "58alCatewkjNm9IM1Ucj67",
+                    "name": "The Game (2011 Remaster)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273056e90910cbaf5c5b892aeba"
+                },
+                "artists": [
+                    {
+                        "id": "1dfeR4HaWDbWqFHLkxsg1d",
+                        "name": "Queen"
+                    }
+                ]
+            },
+            {
+                "id": "5WZDLZVCvY1rEyNir6k8Pg",
+                "name": "The Show Must Go On",
+                "preview_url": "https://p.scdn.co/mp3-preview/812c5917fa666884c3577208358d46f2a99ae6ae?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 271611,
+                "genres": [
+                    "classic rock",
+                    "glam rock",
+                    "rock"
+                ],
+                "album": {
+                    "id": "6i6folBtxKV28WX3msQ4FE",
+                    "name": "Bohemian Rhapsody (The Original Soundtrack)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273e8b066f70c206551210d902b"
+                },
+                "artists": [
+                    {
+                        "id": "1dfeR4HaWDbWqFHLkxsg1d",
+                        "name": "Queen"
+                    }
+                ]
+            },
+            {
+                "id": "6EdSN1iGtLPhcz43QDRkdK",
+                "name": "Help!",
+                "preview_url": "https://p.scdn.co/mp3-preview/a0340f3debb4052f757705e7e88a28e5898d7bfb?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 138285,
+                "genres": [
+                    "beatlesque",
+                    "british invasion",
+                    "classic rock",
+                    "merseybeat",
+                    "psychedelic rock",
+                    "rock"
+                ],
+                "album": {
+                    "id": "1Ye7yrA7vAlQnoooj8yDXb",
+                    "name": "Love",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27330503dbc30e621c96913379b"
+                },
+                "artists": [
+                    {
+                        "id": "3WrFJ7ztbogyGnTHbHJFl2",
+                        "name": "The Beatles"
+                    }
+                ]
+            },
+            {
+                "id": "4cOdK2wGLETKBW3PvgPWqT",
+                "name": "Never Gonna Give You Up",
+                "preview_url": "https://p.scdn.co/mp3-preview/135c5c2caba0db75f946dec7e93fdb752fe8d399?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 213573,
+                "genres": [
+                    "new romantic",
+                    "new wave pop",
+                    "soft rock",
+                    "sophisti-pop",
+                    "synthpop"
+                ],
+                "album": {
+                    "id": "5Z9iiGl2FcIfa3BMiv6OIw",
+                    "name": "Whenever You Need Somebody",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2735755e164993798e0c9ef7d7a"
+                },
+                "artists": [
+                    {
+                        "id": "0gxyHStUsqpMadRV0Di1Qt",
+                        "name": "Rick Astley"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "1dfeR4HaWDbWqFHLkxsg1d",
+                "name": "Queen",
+                "images": [
+                    {
+                        "height": 806,
+                        "url": "https://i.scdn.co/image/b040846ceba13c3e9c125d68389491094e7f2982",
+                        "width": 999
+                    },
+                    {
+                        "height": 516,
+                        "url": "https://i.scdn.co/image/af2b8e57f6d7b5d43a616bd1e27ba552cd8bfd42",
+                        "width": 640
+                    },
+                    {
+                        "height": 161,
+                        "url": "https://i.scdn.co/image/c06971e9ff81696699b829484e3be165f4e64368",
+                        "width": 200
+                    },
+                    {
+                        "height": 52,
+                        "url": "https://i.scdn.co/image/6dd0ffd270903d1884edf9058c49f58b03db893d",
+                        "width": 64
+                    }
+                ],
+                "genres": [
+                    "classic rock",
+                    "glam rock",
+                    "rock"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "3CkvROUTQ6nRi9yQOcsB50",
+                "name": "Genesis",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebdfb2b3c69199bc2dfbf3e5b9",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174dfb2b3c69199bc2dfbf3e5b9",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178dfb2b3c69199bc2dfbf3e5b9",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "album rock",
+                    "art rock",
+                    "classic rock",
+                    "mellow gold",
+                    "progressive rock",
+                    "rock",
+                    "soft rock",
+                    "symphonic rock"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "2jzc5TC5TVFLXQlBNiIUzE",
+                "name": "a-ha",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb800065f7c91890d3393491b8",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174800065f7c91890d3393491b8",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178800065f7c91890d3393491b8",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "new romantic",
+                    "new wave",
+                    "new wave pop",
+                    "permanent wave",
+                    "soft rock",
+                    "synthpop"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 3.11
+    },
+    {
+        "spotifyId": "romiberko",
+        "username": "romiberko",
+        "description": "Me gusta la música de los 80 en ingles ",
+        "avatarId": "1",
+        "tracks": [
+            {
+                "trackId": "6NVB6W7G3svCKe5zB7kY8q",
+                "fkUser": "romiberko",
+                "orden": 1
+            },
+            {
+                "trackId": "3cx90OGCsdU6tg02JAQbAb",
+                "fkUser": "romiberko",
+                "orden": 2
+            },
+            {
+                "trackId": "36lkJSDyMEZoWTqtRj8Q8q",
+                "fkUser": "romiberko",
+                "orden": 3
+            },
+            {
+                "trackId": "3549krhOebPMbTaSIroyGc",
+                "fkUser": "romiberko",
+                "orden": 4
+            },
+            {
+                "trackId": "0KMZsxJalrqyJSWghlpPmb",
+                "fkUser": "romiberko",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "1dfeR4HaWDbWqFHLkxsg1d",
+                "fkUser": "romiberko",
+                "orden": 1
+            },
+            {
+                "artistId": "6ESkuwldylZr39AIAPC63J",
+                "fkUser": "romiberko",
+                "orden": 2
+            },
+            {
+                "artistId": "1JbemQ1fPt2YmSLjAFhPBv",
+                "fkUser": "romiberko",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "6NVB6W7G3svCKe5zB7kY8q",
+                "name": "Angel Of The Morning",
+                "preview_url": "https://p.scdn.co/mp3-preview/7d244ca76413cf5201165e66175a2384c58a712c?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 254000,
+                "genres": [
+                    "classic country pop",
+                    "country dawn",
+                    "country rock",
+                    "mellow gold",
+                    "new wave pop",
+                    "soft rock"
+                ],
+                "album": {
+                    "id": "0fSvQOkU8rRgcsW6MerdVw",
+                    "name": "Juice Newton's Greatest Hits",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27399a6a7a4b4fe71d5362d16b7"
+                },
+                "artists": [
+                    {
+                        "id": "4L1z1IcfK7lbqx8izGHaw5",
+                        "name": "Juice Newton"
+                    }
+                ]
+            },
+            {
+                "id": "3cx90OGCsdU6tg02JAQbAb",
+                "name": "Especially for You",
+                "preview_url": "https://p.scdn.co/mp3-preview/24365c3944bde99bbfd05991a22bfe08d83327fa?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 239786,
+                "genres": [
+                    "australian dance",
+                    "australian pop",
+                    "europop",
+                    "new wave pop",
+                    "dance pop",
+                    "electropop",
+                    "eurodance",
+                    "pop"
+                ],
+                "album": {
+                    "id": "0x8bTyjA4wK64Zvq6wTObI",
+                    "name": "Especially for You",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273a973ef5ec7ffade85e42d4f7"
+                },
+                "artists": [
+                    {
+                        "id": "5bnNgwp3nooah9yHAHsnR4",
+                        "name": "Jason Donovan"
+                    },
+                    {
+                        "id": "4RVnAU35WRWra6OZ3CbbMA",
+                        "name": "Kylie Minogue"
+                    }
+                ]
+            },
+            {
+                "id": "36lkJSDyMEZoWTqtRj8Q8q",
+                "name": "You're the Inspiration - 2006 Remaster",
+                "preview_url": "https://p.scdn.co/mp3-preview/5691b46f9926b44a2947e36146a28d0528a2863d?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 229240,
+                "genres": [
+                    "adult standards",
+                    "album rock",
+                    "classic rock",
+                    "folk rock",
+                    "mellow gold",
+                    "soft rock",
+                    "yacht rock"
+                ],
+                "album": {
+                    "id": "1ICKrl6sDjJD1YdR9VDfPR",
+                    "name": "Chicago 17 (Expanded & Remastered)",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273192f3a588427f2cbf8365506"
+                },
+                "artists": [
+                    {
+                        "id": "3iDD7bnsjL9J4fO298r0L0",
+                        "name": "Chicago"
+                    }
+                ]
+            },
+            {
+                "id": "3549krhOebPMbTaSIroyGc",
+                "name": "For the First Time",
+                "preview_url": "https://p.scdn.co/mp3-preview/eb50c9fa50cace53ad60ecc1a429188f6c0400ae?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 268640,
+                "genres": [
+                    "album rock",
+                    "mellow gold",
+                    "new wave pop",
+                    "soft rock",
+                    "yacht rock"
+                ],
+                "album": {
+                    "id": "68ZonGoyvksZu4sqqNXect",
+                    "name": "The Essential Kenny Loggins",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273e74fe3e17166fb970f9e84cc"
+                },
+                "artists": [
+                    {
+                        "id": "3Y3xIwWyq5wnNHPp5gPjOW",
+                        "name": "Kenny Loggins"
+                    }
+                ]
+            },
+            {
+                "id": "0KMZsxJalrqyJSWghlpPmb",
+                "name": "Come In Out Of The Rain",
+                "preview_url": "https://p.scdn.co/mp3-preview/1d74231e11c34b8a05721f6962a14a2666c7c292?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 257800,
+                "genres": [
+                    "contemporary r&b",
+                    "deep talent show"
+                ],
+                "album": {
+                    "id": "1XcBGqIZeXSIjoy1dYqySG",
+                    "name": "Wendy Moten",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273e7ec5b2e9c9019eb565b813f"
+                },
+                "artists": [
+                    {
+                        "id": "6X0dG1JElAP4z0ardgJGjY",
+                        "name": "Wendy Moten"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "1dfeR4HaWDbWqFHLkxsg1d",
+                "name": "Queen",
+                "images": [
+                    {
+                        "height": 806,
+                        "url": "https://i.scdn.co/image/b040846ceba13c3e9c125d68389491094e7f2982",
+                        "width": 999
+                    },
+                    {
+                        "height": 516,
+                        "url": "https://i.scdn.co/image/af2b8e57f6d7b5d43a616bd1e27ba552cd8bfd42",
+                        "width": 640
+                    },
+                    {
+                        "height": 161,
+                        "url": "https://i.scdn.co/image/c06971e9ff81696699b829484e3be165f4e64368",
+                        "width": 200
+                    },
+                    {
+                        "height": 52,
+                        "url": "https://i.scdn.co/image/6dd0ffd270903d1884edf9058c49f58b03db893d",
+                        "width": 64
+                    }
+                ],
+                "genres": [
+                    "classic rock",
+                    "glam rock",
+                    "rock"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "6ESkuwldylZr39AIAPC63J",
+                "name": "Alejandro Lerner",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb0dbbb2b8c4424c818c0106a4",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051740dbbb2b8c4424c818c0106a4",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1780dbbb2b8c4424c818c0106a4",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "argentine rock",
+                    "latin",
+                    "latin pop",
+                    "rock en espanol"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "1JbemQ1fPt2YmSLjAFhPBv",
+                "name": "Chayanne",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebe2efbe510ede3ecd9db620f0",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174e2efbe510ede3ecd9db620f0",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178e2efbe510ede3ecd9db620f0",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "latin",
+                    "latin pop",
+                    "puerto rican pop",
+                    "tropical"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 2.86
+    },
+    {
+        "spotifyId": "daliorbaj",
+        "username": "dali_orbaj",
+        "description": "Fundamentalista de Mundo Gaturro",
+        "avatarId": "2",
+        "tracks": [
+            {
+                "trackId": "6cHxkkZ3TZUKsjd13pIO1p",
+                "fkUser": "daliorbaj",
+                "orden": 1
+            },
+            {
+                "trackId": "2QjOHCTQ1Jl3zawyYOpxh6",
+                "fkUser": "daliorbaj",
+                "orden": 2
+            },
+            {
+                "trackId": "2jQiSYrwJehQAcuaaQrXnS",
+                "fkUser": "daliorbaj",
+                "orden": 3
+            },
+            {
+                "trackId": "1Ser4X0TKttOvo8bgdytTP",
+                "fkUser": "daliorbaj",
+                "orden": 4
+            },
+            {
+                "trackId": "0GQ5bFTVFFKpwNPc7KwQnB",
+                "fkUser": "daliorbaj",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "7dGJo4pcD2V6oG8kP0tJRR",
+                "fkUser": "daliorbaj",
+                "orden": 1
+            },
+            {
+                "artistId": "5TYxZTjIPqKM8K8NuP9woO",
+                "fkUser": "daliorbaj",
+                "orden": 2
+            },
+            {
+                "artistId": "0Dvx6p8JDyzeOPGmaCIH1L",
+                "fkUser": "daliorbaj",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "6cHxkkZ3TZUKsjd13pIO1p",
+                "name": "Puta Madre",
+                "preview_url": "https://p.scdn.co/mp3-preview/e9c896150dbfc085359a47f498bda09f4ac938af?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 209032,
+                "genres": [
+                    "german hip hop"
+                ],
+                "album": {
+                    "id": "6HS9ICTqNbO5KSAEJIxmg7",
+                    "name": "Puta Madre",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2738aec06891fbf016baffc484b"
+                },
+                "artists": [
+                    {
+                        "id": "0Dvx6p8JDyzeOPGmaCIH1L",
+                        "name": "RAF Camora"
+                    }
+                ]
+            },
+            {
+                "id": "2QjOHCTQ1Jl3zawyYOpxh6",
+                "name": "Sweater Weather",
+                "preview_url": "https://p.scdn.co/mp3-preview/387541e6cab7e39e27acdb2c80ae6274b1182836?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 240400,
+                "genres": [
+                    "modern alternative rock",
+                    "modern rock",
+                    "pop",
+                    "shimmer pop"
+                ],
+                "album": {
+                    "id": "4xkM0BwLM9H2IUcbYzpcBI",
+                    "name": "I Love You.",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2738265a736a1eb838ad5a0b921"
+                },
+                "artists": [
+                    {
+                        "id": "77SW9BnxLY8rJ0RciFqkHh",
+                        "name": "The Neighbourhood"
+                    }
+                ]
+            },
+            {
+                "id": "2jQiSYrwJehQAcuaaQrXnS",
+                "name": "Friends",
+                "preview_url": "https://p.scdn.co/mp3-preview/0bc44f2e480edd93cf70a34c1f35072a61820ddf?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 230010,
+                "genres": [
+                    "pop"
+                ],
+                "album": {
+                    "id": "4FdPaL1MvZtioq0Uf74Jau",
+                    "name": "Nostalgia",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273c6853bb1af2bed82d15918f4"
+                },
+                "artists": [
+                    {
+                        "id": "7cYEt1pqMgXJdq00hAwVpT",
+                        "name": "Chase Atlantic"
+                    }
+                ]
+            },
+            {
+                "id": "1Ser4X0TKttOvo8bgdytTP",
+                "name": "Come Get Her",
+                "preview_url": "https://p.scdn.co/mp3-preview/e4369edc0c397469b4f031c0591f692d46d09f5e?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 212946,
+                "genres": [
+                    "hip hop",
+                    "melodic rap",
+                    "mississippi hip hop",
+                    "pop",
+                    "pop rap",
+                    "rap",
+                    "southern hip hop",
+                    "trap"
+                ],
+                "album": {
+                    "id": "6eDx949ONWDCN0O22wFZf7",
+                    "name": "SremmLife",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2734ca3fb4517ff722918877460"
+                },
+                "artists": [
+                    {
+                        "id": "7iZtZyCzp3LItcw1wtPI3D",
+                        "name": "Rae Sremmurd"
+                    }
+                ]
+            },
+            {
+                "id": "0GQ5bFTVFFKpwNPc7KwQnB",
+                "name": "You Gon’ Learn (feat. Royce Da 5'9\" & White Gold)",
+                "preview_url": "https://p.scdn.co/mp3-preview/a8578284787f66eea717494a8ea698f69102ef5c?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 234653,
+                "genres": [
+                    "detroit hip hop",
+                    "hip hop",
+                    "rap",
+                    "alternative hip hop",
+                    "gangster rap",
+                    "hardcore hip hop",
+                    "pop rap",
+                    "southern hip hop"
+                ],
+                "album": {
+                    "id": "4otkd9As6YaxxEkIjXPiZ6",
+                    "name": "Music To Be Murdered By",
+                    "img": "https://i.scdn.co/image/ab67616d0000b2732f44aec83b20e40f3baef73c"
+                },
+                "artists": [
+                    {
+                        "id": "7dGJo4pcD2V6oG8kP0tJRR",
+                        "name": "Eminem"
+                    },
+                    {
+                        "id": "6DVipHzYsPlIoA0DW8Gmns",
+                        "name": "Royce Da 5'9\""
+                    },
+                    {
+                        "id": "79KQgTCu4wV38ECYKn62DZ",
+                        "name": "White Gold"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "7dGJo4pcD2V6oG8kP0tJRR",
+                "name": "Eminem",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178a00b11c129b27a88fc72f36b",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "detroit hip hop",
+                    "hip hop",
+                    "rap"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "5TYxZTjIPqKM8K8NuP9woO",
+                "name": "C. Tangana",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebdfb9d2cb6a43021d9002a10e",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174dfb9d2cb6a43021d9002a10e",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178dfb9d2cb6a43021d9002a10e",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "urbano espanol"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "0Dvx6p8JDyzeOPGmaCIH1L",
+                "name": "RAF Camora",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebaf5f61e03f53afbd814020c6",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174af5f61e03f53afbd814020c6",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178af5f61e03f53afbd814020c6",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "german hip hop"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 1.82
+    },
+    {
+        "spotifyId": "matiasuu",
+        "username": "matias...",
+        "description": "Descripcion user matias...",
+        "avatarId": "5",
+        "tracks": [
+            {
+                "trackId": "2qhVGemoIKwNW7bdyljEdh",
+                "fkUser": "matiasuu",
+                "orden": 1
+            },
+            {
+                "trackId": "1IHWl5LamUGEuP4ozKQSXZ",
+                "fkUser": "matiasuu",
+                "orden": 2
+            },
+            {
+                "trackId": "2iuZJX9X9P0GKaE93xcPjk",
+                "fkUser": "matiasuu",
+                "orden": 3
+            },
+            {
+                "trackId": "4gbVRS8gloEluzf0GzDOFc",
+                "fkUser": "matiasuu",
+                "orden": 4
+            },
+            {
+                "trackId": "1XGmzt0PVuFgQYYnV2It7A",
+                "fkUser": "matiasuu",
+                "orden": 5
+            }
+        ],
+        "artists": [
+            {
+                "artistId": "5Pwc4xIPtQLFEnJriah9YJ",
+                "fkUser": "matiasuu",
+                "orden": 1
+            },
+            {
+                "artistId": "3AQRLZ9PuTAozP28Skbq8V",
+                "fkUser": "matiasuu",
+                "orden": 2
+            },
+            {
+                "artistId": "3FUY2gzHeIiaesXtOAdB7A",
+                "fkUser": "matiasuu",
+                "orden": 3
+            }
+        ],
+        "canciones": [
+            {
+                "id": "2qhVGemoIKwNW7bdyljEdh",
+                "name": "This Love",
+                "preview_url": "https://p.scdn.co/mp3-preview/f3ddb8db15633130c03cedbafbf023bcab4acefa?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 1,
+                "duration": 205746,
+                "genres": [
+                    "pop"
+                ],
+                "album": {
+                    "id": "50GWghayTrE2X5JkTVuk5w",
+                    "name": "Best Summer Songs: 00's",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273c3118a7816b616a7219e16f4"
+                },
+                "artists": [
+                    {
+                        "id": "04gDigrS5kc9YWfZHwBETP",
+                        "name": "Maroon 5"
+                    }
+                ]
+            },
+            {
+                "id": "1IHWl5LamUGEuP4ozKQSXZ",
+                "name": "Tití Me Preguntó",
+                "preview_url": "https://p.scdn.co/mp3-preview/a174cca3a21422be508f4e108ea1c04114e42538?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 2,
+                "duration": 243716,
+                "genres": [
+                    "latin",
+                    "reggaeton",
+                    "trap latino"
+                ],
+                "album": {
+                    "id": "3RQQmkQEvNCY4prGKE6oc5",
+                    "name": "Un Verano Sin Ti",
+                    "img": "https://i.scdn.co/image/ab67616d0000b27349d694203245f241a1bcaa72"
+                },
+                "artists": [
+                    {
+                        "id": "4q3ewBCX7sLwd24euuV69X",
+                        "name": "Bad Bunny"
+                    }
+                ]
+            },
+            {
+                "id": "2iuZJX9X9P0GKaE93xcPjk",
+                "name": "Sugar",
+                "preview_url": "https://p.scdn.co/mp3-preview/1a78821ccc410f134d9a74924bdd52c562768791?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 3,
+                "duration": 235493,
+                "genres": [
+                    "pop"
+                ],
+                "album": {
+                    "id": "2Auw0pTT6EcQdvHNimhLQI",
+                    "name": "V",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273442b53773d50e1b5369bb16c"
+                },
+                "artists": [
+                    {
+                        "id": "04gDigrS5kc9YWfZHwBETP",
+                        "name": "Maroon 5"
+                    }
+                ]
+            },
+            {
+                "id": "4gbVRS8gloEluzf0GzDOFc",
+                "name": "Maps",
+                "preview_url": "https://p.scdn.co/mp3-preview/bba168911f90662f1a82081b1395cbc43b200983?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 4,
+                "duration": 189960,
+                "genres": [
+                    "pop"
+                ],
+                "album": {
+                    "id": "2Auw0pTT6EcQdvHNimhLQI",
+                    "name": "V",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273442b53773d50e1b5369bb16c"
+                },
+                "artists": [
+                    {
+                        "id": "04gDigrS5kc9YWfZHwBETP",
+                        "name": "Maroon 5"
+                    }
+                ]
+            },
+            {
+                "id": "1XGmzt0PVuFgQYYnV2It7A",
+                "name": "Payphone",
+                "preview_url": "https://p.scdn.co/mp3-preview/e02672522f6cef4f7e805778bc1798d7619d19da?cid=9a0de2d92f4b46fe8aed89842bab440c",
+                "orden": 5,
+                "duration": 231173,
+                "genres": [
+                    "pop",
+                    "dance pop",
+                    "hip hop",
+                    "pittsburgh rap",
+                    "pop rap",
+                    "rap",
+                    "southern hip hop",
+                    "trap"
+                ],
+                "album": {
+                    "id": "6ijGiBcBfUwkoyHn5VUHU2",
+                    "name": "Overexposed Track By Track",
+                    "img": "https://i.scdn.co/image/ab67616d0000b273fc8633e22a7dba6aab817bff"
+                },
+                "artists": [
+                    {
+                        "id": "04gDigrS5kc9YWfZHwBETP",
+                        "name": "Maroon 5"
+                    },
+                    {
+                        "id": "137W8MRPWKqSmrBGDBFSop",
+                        "name": "Wiz Khalifa"
+                    }
+                ]
+            }
+        ],
+        "artistas": [
+            {
+                "id": "5Pwc4xIPtQLFEnJriah9YJ",
+                "name": "OneRepublic",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb77bf00f67e21f514dc44c485",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab6761610000517477bf00f67e21f514dc44c485",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f17877bf00f67e21f514dc44c485",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "dance pop",
+                    "piano rock",
+                    "pop",
+                    "pop rock"
+                ],
+                "orden": 1
+            },
+            {
+                "id": "3AQRLZ9PuTAozP28Skbq8V",
+                "name": "The Script",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebf01bf904b446e4a043acb867",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab67616100005174f01bf904b446e4a043acb867",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f178f01bf904b446e4a043acb867",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "celtic rock",
+                    "dance pop",
+                    "neo mellow",
+                    "pop",
+                    "pop rock"
+                ],
+                "orden": 2
+            },
+            {
+                "id": "3FUY2gzHeIiaesXtOAdB7A",
+                "name": "Train",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb9ac5323dcebb1c7b80dcaf64",
+                        "width": 640
+                    },
+                    {
+                        "height": 320,
+                        "url": "https://i.scdn.co/image/ab676161000051749ac5323dcebb1c7b80dcaf64",
+                        "width": 320
+                    },
+                    {
+                        "height": 160,
+                        "url": "https://i.scdn.co/image/ab6761610000f1789ac5323dcebb1c7b80dcaf64",
+                        "width": 160
+                    }
+                ],
+                "genres": [
+                    "dance pop",
+                    "neo mellow",
+                    "pop",
+                    "pop rock"
+                ],
+                "orden": 3
+            }
+        ],
+        "compatibility": 1.24
+    }
+]
