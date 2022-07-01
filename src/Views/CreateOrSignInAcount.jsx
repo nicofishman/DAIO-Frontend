@@ -24,7 +24,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
 
     const [credentials, setCredentials] = useState({})
 
-    const { setSpotifyId, handleChangeNombre } = useRegisterContext()
+    const { setSpotifyId, handleChangeNombre, setProgressBar } = useRegisterContext()
 
     const [requestCode, responseCode, spotifyPromptAsync] = useAuthRequest(
         {
@@ -109,6 +109,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
             console.log('User is not in db', user.id);
             setSpotifyId(user.id)
             handleChangeNombre(user.id)
+            setProgressBar(0)
             navigation.navigate('Register', { screen: 'RegisterFirst' }, { user, accessToken });
         } else {
             navigation.navigate('Main', { screen: 'Match' });
