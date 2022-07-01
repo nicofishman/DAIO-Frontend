@@ -24,19 +24,9 @@ const RegisterNavigation = () => {
       };
       
     return (
-        <RegisterStack.Navigator
-          screenOptions={{ animation: 'none' }}
-        >
-            <RegisterStack.Screen 
-              name="RegisterFirst" 
-              component={RegisterFirst}
-              options={{ headerShown: false, animationEnabled: false,}}
-            />
-            <RegisterStack.Screen 
-              name="RegisterDescription" 
-              component={RegisterDescription}
-              options={{ headerShown: false, transitionSpec: {open: config, close: config}}}
-            />
+        <RegisterStack.Navigator>
+            <RegisterStack.Screen name="RegisterFirst"  component={RegisterFirst} options={{ headerShown: false }} />
+            <RegisterStack.Screen name="RegisterDescription" component={RegisterDescription} options={{ headerShown: false }} />
             <RegisterStack.Screen name="RegisterSecond" component={RegisterSecond} options={{ headerShown: false }} />
             <RegisterStack.Screen name="RegisterSearch" component={RegisterSearch} options={{ headerShown: false }} />
         </RegisterStack.Navigator>
