@@ -49,7 +49,7 @@ const RegisterSearch = ({ navigation, route }) => {
                         value={text}
                         caretHidden={true}
                         placeholder={`Buscar ${type}...`}
-                        placeholderTextColor="#999"
+                        placeholderTextColor="#b3b3b3"
                     />
                     <Ionicons style={styles.iconSearch} name="search-outline"></Ionicons>
                 </View>
@@ -76,7 +76,7 @@ export default RegisterSearch
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3b3b3b',
+        backgroundColor: '#191414',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -108,14 +108,15 @@ const styles = StyleSheet.create({
     line: {
         width: 300,
         height: 4,
-        backgroundColor: 'black',
+        backgroundColor: '#535353',
         marginBottom: 40,
         borderRadius: 5
     },
     iconSearch: {
-        fontSize: 30,
+        fontSize: 28,
         justifyContent: 'center',
         alignContent: 'center',
-        marginRight: 10
+        marginRight: 10,
+        color: '#535353'
     }
 })
