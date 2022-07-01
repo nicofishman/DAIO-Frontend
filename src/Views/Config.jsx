@@ -10,8 +10,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const Config = ({ navigation, route }) => {
     const [text, setText] = useState("");
-    const [search, setSearch] = useState(undefined)
-    const [user, setUser] = useState(undefined)
+    const [search, setSearch] = useState('')
+    const [user, setUser] = useState('')
     const [type, setType] = useState('cancion')
     const [accessToken, setAccessToken] = useState(null)
 
@@ -25,14 +25,13 @@ const Config = ({ navigation, route }) => {
     }, [])
 
     useEffect(() => {
-        setSearch(undefined)
-        setText(undefined)
+        setSearch('')
+        setText('')
     }, [type])
 
     const onChangeText = async (e) => {
         setText(e);
-        console.log(`"${e}"`);
-        if (text.length === 0 || !e) {
+        if (text.length && text.length === 0 || !e) {
             setSearch(undefined);
             console.log('vaciooooooooo');
             return;

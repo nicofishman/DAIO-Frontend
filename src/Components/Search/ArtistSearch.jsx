@@ -20,7 +20,7 @@ const ArtistSearch = ({ artist }) => {
     if (!artist.images.length > 0) return null;
     return (
         <View style={[styles.container, styles.shadowBox]}>
-            <View style={{ justifyContent: 'flex-start', flexDirection: 'row' }}>
+            <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1, overflow: 'hidden' }}>
                 {artist.images[0].url &&
                     <Image style={styles.image} source={{ uri: artist.images[0].url }} />
                 }
@@ -28,7 +28,7 @@ const ArtistSearch = ({ artist }) => {
                     <Text style={styles.title}>{artist.name}</Text>
                 </View>
             </View>
-            <View>
+            <View style={{ paddingLeft: 10 }}>
                 <TouchableWithoutFeedback onPress={handleSelect}>
                     <AntDesign style={styles.icon} name="pluscircleo" />
                 </TouchableWithoutFeedback>

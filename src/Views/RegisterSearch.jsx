@@ -10,7 +10,7 @@ import { useRegisterContext } from '../Context/RegisterContext';
 
 const RegisterSearch = ({ navigation, route }) => {
     const [text, setText] = useState("");
-    const [search, setSearch] = useState(undefined)
+    const [search, setSearch] = useState('')
     const [accessToken, setAccessToken] = useState(null)
     const { type } = route.params
 
@@ -20,21 +20,20 @@ const RegisterSearch = ({ navigation, route }) => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");
             setAccessToken(result)
-            const { songPreference, artistPreference } = useRegisterContext();
-            setArrayToAdd(type === 'cancion' ? songPreference : type === 'artista' && artistPreference)
         })();
     }, [])
 
     const onChangeText = async (e) => {
         setText(e);
         if (text.length === 0 || !e) {
-            setSearch(undefined);
+            setSearch('');
             return;
         }
         if (type === 'cancion') {
             const res = await searchTrack(e, accessToken);
             setSearch(res);
         } else if (type === 'artista') {
+            console.log(text.length);
             const res = await searchArtist(e, accessToken);
             setSearch(res);
         }

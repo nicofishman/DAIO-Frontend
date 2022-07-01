@@ -21,14 +21,14 @@ const SongSearch = ({ song }) => {
     let artists = song.artists.map(art => art.name).join(', ');
     return (
         <View style={[styles.container, styles.shadowBox]}>
-            <View style={{ justifyContent: 'flex-start', flexDirection: 'row' }}>
+            <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1, overflow: 'hidden' }}>
                 <Image style={styles.image} source={{ "uri": song.album.images[0].url }} />
                 <View style={styles.textSong}>
                     <Text style={styles.title}>{song.name}</Text>
                     <Text style={styles.artists}>{artists}</Text>
                 </View>
             </View>
-            <View>
+            <View style={{ paddingLeft: 10 }}>
                 <TouchableWithoutFeedback onPress={handleSelect}>
                     <AntDesign style={styles.icon} name="pluscircleo" />
                 </TouchableWithoutFeedback>
