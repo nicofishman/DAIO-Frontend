@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         bottom: '-10%',
         height: '90%',
         alignItems: "center",
-        backgroundColor: "#f3f3f3",
+        backgroundColor: "#f1f1f1",
         borderRadius: 20
     },
     textName: {
