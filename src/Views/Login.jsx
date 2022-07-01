@@ -22,23 +22,11 @@ const discovery = {
 export default function Login({ navigation }) {
     const [data, setData] = useState('User is not logged in');
     const [accessToken, setAccessToken] = useState(undefined);
+    const [beingCalled, setBeingCalled] = useState(false)
 
     const [credentials, setCredentials] = useState({})
 
     const { setSpotifyId, handleChangeNombre } = useRegisterContext()
-
-    useEffect(async () => {
-        const spotifyCredentials = await getSpotifyCredentials();
-        setCredentials(spotifyCredentials)
-        console.log(makeRedirectUri(spotifyCredentials.redirectUri))
-        const access_token = await AsyncStorage.getItem('access_token');
-        if (access_token) {
-            setAccessToken(access_token)
-        } else {
-            setAccessToken(undefined)
-        }
-    }, []);
-
 
     const [requestCode, responseCode, spotifyPromptAsync] = useAuthRequest(
         {
@@ -52,6 +40,29 @@ export default function Login({ navigation }) {
         },
         discovery
     );
+    useEffect(async () => {
+
+        const spotifyCredentials = await getSpotifyCredentials();
+        setCredentials(spotifyCredentials)
+        // console.log(makeRedirectUri(spotifyCredentials.redirectUri))
+        const access_token = await AsyncStorage.getItem('access_token');
+        if (access_token) {
+            setAccessToken(access_token)
+        } else {
+            setAccessToken(undefined)
+        }
+    }, []);
+
+
+    useEffect(async () => {
+        console.log('?');
+        if (Object.keys(credentials).length > 0 && !beingCalled) {
+            setBeingCalled(true)
+            spotifyPromptAsync();
+        }
+    }, [credentials])
+
+
 
 
     const logOut = async () => {

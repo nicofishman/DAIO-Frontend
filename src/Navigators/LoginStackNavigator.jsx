@@ -10,7 +10,7 @@ import { RegisterProvider } from '../Context/RegisterContext';
 const LoginStackNavigator = () => {
     const LoginStack = createNativeStackNavigator();
     return (
-        <LoginStack.Navigator initialRouteName='Login'>
+        <LoginStack.Navigator initialRouteName='CreateOrSignInAcount'>
             <LoginStack.Screen name='CreateOrSignInAcount' component={CreateOrSignInAcount} options={{ headerShown: false }} />
             <LoginStack.Screen name="Login" component={Login} options={{ headerShown: false }} />
             <LoginStack.Screen name="Loading" component={LoadingScreen} options={{ headerShown: false }} />
