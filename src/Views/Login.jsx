@@ -117,7 +117,6 @@ export default function Login({ navigation }) {
         }
     }
 
-
     return (
         <>
             {
@@ -126,7 +125,7 @@ export default function Login({ navigation }) {
                     :
                     (
                         <View style={styles.container}>
-                            <SpotifyLogin title='Spotify Login' fnOnPress={spotifyPromptAsync} />
+                            <SpotifyLogin title='Spotify Login'/>
                         </View>
                     )
             }

@@ -103,9 +103,8 @@ const styles = StyleSheet.create({
     backgroundImg: {
         position: 'absolute',
         zIndex: -10,
-        resizeMode: 'cover',
+        resizeMode: 'contain',
         width: windowWidth,
-        height: 165,
         top: 180
     },
     textTitle: {
