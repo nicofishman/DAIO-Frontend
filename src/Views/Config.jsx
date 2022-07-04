@@ -33,7 +33,6 @@ const Config = ({ navigation, route }) => {
         setText(e);
         if (text.length && text.length === 0 || !e) {
             setSearch(undefined);
-            console.log('vaciooooooooo');
             return;
         }
         if (type === 'cancion') {

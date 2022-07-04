@@ -32,7 +32,6 @@ const checkRefreshToken = async () => {
         console.log('refreshing');
         const refreshToken = await AsyncStorage.getItem('refresh_token');
         const newRefreshTokenResponse = await refreshLogin(refreshToken);
-        console.log('???', newRefreshTokenResponse);
         // await AsyncStorage.setItem('refresh_token', newRefreshTokenResponse.refresh_token);
         await AsyncStorage.setItem('access_token', newRefreshTokenResponse.access_token);
         await AsyncStorage.setItem('refresh_date', new Date(new Date().getTime() + (newRefreshTokenResponse.expires_in * 1000)).toISOString());
@@ -42,11 +41,6 @@ const checkRefreshToken = async () => {
             refreshDate: new Date(new Date().getTime() + (newRefreshTokenResponse.expires_in * 1000)),
         };
     } else {
-        console.log('??', {
-            accessToken: await AsyncStorage.getItem('access_token'),
-            refreshToken: await AsyncStorage.getItem('refresh_token'),
-            refreshDate: await AsyncStorage.getItem('refresh_date'),
-        });
         return {
             accessToken: await AsyncStorage.getItem('access_token'),
             refreshToken: await AsyncStorage.getItem('refresh_token'),
@@ -117,7 +111,6 @@ const refreshLogin = async (refreshToken) => {
 
 export const getUserData = async () => {
     const { accessToken: accessTokenRes } = await checkRefreshToken();
-    console.log('?', accessTokenRes);
     const userData = await axios.get('http://daio-backend.herokuapp.com/spotify/me', { headers: { accessToken: accessTokenRes } });
     return userData.data;
 }
@@ -156,18 +149,46 @@ export const addUser = async (userData) => {
 
 export const getNotInteractedUsers = async (userId) => {
     const { accessToken: accessTokenRes } = await checkRefreshToken();
-    // console.log('\n' + accessTokenRes + '\n');
     const result = await axios.get('http://daio-backend.herokuapp.com/match/dameusuarios', { headers: { accessToken: accessTokenRes, userId: userId } });
-    // console.log(result.data);
     return result.data;
 }
 
 export const addInteraction = async (interactionData) => {
-    console.log(interactionData);
     try {
         const res = await axios.post('http://daio-backend.herokuapp.com/database/addinteraction', interactionData);
         return res.data;
     } catch (error) {
         console.log(error);
     }
+}
+
+export const getGenresByArtists = async (artists) => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const genres = [];
+    await Promise.all(artists.map(async (artist) => {
+        await axios.get(`https://api.spotify.com/v1/artists/${artist.id}`, { headers: { Authorization: `Bearer ${accessTokenRes}` } })
+            .catch(error => {
+                console.log('error', error.request);
+            })
+            .then(response => {
+                genres.push(response.data.genres);
+            });
+    }));
+    return genres.flat();
+}
+
+export const getArtistsById = async (artistId) => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const artistData = []
+    await Promise.all(artistId.map(async (artist) => {
+        await axios.get(`https://daio-backend.herokuapp.com/spotify/artistid/${artist}`, { headers: { accessToken: accessTokenRes } })
+            .then(response => {
+                // console.log('?', response.data);
+                artistData.push(response.data);
+            })
+            .catch(error => {
+                console.log('error');
+            });
+    }));
+    return artistData;
 }

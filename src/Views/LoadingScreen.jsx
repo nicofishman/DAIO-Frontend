@@ -6,8 +6,6 @@ const LoadingScreen = ({ navigation }) => {
     useEffect(() => {
         (async () => {
             const refreshDate = await AsyncStorage.getItem("refreshDate");
-
-            console.log(refreshDate, "refreshDate", new Date().getTime());
             if (refreshDate) {
                 if (refreshDate - new Date().getTime() > 0) {
                     navigation.navigate("Main", { screen: 'Match' });

@@ -9,7 +9,6 @@ const SongBox = () => {
     const navigation = useNavigation();
 
     const removeSong = (id) => {
-        console.log(id);
         setSongPreference(songPreference.filter(song => song.id !== id))
     }
 
@@ -21,12 +20,12 @@ const SongBox = () => {
 
     return (
         <View style={styles.box}>
-            <Text style={{fontSize: 20, fontStyle: 'italic'}}>Canciones</Text>
+            <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Canciones</Text>
             <View style={styles.songsBox}>
                 {
                     new Array(5).fill(0).map((_, index) => {
                         const song = songPreference[index];
-                        const displayText = song && song.name + ' - ' + song.artists.join(', ')
+                        const displayText = song && song.name + ' - ' + song.artists.map(art => art.name).join(', ')
                         return (
                             song ?
                                 <View key={index} style={styles.songRow}>

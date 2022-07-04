@@ -33,7 +33,6 @@ const RegisterSearch = ({ navigation, route }) => {
             const res = await searchTrack(e, accessToken);
             setSearch(res);
         } else if (type === 'artista') {
-            console.log(text.length);
             const res = await searchArtist(e, accessToken);
             setSearch(res);
         }

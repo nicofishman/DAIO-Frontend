@@ -10,7 +10,6 @@ const ArtistBox = () => {
     const navigation = useNavigation();
 
     const removeArtist = (id) => {
-        console.log(id);
         setArtistPreference(artistPreference.filter(artist => artist.id !== id))
     }
 
@@ -22,7 +21,7 @@ const ArtistBox = () => {
 
     return (
         <View style={styles.box}>
-            <Text style={{fontSize: 20, fontStyle: 'italic'}}>Artistas</Text>
+            <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Artistas</Text>
             <View style={styles.artistBox}>
                 {
                     new Array(3).fill(0).map((_, index) => {
@@ -31,7 +30,7 @@ const ArtistBox = () => {
                             artist ?
                                 <View key={index} style={styles.card}>
                                     <View>
-                                        <Image style={styles.image} source={{ uri: artist.img }} />
+                                        <Image style={styles.image} source={{ uri: artist.image }} />
                                         <TouchableWithoutFeedback onPress={() => removeArtist(artist.id)}>
                                             <View style={styles.trashBox}>
                                                 <Icon name="trash-alt" style={styles.trash} />

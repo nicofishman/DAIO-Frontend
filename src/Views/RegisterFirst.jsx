@@ -52,10 +52,6 @@ const RegisterFirst = ({ navigation }) => {
                 return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar9.png')} style={styles.avatar} />
         }
     }
-    // useEffect(() => {
-    //     console.log(avatarId);
-    //     showIconSelected()
-    // }, [avatarId])
 
     useEffect(() => {
         if (isOpenAvatarPicker) {
@@ -108,7 +104,6 @@ const RegisterFirst = ({ navigation }) => {
                                         {row.map((image, index) => {
                                             return (
                                                 <TouchableWithoutFeedback key={index} onPress={() => {
-                                                    console.log(index, rowIndex);
                                                     setAvatarId(index + (rowIndex * 3))
                                                 }}>
                                                     <Image

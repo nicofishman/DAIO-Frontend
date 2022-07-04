@@ -44,7 +44,6 @@ export default function Login({ navigation }) {
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials();
         setCredentials(spotifyCredentials)
-        // console.log(makeRedirectUri(spotifyCredentials.redirectUri))
         const access_token = await AsyncStorage.getItem('access_token');
         if (access_token) {
             setAccessToken(access_token)
@@ -52,15 +51,6 @@ export default function Login({ navigation }) {
             setAccessToken(undefined)
         }
     }, []);
-
-    // const logOut = async () => {
-    //     console.log('Logging out');
-    //     await AsyncStorage.setItem('access_token', '').then(() => {
-    //         setAccessToken(undefined);
-    //     }).catch(err => {
-    //         console.log(err);
-    //     });
-    // }
 
     const getTokenWithCode = async (code) => {
         const url = discovery.tokenEndpoint;
@@ -87,10 +77,8 @@ export default function Login({ navigation }) {
 
     useEffect(async () => {
         if (responseCode?.type === 'success') {
-            console.log(responseCode.params.code);
             const { code } = responseCode.params;
             const { access_token, refresh_token, expires_in } = await getTokenWithCode(code);
-            console.log({ access_token, refresh_token, expires_in })
             await save('access_token', access_token)
             await save('refresh_token', refresh_token)
             await save('refresh_date', (new Date().getTime() + expires_in * 1000).toString())
@@ -103,12 +91,10 @@ export default function Login({ navigation }) {
 
     const handleLogin = async (token) => {
         const user = await getUserData(token);
-        console.log(user.display_name);
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
             //TODO: SETSPOTIFYID ESTA VACIO
-            console.log('User is not in db', user.id);
             setSpotifyId(user.id)
             handleChangeNombre(user.id)
             navigation.navigate('Register', { screen: 'RegisterFirst' }, { user, accessToken });
@@ -125,7 +111,7 @@ export default function Login({ navigation }) {
                     :
                     (
                         <View style={styles.container}>
-                            <SpotifyLogin title='Spotify Login'/>
+                            <SpotifyLogin title='Spotify Login' />
                         </View>
                     )
             }

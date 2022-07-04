@@ -41,7 +41,6 @@ const CreateOrSignInAcount = ({ navigation }) => {
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials();
         setCredentials(spotifyCredentials)
-        // console.log(makeRedirectUri(spotifyCredentials.redirectUri))
         const access_token = await AsyncStorage.getItem('access_token');
         if (access_token) {
             setAccessToken(access_token)
@@ -49,15 +48,6 @@ const CreateOrSignInAcount = ({ navigation }) => {
             setAccessToken(undefined)
         }
     }, []);
-
-    // const logOut = async () => {
-    //     console.log('Logging out');
-    //     await AsyncStorage.setItem('access_token', '').then(() => {
-    //         setAccessToken(undefined);
-    //     }).catch(err => {
-    //         console.log(err);
-    //     });
-    // }
 
     const getTokenWithCode = async (code) => {
         const url = discovery.tokenEndpoint;
@@ -84,10 +74,8 @@ const CreateOrSignInAcount = ({ navigation }) => {
 
     useEffect(async () => {
         if (responseCode?.type === 'success') {
-            console.log(responseCode.params.code);
             const { code } = responseCode.params;
             const { access_token, refresh_token, expires_in } = await getTokenWithCode(code);
-            console.log({ access_token, refresh_token, expires_in })
             await AsyncStorage.setItem('access_token', access_token);
             await AsyncStorage.setItem('refresh_token', refresh_token);
             await AsyncStorage.setItem('refresh_date', (new Date().getTime() + expires_in * 1000).toString());
@@ -100,9 +88,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
 
     const handleLogin = async (token) => {
         const user = await getUserData(token);
-        console.log(user);
         const usersInDb = await getUsers();
-        console.log(usersInDb);
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
         if (!isUserInDb) {
             //TODO: SETSPOTIFYID ESTA VACIO

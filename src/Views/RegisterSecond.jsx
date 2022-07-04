@@ -8,6 +8,7 @@ import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import * as Progress from 'react-native-progress';
 import ButtonBack from '../Components/Common/ButtonBack';
+import axios from 'axios';
 
 const RegisterSecond = ({ navigation }) => {
     const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId, avatarId, progressBar, setProgressBar } = useRegisterContext();
@@ -15,23 +16,32 @@ const RegisterSecond = ({ navigation }) => {
 
 
     const finishRegister = async () => {
-        const trackData = songPreference.map(song => {
-            return {
-                trackId: song.id,
-            }
-        })
-        const artistData = artistPreference.map(artist => {
-            return {
-                artistId: artist.id,
-            }
-        })
+        const accessToken = await AsyncStorage.getItem('accessToken');
+        console.log(accessToken);
+        // console.log({
+        //     spotifyId,
+        //     username,
+        //     description: descripcion,
+        //     avatarId: avatarId,
+        //     tracks: songPreference,
+        //     artists: artistPreference
+        // });
+        // axios.post('http://192.168.0.15:3000/spotify/nashe', {
+        //     spotifyId,
+        //     username,
+        //     description: descripcion,
+        //     avatarId: avatarId,
+        //     tracks: songPreference,
+        //     artists: artistPreference
+        // })
+
         await addUser({
             spotifyId,
             username,
             description: descripcion,
             avatarId: avatarId,
-            tracks: trackData,
-            artists: artistData
+            tracks: songPreference,
+            artists: artistPreference
         })
         setProgressBar(1);
         setTimeout(() => {

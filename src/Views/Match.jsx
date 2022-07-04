@@ -30,7 +30,6 @@ const Match = ({ navigation, route }) => {
             interactedWith: card.spotifyId,
             decision: true
         })
-        console.log(response);
         setVisualArtist(-1);
         setVisualSong(-1);
         return true; // return false if you wish to cancel the action
@@ -43,7 +42,6 @@ const Match = ({ navigation, route }) => {
             interactedWith: card.spotifyId,
             decision: false
         })
-        console.log(response);
         setVisualArtist(-1);
         setVisualSong(-1);
         return true;

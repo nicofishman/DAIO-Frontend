@@ -3,18 +3,41 @@ import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useRegisterContext } from '../../Context/RegisterContext';
 import { useNavigation } from '@react-navigation/native';
+import { getArtistsById } from '../../Handlers/AuthHandler';
 
 const SongSearch = ({ song }) => {
     const { setSongPreference, songPreference } = useRegisterContext();
     const navigation = useNavigation();
 
-    const handleSelect = () => {
+    const handleSelect = async () => {
+        const artistsData = await getArtistsById(song.artists.map(art => art.id));
+        console.log(artistsData);
+        const genres = artistsData.map(art => art.genres).flat();
+        console.log(song.id, genres);
         setSongPreference([...songPreference, {
             id: song.id,
             name: song.name,
             img: song.album.images[0].url,
-            artists: song.artists.map(artist => artist.name)
+            artists: artistsData,
+            preview_url: song.preview_url,
+            duration: song.duration_ms,
+            genres: genres,
+            albumId: song.album.id,
+            albumName: song.album.name,
+            albumImage: song.album.images[0].url,
         }]);
+        console.log({
+            id: song.id,
+            name: song.name,
+            img: song.album.images[0].url,
+            artists: artistsData,
+            preview_url: song.preview_url,
+            duration: song.duration_ms,
+            genres: genres,
+            albumId: song.album.id,
+            albumName: song.album.name,
+            albumImage: song.album.images[0].url,
+        });
         navigation.goBack();
     }
 
