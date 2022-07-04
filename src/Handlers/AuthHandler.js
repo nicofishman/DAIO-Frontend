@@ -146,9 +146,9 @@ export const getUsers = async () => {
 }
 
 export const addUser = async (userData) => {
-    // console.log(userData);
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
     try {
-        await axios.post('http://daio-backend.herokuapp.com/database/adduser', userData);
+        await axios.post('http://daio-backend.herokuapp.com/database/adduser', userData, { headers: { accessToken: accessTokenRes } });
     } catch (error) {
         console.log(error);
     }
