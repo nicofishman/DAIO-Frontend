@@ -28,13 +28,13 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                             setVisualArtist(-1);
                                         }}>
                                             <ImageBackground
-                                                source={{ "uri": song.album.img }}
+                                                source={{ "uri": song.albumImage }}
                                                 resizeMode='cover'
                                                 style={[styles.imageBackground, { height: styles.songCardDetails.height }]} imageStyle={{ opacity: 0.2, overflow: 'hidden' }}>
                                                 <View style={[styles.songCardDetails, { opacity: 1 }]}>
                                                     <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
                                                     <View style={{ flexDirection: 'row', top: 10 }}>
-                                                        <Image style={styles.songImgDetails} source={{ "uri": song.album.img }} />
+                                                        <Image style={styles.songImgDetails} source={{ "uri": song.albumImage }} />
                                                         <View style={{ flexDirection: 'column' }}>
                                                             <Text style={[styles.artistSong, styles.artistSongDetails]} numberOfLines={2}>{artists}</Text>
                                                             <Text style={styles.songDuration}>{minutes}:{seconds >= 10 ? seconds : `0${seconds}`}</Text>
@@ -44,7 +44,7 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                             </ImageBackground>
                                         </TouchableWithoutFeedback>
                                         :
-                                        <TouchableWithoutFeedback 
+                                        <TouchableWithoutFeedback
                                             onPress={() => {
                                                 setVisualArtist(-1);
                                                 setVisualSong(index);
@@ -77,9 +77,9 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
                                         }}>
                                         <View >
                                             <Image
-                                                key={artist.images[0].url}
+                                                key={artist.image}
                                                 style={styles.artistImg}
-                                                source={{ uri: artist.images[0].url }}
+                                                source={{ uri: artist.image }}
                                             />
                                         </View>
                                     </TouchableWithoutFeedback>

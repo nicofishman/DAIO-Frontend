@@ -105,6 +105,7 @@ const RegisterFirst = ({ navigation }) => {
                                             return (
                                                 <TouchableWithoutFeedback key={index} onPress={() => {
                                                     setAvatarId(index + (rowIndex * 3))
+                                                    setIsOpenAvatarPicker(false);
                                                 }}>
                                                     <Image
                                                         key={index}

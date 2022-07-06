@@ -54,11 +54,11 @@ const RegisterSearch = ({ navigation, route }) => {
                 </View>
                 <View style={styles.line}></View>
                 {search ?
-                    type === 'cancion' ? search?.tracks.items.map((item, index) => {
+                    type === 'cancion' ? search.map((item, index) => {
                         return index <= 4 ? (
                             <SongSearch song={item} key={index} />
                         ) : null
-                    }) : search?.artists.items.map((item, index) => {
+                    }) : search.map((item, index) => {
                         return index <= 4 ? (
                             <ArtistSearch artist={item} key={index} />
                         ) : null

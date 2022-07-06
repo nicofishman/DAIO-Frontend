@@ -26,7 +26,7 @@ const RegisterSecond = ({ navigation }) => {
         //     tracks: songPreference,
         //     artists: artistPreference
         // });
-        // axios.post('http://192.168.0.15:3000/spotify/nashe', {
+        // await axios.post('http://192.168.0.15:3000/database/adduser', {
         //     spotifyId,
         //     username,
         //     description: descripcion,
@@ -34,7 +34,6 @@ const RegisterSecond = ({ navigation }) => {
         //     tracks: songPreference,
         //     artists: artistPreference
         // })
-
         await addUser({
             spotifyId,
             username,
