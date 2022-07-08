@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useMemo, useEffect } from 'react';
+import { createContext, useState, useContext, useMemo } from 'react';
 export const RegisterContext = createContext();
 
 export function RegisterProvider(props) {
@@ -24,23 +24,25 @@ export function RegisterProvider(props) {
         }
     }
 
-    const value = {
-        username,
-        avatarId,
-        descripcion,
-        charsLeft,
-        spotifyId,
-        songPreference,
-        artistPreference,
-        handleChangeNombre,
-        setAvatarId,
-        handleChangeDesc,
-        setSpotifyId,
-        setSongPreference,
-        setArtistPreference,
-        progressBar,
-        setProgressBar
-    };
+    const value = useMemo(() => {
+        return ({
+            username,
+            avatarId,
+            descripcion,
+            charsLeft,
+            spotifyId,
+            songPreference,
+            artistPreference,
+            handleChangeNombre,
+            setAvatarId,
+            handleChangeDesc,
+            setSpotifyId,
+            setSongPreference,
+            setArtistPreference,
+            progressBar,
+            setProgressBar
+        })
+    }, [username, avatarId, descripcion, charsLeft, spotifyId, songPreference, artistPreference, handleChangeNombre, handleChangeDesc, progressBar])
 
     return (
         <RegisterContext.Provider value={value}>

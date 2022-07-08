@@ -12,7 +12,8 @@ import { NavigationHelpersContext } from '@react-navigation/native'
 
 const RegisterFirst = ({ navigation }) => {
     const { username, handleChangeNombre, avatarId, setAvatarId, progressBar, setProgressBar } = useRegisterContext();
-    const [isOpenAvatarPicker, setIsOpenAvatarPicker] = useState(false);
+    const [isOpenAvatarPicker, setIsOpenAvatarPicker] = useState(true);
+    const [visualizarContinue, setVisualizarContinue] = useState(false);
     const [iconText, setIconText] = useState('edit');
     let sourceImage = ['../Assets/Avatars/AvatarsToChoose/avatar', avatarId, '.png'].join('');
 
@@ -55,9 +56,15 @@ const RegisterFirst = ({ navigation }) => {
 
     useEffect(() => {
         if (isOpenAvatarPicker) {
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isOpenAvatarPicker) {
             setIconText('close');
         } else {
             setIconText('edit');
+            setVisualizarContinue(true);
         }
     }, [isOpenAvatarPicker])
 
@@ -143,7 +150,11 @@ const RegisterFirst = ({ navigation }) => {
                 </View>
             )
             }
-            <ButtonContinue onPress={continuar} />
+            {
+                visualizarContinue && (
+                    <ButtonContinue onPress={continuar} />
+                )
+            }
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
             <StatusBar
                 barStyle="dark-content"
