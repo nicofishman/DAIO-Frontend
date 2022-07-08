@@ -14,20 +14,19 @@ import 'react-native-gesture-handler';
 export default function App() {
     const Stack = createNativeStackNavigator();
 
-   
 
-    
+
+
 
     return (
         <RegisterProvider>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName='LoginNavigator'>
                     <Stack.Screen name="LoginNavigator" component={LoginStackNavigator} options={{ headerShown: false }} />
-                    <Stack.Screen name='Main' component={MainBottomTabNavigator} options={{ headerShown: false }}/>
-                    <Stack.Screen name="Register" component={RegisterNavigation} options={{ headerShown: false }}/>
+                    <Stack.Screen name='Main' component={MainBottomTabNavigator} options={{ headerShown: false }} />
+                    <Stack.Screen name="Register" component={RegisterNavigation} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
-
             <StatusBar style="auto" />
         </RegisterProvider>
     );

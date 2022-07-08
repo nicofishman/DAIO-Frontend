@@ -1,6 +1,7 @@
 import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar, SafeAreaView, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useRegisterContext } from '../Context/RegisterContext'
+import ButtonBack from '../Components/Common/ButtonBack'
 import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Progress from 'react-native-progress';
@@ -16,6 +17,11 @@ const RegisterFirst = ({ navigation }) => {
     const [visualizarContinue, setVisualizarContinue] = useState(false);
     const [iconText, setIconText] = useState('edit');
     let sourceImage = ['../Assets/Avatars/AvatarsToChoose/avatar', avatarId, '.png'].join('');
+
+    const volver = () => {
+        setProgressBar(0);
+        navigation.goBack()
+    }
 
     let AvatarArray = [
         [require('../Assets/Avatars/AvatarsToChoose/avatar1.png'),
@@ -83,6 +89,9 @@ const RegisterFirst = ({ navigation }) => {
                 color='rgb(94, 157, 181)'
                 style={styles.progressBar}
             />
+            <View style={styles.buttonBack} >
+                <ButtonBack onPress={volver} />
+            </View>
             <View style={{ top: 190 }}>
                 <TouchableWithoutFeedback onPress={() => setIsOpenAvatarPicker(!isOpenAvatarPicker)}>
                     <View>
@@ -90,10 +99,14 @@ const RegisterFirst = ({ navigation }) => {
                             //XD no hay imagenes dinamicas en rn
                             showIconSelected()
                         }
-                        <MaterialIcons
-                            name={iconText}
-                            style={styles.edit}
-                        />
+                        {
+                            visualizarContinue && (
+                                <MaterialIcons
+                                    name={iconText}
+                                    style={styles.edit}
+                                />
+                            )
+                        }
 
                     </View>
                 </TouchableWithoutFeedback>
@@ -155,6 +168,7 @@ const RegisterFirst = ({ navigation }) => {
                     <ButtonContinue onPress={continuar} />
                 )
             }
+
             <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
             <StatusBar
                 barStyle="dark-content"
@@ -244,5 +258,10 @@ const styles = StyleSheet.create({
         borderRadius: 80,
         resizeMode: 'contain',
         marginRight: 5,
-    }
+    },
+    buttonBack: {
+        position: 'absolute',
+        top: StatusBar.currentHeight + 20,
+        left: 35
+    },
 })

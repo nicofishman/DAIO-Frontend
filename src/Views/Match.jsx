@@ -5,7 +5,7 @@ import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
 import { addInteraction, getNotInteractedUsers, getUsersAndInfo } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { LinearGradient } from 'react-native-linear-gradient';
 
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
@@ -78,7 +78,7 @@ const Match = ({ navigation, route }) => {
 };
 
 export default Match;
-0
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
