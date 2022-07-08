@@ -16,8 +16,8 @@ const InnerCard = ({ user, visualArtist, visualSong, setVisualArtist, setVisualS
             flip={isFlipped}
         >
             <View style={styles.songsAll}>
-                <View style={styles.arrowAndText}>
-                    <Text style={styles.tituloCoA}>Canciones</Text>
+                <View style={[styles.arrowAndText, { marginRight: 20, }]}>
+                    <Text style={[styles.tituloCoA, styles.tituloCanciones, styles.shadowBox]}>Canciones</Text>
                     <TouchableWithoutFeedback onPress={() => setIsFlipped(!isFlipped)}>
                         <Ionicons style={[styles.flipCardArrow, styles.shadowBox, { transform: [{ scaleX: -1 }] }]} name="ios-return-up-back"></Ionicons>
                     </TouchableWithoutFeedback>
@@ -33,11 +33,11 @@ const InnerCard = ({ user, visualArtist, visualSong, setVisualArtist, setVisualS
                 </View>
             </View>
             <View style={styles.artistAll}>
-                <View style={styles.arrowAndText}>
+                <View style={[styles.arrowAndText, { marginLeft: 20, }]}>
                     <TouchableWithoutFeedback onPress={() => setIsFlipped(!isFlipped)}>
                         <Ionicons style={[styles.flipCardArrow, styles.shadowBox]} name="ios-return-up-back"></Ionicons>
                     </TouchableWithoutFeedback>
-                    <Text style={styles.tituloCoA}>Artistas</Text>
+                    <Text style={[styles.tituloCoA, styles.tituloArtistas, styles.shadowBox]}>Artistas</Text>
                 </View>
                 <View style={styles.artistContainer}>
                     {
@@ -59,6 +59,23 @@ const styles = StyleSheet.create({
     tituloCoA: {
         fontSize: 16,
         alignSelf: 'center',
+        fontWeight: 'bold',
+    },
+    tituloCanciones: {
+        backgroundColor: '#81B2D2',
+        paddingLeft: 20,
+        paddingVertical: 5,
+        paddingRight: 10,
+        borderTopRightRadius: 50,
+        borderBottomRightRadius: 50,
+    },
+    tituloArtistas: {
+        backgroundColor: '#CB7273',
+        paddingRight: 20,
+        paddingVertical: 5,
+        paddingLeft: 10,
+        borderTopLeftRadius: 50,
+        borderBottomLeftRadius: 50,
     },
     flipCardArrow: {
         fontSize: 24,
@@ -102,7 +119,6 @@ const styles = StyleSheet.create({
     arrowAndText: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 20,
         alignItems: 'center'
     },
     songsContainer: {
