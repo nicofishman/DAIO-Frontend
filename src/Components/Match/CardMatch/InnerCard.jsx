@@ -62,18 +62,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     tituloCanciones: {
-        backgroundColor: '#81B2D2',
+        backgroundColor: '#88c4eb',
         paddingLeft: 20,
         paddingVertical: 5,
-        paddingRight: 10,
+        paddingRight: 18,
         borderTopRightRadius: 50,
         borderBottomRightRadius: 50,
     },
     tituloArtistas: {
-        backgroundColor: '#CB7273',
+        backgroundColor: '#eb787c', 
         paddingRight: 20,
         paddingVertical: 5,
-        paddingLeft: 10,
+        paddingLeft: 18,
         borderTopLeftRadius: 50,
         borderBottomLeftRadius: 50,
     },
@@ -81,8 +81,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginRight: 6,
         padding: 4,
+        paddingHorizontal: 18,
         backgroundColor: '#f3f3f3',
-        borderRadius: 10,
+        borderRadius: 16,
         marginTop: 5
     },
     cardMusic: {

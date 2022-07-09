@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import NavBar from "../Components/Common/NavBar";
 import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
 import { addInteraction, getNotInteractedUsers, getUsersAndInfo } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'react-native-linear-gradient';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
@@ -63,10 +64,18 @@ const Match = ({ navigation, route }) => {
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
                     renderNoMoreCards={() => <StatusCard text="No more cards..." />}
                     actions={{
-                        nope: { show: false, onAction: handleNope },
-                        yup: { show: false, onAction: handleYup },
+                        nope: {
+                            view: <View style={[styles.handleBox, {backgroundColor: '#ff7374'}]}><Text style={styles.handleBoxText}>Nah...</Text><Ionicons style={[styles.handleBoxText, styles.handleIcon, {color: '#ff7374'}]} name="close"/></View>, 
+                            containerStyle: styles.BoxViewNope, 
+                            onAction: handleNope,
+                        },
+                        yup: { 
+                            view: <View style={[styles.handleBox, {backgroundColor: '#69f079'}]}><Text style={styles.handleBoxText}>Like :D</Text><Ionicons style={[styles.handleBoxText, styles.handleIcon, {color: '#69f079'}]} name="musical-note"/></View>, 
+                            containerStyle: styles.BoxViewLike, 
+                            onAction: handleYup
+                        },
                     }}
-
+                    swipeThreshold={100}
                     stack={true}
                     stackDepth={1}
                     stackOffsetX={0}
@@ -79,11 +88,47 @@ const Match = ({ navigation, route }) => {
 
 export default Match;
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#ffdbe7",
         alignItems: "center",
         justifyContent: "center",
+
+    },
+    handleBox: { 
+        paddingLeft: 10, 
+        paddingRight: 7,
+        paddingVertical: 5, 
+        height: 60,
+        borderRadius: 20, 
+        top: 0, 
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexDirection: 'row',
+    },
+    BoxViewNope: {
+        bottom: windowHeight * 0.85, 
+        left: windowWidth * 0.45,
+        borderWidth: 0,
+    },
+    BoxViewLike: {
+        bottom: windowHeight * 0.85, 
+        left: windowWidth * 0.03,
+        borderWidth: 0,
+    },
+    handleBoxText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#ffffff',
+    },
+    handleIcon: {
+        fontSize: 40, 
+        marginLeft: 15, 
+        borderRadius: 15,
+        backgroundColor: '#ffdbe7'
     },
 });

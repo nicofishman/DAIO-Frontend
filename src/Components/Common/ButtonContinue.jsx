@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
     textButton: {
         flex: 1,
         fontSize: 22,
-        color: "#000",
         //fontFamily: 'AverageSans_400Regular',
         letterSpacing: 0,
         textAlign: "center",
         textAlignVertical: "center",
         borderColor: '#5E9DB5',
+        color: '#000',
         borderWidth: 3,
         paddingVertical: 10,
         paddingHorizontal: 80,
