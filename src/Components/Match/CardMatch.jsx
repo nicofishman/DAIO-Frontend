@@ -8,14 +8,17 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
     
     const [loaded] = useFonts({
         Capriola: require('../../../assets/fonts/Capriola.ttf'),
+        Quicksand: require('../../../assets/fonts/Quicksand/Quicksand.ttf'),
+        QuicksandRegular: require('../../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
     });
 
     if (!loaded) {
         return null;
     }
+    
     return (
-            <LinearGradient colors={['#cce6ff', '#ffcccc']} style={styles.card}>
-            <Text style={[styles.textName, {fontFamily: 'Capriola'}]}>{data.username}</Text>
+            <LinearGradient colors={['#cce6ff', '#fff','#e3e3e3', '#fff', '#ffcccc']} style={styles.card}>
+            <Text style={[styles.textName]}>{data.username}</Text>
             <Text style={styles.textDesc}>{data.description}</Text>
             <InnerCard user={data} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong} />
             <View style={{ width: '100%', height: '8%' }}>
@@ -39,7 +42,8 @@ const styles = StyleSheet.create({
         fontSize: 36,
         marginRight: "auto",
         marginLeft: 20,
-        marginTop: 10
+        marginTop: 10,
+        fontFamily: 'QuicksandRegular',
     },
     textDesc: {
         fontSize: 16,
@@ -48,5 +52,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlign: "justify",
         overflow: "hidden",
+        fontFamily: 'Quicksand',
     }
 })

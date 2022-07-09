@@ -127,13 +127,13 @@ const styles = StyleSheet.create({
     shadowBoxCard: {
         shadowColor: "#000",
         shadowOffset: {
-            width: 0,
+            width: 30,
             height: 10,
         },
-        shadowOpacity: 0.51,
+        shadowOpacity: 0.91,
         shadowRadius: 13.16,
 
-        elevation: 20,
+        elevation: 24,
     },
     songDetailDescription: {
         flexDirection: 'row',

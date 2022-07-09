@@ -1,7 +1,16 @@
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Dimensions } from "react-native";
 import React from "react";
+import { useFonts } from 'expo-font';
 
 const ButtonCreateAccount = ({ onPress }) => {
+  const [loaded] = useFonts({
+    QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
+  });
+
+  if (!loaded) {
+      return null;
+  }
+
   return (
     <TouchableWithoutFeedback onPress={onPress}>
         <Text style={styles.textButton}> CREAR CUENTA</Text>
@@ -25,6 +34,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 30,
         backgroundColor: '#f28384',
-
+        fontFamily: 'QuicksandBold',
     }
 });

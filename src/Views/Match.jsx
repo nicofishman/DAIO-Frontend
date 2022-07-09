@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, Dimensions, ImageBackground, ActivityIndicator } from "react-native";
 import NavBar from "../Components/Common/NavBar";
 import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
@@ -7,7 +7,6 @@ import { addInteraction, getNotInteractedUsers, getUsersAndInfo } from "../Handl
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import * as Progress from 'react-native-progress';
 
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
@@ -67,7 +66,7 @@ const Match = ({ navigation, route }) => {
                     cards={cardToMatch}
                     renderCard={(cardData) => <CardMatch data={cardData} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong} />}
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
-                    renderNoMoreCards={() => <ActivityIndicator style={{ flex: 2.3 }} size={70} color='#ffffff' />}
+                    renderNoMoreCards={() => <ActivityIndicator style={{ flex: 2.3 }} size={60} color='#ffffff' />}
                     actions={{
                         nope: {
                             view: 

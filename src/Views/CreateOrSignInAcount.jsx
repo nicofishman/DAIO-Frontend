@@ -8,6 +8,7 @@ import { useRegisterContext } from '../Context/RegisterContext';
 import { getSpotifyCredentials, getUserData, getUsers } from '../Handlers/AuthHandler';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import axios from 'axios'
+import { useFonts } from 'expo-font';
 
 async function save(key, value) {
     await AsyncStorage.setItem(key, value);
@@ -102,6 +103,14 @@ const CreateOrSignInAcount = ({ navigation }) => {
         }
     }
 
+    const [loaded] = useFonts({
+        QuicksandLight: require('../../assets/fonts/Quicksand/Quicksand-Light.ttf'),
+    });
+    
+    if (!loaded) {
+        return null;
+    }
+    
     // const ToLogin = () => {
     //     navigation.navigate('Login')
     // }
@@ -119,7 +128,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
             </View>
 
             <View style={{ top: 180 }}>
-                <Text style={{ width: windowWidth * 0.75, left: 10, fontSize: 12 }}>
+                <Text style={{ width: windowWidth * 0.75, left: 10, fontSize: 12, fontFamily: 'QuicksandLight' }}>
                     <Text>Al apretar "Crear Cuenta" o "Iniciar Sesion", está aceptando nuestros </Text>
                     <Text style={{ fontStyle: 'italic', textDecorationLine: 'underline' }}>terminos y condiciones</Text>
                     <Text>. En estos dejamos en claro todos los robos de datos y actividades inmorales contra su persona.</Text>
