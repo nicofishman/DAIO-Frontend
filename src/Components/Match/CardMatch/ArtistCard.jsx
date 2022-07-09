@@ -4,7 +4,7 @@ import React from 'react'
 const ArtistCard = ({ index, artist }) => {
     return (
         <View key={index} style={{ alignItems: 'flex-end' }}>
-            <View style={[styles.artistDetails, { position: 'relative' }]}>
+            <View style={[styles.artistDetails, styles.shadowBox, { position: 'relative' }]}>
                 <Text numberOfLines={1} style={styles.artistDetailsName}>{artist.name}</Text>
                 <View style={styles.artistDetailsText}>
                     <Text style={styles.artistDetailsText} numberOfLines={2}>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     artistDetails: {
         display: 'flex',
         position: 'absolute',
-        backgroundColor: '#1f1f1f',
+        backgroundColor: '#ffffff',
         color: '#fff',
         height: 100,
         width: 300,
@@ -42,11 +42,11 @@ const styles = StyleSheet.create({
     },
     artistDetailsName: {
         fontSize: 22,
-        color: '#fff',
+        color: '#000',
         width: '65%',
     },
     artistDetailsText: {
-        color: '#fff',
+        color: '#000',
         width: '75%',
     },
     artistImg: {
@@ -56,5 +56,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
         top: 0,
+    },
+    shadowBox: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.9,
+        shadowRadius: 19.46,
+        elevation: 13,
     },
 })

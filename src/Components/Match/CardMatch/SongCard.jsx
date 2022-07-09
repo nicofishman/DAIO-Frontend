@@ -19,7 +19,7 @@ const SongCard = ({ song, setVisualSong, isSelected, index }) => {
                 <ImageBackground
                     source={{ "uri": song.albumImage }}
                     resizeMode='cover'
-                    style={[styles.imageBackground, { height: styles.songCardDetails.height }]} imageStyle={{ opacity: 0.2, overflow: 'hidden' }}>
+                    style={[styles.imageBackground, { height: styles.songCardDetails.height, backgroundColor: '#fff' }]} imageStyle={{ opacity: 0.4, overflow: 'hidden' }}>
                     <View style={[styles.songCardDetails, { opacity: 1 }]}>
                         <Text numberOfLines={1} style={styles.titleSong}>{song.name}</Text>
                         <View style={styles.songDetails}>
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
             width: 0,
             height: 4,
         },
-        shadowOpacity: 0.32,
+        shadowOpacity: 0.92,
         shadowRadius: 5.46,
         elevation: 4,
     },

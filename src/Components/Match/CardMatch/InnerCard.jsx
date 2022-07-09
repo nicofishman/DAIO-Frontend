@@ -11,10 +11,15 @@ const InnerCard = ({ user, visualArtist, visualSong, setVisualArtist, setVisualS
         <FlipCard
             flipHorizontal={true}
             flipVertical={false}
-            style={[styles.cardMusic]}
+            style={[styles.cardMusic]} //, styles.shadowBoxCard
             clickable={false}
             flip={isFlipped}
         >
+            <ImageBackground
+                source={require('../../../Assets/Match/matchBackground1.png')}
+                resizeMode='cover'
+                style={[{width: '100%', height: '100%', overflow: 'hidden', zIndex: -10}]} 
+            >
             <View style={styles.songsAll}>
                 <View style={[styles.arrowAndText, { marginRight: 20, }]}>
                     <Text style={[styles.tituloCoA, styles.tituloCanciones, styles.shadowBox]}>Canciones</Text>
@@ -32,6 +37,11 @@ const InnerCard = ({ user, visualArtist, visualSong, setVisualArtist, setVisualS
                     }
                 </View>
             </View>
+            </ImageBackground>
+            <ImageBackground
+                source={require('../../../Assets/Match/matchBackground2.png')}
+                resizeMode='cover'
+                style={{width: '100%', height: '100%', overflow: 'hidden', opacity: 1}}>
             <View style={styles.artistAll}>
                 <View style={[styles.arrowAndText, { marginLeft: 20, }]}>
                     <TouchableWithoutFeedback onPress={() => setIsFlipped(!isFlipped)}>
@@ -44,11 +54,12 @@ const InnerCard = ({ user, visualArtist, visualSong, setVisualArtist, setVisualS
                         user.artistas.sort((a, b) => a.orden - b.orden).map((artist, index) => {
                             return (
                                 <ArtistCard key={index} index={index} artist={artist} />
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
                 </View>
             </View>
+            </ImageBackground>
         </FlipCard >
     )
 }
@@ -90,7 +101,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 10,
         width: 334,
-        backgroundColor: "#e3e3e3",
+        backgroundColor: "#fcfcfc",
     },
     artistAll: {
         height: '100%',
@@ -100,7 +111,6 @@ const styles = StyleSheet.create({
     songsAll: {
         flexDirection: 'column',
         height: '100%',
-        zIndex: -10,
         marginVertical: 10,
         paddingBottom: 10,
     },
@@ -113,6 +123,17 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.32,
         shadowRadius: 5.46,
         elevation: 4,
+    },
+    shadowBoxCard: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 10,
+        },
+        shadowOpacity: 0.51,
+        shadowRadius: 13.16,
+
+        elevation: 20,
     },
     songDetailDescription: {
         flexDirection: 'row',
