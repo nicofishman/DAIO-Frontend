@@ -18,22 +18,6 @@ const RegisterSecond = ({ navigation }) => {
     const finishRegister = async () => {
         const accessToken = await AsyncStorage.getItem('accessToken');
         console.log(accessToken);
-        // console.log({
-        //     spotifyId,
-        //     username,
-        //     description: descripcion,
-        //     avatarId: avatarId,
-        //     tracks: songPreference,
-        //     artists: artistPreference
-        // });
-        // await axios.post('http://192.168.0.15:3000/database/adduser', {
-        //     spotifyId,
-        //     username,
-        //     description: descripcion,
-        //     avatarId: avatarId,
-        //     tracks: songPreference,
-        //     artists: artistPreference
-        // })
         await addUser({
             spotifyId,
             username,

@@ -12,7 +12,8 @@ const ArtistSearch = ({ artist }) => {
         setArtistPreference([...artistPreference, {
             id: artist.id,
             name: artist.name,
-            image: artist.images[0].url
+            image: artist.images[0].url,
+            external_urls: artist.external_urls,
         }]);
         navigation.goBack();
     }

@@ -18,6 +18,7 @@ const SongSearch = ({ song }) => {
             id: song.id,
             name: song.name,
             img: song.album.images[0].url,
+            external_urls: song.external_urls,
             artists: artistsData,
             preview_url: song.preview_url,
             duration: song.duration_ms,
@@ -26,18 +27,6 @@ const SongSearch = ({ song }) => {
             albumName: song.album.name,
             albumImage: song.album.images[0].url,
         }]);
-        console.log({
-            id: song.id,
-            name: song.name,
-            img: song.album.images[0].url,
-            artists: artistsData,
-            preview_url: song.preview_url,
-            duration: song.duration_ms,
-            genres: genres,
-            albumId: song.album.id,
-            albumName: song.album.name,
-            albumImage: song.album.images[0].url,
-        });
         navigation.goBack();
     }
 

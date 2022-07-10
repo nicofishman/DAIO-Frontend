@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         right: 15,
     },
     artistDetailsName: {
-        fontSize: 22,
+        fontSize: 24,
         color: '#000',
         width: '65%',
     },
