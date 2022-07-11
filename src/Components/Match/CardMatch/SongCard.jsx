@@ -1,5 +1,24 @@
-import { StyleSheet, Text, View, TouchableWithoutFeedback, ImageBackground, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Linking, ImageBackground, Image, Alert } from 'react-native'
+import React, { useCallback } from 'react'
+import Entypo from 'react-native-vector-icons/Entypo'
+
+const SendIntentButton = ({ action, extras, children }) => {
+    const handlePress = useCallback(async () => {
+        const isOpenable = await Linking.canOpenURL(action);
+        if (isOpenable) {
+            await Linking.openURL(action);
+        } else {
+            console.log('Don\'t know how to open URI: ' + action);
+            Alert.alert('No se pudo abrir el enlace');
+        }
+    }, [action]);
+
+    return (
+        <TouchableWithoutFeedback onPress={handlePress}>
+            {children}
+        </TouchableWithoutFeedback>
+    );
+};
 
 const SongCard = ({ song, setVisualSong, isSelected, index }) => {
     let artists = ''
@@ -21,7 +40,12 @@ const SongCard = ({ song, setVisualSong, isSelected, index }) => {
                     resizeMode='cover'
                     style={[styles.imageBackground, { height: styles.songCardDetails.height, backgroundColor: '#fff' }]} imageStyle={{ opacity: 0.4, overflow: 'hidden' }}>
                     <View style={[styles.songCardDetails, { opacity: 1 }]}>
-                        <Text numberOfLines={1} style={styles.titleSong}>{song.name}</Text>
+                        <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <Text numberOfLines={1} style={styles.titleSong}>{song.name}</Text>
+                            <SendIntentButton action={song.external_url}>
+                                <Entypo name='spotify' style={styles.spotifyIcon} />
+                            </SendIntentButton>
+                        </View>
                         <View style={styles.songDetails}>
                             <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                                 <Image style={styles.songImgDetails} source={{ "uri": song.albumImage }} />
@@ -135,4 +159,10 @@ const styles = StyleSheet.create({
         shadowRadius: 5.46,
         elevation: 4,
     },
+    spotifyIcon: {
+        fontSize: 20,
+        color: '#1c1c1c',
+        marginRight: 10,
+        marginTop: 10,
+    }
 })

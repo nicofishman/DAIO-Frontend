@@ -57,11 +57,11 @@ const Match = ({ navigation, route }) => {
     return (
         <>
             <View style={styles.container}>
-            {/* <ImageBackground
+                {/* <ImageBackground
                 source={require('../Assets/Match/matchBackgroundFull.png')}
                 resizeMode='cover'
                 style={{width: '100%', height: '100%', overflow: 'hidden', zIndex: -10}} imageStyle={{ opacity: 1, overflow: 'hidden' }}> */}
-            
+
                 <SwipeCards
                     cards={cardToMatch}
                     renderCard={(cardData) => <CardMatch data={cardData} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong} />}
@@ -69,21 +69,21 @@ const Match = ({ navigation, route }) => {
                     renderNoMoreCards={() => <ActivityIndicator style={{ flex: 2.3 }} size={60} color='#ffffff' />}
                     actions={{
                         nope: {
-                            view: 
-                                <View style={[styles.handleBox, { paddingLeft: 10, paddingRight: 7, borderColor: '#ff7374', transform: ([{ rotateX: '35deg' }, { rotateZ: '0.45398rad' }])}]}>
-                                    <Text style={[styles.handleBoxText, {color: '#ff7374'}]}>Nah...</Text>
-                                    <Ionicons style={[styles.handleBoxText, styles.handleIcon, { marginLeft: 15, backgroundColor: '#ff7374'}]} name="close"/>
-                                </View>, 
-                            containerStyle: styles.BoxViewNope, 
+                            view:
+                                <View style={[styles.handleBox, { paddingLeft: 10, paddingRight: 7, borderColor: '#ff7374', transform: ([{ rotateX: '35deg' }, { rotateZ: '0.45398rad' }]) }]}>
+                                    <Text style={[styles.handleBoxText, { color: '#ff7374' }]}>Nah...</Text>
+                                    <Ionicons style={[styles.handleBoxText, styles.handleIcon, { marginLeft: 15, backgroundColor: '#ff7374' }]} name="close" />
+                                </View>,
+                            containerStyle: styles.BoxViewNope,
                             onAction: handleNope,
                         },
-                        yup: { 
-                            view: 
-                                <View style={[styles.handleBox, { paddingLeft: 7, paddingRight: 10, borderColor: '#69f079', transform: ([{ rotateX: '35deg' }, { rotateZ: '-0.45398rad' }])}]}>
-                                    <Ionicons style={[styles.handleBoxText, styles.handleIcon, { marginRight: 15, backgroundColor: '#69f079'}]} name="musical-note"/>
-                                    <Text style={[styles.handleBoxText, {color: '#69f079'}]}>Like :D</Text>
-                                </View>, 
-                            containerStyle: styles.BoxViewLike, 
+                        yup: {
+                            view:
+                                <View style={[styles.handleBox, { paddingLeft: 7, paddingRight: 10, borderColor: '#69f079', transform: ([{ rotateX: '35deg' }, { rotateZ: '-0.45398rad' }]) }]}>
+                                    <Ionicons style={[styles.handleBoxText, styles.handleIcon, { marginRight: 15, backgroundColor: '#69f079' }]} name="musical-note" />
+                                    <Text style={[styles.handleBoxText, { color: '#69f079' }]}>Like :D</Text>
+                                </View>,
+                            containerStyle: styles.BoxViewLike,
                             onAction: handleYup
                         },
                     }}
@@ -92,7 +92,7 @@ const Match = ({ navigation, route }) => {
                     stackDepth={1}
                     stackOffsetX={0}
                 />
-            {/* </ImageBackground> */}
+                {/* </ImageBackground> */}
             </View>
             <NavBar navigation={navigation} route={route} />
         </>
@@ -113,23 +113,23 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     //backgroundColor: '#69f079',
-    handleBox: { 
-        paddingVertical: 5, 
+    handleBox: {
+        paddingVertical: 5,
         height: 70,
-        borderRadius: 20, 
-        top: 0, 
+        borderRadius: 20,
+        top: 0,
         alignItems: "center",
         justifyContent: "space-between",
         flexDirection: 'row',
         borderWidth: 2
     },
     BoxViewNope: {
-        bottom: windowHeight * 0.85, 
+        bottom: windowHeight * 0.85,
         left: windowWidth * 0.4,
         borderWidth: 0,
     },
     BoxViewLike: {
-        bottom: windowHeight * 0.85, 
+        bottom: windowHeight * 0.85,
         left: -windowWidth * 0.03,
         borderWidth: 0,
     },
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     handleIcon: {
-        fontSize: 50, 
+        fontSize: 50,
         borderRadius: 15,
         color: BACKGROUND_COLOR
     },

@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 
 const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualSong }) => {
-    
+
     const [loaded] = useFonts({
         Capriola: require('../../../assets/fonts/Capriola.ttf'),
         Quicksand: require('../../../assets/fonts/Quicksand/Quicksand.ttf'),
@@ -15,15 +15,15 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
     if (!loaded) {
         return null;
     }
-    
+
     return (
-            <LinearGradient colors={['#cce6ff', '#fff','#e3e3e3', '#fff', '#ffcccc']} style={styles.card}>
+        <LinearGradient colors={['#cce6ff', '#fff', '#e3e3e3', '#fff', '#ffcccc']} style={styles.card}>
             <Text style={[styles.textName]}>{data.username}</Text>
             <Text style={styles.textDesc}>{data.description}</Text>
             <InnerCard user={data} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong} />
             <View style={{ width: '100%', height: '8%' }}>
             </View>
-            </LinearGradient>
+        </LinearGradient>
     );
 }
 
