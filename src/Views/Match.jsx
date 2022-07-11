@@ -12,12 +12,14 @@ const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
     const [visualArtist, setVisualArtist] = useState(-1);
     const [visualSong, setVisualSong] = useState(-1);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         (async () => {
             const spotifyId = await AsyncStorage.getItem('spotify_id');
             const users = await getNotInteractedUsers(spotifyId)
             setCardToMatch(users);
+            setIsLoading(false);
         })()
     }, []);
 
@@ -63,10 +65,16 @@ const Match = ({ navigation, route }) => {
                 style={{width: '100%', height: '100%', overflow: 'hidden', zIndex: -10}} imageStyle={{ opacity: 1, overflow: 'hidden' }}> */}
 
                 <SwipeCards
-                    cards={cardToMatch}
+                    cards={cardToMatch ?? []}
                     renderCard={(cardData) => <CardMatch data={cardData} visualArtist={visualArtist} visualSong={visualSong} setVisualArtist={setVisualArtist} setVisualSong={setVisualSong} />}
                     keyExtractor={(cardData) => String(cardData.spotifyId)}
-                    renderNoMoreCards={() => <ActivityIndicator style={{ flex: 2.3 }} size={60} color='#ffffff' />}
+                    renderNoMoreCards={() => {
+                        return (
+                            isLoading ?
+                                <ActivityIndicator style={{ flex: 2.3 }} size={60} color='#ffffff' />
+                                : <StatusCard text='No hay más usuarios por hoy... Volvé más tarde' />
+                        )
+                    }}
                     actions={{
                         nope: {
                             view:
