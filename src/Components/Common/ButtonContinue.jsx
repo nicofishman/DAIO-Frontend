@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, TouchableWithoutFeedback, Animated, Dimensions } from 'react-native'
-
+import { useFonts } from 'expo-font'
 const ButtonContinue = ({ onPress }) => {
     const [animationBackground, setAnimationBackground] = useState(new Animated.Value(0))
     const [animationTextColor, setAnimationColorText] = useState(new Animated.Value(0))
 
+    const [loaded] = useFonts({
+        QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
+    })
+    if (!loaded) {
+        return null;
+    }
     const handleAnimationIn = () => {
         Animated.timing(animationBackground, {
             toValue: 1,
@@ -35,7 +41,7 @@ const ButtonContinue = ({ onPress }) => {
     })
     const boxInterpolationText = animationBackground.interpolate({
         inputRange: [0, 1],
-        outputRange: ["rgb(0, 0, 0)", "rgb(255, 255, 255)"]
+        outputRange: ["rgb(94, 157, 181)", "rgb(255, 255, 255)"]
     })
 
     const animatedStyle = {
@@ -65,12 +71,12 @@ const styles = StyleSheet.create({
     textButton: {
         flex: 1,
         fontSize: 22,
-        //fontFamily: 'AverageSans_400Regular',
+        fontFamily: 'QuicksandBold',
         letterSpacing: 0,
         textAlign: "center",
         textAlignVertical: "center",
         borderColor: '#5E9DB5',
-        color: '#000',
+        color: '#5E9DB5',
         borderWidth: 3,
         paddingVertical: 10,
         paddingHorizontal: 80,

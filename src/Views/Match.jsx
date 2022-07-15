@@ -79,7 +79,7 @@ const Match = ({ navigation, route }) => {
                         nope: {
                             view:
                                 <View style={[styles.handleBox, { paddingLeft: 10, paddingRight: 7, borderColor: '#ff7374', transform: ([{ rotateX: '35deg' }, { rotateZ: '0.45398rad' }]) }]}>
-                                    <Text style={[styles.handleBoxText, { color: '#ff7374' }]}>Nah...</Text>
+                                    <Text style={[styles.handleBoxText, { color: '#ff7374' }]}>Nope :C</Text>
                                     <Ionicons style={[styles.handleBoxText, styles.handleIcon, { marginLeft: 15, backgroundColor: '#ff7374' }]} name="close" />
                                 </View>,
                             containerStyle: styles.BoxViewNope,
