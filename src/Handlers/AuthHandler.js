@@ -115,6 +115,11 @@ export const getUserData = async () => {
     return userData.data;
 }
 
+export const getUserById = async (id) => {
+    const userData = await axios.get('http://daio-backend.herokuapp.com/database/getusersandinfo',[{"spotifyId": id}]);
+    return userData.data;
+}
+
 export const getUserTopArtists = async () => {
     const { accessToken: accessTokenRes } = await checkRefreshToken();
     const userTopArtists = await axios.get('http://daio-backend.herokuapp.com/spotify/topartists', { headers: { accessToken: accessTokenRes } });

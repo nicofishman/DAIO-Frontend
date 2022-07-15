@@ -6,17 +6,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Svg, {
     Ellipse,
 } from 'react-native-svg';
-import {getUserData} from '../Handlers/AuthHandler'
+import {getUserById} from '../Handlers/AuthHandler'
+import Avatar from '../Components/Common/Avatar';
+
 
 const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined)
+
     useEffect(() => {
         (async () => {
-            const res = await getUserData()
-            console.log(res.id);
-            setUser(res)
+            const spotiId = await AsyncStorage.getItem('spotify_id')
+            const res = await getUserById(spotiId)
+            setUser(res[0])
+            console.log(res[0].spotifyId);
         })()
     },[])
+    
     const logOut = async () => {
         console.log('Logging out');
         await AsyncStorage.setItem('access_token', '').then(() => {
@@ -38,19 +43,19 @@ const Config = ({ navigation, route }) => {
                         fill="white"
                     />
                 </Svg>
-                <View style={{position: 'relative'}}>
-                    <View style={{flexDirection: 'row'}}>
-                        {/* image */}
-                        <View style={{flexDirection: 'column'}}>
-                            {user && (
+                {user && (
+                    <View style={{position: 'relative'}}>
+                        <View style={{flexDirection: 'row'}}>
+                            <Avatar id={user.avatarId} width={100} height={100}/>
+                            <View style={{flexDirection: 'column'}}>
                                 <>
                                 <Text>{user.id}</Text>
                                 <Text>{user.descripcion}</Text>
                                 </>
-                            )}
+                            </View>
                         </View>
                     </View>
-                </View>
+                )}
                 <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
             </View>
             <NavBar navigation={navigation} route={route} />
