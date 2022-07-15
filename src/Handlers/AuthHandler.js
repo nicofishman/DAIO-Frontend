@@ -192,3 +192,9 @@ export const getArtistsById = async (artistId) => {
     }));
     return artistData;
 }
+
+export const getInteractions = async (userId) => {
+    const { accessToken: accessTokenRes } = await checkRefreshToken();
+    const interactions = await axios.get('http://daio-backend.herokuapp.com/database/getinteractions', { headers: { accessToken: accessTokenRes, userId: userId } });
+    return interactions.data;
+}
