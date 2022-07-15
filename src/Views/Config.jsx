@@ -1,10 +1,22 @@
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button, Dimensions, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
 import SpotifyLogin from '../Components/SpotifyLogin'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Svg, {
+    Ellipse,
+} from 'react-native-svg';
+import {getUserData} from '../Handlers/AuthHandler'
 
 const Config = ({ navigation, route }) => {
+    const [user, setUser] = useState(undefined)
+    useEffect(() => {
+        (async () => {
+            const res = await getUserData()
+            console.log(res.id);
+            setUser(res)
+        })()
+    },[])
     const logOut = async () => {
         console.log('Logging out');
         await AsyncStorage.setItem('access_token', '').then(() => {
@@ -17,7 +29,29 @@ const Config = ({ navigation, route }) => {
     return (
         <>
             <View style={styles.container}>
-                <SpotifyLogin title='Log Out' fnOnPress={logOut} />
+                <Svg style={{position: 'absolute'}} height="300" width={windowWidth}>
+                    <Ellipse
+                        cx='200'
+                        cy="80"
+                        rx='300'
+                        ry="170"
+                        fill="white"
+                    />
+                </Svg>
+                <View style={{position: 'relative'}}>
+                    <View style={{flexDirection: 'row'}}>
+                        {/* image */}
+                        <View style={{flexDirection: 'column'}}>
+                            {user && (
+                                <>
+                                <Text>{user.id}</Text>
+                                <Text>{user.descripcion}</Text>
+                                </>
+                            )}
+                        </View>
+                    </View>
+                </View>
+                <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
             </View>
             <NavBar navigation={navigation} route={route} />
         </>
@@ -26,49 +60,25 @@ const Config = ({ navigation, route }) => {
 
 export default Config
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3b3b3b',
         alignItems: 'center',
-        justifyContent: 'center',
+        position: 'relative'
     },
-    buttonGroup: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-        padding: 10,
+    profile: {
+        width: windowWidth * 1.2,
+        height: windowHeight * 0.2,
+        backgroundColor: '#fff',
+        top: 0,
+        borderBottomRightRadius: windowWidth / 1.8,
+        borderBottomLeftRadius: 150
     },
-    input: {
-        height: 40,
-        padding: 5,
-        color: '#e0e0e0',
-        fontSize: 18,
-    },
-    inputBar: {
-        flexDirection: 'row',
-        width: 300,
-        justifyContent: 'space-between'
-    },
-    card: {
-        height: 100,
-        width: 300,
-        backgroundColor: '#ccc',
-        flexDirection: 'column',
-    },
-    line: {
-        width: 300,
-        height: 4,
-        backgroundColor: 'black',
-        marginBottom: 40,
-        borderRadius: 5
-    },
-    iconSearch: {
-        fontSize: 30,
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginRight: 10
+    logOut: {
+        bottom: 0,
     }
 })
