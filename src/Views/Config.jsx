@@ -43,19 +43,17 @@ const Config = ({ navigation, route }) => {
                         fill="white"
                     />
                 </Svg>
-                {user && (
-                    <View style={{ position: 'relative' }}>
-                        <View style={{ flexDirection: 'row' }}>
+                <View style={{ marginTop: 50 }}>
+                    {user && (
+                        <View style={{ flexDirection: 'column' }}>
                             <Avatar id={user.avatarId} width={100} height={100} />
                             <View style={{ flexDirection: 'column' }}>
-                                <>
-                                    <Text>{user.id}</Text>
-                                    <Text>{user.descripcion}</Text>
-                                </>
+                                <Text style={{ color: 'black' }}>{user.spotifyId}</Text>
+                                <Text>{user.description}</Text>
                             </View>
                         </View>
-                    </View>
-                )}
+                    )}
+                </View>
                 <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
             </View>
             <NavBar navigation={navigation} route={route} />
