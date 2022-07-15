@@ -9,11 +9,15 @@ import ButtonContinue from '../Components/Common/ButtonContinue';
 import * as Progress from 'react-native-progress';
 import ButtonBack from '../Components/Common/ButtonBack';
 import axios from 'axios';
+import { useFonts } from 'expo-font'
 
 const RegisterSecond = ({ navigation }) => {
     const { setSongPreference, setArtistPreference, artistPreference, songPreference, username, descripcion, spotifyId, avatarId, progressBar, setProgressBar } = useRegisterContext();
     const [loading, setLoading] = useState(true);
-
+    const [loaded] = useFonts({
+        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
+        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
+    });
 
     const finishRegister = async () => {
         const accessToken = await AsyncStorage.getItem('accessToken');
@@ -49,34 +53,42 @@ const RegisterSecond = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Progress.Bar
-                progress={progressBar}
-                width={windowWidth}
-                style={styles.progressBar}
-                color='rgb(94, 157, 181)'
-            />
-            <View style={styles.buttonBack} >
-                <ButtonBack onPress={volver} />
-            </View>
-            <Text style={styles.textTitle}>Elegí la música que más te representa</Text>
             {
-                loading ?
+                loaded ? (
                     <>
-                        <ActivityIndicator style={{ flex: 2.3 }} size={70} color='#e38889' />
-                        {/* size prop only works on Android, for iOS use 'small | large', lo escribi yo pochi btw  */}
+                        <Progress.Bar
+                            progress={progressBar}
+                            width={windowWidth}
+                            style={styles.progressBar}
+                            color='rgb(94, 157, 181)'
+                        />
+                        <View style={styles.buttonBack} >
+                            <ButtonBack onPress={volver} />
+                        </View>
+                        <Text style={styles.textTitle}>Elegí la música que más te representa</Text>
+                        {
+                            loading ?
+                                <>
+                                    <ActivityIndicator style={{ flex: 2.3 }} size={70} color='#e38889' />
+                                    {/* size prop only works on Android, for iOS use 'small | large', lo escribi yo pochi btw  */}
+                                </>
+                                :
+                                <View style={{ top: windowHeight * 0.195 }}>
+                                    <ArtistBox />
+                                    <SongBox />
+                                </View>
+                        }
+                        <ButtonContinue onPress={() => finishRegister()} />
+                        <Image style={styles.backgroundImg} source={require('../Assets/register/registerSecondBackground.png')} />
+                        <StatusBar
+                            barStyle="dark-content"
+                            backgroundColor={'transparent'}
+                        />
                     </>
-                    :
-                    <View style={{ top: windowHeight * 0.195 }}>
-                        <ArtistBox />
-                        <SongBox />
-                    </View>
+                ) : (
+                    <ActivityIndicator />
+                )
             }
-            <ButtonContinue onPress={() => finishRegister()} />
-            <Image style={styles.backgroundImg} source={require('../Assets/register/registerSecondBackground.png')} />
-            <StatusBar
-                barStyle="dark-content"
-                backgroundColor={'transparent'}
-            />
         </View>
     )
 }
@@ -106,7 +118,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold',
         color: "#1f1f1f",
-        // fontFamily: 'Capriola_400Regular'
+        fontFamily: 'QuicksandBold'
     },
     progressBar: {
         borderRadius: 0,
