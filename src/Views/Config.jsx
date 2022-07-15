@@ -1,83 +1,23 @@
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
-import { searchTrack, searchArtist } from '../Handlers/AuthHandler';
-import { getUserData } from '../Handlers/AuthHandler';
-import SongSearch from '../Components/Search/SongSearch';
-import ArtistSearch from '../Components/Search/ArtistSearch';
+import SpotifyLogin from '../Components/SpotifyLogin'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const Config = ({ navigation, route }) => {
-    const [text, setText] = useState("");
-    const [search, setSearch] = useState('')
-    const [user, setUser] = useState('')
-    const [type, setType] = useState('cancion')
-    const [accessToken, setAccessToken] = useState(null)
-
-    useEffect(() => {
-        (async () => {
-            let result = await AsyncStorage.getItem("access_token");
-            setAccessToken(result)
-            const user = await getUserData(result);
-            setUser(user);
-        })();
-    }, [])
-
-    useEffect(() => {
-        setSearch('')
-        setText('')
-    }, [type])
-
-    const onChangeText = async (e) => {
-        setText(e);
-        if (text.length && text.length === 0 || !e) {
-            setSearch(undefined);
-            return;
-        }
-        if (type === 'cancion') {
-            const res = await searchTrack(e, accessToken);
-            setSearch(res);
-        } else if (type === 'artista') {
-            const res = await searchArtist(e, accessToken);
-            setSearch(res);
-        }
+    const logOut = async () => {
+        console.log('Logging out');
+        await AsyncStorage.setItem('access_token', '').then(() => {
+            navigation.navigate('LoginNavigator', { screen: 'CreateOrSignInAcount' });
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     return (
         <>
             <View style={styles.container}>
-                {/* <Text>{JSON.stringify(user?.display_name || 'null')}</Text> */}
-                <View style={styles.buttonGroup}>
-                    <Button title='Artista' onPress={() => setType('artista')} />
-                    <View style={{ marginLeft: 10 }}>
-                        <Button title='Canción' onPress={() => setType('cancion')} />
-                    </View>
-                </View>
-                <View style={styles.inputBar}>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={onChangeText}
-                        value={text}
-                        caretHidden={true}
-                        placeholder={`Buscar ${type}...`}
-                        placeholderTextColor="#999"
-                    />
-                    <Ionicons style={styles.iconSearch} name="search-outline"></Ionicons>
-                </View>
-                <View style={styles.line}></View>
-                {search ?
-                    type === 'cancion' ? search?.tracks.items.map((item, index) => {
-                        return index <= 4 ? (
-                            <SongSearch song={item} key={index} />
-                        ) : null
-                    }) : search?.artists.items.map((item, index) => {
-                        return index <= 4 ? (
-                            <ArtistSearch artist={item} key={index} />
-                        ) : null
-                    })
-                    : null
-                }
+                <SpotifyLogin title='Log Out' fnOnPress={logOut} />
             </View>
             <NavBar navigation={navigation} route={route} />
         </>

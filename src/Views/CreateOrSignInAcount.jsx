@@ -80,7 +80,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
             await AsyncStorage.setItem('access_token', access_token);
             await AsyncStorage.setItem('refresh_token', refresh_token);
             await AsyncStorage.setItem('refresh_date', (new Date().getTime() + expires_in * 1000).toString());
-            const userData = await getUserData(access_token);
+            const userData = await getUserData();
             await AsyncStorage.setItem('spotify_id', userData.id);
             setAccessToken(access_token)
             handleLogin(access_token)
@@ -106,11 +106,11 @@ const CreateOrSignInAcount = ({ navigation }) => {
     const [loaded] = useFonts({
         QuicksandLight: require('../../assets/fonts/Quicksand/Quicksand-Light.ttf'),
     });
-    
+
     if (!loaded) {
         return null;
     }
-    
+
     // const ToLogin = () => {
     //     navigation.navigate('Login')
     // }
