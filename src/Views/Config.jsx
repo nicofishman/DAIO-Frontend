@@ -19,7 +19,6 @@ const Config = ({ navigation, route }) => {
             console.log(spotiId);
             const res = await getUserById(spotiId)
             setUser(res)
-            console.log(res.description);
         })()
     }, [])
 
