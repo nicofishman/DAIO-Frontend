@@ -116,7 +116,7 @@ export const getUserData = async () => {
 }
 
 export const getUserById = async (id) => {
-    const userData = await axios.get('http://daio-backend.herokuapp.com/database/getusersandinfo',[{"spotifyId": id}]);
+    const userData = await axios.get(`http://daio-backend.herokuapp.com/database/getusersandinfo/${id}`);
     return userData.data;
 }
 

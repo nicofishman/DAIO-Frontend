@@ -19,6 +19,7 @@ const Chat = ({ navigation, route }) => {
             <View style={{ paddingTop: StatusBar.currentHeight, height: '100%' }}>
                 <FlatList
                     data={interactions}
+                    style={styles.flatList}
                     renderItem={({ item }) => (
                         <Interaction item={item} />
                     )}
@@ -38,4 +39,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'red',
     },
+    flatList: {
+        backgroundColor: '#fff',
+        marginBottom: 70,
+    }
 })

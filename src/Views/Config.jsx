@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Svg, {
     Ellipse,
 } from 'react-native-svg';
-import {getUserById} from '../Handlers/AuthHandler'
+import { getUserById } from '../Handlers/AuthHandler'
 import Avatar from '../Components/Common/Avatar';
 
 
@@ -16,12 +16,13 @@ const Config = ({ navigation, route }) => {
     useEffect(() => {
         (async () => {
             const spotiId = await AsyncStorage.getItem('spotify_id')
+            console.log(spotiId);
             const res = await getUserById(spotiId)
-            setUser(res[0])
-            console.log(res[0].spotifyId);
+            setUser(res)
+            console.log(res.description);
         })()
-    },[])
-    
+    }, [])
+
     const logOut = async () => {
         console.log('Logging out');
         await AsyncStorage.setItem('access_token', '').then(() => {
@@ -34,7 +35,7 @@ const Config = ({ navigation, route }) => {
     return (
         <>
             <View style={styles.container}>
-                <Svg style={{position: 'absolute'}} height="300" width={windowWidth}>
+                <Svg style={{ position: 'absolute' }} height="300" width={windowWidth}>
                     <Ellipse
                         cx='200'
                         cy="80"
@@ -44,13 +45,13 @@ const Config = ({ navigation, route }) => {
                     />
                 </Svg>
                 {user && (
-                    <View style={{position: 'relative'}}>
-                        <View style={{flexDirection: 'row'}}>
-                            <Avatar id={user.avatarId} width={100} height={100}/>
-                            <View style={{flexDirection: 'column'}}>
+                    <View style={{ position: 'relative' }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Avatar id={user.avatarId} width={100} height={100} />
+                            <View style={{ flexDirection: 'column' }}>
                                 <>
-                                <Text>{user.id}</Text>
-                                <Text>{user.descripcion}</Text>
+                                    <Text>{user.id}</Text>
+                                    <Text>{user.descripcion}</Text>
                                 </>
                             </View>
                         </View>
