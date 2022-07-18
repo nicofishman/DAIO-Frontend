@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, ImageBackground, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, Dimensions, ImageBackground, ActivityIndicator, StatusBar } from "react-native";
 import NavBar from "../Components/Common/NavBar";
 import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
@@ -78,7 +78,7 @@ const Match = ({ navigation, route }) => {
                     actions={{
                         nope: {
                             view:
-                                <View style={[styles.handleBox, { paddingLeft: 10, paddingRight: 7, borderColor: '#ff7374', transform: ([{ rotateX: '35deg' }, { rotateZ: '0.45398rad' }]) }]}>
+                                <View style={[styles.handleBox, { paddingLeft: 10, paddingRight: 7, borderColor: '#ff7374', transform: ([{ rotateZ: '0.45398rad' }]) }]}>
                                     <Text style={[styles.handleBoxText, { color: '#ff7374' }]}>Nope :C</Text>
                                     <Ionicons style={[styles.handleBoxText, styles.handleIcon, { marginLeft: 15, backgroundColor: '#ff7374' }]} name="close" />
                                 </View>,
@@ -87,7 +87,7 @@ const Match = ({ navigation, route }) => {
                         },
                         yup: {
                             view:
-                                <View style={[styles.handleBox, { paddingLeft: 7, paddingRight: 10, borderColor: '#69f079', transform: ([{ rotateX: '35deg' }, { rotateZ: '-0.45398rad' }]) }]}>
+                                <View style={[styles.handleBox, { paddingLeft: 7, paddingRight: 10, borderColor: '#69f079', transform: ([{ rotateZ: '-0.45398rad' }]) }]}>
                                     <Ionicons style={[styles.handleBoxText, styles.handleIcon, { marginRight: 15, backgroundColor: '#69f079' }]} name="musical-note" />
                                     <Text style={[styles.handleBoxText, { color: '#69f079' }]}>Like :D</Text>
                                 </View>,
@@ -132,12 +132,12 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     BoxViewNope: {
-        bottom: windowHeight * 0.85,
+        bottom: windowHeight * 0.82,
         left: windowWidth * 0.4,
         borderWidth: 0,
     },
     BoxViewLike: {
-        bottom: windowHeight * 0.85,
+        bottom: windowHeight * 0.82,
         left: -windowWidth * 0.03,
         borderWidth: 0,
     },

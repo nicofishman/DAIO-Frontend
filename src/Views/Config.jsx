@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, Button, Dimensions, Image } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button, Dimensions, Image, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
 import SpotifyLogin from '../Components/SpotifyLogin'
@@ -45,11 +45,11 @@ const Config = ({ navigation, route }) => {
                 </Svg>
                 <View style={{ marginTop: 50 }}>
                     {user && (
-                        <View style={{ flexDirection: 'column' }}>
-                            <Avatar id={user.avatarId} width={100} height={100} />
-                            <View style={{ flexDirection: 'column' }}>
-                                <Text style={{ color: 'black' }}>{user.spotifyId}</Text>
-                                <Text>{user.description}</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Avatar id={user.avatarId} width={130} height={130} />
+                            <View style={{ flexDirection: 'column', marginLeft: 20 }}>
+                                <Text style={{ color: 'black', fontSize: 24}}>{user.spotifyId}</Text>
+                                <Text style={{fontSize: 14, }}>{user.description}</Text>
                             </View>
                         </View>
                     )}
