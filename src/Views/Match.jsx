@@ -18,7 +18,7 @@ const Match = ({ navigation, route }) => {
         (async () => {
             const spotifyId = await AsyncStorage.getItem('spotify_id');
             const users = await getNotInteractedUsers(spotifyId)
-            setCardToMatch(users);
+            setCardToMatch(users || []);
             setIsLoading(false);
         })()
     }, []);

@@ -14,12 +14,12 @@ const RegisterFirst = ({ navigation }) => {
     const [visualizarContinue, setVisualizarContinue] = useState(false);
     const [iconText, setIconText] = useState('edit');
     let sourceImage = ['../Assets/Avatars/AvatarsToChoose/avatar', avatarId, '.png'].join('');
-    
+
     const [loaded] = useFonts({
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
         QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
     });
-        
+
     const volver = () => {
         setProgressBar(0);
         navigation.goBack()
@@ -83,99 +83,99 @@ const RegisterFirst = ({ navigation }) => {
             {
                 loaded ? (
                     <>
-                    <Progress.Bar
-                        progress={progressBar}
-                        width={windowWidth}
-                        color='rgb(94, 157, 181)'
-                        style={styles.progressBar}
-                    />
-                    <View style={styles.buttonBack} >
-                        <ButtonBack onPress={volver} />
-                    </View>
-                    <View style={{ top: 190 }}>
-                        <TouchableWithoutFeedback onPress={() => setIsOpenAvatarPicker(!isOpenAvatarPicker)}>
-                            <View>
-                                {
-                                    //XD no hay imagenes dinamicas en rn
-                                    showIconSelected()
-                                }
-                                {
-                                    visualizarContinue && (
-                                        <MaterialIcons
-                                            name={iconText}
-                                            style={styles.edit}
-                                        />
-                                    )
-                                }
-        
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </View>
-                    {isOpenAvatarPicker ? (
-                        <View style={{
-                            flexDirection: 'column', position: 'relative', top: 120, justifyContent: 'center', backgroundColor: 'rgba(201, 201, 201, 0.4)', borderRadius: 55, padding: 30, overflow: 'scroll', maxHeight:
-                                400
-                        }}>
-                            <View blurRadius={10} style={styles.avatarBox}>
-                                {
-                                    AvatarArray.map((row, rowIndex) => {
-                                        return (
-                                            <View key={row} style={{ flexDirection: 'row' }}>
-                                                {row.map((image, index) => {
-                                                    return (
-                                                        <TouchableWithoutFeedback key={index} onPress={() => {
-                                                            setAvatarId(index + (rowIndex * 3))
-                                                            setIsOpenAvatarPicker(false);
-                                                        }}>
-                                                            <Image
-                                                                key={index}
-                                                                source={image}
-                                                                style={styles.avatarPick}
-                                                            />
-                                                        </TouchableWithoutFeedback>
-                                                    )
-                                                })}
-                                            </View>
+                        <Progress.Bar
+                            progress={progressBar}
+                            width={windowWidth}
+                            color='rgb(94, 157, 181)'
+                            style={styles.progressBar}
+                        />
+                        <View style={styles.buttonBack} >
+                            <ButtonBack onPress={volver} />
+                        </View>
+                        <View style={{ top: 190 }}>
+                            <TouchableWithoutFeedback onPress={() => setIsOpenAvatarPicker(!isOpenAvatarPicker)}>
+                                <View>
+                                    {
+                                        //XD no hay imagenes dinamicas en rn
+                                        showIconSelected()
+                                    }
+                                    {
+                                        visualizarContinue && (
+                                            <MaterialIcons
+                                                name={iconText}
+                                                style={styles.edit}
+                                            />
                                         )
-                                    })
+                                    }
+
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                        {isOpenAvatarPicker ? (
+                            <View style={{
+                                flexDirection: 'column', position: 'relative', top: 120, justifyContent: 'center', backgroundColor: 'rgba(201, 201, 201, 0.4)', borderRadius: 55, padding: 30, overflow: 'scroll', maxHeight:
+                                    400
+                            }}>
+                                <View blurRadius={10} style={styles.avatarBox}>
+                                    {
+                                        AvatarArray.map((row, rowIndex) => {
+                                            return (
+                                                <View key={row} style={{ flexDirection: 'row' }}>
+                                                    {row.map((image, index) => {
+                                                        return (
+                                                            <TouchableWithoutFeedback key={index} onPress={() => {
+                                                                setAvatarId(index + (rowIndex * 3))
+                                                                setIsOpenAvatarPicker(false);
+                                                            }}>
+                                                                <Image
+                                                                    key={index}
+                                                                    source={image}
+                                                                    style={styles.avatarPick}
+                                                                />
+                                                            </TouchableWithoutFeedback>
+                                                        )
+                                                    })}
+                                                </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <Text style={{ alignSelf: 'center', marginTop: 20, fontFamily: 'QuicksandRegular' }}>Elige un avatar para que te puedan identificar</Text>
+                            </View>
+
+                        ) : (
+                            <View style={{ top: 150 }}>
+                                <Text style={styles.textTitle}>Nombre de usuario</Text>
+                                <TextInput
+                                    style={[styles.input, username.length <= 0 && styles.inputRed]}
+                                    onChangeText={handleChangeNombre}
+                                    value={username}
+                                    caretHidden={true}
+                                    placeholder={'Ingresa tu nombre'}
+                                    placeholderTextColor="#d4d4d4"
+                                    spellCheck={false}
+                                    autoCorrect={false}
+                                />
+                                {
+                                    username.length === 0 &&
+                                    <Text style={{ marginTop: 4, color: 'red', fontWeight: 'bold' }}>Debes ingresar un nombre para continuar.</Text>
                                 }
                             </View>
-                            <Text style={{ alignSelf: 'center', marginTop: 20, fontFamily: 'QuicksandRegular' }}>Elige un avatar para que te puedan identificar</Text>
-                        </View>
-        
-                    ) : (
-                        <View style={{ top: 150 }}>
-                            <Text style={styles.textTitle}>Nombre de usuario</Text>
-                            <TextInput
-                                style={[styles.input, username.length <= 0 && styles.inputRed]}
-                                onChangeText={handleChangeNombre}
-                                value={username}
-                                caretHidden={true}
-                                placeholder={'Ingresa tu nombre'}
-                                placeholderTextColor="#d4d4d4"
-                                spellCheck={false}
-                                autoCorrect={false}
-                            />
-                            {
-                                username.length === 0 &&
-                                <Text style={{ marginTop: 4, color: 'red', fontWeight: 'bold' }}>Debes ingresar un nombre para continuar.</Text>
-                            }
-                        </View>
-                    )
-                    }
-                    {
-                        visualizarContinue && (
-                            <>
-                            <ButtonContinue onPress={continuar} />
-                            </>
                         )
-                    }
-        
-                    <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
-                    <StatusBar
-                        barStyle="dark-content"
-                        backgroundColor={'transparent'}
-                    />
+                        }
+                        {
+                            visualizarContinue && (
+                                <>
+                                    <ButtonContinue onPress={continuar} />
+                                </>
+                            )
+                        }
+
+                        <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
+                        <StatusBar
+                            barStyle="dark-content"
+                            backgroundColor={'transparent'}
+                        />
                     </>
                 ) : (
                     <ActivityIndicator />

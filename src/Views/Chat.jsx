@@ -7,13 +7,21 @@ import Interaction from '../Components/Interactions/Interaction';
 
 const Chat = ({ navigation, route }) => {
     const [interactions, setInteractions] = useState([]);
-    useEffect(() => {
+
+    const refreshInteractions = async () => {
         AsyncStorage.getItem('spotify_id').then(id => {
             getInteractions(id).then(interactions => {
                 setInteractions(interactions)
             })
         })
+    }
+
+    useEffect(() => {
+        (async () => {
+            await refreshInteractions();
+        })();
     }, [])
+
     return (
         <View style={styles.container}>
             <View style={{ paddingTop: StatusBar.currentHeight, height: '100%' }}>
