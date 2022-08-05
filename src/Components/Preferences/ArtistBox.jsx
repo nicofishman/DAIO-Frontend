@@ -14,9 +14,9 @@ const ArtistBox = () => {
     }
 
     const navegarASearch = () => {
-        navigation.navigate("RegisterSearch", {
+        navigation.navigate("Register", {screen: "RegisterSearch", params: {
             type: "artista",
-        });
+    }});
     }
 
     return (

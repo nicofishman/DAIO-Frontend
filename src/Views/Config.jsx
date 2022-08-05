@@ -9,10 +9,14 @@ import Svg, {
 import { getUserById } from '../Handlers/AuthHandler'
 import Avatar from '../Components/Common/Avatar';
 import { useRegisterContext } from '../Context/RegisterContext';
+import SongBox from '../Components/Preferences/SongBox';
+import ArtistBox from '../Components/Preferences/ArtistBox';
 
 
 const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined)
+    const [loading, setLoading] = useState(true)
+    const [boxPreferences, setBoxPreferences] = useState("CANCIONES")
     const {
         username,
         instagram,
@@ -28,7 +32,7 @@ const Config = ({ navigation, route }) => {
         setArtistPreference
     } = useRegisterContext()
 
-    const setContext = (user) => {
+    const setContext = async (user) => {
         handleChangeNombre(user.username)
         setAvatarId(user.avatarId)
         handleChangeDesc(user.description)
@@ -41,8 +45,9 @@ const Config = ({ navigation, route }) => {
         (async () => {
             const spotiId = await AsyncStorage.getItem('spotify_id')
             const res = await getUserById(spotiId)
-            setContext(res)
+            await setContext(res)
             setUser(res)
+            setLoading(false)
         })()
     }, [])
 
@@ -79,6 +84,14 @@ const Config = ({ navigation, route }) => {
                         </View>
                     )}
                 </View>
+                <View style={{flexDirection: 'row', justifyContent: 'space-around', width: windowWidth*0.8}}>
+                    <Button width={windowWidth*0.8} title='CANCIONES' onPress={() => setBoxPreferences('CANCIONES')}/>
+                    <Button width={windowWidth*0.8} title='ARTISTAS' onPress={() => setBoxPreferences('ARTISTAS')}/>
+                </View>
+                {
+                    boxPreferences === 'CANCIONES' ? <SongBox /> :
+                    boxPreferences === 'ARTISTAS' && <ArtistBox />
+                }
                 <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
             </View>
             <NavBar navigation={navigation} route={route} />

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, ActivityIndicator } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useRegisterContext } from '../../Context/RegisterContext';
 import { useNavigation } from '@react-navigation/native';
@@ -13,9 +13,9 @@ const SongBox = () => {
     }
 
     const navegarASearch = () => {
-        navigation.navigate("RegisterSearch", {
+        navigation.navigate("Register", {screen: "RegisterSearch", params: {
             type: "cancion",
-        });
+    }});
     }
 
     return (
@@ -47,7 +47,6 @@ const SongBox = () => {
                                     </View>
                                 </TouchableWithoutFeedback>
                         )
-
                     })
                 }
             </View>
