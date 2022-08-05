@@ -8,16 +8,41 @@ import Svg, {
 } from 'react-native-svg';
 import { getUserById } from '../Handlers/AuthHandler'
 import Avatar from '../Components/Common/Avatar';
+import { useRegisterContext } from '../Context/RegisterContext';
 
 
 const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined)
+    const {
+        username,
+        instagram,
+        avatarId,
+        descripcion,
+        songPreference,
+        artistPreference,
+        handleChangeNombre,
+        setInstagram,
+        setAvatarId,
+        handleChangeDesc,
+        setSongPreference,
+        setArtistPreference
+    } = useRegisterContext()
+
+    const setContext = (user) => {
+        handleChangeNombre(user.username)
+        setAvatarId(user.avatarId)
+        handleChangeDesc(user.description)
+        setInstagram(user.instagram)
+        setSongPreference(user.tracks)
+        setArtistPreference(user.artists)
+    }
 
     useEffect(() => {
         (async () => {
             const spotiId = await AsyncStorage.getItem('spotify_id')
             console.log(spotiId);
             const res = await getUserById(spotiId)
+            setContext(res)
             setUser(res)
         })()
     }, [])
@@ -46,10 +71,10 @@ const Config = ({ navigation, route }) => {
                 <View style={{ marginTop: 50 }}>
                     {user && (
                         <View style={{ flexDirection: 'row' }}>
-                            <Avatar id={user.avatarId} width={130} height={130} />
+                            <Avatar id={avatarId} width={130} height={130} />
                             <View style={{ flexDirection: 'column', marginLeft: 20 }}>
-                                <Text style={{ color: 'black', fontSize: 24}}>{user.spotifyId}</Text>
-                                <Text style={{fontSize: 14, }}>{user.description}</Text>
+                                <Text style={{ color: 'black', fontSize: 24 }}>{username}</Text>
+                                <Text style={{ fontSize: 14, }}>{descripcion}</Text>
                             </View>
                         </View>
                     )}

@@ -3,6 +3,7 @@ export const RegisterContext = createContext();
 
 export function RegisterProvider(props) {
     const [username, setUsername] = useState("");
+    const [instagram, setInstagram] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [charsLeft, setCharsLeft] = useState(150);
     const [spotifyId, setSpotifyId] = useState();
@@ -27,6 +28,7 @@ export function RegisterProvider(props) {
     const value = useMemo(() => {
         return ({
             username,
+            instagram,
             avatarId,
             descripcion,
             charsLeft,
@@ -34,6 +36,7 @@ export function RegisterProvider(props) {
             songPreference,
             artistPreference,
             handleChangeNombre,
+            setInstagram,
             setAvatarId,
             handleChangeDesc,
             setSpotifyId,
