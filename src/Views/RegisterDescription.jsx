@@ -14,7 +14,7 @@ const RegisterDescription = ({ navigation }) => {
 
     const continuar = () => {
         if (descripcion.length > 0) {
-            setProgressBar(0.66);
+            setProgressBar(0.50);
             setTimeout(() => {
                 navigation.navigate('RegisterSecond')
             }, 500);

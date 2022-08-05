@@ -19,23 +19,18 @@ const RegisterSecond = ({ navigation }) => {
         QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
     });
 
-    const finishRegister = async () => {
-        const accessToken = await AsyncStorage.getItem('accessToken');
-        console.log(accessToken);
-        await addUser({
-            spotifyId,
-            username,
-            description: descripcion,
-            avatarId: avatarId,
-            tracks: songPreference,
-            artists: artistPreference
-        })
-        setProgressBar(1);
+    const continuar = () => {
+        setProgressBar(0.75)
         setTimeout(() => {
-            navigation.navigate('Main', { screen: 'Match' })
+            navigation.navigate('RegisterThird')
         }, 500);
     }
 
+    const volver = () => {
+        setProgressBar(0.25);
+        navigation.goBack()
+    }
+    
     useEffect(() => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");
@@ -46,10 +41,7 @@ const RegisterSecond = ({ navigation }) => {
             setLoading(false);
         })();
     }, [])
-    const volver = () => {
-        setProgressBar(0.33);
-        navigation.goBack()
-    }
+    
 
     return (
         <View style={styles.container}>
@@ -78,7 +70,7 @@ const RegisterSecond = ({ navigation }) => {
                                     <SongBox />
                                 </View>
                         }
-                        <ButtonContinue onPress={() => finishRegister()} />
+                        <ButtonContinue onPress={() => continuar()} />
                         <Image style={styles.backgroundImg} source={require('../Assets/register/registerSecondBackground.png')} />
                         <StatusBar
                             barStyle="dark-content"
