@@ -15,7 +15,9 @@ export function RegisterProvider(props) {
     const [artistPreference, setArtistPreference] = useState([]);
 
     const handleChangeNombre = (e) => {
-        setUsername(e);
+        if (e.length <= 18) {
+            setUsername(e);
+        }
     }
 
     const handleChangeDesc = (e) => {
