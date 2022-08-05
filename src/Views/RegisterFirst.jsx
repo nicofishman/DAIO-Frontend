@@ -25,6 +25,13 @@ const RegisterFirst = ({ navigation }) => {
         navigation.goBack()
     }
 
+    const continuar = () => {
+        setProgressBar(0.25)
+        setTimeout(() => {
+            navigation.navigate('RegisterDescription')
+        }, 500);
+    }
+
     let AvatarArray = [
         [require('../Assets/Avatars/AvatarsToChoose/avatar1.png'),
         require('../Assets/Avatars/AvatarsToChoose/avatar2.png'),
@@ -71,12 +78,7 @@ const RegisterFirst = ({ navigation }) => {
         }
     }, [isOpenAvatarPicker])
 
-    const continuar = () => {
-        setProgressBar(0.33)
-        setTimeout(() => {
-            navigation.navigate('RegisterDescription')
-        }, 500);
-    }
+    
 
     return (
         <SafeAreaView style={styles.container}>
