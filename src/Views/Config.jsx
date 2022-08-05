@@ -40,7 +40,6 @@ const Config = ({ navigation, route }) => {
     useEffect(() => {
         (async () => {
             const spotiId = await AsyncStorage.getItem('spotify_id')
-            console.log(spotiId);
             const res = await getUserById(spotiId)
             setContext(res)
             setUser(res)
