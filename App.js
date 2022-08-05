@@ -4,20 +4,39 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainBottomTabNavigator from './src/Navigators/MainBottomTabNavigator';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterNavigation from './src/Navigators/RegisterNavigation';
 import LoginStackNavigator from './src/Navigators/LoginStackNavigator';
 import RegisterFirst from './src/Views/RegisterFirst';
 import { RegisterProvider } from './src/Context/RegisterContext';
 import RegisterSecond from './src/Views/RegisterSecond';
 import 'react-native-gesture-handler';
+import { useEffect, useState } from 'react';
 
 export default function App() {
     const Stack = createNativeStackNavigator();
+    const [isLoading, setIsLoading] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(async () => {
+        const id = await AsyncStorage.getItem('access_token');
+        console.log('id', id);
+        setIsLoggedIn(id !== null);
+        setIsLoading(false);
+    }, []);
+
+    if (isLoading) {
+        return (
+            <View style={styles.container}>
+                <Text>Loading...</Text>
+            </View>
+        );
+    }
 
     return (
         <RegisterProvider>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName='LoginNavigator'>
+                <Stack.Navigator initialRouteName={isLoggedIn ? 'Main' : 'LoginNavigator'}>
                     <Stack.Screen name="LoginNavigator" component={LoginStackNavigator} options={{ headerShown: false }} />
                     <Stack.Screen name='Main' component={MainBottomTabNavigator} options={{ headerShown: false }} />
                     <Stack.Screen name="Register" component={RegisterNavigation} options={{ headerShown: false }} />
