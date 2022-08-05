@@ -115,8 +115,7 @@ const RegisterFirst = ({ navigation }) => {
                         </View>
                         {isOpenAvatarPicker ? (
                             <View style={{
-                                flexDirection: 'column', position: 'relative', top: 120, justifyContent: 'center', backgroundColor: 'rgba(201, 201, 201, 0.4)', borderRadius: 55, padding: 30, overflow: 'scroll', maxHeight:
-                                    400
+                                flexDirection: 'column', position: 'relative', top: 120, justifyContent: 'center', backgroundColor: 'rgba(201, 201, 201, 0.4)', borderRadius: 55, padding: 30, overflow: 'scroll', maxHeight: 400
                             }}>
                                 <View blurRadius={10} style={styles.avatarBox}>
                                     {

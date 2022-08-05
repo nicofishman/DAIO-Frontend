@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
         top: windowHeight * 0.175,
         width: windowWidth * .75,
         fontSize: 28,
-        fontWeight: 'bold',
         color: "#1f1f1f",
         fontFamily: 'QuicksandBold'
     },

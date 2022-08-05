@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, SafeAreaView, StyleSheet, StatusBar, Dimensions } from 'react-native'
+import { View, Text, ActivityIndicator, SafeAreaView, StyleSheet, StatusBar, Dimensions, TextInput } from 'react-native'
 import React from 'react'
 import { useFonts } from 'expo-font'
 import ButtonBack from '../Components/Common/ButtonBack';
@@ -8,7 +8,7 @@ import { useRegisterContext } from '../Context/RegisterContext';
 
 
 const RegisterThird = ({ navigation }) => {
-    const { progressBar, setProgressBar } = useRegisterContext();
+    const { instagram, setInstagram, progressBar, setProgressBar } = useRegisterContext();
     
     const [loaded] = useFonts({
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
@@ -51,8 +51,17 @@ const RegisterThird = ({ navigation }) => {
                 <View style={styles.buttonBack} >
                     <ButtonBack onPress={volver} />
                 </View>
-                <Text>TUki</Text>
+                <Text style={styles.textTitle}>Ingresa tu Instaram para hablar con tus match</Text>
+                <TextInput
+                                    value={instagram}
+                                    caretHidden={true}
+                                    placeholder={'Ingresa tu nombre'}
+                                    placeholderTextColor="#d4d4d4"
+                                    spellCheck={false}
+                                    autoCorrect={false}
+                                />
                 <ButtonContinue onPress={() => finishRegister()} />
+
 
                 </>
                 
@@ -87,4 +96,12 @@ const styles = StyleSheet.create({
         top: StatusBar.currentHeight,
         position: "relative"
     },
+    textTitle: {
+        top: windowHeight * 0.175,
+        width: windowWidth * .75,
+        fontSize: 28,
+        color: "#1f1f1f",
+        fontFamily: 'QuicksandBold',
+    },
+
 })

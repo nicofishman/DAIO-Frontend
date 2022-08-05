@@ -5,8 +5,10 @@ import ButtonContinue from '../Components/Common/ButtonContinue';
 import ButtonBack from '../Components/Common/ButtonBack'
 import * as Progress from 'react-native-progress';
 import { useFonts } from 'expo-font'
+
 const RegisterDescription = ({ navigation }) => {
     const { descripcion, handleChangeDesc, charsLeft, progressBar, setProgressBar } = useRegisterContext();
+    
     const [loaded] = useFonts({
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
         QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
@@ -107,7 +109,6 @@ const styles = StyleSheet.create({
     },
     textTitle: {
         fontSize: 28,
-        fontWeight: 'bold',
         color: "#1f1f1f",
         marginBottom: 5,
         fontFamily: 'QuicksandBold'
