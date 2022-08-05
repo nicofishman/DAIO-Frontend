@@ -5,10 +5,12 @@ import ButtonBack from '../Components/Common/ButtonBack';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import * as Progress from 'react-native-progress';
 import { useRegisterContext } from '../Context/RegisterContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { addUser } from '../Handlers/AuthHandler';
 
 
 const RegisterThird = ({ navigation }) => {
-    const { instagram, setInstagram, progressBar, setProgressBar } = useRegisterContext();
+    const { instagram, setInstagram, artistPreference, songPreference, username, descripcion, spotifyId, avatarId, progressBar, setProgressBar } = useRegisterContext();
     
     const [loaded] = useFonts({
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
@@ -23,14 +25,14 @@ const RegisterThird = ({ navigation }) => {
     const finishRegister = async () => {
         const accessToken = await AsyncStorage.getItem('accessToken');
         console.log(accessToken);
-        // await addUser({
-        //     spotifyId,
-        //     username,
-        //     description: descripcion,
-        //     avatarId: avatarId,
-        //     tracks: songPreference,
-        //     artists: artistPreference
-        // })
+        await addUser({
+            spotifyId,
+            username,
+            description: descripcion,
+            avatarId: avatarId,
+            tracks: songPreference,
+            artists: artistPreference
+        })
         setProgressBar(0.75);
         setTimeout(() => {
             navigation.navigate('Main', { screen: 'Match' })
@@ -53,6 +55,7 @@ const RegisterThird = ({ navigation }) => {
                 </View>
                 <Text style={styles.textTitle}>Ingresa tu Instaram para hablar con tus match</Text>
                 <TextInput
+                                    onChangeText={(e) => setInstagram(e)}
                                     value={instagram}
                                     caretHidden={true}
                                     placeholder={'Ingresa tu nombre'}
