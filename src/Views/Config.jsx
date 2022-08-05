@@ -48,7 +48,8 @@ const Config = ({ navigation, route }) => {
 
     const logOut = async () => {
         console.log('Logging out');
-        await AsyncStorage.setItem('access_token', '').then(() => {
+        await AsyncStorage.setItem('access_token', '').then(async () => {
+            await AsyncStorage.setItem('spotify_id', '')
             navigation.navigate('LoginNavigator', { screen: 'CreateOrSignInAcount' });
         }).catch(err => {
             console.log(err);

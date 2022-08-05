@@ -19,7 +19,7 @@ export default function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(async () => {
-        const id = await AsyncStorage.getItem('access_token');
+        const id = await AsyncStorage.getItem('spotify_id');
         console.log('id', id);
         setIsLoggedIn(id !== null);
         setIsLoading(false);
