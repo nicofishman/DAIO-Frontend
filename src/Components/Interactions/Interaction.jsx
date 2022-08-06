@@ -14,6 +14,9 @@ const Interaction = ({ item }) => {
                     <View style={styles.match} />
                     : <View style={styles.noMatch} />
             }
+            {
+                item.decision ? <View style={styles.yup} /> : <View style={styles.nope} />
+            }
         </View>
     )
 }
@@ -38,5 +41,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
         alignItems: 'center',
+    },
+    yup: {
+        width: 45,
+        height: 45,
+        borderRadius: 25,
+        backgroundColor: '#69f079',
+    },
+    nope: {
+        width: 45,
+        height: 45,
+        borderRadius: 25,
+        backgroundColor: '#f44336',
     }
 })

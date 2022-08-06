@@ -1,19 +1,23 @@
-import { StyleSheet, Text, View, FlatList, SafeAreaView, Dimensions, StatusBar } from 'react-native'
+import { StyleSheet, View, FlatList, Text, StatusBar, RefreshControl, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getInteractions } from '../Handlers/AuthHandler';
 import Interaction from '../Components/Interactions/Interaction';
+import { useInteractionsContext } from '../Context/InteractionsContext';
+import { useFonts } from 'expo-font';
 
 const Chat = ({ navigation, route }) => {
-    const [interactions, setInteractions] = useState([]);
+    const { interactions, refreshInteractions } = useInteractionsContext()
+    const [refreshing, setRefreshing] = useState(false);
 
-    const refreshInteractions = async () => {
-        AsyncStorage.getItem('spotify_id').then(id => {
-            getInteractions(id).then(interactions => {
-                setInteractions(interactions)
-            })
-        })
+    const [loaded] = useFonts({
+        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
+        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
+    });
+
+    const updateInt = async () => {
+        await refreshInteractions()
+        console.log(interactions.length);
+        setRefreshing(false);
     }
 
     useEffect(() => {
@@ -22,10 +26,14 @@ const Chat = ({ navigation, route }) => {
         })();
     }, [])
 
-    return (
-        <View style={styles.container}>
-            <View style={{ paddingTop: StatusBar.currentHeight, height: '100%' }}>
+    return loaded && (
+        <SafeAreaView style={styles.container}>
+            <Text style={styles.title}>Tus Interacciones</Text>
+            <View style={{ paddingTop: 10, flex: 1 }}>
                 <FlatList
+                    refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={() => updateInt()} />
+                    }
                     data={interactions}
                     style={styles.flatList}
                     renderItem={({ item }) => (
@@ -36,7 +44,7 @@ const Chat = ({ navigation, route }) => {
                 </FlatList>
                 <NavBar navigation={navigation} route={route} />
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -45,10 +53,16 @@ export default Chat
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red',
+        marginTop: StatusBar.currentHeight,
+        backgroundColor: '#fef',
     },
     flatList: {
         backgroundColor: '#fff',
         marginBottom: 70,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
     }
 })

@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavBar from '../Components/Common/NavBar';
 import { getUserData } from '../Handlers/AuthHandler'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { InteractionsProvider } from '../Context/InteractionsContext';
 
 const MainBottomTabNavigator = () => {
     const Tab = createBottomTabNavigator();
@@ -18,12 +19,14 @@ const MainBottomTabNavigator = () => {
         })()
     }, [])
     return (
-        <Tab.Navigator options={{ headerShown: false }} initialRouteName="Match" tabBar={props => <NavBar />}>
-            {/* add icons */}
-            <Tab.Screen name="Config" component={Config} options={{ headerShown: false }} />
-            <Tab.Screen name="Match" component={Match} options={{ headerShown: false }} />
-            <Tab.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
-        </Tab.Navigator>
+        <InteractionsProvider>
+            <Tab.Navigator options={{ headerShown: false }} initialRouteName="Match" tabBar={props => <NavBar />}>
+                {/* add icons */}
+                <Tab.Screen name="Config" component={Config} options={{ headerShown: false }} />
+                <Tab.Screen name="Match" component={Match} options={{ headerShown: false }} />
+                <Tab.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
+            </Tab.Navigator>
+        </InteractionsProvider>
     );
 }
 

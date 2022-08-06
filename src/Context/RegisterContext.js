@@ -47,7 +47,7 @@ export function RegisterProvider(props) {
             progressBar,
             setProgressBar
         })
-    }, [username, avatarId, descripcion, charsLeft, spotifyId, songPreference, artistPreference, handleChangeNombre, handleChangeDesc, progressBar])
+    }, [username, instagram, avatarId, descripcion, charsLeft, spotifyId, songPreference, artistPreference, handleChangeNombre, handleChangeDesc, progressBar])
 
     return (
         <RegisterContext.Provider value={value}>

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, ImageBackground, ActivityIndicator, StatusBar } from "react-native";
+import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from "react-native";
 import NavBar from "../Components/Common/NavBar";
 import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
-import { addInteraction, getNotInteractedUsers, getUsersAndInfo } from "../Handlers/AuthHandler";
+import { addInteraction, getNotInteractedUsers } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useInteractionsContext } from '../Context/InteractionsContext';
 
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
     const [visualArtist, setVisualArtist] = useState(-1);
     const [visualSong, setVisualSong] = useState(-1);
     const [isLoading, setIsLoading] = useState(true);
+    const { refreshInteractions } = useInteractionsContext();
 
     useEffect(() => {
         (async () => {
@@ -34,6 +35,7 @@ const Match = ({ navigation, route }) => {
         })
         setVisualArtist(-1);
         setVisualSong(-1);
+        refreshInteractions();
         return true; // return false if you wish to cancel the action
     }
     async function handleNope(card) {
@@ -46,6 +48,7 @@ const Match = ({ navigation, route }) => {
         })
         setVisualArtist(-1);
         setVisualSong(-1);
+        refreshInteractions();
         return true;
     }
     function StatusCard({ text }) {

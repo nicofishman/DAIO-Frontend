@@ -6,7 +6,6 @@ import ButtonContinue from '../Components/Common/ButtonContinue'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Progress from 'react-native-progress';
 import { useFonts } from 'expo-font';
-import { NavigationHelpersContext } from '@react-navigation/native'
 
 const RegisterFirst = ({ navigation }) => {
     const { username, handleChangeNombre, avatarId, setAvatarId, progressBar, setProgressBar } = useRegisterContext();
@@ -78,7 +77,7 @@ const RegisterFirst = ({ navigation }) => {
         }
     }, [isOpenAvatarPicker])
 
-    
+
 
     return (
         <SafeAreaView style={styles.container}>
