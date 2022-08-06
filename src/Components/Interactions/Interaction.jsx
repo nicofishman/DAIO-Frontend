@@ -1,8 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import { StyleSheet, Text, View, Linking, Alert, TouchableWithoutFeedback } from 'react-native'
+import React, { useCallback } from 'react'
 import Avatar from '../Common/Avatar'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Interaction = ({ item }) => {
+    const SendIntentButton = ({ action, extras, children }) => {
+        const instagramUrl = `https://www.instagram.com/${action}`
+        const handlePress = useCallback(async () => {
+            const isOpenable = await Linking.canOpenURL(instagramUrl);
+            if (isOpenable) {
+                await Linking.openURL(instagramUrl);
+            } else {
+                console.log('Don\'t know how to open URI: ' + instagramUrl);
+                Alert.alert('No se pudo abrir el enlace');
+            }
+        }, [instagramUrl]);
+        return (
+            <TouchableWithoutFeedback onPress={handlePress}>
+                {children}
+            </TouchableWithoutFeedback>
+        );
+    };
     return (
         <View style={styles.row}>
             <View style={styles.info}>
@@ -10,12 +28,16 @@ const Interaction = ({ item }) => {
                 <Text style={styles.text}>{item.interactedWith.username}</Text>
             </View>
             {
-                item.isMatch ?
-                    <View style={styles.match} />
-                    : <View style={styles.noMatch} />
-            }
-            {
-                item.decision ? <View style={styles.yup} /> : <View style={styles.nope} />
+                item.decision ?
+                    <View style={styles.yup}>
+                        {
+                            item.isMatch &&
+                            <SendIntentButton action={item.interactedWith.instagram}>
+                                <AntDesign name="instagram" size={30} color="black" />
+                            </SendIntentButton>
+                        }
+                    </View>
+                    : <View style={styles.nope} />
             }
         </View>
     )
@@ -47,6 +69,8 @@ const styles = StyleSheet.create({
         height: 45,
         borderRadius: 25,
         backgroundColor: '#69f079',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     nope: {
         width: 45,
