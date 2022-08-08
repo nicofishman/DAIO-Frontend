@@ -20,7 +20,6 @@ const SongBox = () => {
 
     return (
         <View style={styles.box}>
-            <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Canciones</Text>
             <View style={styles.songsBox}>
                 {
                     new Array(5).fill(0).map((_, index) => {
@@ -61,7 +60,6 @@ const styles = StyleSheet.create({
     box: {
         width: 332,
         height: 300,
-        marginTop: 20,
         justifyContent: 'center',
         borderRadius: 4,
         shadowColor: "rgba(0, 0, 0, 0.25)",
@@ -72,6 +70,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         shadowOpacity: 1,
         paddingHorizontal: 10,
+        left: -9
     },
     selected: {
         backgroundColor: 'red'
@@ -134,6 +133,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 28,
         padding: 6,
-        backgroundColor: '#f67171',
+        backgroundColor: '#ff4242', //'#ff4242',
     },
 })

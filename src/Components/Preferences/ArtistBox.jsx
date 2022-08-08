@@ -21,7 +21,6 @@ const ArtistBox = () => {
 
     return (
         <View style={styles.box}>
-            <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Artistas</Text>
             <View style={styles.artistBox}>
                 {
                     new Array(3).fill(0).map((_, index) => {
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         padding: 5,
-        backgroundColor: '#f67171',
+        backgroundColor: '#ff4242',
     },
     imgAndIcon: {
         position: 'relative',

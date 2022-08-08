@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, Button, Dimensions, Image, StatusBar } from 'react-native'
+import { StyleSheet, SafeAreaView, Text, TextInput, View, Button, Dimensions, Image, StatusBar, TouchableHighlight, TouchableOpacity} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
 import SpotifyLogin from '../Components/SpotifyLogin'
@@ -11,6 +11,7 @@ import Avatar from '../Components/Common/Avatar';
 import { useRegisterContext } from '../Context/RegisterContext';
 import SongBox from '../Components/Preferences/SongBox';
 import ArtistBox from '../Components/Preferences/ArtistBox';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 
 const Config = ({ navigation, route }) => {
@@ -61,9 +62,14 @@ const Config = ({ navigation, route }) => {
         });
     }
 
+    function editProfile(){
+        alert('Editar Perfil')
+    }
+
     return (
         <>
-            <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+                {/* Avatar-Nombre-Descripcion*/}
                 <Svg style={{ position: 'absolute' }} height="300" width={windowWidth}>
                     <Ellipse
                         cx='200'
@@ -80,20 +86,39 @@ const Config = ({ navigation, route }) => {
                             <View style={{ flexDirection: 'column', marginLeft: 20 }}>
                                 <Text style={{ color: 'black', fontSize: 24 }}>{username}</Text>
                                 <Text style={{ fontSize: 14, }}>{descripcion}</Text>
+                                <Text>{instagram}</Text>
                             </View>
                         </View>
                     )}
                 </View>
-                <View style={{flexDirection: 'row', justifyContent: 'space-around', width: windowWidth*0.8}}>
-                    <Button width={windowWidth*0.8} title='CANCIONES' onPress={() => setBoxPreferences('CANCIONES')}/>
-                    <Button width={windowWidth*0.8} title='ARTISTAS' onPress={() => setBoxPreferences('ARTISTAS')}/>
-                </View>
+                <TouchableOpacity style={[styles.circle, styles.shadowBox]} activeOpacity={1} onPress={()=> editProfile()}>
+                        <MaterialIcons name="edit" size={40} color="black" />
+                </TouchableOpacity>
+                {/* Canciones-Artistas */}
                 {
-                    boxPreferences === 'CANCIONES' ? <SongBox /> :
-                    boxPreferences === 'ARTISTAS' && <ArtistBox />
+                    boxPreferences === 'CANCIONES' ? (
+                        <>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                                <TouchableOpacity style={[styles.buttonSelect, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
+                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                            </View>
+                            <SongBox /> 
+                        </>
+                    ) :
+                    boxPreferences === 'ARTISTAS' && (
+                        <>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
+                                <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                            </View>
+                            <ArtistBox />
+                        </>
+
+                    ) 
+                
                 }
                 <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
-            </View>
+            </SafeAreaView>
             <NavBar navigation={navigation} route={route} />
         </>
     )
@@ -114,12 +139,28 @@ const styles = StyleSheet.create({
     profile: {
         width: windowWidth * 1.2,
         height: windowHeight * 0.2,
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff',
         top: 0,
         borderBottomRightRadius: windowWidth / 1.8,
         borderBottomLeftRadius: 150
     },
     logOut: {
         bottom: 0,
-    }
+    },
+    circle: {
+        width: windowWidth * 0.175,
+        height: windowWidth * 0.175,
+        borderRadius: windowWidth * 0.175,
+        backgroundColor: '#ffffff',
+        left: windowWidth * 0.3,
+        marginBottom: 80,
+        justifyContent: 'center', alignItems: 'center'
+    },
+    buttonSelect: {
+        width: windowWidth*0.4,
+        paddingVertical: 2,
+        marginHorizontal: 1,
+        alignItems: 'center',
+        backgroundColor: '#ffffff'
+    },
 })
