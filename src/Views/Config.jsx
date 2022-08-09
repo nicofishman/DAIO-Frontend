@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, Text, TextInput, View, Button, Dimensions, Image, StatusBar, TouchableHighlight, TouchableOpacity} from 'react-native'
+import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Button, Dimensions, Image, StatusBar, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
 import SpotifyLogin from '../Components/SpotifyLogin'
@@ -18,6 +18,7 @@ const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined)
     const [loading, setLoading] = useState(true)
     const [boxPreferences, setBoxPreferences] = useState("CANCIONES")
+    const [editando, setEditando] = useState(false)
     const {
         username,
         instagram,
@@ -63,61 +64,74 @@ const Config = ({ navigation, route }) => {
     }
 
     function editProfile(){
-        alert('Editar Perfil')
+        if(editando){
+            setEditando(false)
+        } else {
+            setEditando(true)
+        }
+        alert("Editando")
     }
 
     return (
         <>
-        <SafeAreaView style={styles.container}>
-                {/* Avatar-Nombre-Descripcion*/}
-                <Svg style={{ position: 'absolute' }} height="300" width={windowWidth}>
-                    <Ellipse
-                        cx='200'
-                        cy="80"
-                        rx='300'
-                        ry="170"
-                        fill="white"
-                    />
-                </Svg>
-                <View style={{ marginTop: 50 }}>
-                    {user && (
-                        <View style={{ flexDirection: 'row' }}>
-                            <Avatar id={avatarId} width={130} height={130} />
-                            <View style={{ flexDirection: 'column', marginLeft: 20 }}>
-                                <Text style={{ color: 'black', fontSize: 24 }}>{username}</Text>
-                                <Text style={{ fontSize: 14, }}>{descripcion}</Text>
-                                <Text>{instagram}</Text>
-                            </View>
-                        </View>
-                    )}
-                </View>
-                <TouchableOpacity style={[styles.circle, styles.shadowBox]} activeOpacity={1} onPress={()=> editProfile()}>
-                        <MaterialIcons name="edit" size={40} color="black" />
-                </TouchableOpacity>
-                {/* Canciones-Artistas */}
+            <SafeAreaView style={styles.container}>
                 {
-                    boxPreferences === 'CANCIONES' ? (
+                    loading ? (
+                        <View style={{top: windowHeight/2}}>
+                            <ActivityIndicator size="100" color="#fff" />
+                        </View>
+                    ) : (
                         <>
-                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                                <TouchableOpacity style={[styles.buttonSelect, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
-                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                            {/* Avatar-Nombre-Descripcion*/}
+                            <Svg style={{ position: 'absolute' }} height={300} width={windowWidth}>
+                                <Ellipse
+                                    cx='200'
+                                    cy='80'
+                                    rx='300'
+                                    ry='170'
+                                    fill="white"
+                                />
+                            </Svg>
+                            <View style={{ marginTop: 50 }}>
+                                {user && (
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <Avatar id={avatarId} width={130} height={130} />
+                                        <View style={{ flexDirection: 'column', marginLeft: 20 }}>
+                                            <Text style={{ color: 'black', fontSize: 24 }}>{username}</Text>
+                                            <Text style={{ fontSize: 14, }}>{descripcion}</Text>
+                                            <Text>{instagram}</Text>
+                                        </View>
+                                    </View>
+                                )}
                             </View>
-                            <SongBox /> 
+                            <TouchableOpacity style={[styles.circle, styles.shadowBox]} activeOpacity={1} onPress={() => editProfile()}>
+                                    <MaterialIcons name="edit" size={40} color="black" />
+                            </TouchableOpacity>
+                            {/* Canciones-Artistas */}
+                            {
+                                boxPreferences === 'CANCIONES' ? (
+                                    <>
+                                        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                                            <TouchableOpacity style={[styles.buttonSelect, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
+                                            <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                                        </View>
+                                        <SongBox /> 
+                                    </>
+                                ) :
+                                boxPreferences === 'ARTISTAS' && (
+                                    <>
+                                        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30}}>
+                                            <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
+                                            <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                                        </View>
+                                        <ArtistBox />
+                                    </>
+                                )
+                            }
+                            <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
                         </>
-                    ) :
-                    boxPreferences === 'ARTISTAS' && (
-                        <>
-                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
-                                <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
-                            </View>
-                            <ArtistBox />
-                        </>
-
-                    ) 
-                
+                    )
                 }
-                <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
             </SafeAreaView>
             <NavBar navigation={navigation} route={route} />
         </>
@@ -151,7 +165,7 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.175,
         height: windowWidth * 0.175,
         borderRadius: windowWidth * 0.175,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#f0f0f0',
         left: windowWidth * 0.3,
         marginBottom: 80,
         justifyContent: 'center', alignItems: 'center'
