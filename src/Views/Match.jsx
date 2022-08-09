@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, Dimensions, ActivityIndicator, RefreshControl, ScrollView } from "react-native";
 import NavBar from "../Components/Common/NavBar";
 import CardMatch from "../Components/Match/CardMatch";
 import SwipeCards from "react-native-swipe-cards-deck";
@@ -12,18 +12,25 @@ const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
     const [visualArtist, setVisualArtist] = useState(-1);
     const [visualSong, setVisualSong] = useState(-1);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const { refreshInteractions } = useInteractionsContext();
 
     useEffect(() => {
         (async () => {
-            const spotifyId = await AsyncStorage.getItem('spotify_id');
-            const users = await getNotInteractedUsers(spotifyId)
-            setCardToMatch(users || []);
+            setIsLoading(true);
+            await refreshUsers(true);
             setIsLoading(false);
-        })()
+        })();
     }, []);
 
+    const refreshUsers = async (first) => {
+        if (!first) setIsRefreshing(true);
+        const spotifyId = await AsyncStorage.getItem('spotify_id');
+        const users = await getNotInteractedUsers(spotifyId)
+        setCardToMatch(users || []);
+        setIsRefreshing(false);
+    }
 
     async function handleYup(card) {
         const spotifyId = await AsyncStorage.getItem('spotify_id');
@@ -61,7 +68,11 @@ const Match = ({ navigation, route }) => {
 
     return (
         <>
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}
+                refreshControl={
+                    <RefreshControl refreshing={isRefreshing} onRefresh={() => refreshUsers(false)} />
+                }
+            >
                 {/* <ImageBackground
                 source={require('../Assets/Match/matchBackgroundFull.png')}
                 resizeMode='cover'
@@ -104,7 +115,7 @@ const Match = ({ navigation, route }) => {
                     stackOffsetX={0}
                 />
                 {/* </ImageBackground> */}
-            </View>
+            </ScrollView>
             <NavBar navigation={navigation} route={route} />
         </>
     );
