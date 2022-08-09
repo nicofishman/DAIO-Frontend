@@ -63,8 +63,8 @@ const Config = ({ navigation, route }) => {
         });
     }
 
-    function editProfile(){
-        if(editando){
+    function editProfile() {
+        if (editando) {
             setEditando(false)
         } else {
             setEditando(true)
@@ -77,8 +77,8 @@ const Config = ({ navigation, route }) => {
             <SafeAreaView style={styles.container}>
                 {
                     loading ? (
-                        <View style={{top: windowHeight/2}}>
-                            <ActivityIndicator size="100" color="#fff" />
+                        <View style={{ top: windowHeight / 2 }}>
+                            <ActivityIndicator size={100} color="#fff" />
                         </View>
                     ) : (
                         <>
@@ -105,28 +105,28 @@ const Config = ({ navigation, route }) => {
                                 )}
                             </View>
                             <TouchableOpacity style={[styles.circle, styles.shadowBox]} activeOpacity={1} onPress={() => editProfile()}>
-                                    <MaterialIcons name="edit" size={40} color="black" />
+                                <MaterialIcons name="edit" size={40} color="black" />
                             </TouchableOpacity>
                             {/* Canciones-Artistas */}
                             {
                                 boxPreferences === 'CANCIONES' ? (
                                     <>
-                                        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                                            <TouchableOpacity style={[styles.buttonSelect, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                            <TouchableOpacity style={[styles.buttonSelect, { backgroundColor: '#bfbfbf' }]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
                                             <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
                                         </View>
-                                        <SongBox /> 
+                                        <SongBox />
                                     </>
                                 ) :
-                                boxPreferences === 'ARTISTAS' && (
-                                    <>
-                                        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30}}>
-                                            <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
-                                            <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, {backgroundColor: '#bfbfbf'}]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
-                                        </View>
-                                        <ArtistBox />
-                                    </>
-                                )
+                                    boxPreferences === 'ARTISTAS' && (
+                                        <>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30 }}>
+                                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
+                                                <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, { backgroundColor: '#bfbfbf' }]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                                            </View>
+                                            <ArtistBox />
+                                        </>
+                                    )
                             }
                             <SpotifyLogin style={styles.logOut} title='Log Out' fnOnPress={logOut} />
                         </>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center', alignItems: 'center'
     },
     buttonSelect: {
-        width: windowWidth*0.4,
+        width: windowWidth * 0.4,
         paddingVertical: 2,
         marginHorizontal: 1,
         alignItems: 'center',
