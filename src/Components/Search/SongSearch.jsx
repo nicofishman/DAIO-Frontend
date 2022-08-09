@@ -36,13 +36,15 @@ const SongSearch = ({ song }) => {
             <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1, overflow: 'hidden' }}>
                 <Image style={styles.image} source={{ "uri": song.album.images[0].url }} />
                 <View style={styles.textSong}>
-                    <Text style={styles.title}>{song.name}</Text>
-                    <Text style={styles.artists}>{artists}</Text>
+                    <Text style={styles.title} numberOfLines={2}>{song.name}</Text>
+                    <Text style={styles.artists} numberOfLines={1}>{artists}</Text>
                 </View>
             </View>
-            <TouchableWithoutFeedback style={styles.addSong} onPress={handleSelect}>
-                <AntDesign style={styles.icon} name="pluscircleo" />
-            </TouchableWithoutFeedback>
+            <View style={styles.addSong}>
+                <TouchableWithoutFeedback onPress={handleSelect}>
+                    <AntDesign style={styles.icon} name="pluscircleo" />
+                </TouchableWithoutFeedback>
+            </View>
         </View>
     )
 }
