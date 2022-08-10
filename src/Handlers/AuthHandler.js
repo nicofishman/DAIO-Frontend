@@ -203,3 +203,8 @@ export const getInteractions = async (userId) => {
     const interactions = await axios.get('http://daio-backend.herokuapp.com/database/getinteractions', { headers: { accessToken: accessTokenRes, userId: userId } });
     return interactions.data;
 }
+
+export const updatePreferences = async (preferences) => {
+    const res = await axios.post('http://daio-backend.herokuapp.com/database/adduser', preferences);
+    return res.data;
+}

@@ -37,6 +37,7 @@ export function RegisterProvider(props) {
             spotifyId,
             songPreference,
             artistPreference,
+            setUsername,
             handleChangeNombre,
             setInstagram,
             setAvatarId,
