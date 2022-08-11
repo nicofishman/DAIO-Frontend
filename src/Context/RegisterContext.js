@@ -20,6 +20,12 @@ export function RegisterProvider(props) {
         }
     }
 
+    const handleChangeInstagram = (e) => {
+        if (e.length <= 30) {
+            setInstagram(e);
+        }
+    }
+
     const handleChangeDesc = (e) => {
         if (e.length <= 150) {
             setDescripcion(e);
@@ -40,6 +46,7 @@ export function RegisterProvider(props) {
             setUsername,
             handleChangeNombre,
             setInstagram,
+            handleChangeInstagram,
             setAvatarId,
             handleChangeDesc,
             setSpotifyId,
@@ -48,7 +55,7 @@ export function RegisterProvider(props) {
             progressBar,
             setProgressBar
         })
-    }, [username, instagram, avatarId, descripcion, charsLeft, spotifyId, songPreference, artistPreference, handleChangeNombre, handleChangeDesc, progressBar])
+    }, [username, instagram, avatarId, descripcion, charsLeft, spotifyId, songPreference, artistPreference, handleChangeNombre, handleChangeDesc, handleChangeInstagram, progressBar])
 
     return (
         <RegisterContext.Provider value={value}>

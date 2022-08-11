@@ -20,8 +20,11 @@ import { updatePreferences } from '../Handlers/AuthHandler';
 const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined)
     const [loading, setLoading] = useState(true)
+    const [editing, setEditing] = useState(false)
+    const [backgroundValues, setBackgroundValues] = useState([300, 300, 170]) //height, rx, ry
+    const [changingAvatar, setChangingAvatar] = useState(false)
     const [boxPreferences, setBoxPreferences] = useState("CANCIONES")
-    const [editando, setEditando] = useState(false)
+    //const [editando, setEditando] = useState(true) // hacer que solo aparezca con un cambio hecho
     const {
         username,
         instagram,
@@ -31,7 +34,9 @@ const Config = ({ navigation, route }) => {
         artistPreference,
         setUsername,
         setInstagram,
+        handleChangeInstagram,
         setAvatarId,
+        handleChangeNombre,
         handleChangeDesc,
         setSongPreference,
         setArtistPreference
@@ -75,12 +80,13 @@ const Config = ({ navigation, route }) => {
     }
 
     function editProfile() {
-        if (editando) {
-            setEditando(false)
+        if (editing) {
+            setEditing(false)
+            setBackgroundValues([300, 300, 170])
         } else {
-            setEditando(true)
+            setEditing(true)
+            setBackgroundValues([860, 550, 550])
         }
-        alert("Editando")
     }
 
     const saveProfile = async () => {
@@ -109,46 +115,132 @@ const Config = ({ navigation, route }) => {
                     ) : (
                         <>
                             {/* Avatar-Nombre-Descripcion*/}
-                            <Svg style={{ position: 'absolute' }} height={300} width={windowWidth}>
+                            
+                            <Svg style={{ position: 'absolute' }} width={windowWidth} height={backgroundValues[0]}>
                                 <Ellipse
                                     cx='200'
                                     cy='80'
-                                    rx='300'
-                                    ry='170'
+                                    rx={backgroundValues[1]}
+                                    ry={backgroundValues[2]}
                                     fill="white"
                                 />
                             </Svg>
                             {/* Logo cerrar sesión */}
-                            <SafeAreaView style={{ position: 'absolute', width: Dimensions.get('screen').width, height: Dimensions.get('screen').height }}>
-                                <TouchableWithoutFeedback onPress={() => logOut()}>
-                                    <MaterialIcons name="logout" size={30} color="#383838" onPress={logOut} style={styles.logOutIcon} />
-                                </TouchableWithoutFeedback>
-                            </SafeAreaView>
-                            <View style={{ marginTop: 50 }}>
-                                {user && (
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Avatar id={avatarId} width={130} height={130} />
-                                        <View style={styles.userInfo}>
-                                            <Text
-                                                style={{ color: 'black', fontWeight: 'bold', fontSize: 24 }}
-                                                numberOfLines={2}
-                                            >
-                                                {username}
-                                            </Text>
-                                            <Text style={{ fontSize: 14, }}>{descripcion}</Text>
-                                            <View style={{ flexDirection: 'row', maxWidth: 190 }}>
-                                                <MaterialCommunityIcons size={20} name='instagram' />
-                                                <Text numberOfLines={1} ellipsizeMode='middle'>{instagram}</Text>
-                                            </View>
+                            {
+                                !editing ? (
+                                    <>
+                                        <SafeAreaView style={{ position: 'absolute', width: Dimensions.get('screen').width, height: Dimensions.get('screen').height }}>
+                                            <TouchableWithoutFeedback onPress={() => logOut()}>
+                                                <MaterialIcons name="logout" size={30} color="#383838" onPress={logOut} style={styles.logOutIcon} />
+                                            </TouchableWithoutFeedback>
+                                        </SafeAreaView>
+                                        <View style={{ marginTop: 50 }}>
+                                            {user && (
+                                                <View style={{ flexDirection: 'row' }}>
+                                                    <Avatar id={avatarId} width={130} height={130} />
+                                                    <View style={styles.userInfo}>
+                                                        <Text
+                                                            style={{ color: 'black', fontWeight: 'bold', fontSize: 24 }}
+                                                            numberOfLines={2}
+                                                        >
+                                                            {username}
+                                                        </Text>
+                                                        <Text style={{ fontSize: 14, }}>{descripcion}</Text>
+                                                        <View style={{ flexDirection: 'row', maxWidth: 190 }}>
+                                                            <MaterialCommunityIcons size={20} name='instagram' />
+                                                            <Text numberOfLines={1} ellipsizeMode='middle'>{instagram}</Text>
+                                                        </View>
+                                                    </View>
+                                                </View>
+                                            )}
                                         </View>
-                                    </View>
+                                    </>
+                                    
+                                ):(
+                                    <>
+                                        <Text style={{fontSize: 40}}> lLOL</Text>
+
+                                        <View style={{position: 'relative'}}>
+                                            <Avatar id={avatarId} width={130} height={130} />
+                                            <TouchableOpacity style={{position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40}} activeOpacity={1} onPress={() => setChangingAvatar(!changingAvatar)}>
+                                                <MaterialIcons style={{padding: 10}} name={changingAvatar ? "close" : "edit"} size={30} color="black" />
+                                            </TouchableOpacity>
+                                        </View>
+                                        {
+                                            changingAvatar && (
+                                                <>
+                                                {
+                                                    AvatarArray.map((row, rowIndex) => {
+                                                        return (
+                                                        <View key={row} style={{ flexDirection: 'row' }}>
+                                                            {row.map((image, index) => {
+                                                                return (
+                                                                    <TouchableWithoutFeedback key={index} onPress={() => {
+                                                                        setAvatarId(index + (rowIndex * 3))
+                                                                    }}>
+                                                                        <Image
+                                                                            key={index}
+                                                                            source={image}
+                                                                            style={{width: 80, height: 80, marginHorizontal: 3, marginVertical: 3}}
+                                                                        />
+                                                                    </TouchableWithoutFeedback>
+                                                                )
+                                                            })}
+                                                        </View>
+                                            )
+                                        })
+                                    }
+                                                </>    
+                                            )
+                                        }
+                                        <View style={{width: windowWidth*.6,}}>
+                                            <Text>Nombre</Text>
+                                            <TextInput
+                                                style={styles.input}
+                                                onChangeText={handleChangeNombre}
+                                                value={username}
+                                                caretHidden={true}
+                                                placeholder={'Ingresa tu nombre'}
+                                                placeholderTextColor="#d4d4d4"
+                                                spellCheck={false}
+                                                autoCorrect={false}
+                                            />
+                                            <Text>Descripcion</Text>
+                                            <TextInput
+                                                style={styles.input}
+                                                onChangeText={handleChangeDesc}
+                                                value={descripcion}
+                                                caretHidden={true}
+                                                placeholder={'Ingresa una descripcion'}
+                                                placeholderTextColor="#d4d4d4"
+                                                spellCheck={false}
+                                                autoCorrect={false}
+                                            />
+                                            <Text>Instagram</Text>
+                                            <TextInput
+                                                style={styles.input}
+                                                onChangeText={handleChangeInstagram}
+                                                value={instagram}
+                                                caretHidden={true}
+                                                placeholder={'Tu instagram'}
+                                                placeholderTextColor="#d4d4d4"
+                                                spellCheck={false}
+                                                autoCorrect={false}
+                                            />
+                                        </View>
+                                    </>
                                 )}
-                            </View>
+
+
+
+
+
+
                             <TouchableOpacity style={[styles.circle, styles.shadowBox]} activeOpacity={1} onPress={() => editProfile()}>
-                                <MaterialIcons name="edit" size={40} color="black" />
+                                <MaterialIcons name={editing ? "close" : "edit"} size={40} color="black" />
                             </TouchableOpacity>
                             {/* Canciones-Artistas */}
-                            {
+                            {!editing && (
                                 boxPreferences === 'CANCIONES' ? (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -166,7 +258,8 @@ const Config = ({ navigation, route }) => {
                                             </View>
                                             <ArtistBox />
                                         </>
-                                    )
+                                )
+                                )
                             }
                             <TouchableOpacity onPress={saveProfile} style={styles.saveChanges}>
                                 {
@@ -185,6 +278,46 @@ const Config = ({ navigation, route }) => {
 }
 
 export default Config
+
+let AvatarArray = [
+    [require('../Assets/Avatars/AvatarsToChoose/avatar1.png'),
+    require('../Assets/Avatars/AvatarsToChoose/avatar2.png'),
+    require('../Assets/Avatars/AvatarsToChoose/avatar3.png')],
+    [require('../Assets/Avatars/AvatarsToChoose/avatar4.png'),
+    require('../Assets/Avatars/AvatarsToChoose/avatar5.png'),
+    require('../Assets/Avatars/AvatarsToChoose/avatar6.png')],
+    [require('../Assets/Avatars/AvatarsToChoose/avatar7.png'),
+    require('../Assets/Avatars/AvatarsToChoose/avatar8.png'),
+    require('../Assets/Avatars/AvatarsToChoose/avatar9.png')]
+];
+
+function showIconSelected() {
+    switch (avatarId) {
+        case -1:
+            return <Image source={require('../Assets/Avatars/Default.png')} style={styles.avatar} />
+        case 0:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar1.png')} style={styles.avatar} />
+        case 1:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar2.png')} style={styles.avatar} />
+        case 2:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar3.png')} style={styles.avatar} />
+        case 3:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar4.png')} style={styles.avatar} />
+        case 4:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar5.png')} style={styles.avatar} />
+        case 5:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar6.png')} style={styles.avatar} />
+        case 6:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar7.png')} style={styles.avatar} />
+        case 7:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar8.png')} style={styles.avatar} />
+        case 8:
+            return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar9.png')} style={styles.avatar} />
+    }
+}
+
+
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -224,7 +357,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff'
     },
     saveChanges: {
-        backgroundColor: '#f123ff',
+        backgroundColor: '#ca3',
         width: 180,
         height: 30,
         borderRadius: 50,
@@ -247,5 +380,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 10,
         top: StatusBar.currentHeight
+    },
+    input: {
+        borderWidth: 1,
+        borderRadius: 6,
+        paddingLeft: 10,
+        marginBottom: 20,
+
+
+
+
     }
 })
