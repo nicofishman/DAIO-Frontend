@@ -44,6 +44,7 @@ const Config = ({ navigation, route }) => {
 
     const [loaded] = useFonts({
         Quicksand: require('../../assets/fonts/Quicksand/Quicksand.ttf'),
+        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
         QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
     });
 
@@ -115,14 +116,14 @@ const Config = ({ navigation, route }) => {
                     ) : (
                         <>
                             {/* Avatar-Nombre-Descripcion*/}
-                            
+
                             <Svg style={{ position: 'absolute' }} width={windowWidth} height={backgroundValues[0]}>
                                 <Ellipse
                                     cx='200'
                                     cy='80'
                                     rx={backgroundValues[1]}
                                     ry={backgroundValues[2]}
-                                    fill="white"
+                                    fill="#f1f1f1"
                                 />
                             </Svg>
                             {/* Logo cerrar sesión */}
@@ -155,46 +156,44 @@ const Config = ({ navigation, route }) => {
                                             )}
                                         </View>
                                     </>
-                                    
-                                ):(
-                                    <>
-                                        <Text style={{fontSize: 40}}> lLOL</Text>
 
-                                        <View style={{position: 'relative'}}>
+                                ) : (
+                                    <View style={{width: windowWidth, flex: 1, top: StatusBar.currentHeight+10}}>
+                                        <View style={{ position: 'relative', width: 130, alignSelf: 'center' }}>
                                             <Avatar id={avatarId} width={130} height={130} />
-                                            <TouchableOpacity style={{position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40}} activeOpacity={1} onPress={() => setChangingAvatar(!changingAvatar)}>
-                                                <MaterialIcons style={{padding: 10}} name={changingAvatar ? "close" : "edit"} size={30} color="black" />
+                                            <TouchableOpacity style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} activeOpacity={1} onPress={() => setChangingAvatar(!changingAvatar)}>
+                                                <MaterialIcons style={{ padding: 10 }} name={changingAvatar ? "close" : "edit"} size={30} color="black" />
                                             </TouchableOpacity>
                                         </View>
                                         {
                                             changingAvatar && (
                                                 <>
-                                                {
-                                                    AvatarArray.map((row, rowIndex) => {
-                                                        return (
-                                                        <View key={row} style={{ flexDirection: 'row' }}>
-                                                            {row.map((image, index) => {
-                                                                return (
-                                                                    <TouchableWithoutFeedback key={index} onPress={() => {
-                                                                        setAvatarId(index + (rowIndex * 3))
-                                                                    }}>
-                                                                        <Image
-                                                                            key={index}
-                                                                            source={image}
-                                                                            style={{width: 80, height: 80, marginHorizontal: 3, marginVertical: 3}}
-                                                                        />
-                                                                    </TouchableWithoutFeedback>
-                                                                )
-                                                            })}
-                                                        </View>
-                                            )
-                                        })
-                                    }
-                                                </>    
+                                                    {
+                                                        AvatarArray.map((row, rowIndex) => {
+                                                            return (
+                                                                <View key={row} style={{ flexDirection: 'row' }}>
+                                                                    {row.map((image, index) => {
+                                                                        return (
+                                                                            <TouchableWithoutFeedback key={index} onPress={() => {
+                                                                                setAvatarId(index + (rowIndex * 3))
+                                                                            }}>
+                                                                                <Image
+                                                                                    key={index}
+                                                                                    source={image}
+                                                                                    style={{ width: 80, height: 80, marginHorizontal: 3, marginVertical: 3 }}
+                                                                                />
+                                                                            </TouchableWithoutFeedback>
+                                                                        )
+                                                                    })}
+                                                                </View>
+                                                            )
+                                                        })
+                                                    }
+                                                </>
                                             )
                                         }
-                                        <View style={{width: windowWidth*.6,}}>
-                                            <Text>Nombre</Text>
+                                        <View style={{ width: windowWidth, }}>
+                                            <Text style={styles.inputTitle}>Nombre</Text>
                                             <TextInput
                                                 style={styles.input}
                                                 onChangeText={handleChangeNombre}
@@ -205,7 +204,7 @@ const Config = ({ navigation, route }) => {
                                                 spellCheck={false}
                                                 autoCorrect={false}
                                             />
-                                            <Text>Descripcion</Text>
+                                            <Text style={styles.inputTitle}>Descripcion</Text>
                                             <TextInput
                                                 style={styles.input}
                                                 onChangeText={handleChangeDesc}
@@ -216,7 +215,7 @@ const Config = ({ navigation, route }) => {
                                                 spellCheck={false}
                                                 autoCorrect={false}
                                             />
-                                            <Text>Instagram</Text>
+                                            <Text style={styles.inputTitle}>Instagram</Text>
                                             <TextInput
                                                 style={styles.input}
                                                 onChangeText={handleChangeInstagram}
@@ -228,7 +227,7 @@ const Config = ({ navigation, route }) => {
                                                 autoCorrect={false}
                                             />
                                         </View>
-                                    </>
+                                    </View>
                                 )}
 
 
@@ -258,8 +257,8 @@ const Config = ({ navigation, route }) => {
                                             </View>
                                             <ArtistBox />
                                         </>
-                                )
-                                )
+                                    )
+                            )
                             }
                             <TouchableOpacity onPress={saveProfile} style={styles.saveChanges}>
                                 {
@@ -382,13 +381,17 @@ const styles = StyleSheet.create({
         top: StatusBar.currentHeight
     },
     input: {
-        borderWidth: 1,
-        borderRadius: 6,
+        fontFamily: 'QuicksandRegular',
         paddingLeft: 10,
         marginBottom: 20,
+        backgroundColor: '#fff',
+        paddingVertical: 6,
+        fontSize: 16,
 
-
-
-
+    },
+    inputTitle: {
+        fontFamily: 'QuicksandBold',
+        fontSize: 18,
+        marginLeft: 10,
     }
 })
