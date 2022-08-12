@@ -1,4 +1,4 @@
-import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Button, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Button, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
 import SpotifyLogin from '../Components/SpotifyLogin'
@@ -21,8 +21,8 @@ const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined)
     const [loading, setLoading] = useState(true)
     const [editing, setEditing] = useState(false)
+    const [editingAvatar, setEditingAvatar] = useState(false)
     const [backgroundValues, setBackgroundValues] = useState([300, 300, 170]) //height, rx, ry
-    const [changingAvatar, setChangingAvatar] = useState(false)
     const [boxPreferences, setBoxPreferences] = useState("CANCIONES")
     //const [editando, setEditando] = useState(true) // hacer que solo aparezca con un cambio hecho
     const {
@@ -86,7 +86,15 @@ const Config = ({ navigation, route }) => {
             setBackgroundValues([300, 300, 170])
         } else {
             setEditing(true)
-            setBackgroundValues([860, 550, 550])
+            setBackgroundValues([860, 540, 540])
+        }
+    }
+
+    function editAvatar(){
+        if (editingAvatar) {
+            setEditingAvatar(false)
+        } else {
+            setEditingAvatar(true)
         }
     }
 
@@ -158,91 +166,90 @@ const Config = ({ navigation, route }) => {
                                     </>
 
                                 ) : (
-                                    <View style={{width: windowWidth, flex: 1, top: StatusBar.currentHeight+10}}>
-                                        <View style={{ position: 'relative', width: 130, alignSelf: 'center' }}>
-                                            <Avatar id={avatarId} width={130} height={130} />
-                                            <TouchableOpacity style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} activeOpacity={1} onPress={() => setChangingAvatar(!changingAvatar)}>
-                                                <MaterialIcons style={{ padding: 10 }} name={changingAvatar ? "close" : "edit"} size={30} color="black" />
-                                            </TouchableOpacity>
-                                        </View>
-                                        {
-                                            changingAvatar && (
-                                                <>
-                                                    {
-                                                        AvatarArray.map((row, rowIndex) => {
-                                                            return (
-                                                                <View key={row} style={{ flexDirection: 'row' }}>
-                                                                    {row.map((image, index) => {
-                                                                        return (
-                                                                            <TouchableWithoutFeedback key={index} onPress={() => {
-                                                                                setAvatarId(index + (rowIndex * 3))
-                                                                            }}>
-                                                                                <Image
-                                                                                    key={index}
-                                                                                    source={image}
-                                                                                    style={{ width: 80, height: 80, marginHorizontal: 3, marginVertical: 3 }}
-                                                                                />
-                                                                            </TouchableWithoutFeedback>
-                                                                        )
-                                                                    })}
-                                                                </View>
-                                                            )
-                                                        })
-                                                    }
-                                                </>
-                                            )
-                                        }
-                                        <View style={{ width: windowWidth, }}>
-                                            <Text style={styles.inputTitle}>Nombre</Text>
-                                            <TextInput
-                                                style={styles.input}
-                                                onChangeText={handleChangeNombre}
-                                                value={username}
-                                                caretHidden={true}
-                                                placeholder={'Ingresa tu nombre'}
-                                                placeholderTextColor="#d4d4d4"
-                                                spellCheck={false}
-                                                autoCorrect={false}
-                                            />
-                                            <Text style={styles.inputTitle}>Descripcion</Text>
-                                            <TextInput
-                                                style={styles.input}
-                                                onChangeText={handleChangeDesc}
-                                                value={descripcion}
-                                                caretHidden={true}
-                                                placeholder={'Ingresa una descripcion'}
-                                                placeholderTextColor="#d4d4d4"
-                                                spellCheck={false}
-                                                autoCorrect={false}
-                                            />
-                                            <Text style={styles.inputTitle}>Instagram</Text>
-                                            <TextInput
-                                                style={styles.input}
-                                                onChangeText={handleChangeInstagram}
-                                                value={instagram}
-                                                caretHidden={true}
-                                                placeholder={'Tu instagram'}
-                                                placeholderTextColor="#d4d4d4"
-                                                spellCheck={false}
-                                                autoCorrect={false}
-                                            />
-                                        </View>
+                                    <View style={{ width: windowWidth, flex: 0.8, top: StatusBar.currentHeight + 10}}>
+                                        <ScrollView style={{marginBottom: 80}}>
+                                            <View style={{ position: 'relative', width: 130, alignSelf: 'center', marginBottom: 10 }}>
+                                                <Avatar id={avatarId} width={130} height={130} />
+                                                <TouchableOpacity style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} activeOpacity={1} onPress={() => editAvatar()}>
+                                                    <MaterialIcons style={{ padding: 10 }} name={editingAvatar ? "close" : "edit"} size={30} color="black" />
+                                                </TouchableOpacity>
+                                            </View>
+                                            {
+                                                editingAvatar && (
+                                                    <>
+                                                        {
+                                                            AvatarArray.map((row, rowIndex) => {
+                                                                return (
+                                                                    <View key={row} style={{ flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center'}}>
+                                                                        {row.map((image, index) => {
+                                                                            return (
+                                                                                <TouchableWithoutFeedback key={index} onPress={() => {
+                                                                                    setAvatarId(index + (rowIndex * 3))
+                                                                                }}>
+                                                                                    <Image
+                                                                                        key={index}
+                                                                                        source={image}
+                                                                                        style={{ width: 80, height: 80, marginHorizontal: 3, marginVertical: 3 }}
+                                                                                    />
+                                                                                </TouchableWithoutFeedback>
+                                                                            )
+                                                                        })}
+                                                                    </View>
+                                                                )
+                                                            })
+                                                        }
+                                                    </>
+                                                )
+                                            }
+                                            <View style={{ width: windowWidth }}>
+                                                <Text style={styles.inputTitle}>Nombre</Text>
+                                                <TextInput
+                                                    style={styles.input}
+                                                    onChangeText={handleChangeNombre}
+                                                    value={username}
+                                                    caretHidden={true}
+                                                    placeholder={'Ingresa tu nombre'}
+                                                    placeholderTextColor="#d4d4d4"
+                                                    spellCheck={false}
+                                                    autoCorrect={false}
+                                                />
+                                                <Text style={styles.inputTitle}>Descripcion</Text>
+                                                <TextInput
+                                                    style={styles.input}
+                                                    onChangeText={handleChangeDesc}
+                                                    value={descripcion}
+                                                    caretHidden={true}
+                                                    placeholder={'Ingresa una descripcion'}
+                                                    placeholderTextColor="#d4d4d4"
+                                                    spellCheck={false}
+                                                    autoCorrect={false}
+                                                />
+                                                <Text style={styles.inputTitle}>Instagram</Text>
+                                                <TextInput
+                                                    style={styles.input}
+                                                    onChangeText={handleChangeInstagram}
+                                                    value={instagram}
+                                                    caretHidden={true}
+                                                    placeholder={'Tu instagram'}
+                                                    placeholderTextColor="#d4d4d4"
+                                                    spellCheck={false}
+                                                    autoCorrect={false}
+                                                />
+                                            </View>
+                                        </ScrollView>
+
                                     </View>
                                 )}
 
-
-
-
-
-
-                            <TouchableOpacity style={[styles.circle, styles.shadowBox]} activeOpacity={1} onPress={() => editProfile()}>
+                            <TouchableOpacity style={[styles.circle]} activeOpacity={1} onPress={() => editProfile()}>
                                 <MaterialIcons name={editing ? "close" : "edit"} size={40} color="black" />
                             </TouchableOpacity>
+
                             {/* Canciones-Artistas */}
                             {!editing && (
                                 boxPreferences === 'CANCIONES' ? (
                                     <>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 40 }}>
                                             <TouchableOpacity style={[styles.buttonSelect, { backgroundColor: '#bfbfbf' }]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
                                             <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
                                         </View>
@@ -251,7 +258,7 @@ const Config = ({ navigation, route }) => {
                                 ) :
                                     boxPreferences === 'ARTISTAS' && (
                                         <>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30 }}>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30, marginTop: 40 }}>
                                                 <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
                                                 <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, { backgroundColor: '#bfbfbf' }]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
                                             </View>
@@ -343,10 +350,10 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.175,
         height: windowWidth * 0.175,
         borderRadius: windowWidth * 0.175,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#ffffff',
         left: windowWidth * 0.3,
-        marginBottom: 80,
-        justifyContent: 'center', alignItems: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     buttonSelect: {
         width: windowWidth * 0.4,
@@ -361,7 +368,6 @@ const styles = StyleSheet.create({
         height: 30,
         borderRadius: 50,
         justifyContent: 'center',
-        marginVertical: 10,
     },
     saveChanges_text: {
         color: '#ffffff',
@@ -377,7 +383,7 @@ const styles = StyleSheet.create({
     },
     logOutIcon: {
         position: 'absolute',
-        right: 10,
+        right: 5,
         top: StatusBar.currentHeight
     },
     input: {
