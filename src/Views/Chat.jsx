@@ -6,7 +6,7 @@ import { useInteractionsContext } from '../Context/InteractionsContext';
 import { useFonts } from 'expo-font';
 
 const Chat = ({ navigation, route }) => {
-    const { interactions, refreshInteractions } = useInteractionsContext()
+    const { interactions, refreshInteractions, likeList, matchList } = useInteractionsContext()
     const [refreshing, setRefreshing] = useState(false);
 
     const [loaded] = useFonts({
@@ -15,8 +15,7 @@ const Chat = ({ navigation, route }) => {
     });
 
     const updateInt = async () => {
-        await refreshInteractions()
-        console.log(interactions.length);
+        await refreshInteractions();
         setRefreshing(false);
     }
 
@@ -28,22 +27,38 @@ const Chat = ({ navigation, route }) => {
 
     return loaded && (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Tus Interacciones</Text>
-            <View style={{ paddingTop: 10, flex: 1 }}>
+            <View>
+                <Text style={styles.title}>Tus Matches</Text>
                 <FlatList
                     refreshControl={
                         <RefreshControl refreshing={refreshing} onRefresh={() => updateInt()} />
                     }
-                    data={interactions}
+                    data={matchList}
                     style={styles.flatList}
                     renderItem={({ item }) => (
                         <Interaction item={item} />
                     )}
                 >
-
                 </FlatList>
-                <NavBar navigation={navigation} route={route} />
             </View>
+            <View style={{ flex: 1 }}>
+                <Text style={styles.title}>Tus Likes</Text>
+                <View style={{ paddingTop: 10, flex: 1 }}>
+                    <FlatList
+                        refreshControl={
+                            <RefreshControl refreshing={refreshing} onRefresh={() => updateInt()} />
+                        }
+                        data={likeList}
+                        style={[styles.flatList, { marginBottom: 70 }]}
+                        renderItem={({ item }) => (
+                            <Interaction item={item} />
+                        )}
+                    >
+                    </FlatList>
+
+                </View>
+            </View>
+            <NavBar navigation={navigation} route={route} />
         </SafeAreaView>
     )
 }
@@ -58,7 +73,6 @@ const styles = StyleSheet.create({
     },
     flatList: {
         backgroundColor: '#fff',
-        marginBottom: 70,
     },
     title: {
         fontSize: 20,
