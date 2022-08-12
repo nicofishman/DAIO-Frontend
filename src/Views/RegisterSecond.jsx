@@ -30,7 +30,7 @@ const RegisterSecond = ({ navigation }) => {
         setProgressBar(0.25);
         navigation.goBack()
     }
-    
+
     useEffect(() => {
         (async () => {
             let result = await AsyncStorage.getItem("access_token");
@@ -41,7 +41,7 @@ const RegisterSecond = ({ navigation }) => {
             setLoading(false);
         })();
     }, [])
-    
+
 
     return (
         <View style={styles.container}>
@@ -66,9 +66,9 @@ const RegisterSecond = ({ navigation }) => {
                                 </>
                                 :
                                 <View style={{ top: windowHeight * 0.195 }}>
-                                    <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Canciones</Text>
-                                    <ArtistBox />
                                     <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Artistas</Text>
+                                    <ArtistBox />
+                                    <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Canciones</Text>
                                     <SongBox />
                                 </View>
                         }
