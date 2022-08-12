@@ -43,7 +43,8 @@ const CreateOrSignInAcount = ({ navigation }) => {
         const spotifyCredentials = await getSpotifyCredentials();
         setCredentials(spotifyCredentials)
         const access_token = await AsyncStorage.getItem('access_token');
-        if (access_token) {
+        console.log('access_token');
+        if (access_token !== undefined) {
             setAccessToken(access_token)
         } else {
             setAccessToken(undefined)
@@ -91,6 +92,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
         const user = await getUserData(token);
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
+        console.log('db', isUserInDb);
         if (!isUserInDb) {
             //TODO: SETSPOTIFYID ESTA VACIO
             console.log('User is not in db', user.id);
