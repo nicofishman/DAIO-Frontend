@@ -7,6 +7,8 @@ import { addInteraction, getNotInteractedUsers } from "../Handlers/AuthHandler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useInteractionsContext } from '../Context/InteractionsContext';
+import { useFonts } from 'expo-font';
+
 
 const Match = ({ navigation, route }) => {
     const [cardToMatch, setCardToMatch] = useState();
@@ -60,7 +62,7 @@ const Match = ({ navigation, route }) => {
     }
     function StatusCard({ text }) {
         return (
-            <View>
+            <View style={{backgroundColor: '#969696', padding: 5, paddingHorizontal: 10, borderRadius: 10}}>
                 <Text style={styles.cardsText}>{text}</Text>
             </View>
         );
@@ -86,7 +88,8 @@ const Match = ({ navigation, route }) => {
                         return (
                             isLoading ?
                                 <ActivityIndicator style={{ flex: 2.3 }} size={60} color='#ffffff' />
-                                : <StatusCard text='No hay más usuarios por hoy... Volvé más tarde' />
+                                : 
+                                <StatusCard text='No hay más usuarios por hoy... Volvé más tarde' />
                         )
                     }}
                     actions={{
