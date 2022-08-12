@@ -5,10 +5,14 @@ export const InteractionsContext = createContext();
 
 export function InteractionsProvider(props) {
     const [interactions, setInteractions] = useState([]);
+    const [likeList, setLikeList] = useState([]);
+    const [matchList, setMatchList] = useState([]);
 
     const refreshInteractions = async () => {
         AsyncStorage.getItem('spotify_id').then(id => {
             getInteractions(id).then(interactions => {
+                setLikeList(interactions.filter(int => int.decision === true && !int.isMatch));
+                setMatchList(interactions.filter(int => int.isMatch));
                 setInteractions(interactions)
             })
         })
@@ -17,9 +21,11 @@ export function InteractionsProvider(props) {
     const value = useMemo(() => {
         return ({
             interactions,
+            likeList,
+            matchList,
             refreshInteractions
         })
-    }, [interactions])
+    }, [interactions, likeList, matchList])
 
     return (
         <InteractionsContext.Provider value={value}>

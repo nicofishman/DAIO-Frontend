@@ -4,13 +4,12 @@ import Entypo from 'react-native-vector-icons/Entypo'
 
 const SendIntentButton = ({ action, extras, children }) => {
     const handlePress = useCallback(async () => {
-        const isOpenable = await Linking.canOpenURL(action);
-        if (isOpenable) {
-            await Linking.openURL(action);
-        } else {
-            console.log('Don\'t know how to open URI: ' + action);
-            Alert.alert('No se pudo abrir el enlace');
-        }
+        await Linking.openURL(action)
+            .catch(() => {
+                console.log('Don\'t know how to open URI: ' + action);
+                Alert.alert('No se pudo abrir el enlace');
+            })
+
     }, [action]);
 
     return (
