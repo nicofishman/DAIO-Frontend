@@ -9,13 +9,6 @@ const Interaction = ({ item }) => {
         const handlePress = useCallback(async () => {
             Linking.openURL(instagramUrl)
                 .catch(() => Linking.openURL('https://www.instagram.com/' + action))
-            // const isOpenable = await Linking.canOpenURL(instagramUrl);
-            // if (isOpenable) {
-            //     await Linking.openURL(instagramUrl);
-            // } else {
-            //     console.log('Don\'t know how to open URI: ' + instagramUrl);
-            //     Alert.alert('No se pudo abrir el enlace');
-            // }
         }, [instagramUrl]);
         return (
             <TouchableWithoutFeedback onPress={handlePress}>

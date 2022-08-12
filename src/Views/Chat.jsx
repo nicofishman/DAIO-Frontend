@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, Text, StatusBar, RefreshControl, SafeAreaView } from 'react-native'
+import { StyleSheet, View, FlatList, Text, StatusBar, RefreshControl, SafeAreaView, Divider } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
 import Interaction from '../Components/Interactions/Interaction';
@@ -27,34 +27,49 @@ const Chat = ({ navigation, route }) => {
 
     return loaded && (
         <SafeAreaView style={styles.container}>
-            <View>
+            <View style={[!matchList.length > 0 ? { height: '20%', alignItems: 'center' } : { flex: 0.4 }]}>
                 <Text style={styles.title}>Tus Matches</Text>
-                <FlatList
-                    refreshControl={
-                        <RefreshControl refreshing={refreshing} onRefresh={() => updateInt()} />
+                <View style={[{ flex: 1 }, !matchList.length && { justifyContent: 'center' }]}>
+                    {
+                        matchList.length ? <FlatList
+                            refreshControl={
+                                <RefreshControl refreshing={refreshing} onRefresh={() => updateInt()} />
+                            }
+                            data={matchList}
+                            style={[styles.flatList, !matchList.length && { backgroundColor: 'red' }]}
+                            renderItem={({ item }) => (
+                                <Interaction item={item} />
+                            )}
+                        >
+                        </FlatList>
+                            : <Text style={styles.noMatches}>No tienes ninguna match</Text>
                     }
-                    data={matchList}
-                    style={styles.flatList}
-                    renderItem={({ item }) => (
-                        <Interaction item={item} />
-                    )}
-                >
-                </FlatList>
+                </View>
             </View>
-            <View style={{ flex: 1 }}>
+            <View
+                style={{
+                    borderBottomColor: '#ccc',
+                    borderBottomWidth: StyleSheet.hairlineWidth,
+                }}
+            />
+            <View style={[{ paddingTop: 10, paddingBottom: 0 }, !likeList.length ? { height: '20%', alignItems: 'center' } : { flex: 1 }]}>
                 <Text style={styles.title}>Tus Likes</Text>
-                <View style={{ paddingTop: 10, flex: 1 }}>
-                    <FlatList
-                        refreshControl={
-                            <RefreshControl refreshing={refreshing} onRefresh={() => updateInt()} />
-                        }
-                        data={likeList}
-                        style={[styles.flatList, { marginBottom: 70 }]}
-                        renderItem={({ item }) => (
-                            <Interaction item={item} />
-                        )}
-                    >
-                    </FlatList>
+                <View style={[{ flex: 1 }, !likeList.length > 0 && { justifyContent: 'center' }]}>
+                    {
+                        likeList.length > 0 ?
+                            <FlatList
+                                refreshControl={
+                                    <RefreshControl refreshing={refreshing} onRefresh={() => updateInt()} />
+                                }
+                                data={likeList}
+                                style={[styles.flatList, { marginBottom: 70 }]}
+                                renderItem={({ item }) => (
+                                    <Interaction item={item} />
+                                )}
+                            >
+                            </FlatList>
+                            : <Text style={styles.noMatches}>No tienes ninguna match</Text>
+                    }
 
                 </View>
             </View>
@@ -68,11 +83,12 @@ export default Chat
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: StatusBar.currentHeight,
+        paddingTop: StatusBar.currentHeight + 10,
         backgroundColor: '#fef',
     },
     flatList: {
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
+        paddingTop: 10
     },
     title: {
         fontSize: 20,
