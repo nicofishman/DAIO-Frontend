@@ -15,6 +15,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
 import { updatePreferences } from '../Handlers/AuthHandler';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const Config = ({ navigation, route }) => {
@@ -45,6 +46,7 @@ const Config = ({ navigation, route }) => {
     const [loaded] = useFonts({
         Quicksand: require('../../assets/fonts/Quicksand/Quicksand.ttf'),
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
+        QuicksandSemiBold: require('../../assets/fonts/Quicksand/Quicksand-SemiBold.ttf'),
         QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
     });
 
@@ -123,8 +125,8 @@ const Config = ({ navigation, route }) => {
                         </View>
                     ) : (
                         <>
+                            <StatusBar />
                             {/* Avatar-Nombre-Descripcion*/}
-
                             <Svg style={{ position: 'absolute' }} width={windowWidth} height={backgroundValues[0]}>
                                 <Ellipse
                                     cx='200'
@@ -143,21 +145,22 @@ const Config = ({ navigation, route }) => {
                                                 <MaterialIcons name="logout" size={30} color="#383838" onPress={logOut} style={styles.logOutIcon} />
                                             </TouchableWithoutFeedback>
                                         </SafeAreaView>
+                                        {/* Visualizacion del Perfil */}
                                         <View style={{ marginTop: 50 }}>
                                             {user && (
                                                 <View style={{ flexDirection: 'row' }}>
                                                     <Avatar id={avatarId} width={130} height={130} />
                                                     <View style={styles.userInfo}>
                                                         <Text
-                                                            style={{ color: 'black', fontWeight: 'bold', fontSize: 24 }}
+                                                            style={{ color: 'black', fontWeight: 'bold', fontFamily: 'QuicksandRegular', fontSize: 24 }}
                                                             numberOfLines={2}
                                                         >
                                                             {username}
                                                         </Text>
-                                                        <Text style={{ fontSize: 14, }}>{descripcion}</Text>
-                                                        <View style={{ flexDirection: 'row', maxWidth: 190 }}>
-                                                            <MaterialCommunityIcons size={20} name='instagram' />
-                                                            <Text numberOfLines={1} ellipsizeMode='middle'>{instagram}</Text>
+                                                        <Text numberOfLines={4} style={{ fontSize: 14 }}>{descripcion}</Text>
+                                                        <View style={{ flexDirection: 'row', maxWidth: 190, top: 5}}>
+                                                            <MaterialCommunityIcons color={'#bf2a88'} size={20} name='instagram' />
+                                                            <Text numberOfLines={1} ellipsizeMode='middle' >@{instagram}</Text>
                                                         </View>
                                                     </View>
                                                 </View>
@@ -202,7 +205,7 @@ const Config = ({ navigation, route }) => {
                                                 )
                                             }
                                             <View style={{ width: windowWidth }}>
-                                                <Text style={styles.inputTitle}>Nombre</Text>
+                                                <Text style={styles.inputTitle}>• Nombre</Text>
                                                 <TextInput
                                                     style={styles.input}
                                                     onChangeText={handleChangeNombre}
@@ -212,8 +215,9 @@ const Config = ({ navigation, route }) => {
                                                     placeholderTextColor="#d4d4d4"
                                                     spellCheck={false}
                                                     autoCorrect={false}
+                                                    maxLength={18}
                                                 />
-                                                <Text style={styles.inputTitle}>Descripcion</Text>
+                                                <Text style={styles.inputTitle}>• Descripcion</Text>
                                                 <TextInput
                                                     style={styles.input}
                                                     onChangeText={handleChangeDesc}
@@ -223,8 +227,9 @@ const Config = ({ navigation, route }) => {
                                                     placeholderTextColor="#d4d4d4"
                                                     spellCheck={false}
                                                     autoCorrect={false}
+                                                    maxLength={150}
                                                 />
-                                                <Text style={styles.inputTitle}>Instagram</Text>
+                                                <Text style={styles.inputTitle}>• Instagram</Text>
                                                 <TextInput
                                                     style={styles.input}
                                                     onChangeText={handleChangeInstagram}
@@ -234,6 +239,7 @@ const Config = ({ navigation, route }) => {
                                                     placeholderTextColor="#d4d4d4"
                                                     spellCheck={false}
                                                     autoCorrect={false}
+                                                    maxLength={30}
                                                 />
                                             </View>
                                         </ScrollView>
@@ -250,8 +256,8 @@ const Config = ({ navigation, route }) => {
                                 boxPreferences === 'CANCIONES' ? (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 40 }}>
-                                            <TouchableOpacity style={[styles.buttonSelect, { backgroundColor: '#bfbfbf' }]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
-                                            <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                                            <TouchableOpacity style={[styles.buttonSelect, { backgroundColor: '#86C3EB' }]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text style={styles.fontQuicksandBold}>CANCIONES</Text></TouchableOpacity>
+                                            <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text style={styles.fontQuicksandBold}>ARTISTAS</Text></TouchableOpacity>
                                         </View>
                                         <SongBox />
                                     </>
@@ -259,8 +265,8 @@ const Config = ({ navigation, route }) => {
                                     boxPreferences === 'ARTISTAS' && (
                                         <>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30, marginTop: 40 }}>
-                                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text>CANCIONES</Text></TouchableOpacity>
-                                                <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, { backgroundColor: '#bfbfbf' }]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text>ARTISTAS</Text></TouchableOpacity>
+                                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text style={styles.fontQuicksandBold}>CANCIONES</Text></TouchableOpacity>
+                                                <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, { backgroundColor: '#eb8687' }]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text style={styles.fontQuicksandBold}>ARTISTAS</Text></TouchableOpacity>
                                             </View>
                                             <ArtistBox />
                                         </>
@@ -360,10 +366,11 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         marginHorizontal: 1,
         alignItems: 'center',
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        borderRadius: 4
     },
     saveChanges: {
-        backgroundColor: '#ca3',
+        backgroundColor: '#31ad33',
         width: 180,
         height: 30,
         borderRadius: 50,
@@ -399,5 +406,8 @@ const styles = StyleSheet.create({
         fontFamily: 'QuicksandBold',
         fontSize: 18,
         marginLeft: 10,
+    },
+    fontQuicksandBold: {
+        fontFamily: 'QuicksandSemiBold'
     }
 })

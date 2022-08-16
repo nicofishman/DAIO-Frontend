@@ -68,7 +68,7 @@ const RegisterSecond = ({ navigation }) => {
                                 <View style={{ top: windowHeight * 0.195 }}>
                                     <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Artistas</Text>
                                     <ArtistBox />
-                                    <Text style={{ fontSize: 20, fontStyle: 'italic' }}>Canciones</Text>
+                                    <Text style={{ fontSize: 20, fontStyle: 'italic', top: 40 }}>Canciones</Text>
                                     <SongBox />
                                 </View>
                         }

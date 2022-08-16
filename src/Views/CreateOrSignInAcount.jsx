@@ -129,13 +129,13 @@ const CreateOrSignInAcount = ({ navigation }) => {
                 <Image style={styles.backgroundImg2} source={require('../Assets/register/createOrSignInAcountBackground2.png')} />
             </View>
 
-            <View style={{ top: 180 }}>
+            {/* <View style={{ top: 180 }}>
                 <Text style={{ width: windowWidth * 0.75, left: 10, fontSize: 12, fontFamily: 'QuicksandLight' }}>
                     <Text>Al apretar "Crear Cuenta" o "Iniciar Sesion", está aceptando nuestros </Text>
                     <Text style={{ fontStyle: 'italic', textDecorationLine: 'underline' }}>terminos y condiciones</Text>
                     <Text>. En estos dejamos en claro todos los robos de datos y actividades inmorales contra su persona.</Text>
                 </Text>
-            </View>
+            </View> */}
             <View style={{ position: 'absolute', bottom: 80 }}>
                 <ButtonCreateAccount onPress={() => spotifyPromptAsync()}></ButtonCreateAccount>
                 <ButtonLoginAccount onPress={() => spotifyPromptAsync()}></ButtonLoginAccount>
