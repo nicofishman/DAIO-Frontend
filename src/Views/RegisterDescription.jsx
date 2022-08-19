@@ -8,7 +8,7 @@ import { useFonts } from 'expo-font'
 
 const RegisterDescription = ({ navigation }) => {
     const { descripcion, handleChangeDesc, charsLeft, progressBar, setProgressBar } = useRegisterContext();
-    
+
     const [loaded] = useFonts({
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
         QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
@@ -49,7 +49,7 @@ const RegisterDescription = ({ navigation }) => {
                             <View>
                                 <TextInput
                                     style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
-                                    placeholder={'"Mido un metro ochenta y uno..."'}
+                                    placeholder={'"Me gusta el arte, todo tipo de arte..."'}
                                     onChangeText={handleChangeDesc}
                                     value={descripcion}
                                     multiline={true}
@@ -79,9 +79,9 @@ const RegisterDescription = ({ navigation }) => {
                             backgroundColor={'transparent'}
                         />
                     </>
-            ) : (
-                <ActivityIndicator />
-            )}
+                ) : (
+                    <ActivityIndicator />
+                )}
         </SafeAreaView>
     )
 }

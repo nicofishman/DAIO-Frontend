@@ -46,7 +46,6 @@ const Config = ({ navigation, route }) => {
     const [loaded] = useFonts({
         Quicksand: require('../../assets/fonts/Quicksand/Quicksand.ttf'),
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandSemiBold: require('../../assets/fonts/Quicksand/Quicksand-SemiBold.ttf'),
         QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
     });
 
@@ -92,7 +91,7 @@ const Config = ({ navigation, route }) => {
         }
     }
 
-    function editAvatar(){
+    function editAvatar() {
         if (editingAvatar) {
             setEditingAvatar(false)
         } else {
@@ -158,7 +157,7 @@ const Config = ({ navigation, route }) => {
                                                             {username}
                                                         </Text>
                                                         <Text numberOfLines={4} style={{ fontSize: 14 }}>{descripcion}</Text>
-                                                        <View style={{ flexDirection: 'row', maxWidth: 190, top: 5}}>
+                                                        <View style={{ flexDirection: 'row', maxWidth: 190, top: 5 }}>
                                                             <MaterialCommunityIcons color={'#bf2a88'} size={20} name='instagram' />
                                                             <Text numberOfLines={1} ellipsizeMode='middle' >@{instagram}</Text>
                                                         </View>
@@ -169,8 +168,8 @@ const Config = ({ navigation, route }) => {
                                     </>
 
                                 ) : (
-                                    <View style={{ width: windowWidth, flex: 0.8, top: StatusBar.currentHeight + 10}}>
-                                        <ScrollView style={{marginBottom: 80}}>
+                                    <View style={{ width: windowWidth, flex: 0.8, top: StatusBar.currentHeight + 10 }}>
+                                        <ScrollView style={{ marginBottom: 80 }}>
                                             <View style={{ position: 'relative', width: 130, alignSelf: 'center', marginBottom: 10 }}>
                                                 <Avatar id={avatarId} width={130} height={130} />
                                                 <TouchableOpacity style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} activeOpacity={1} onPress={() => editAvatar()}>
@@ -183,7 +182,7 @@ const Config = ({ navigation, route }) => {
                                                         {
                                                             AvatarArray.map((row, rowIndex) => {
                                                                 return (
-                                                                    <View key={row} style={{ flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center'}}>
+                                                                    <View key={row} style={{ flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center' }}>
                                                                         {row.map((image, index) => {
                                                                             return (
                                                                                 <TouchableWithoutFeedback key={index} onPress={() => {
@@ -408,6 +407,6 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     fontQuicksandBold: {
-        fontFamily: 'QuicksandSemiBold'
+        fontFamily: 'QuicksandBold'
     }
 })
