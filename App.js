@@ -1,25 +1,25 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MainBottomTabNavigator from './src/Navigators/MainBottomTabNavigator';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RegisterNavigation from './src/Navigators/RegisterNavigation';
-import LoginStackNavigator from './src/Navigators/LoginStackNavigator';
-import RegisterFirst from './src/Views/RegisterFirst';
-import { RegisterProvider } from './src/Context/RegisterContext';
-import RegisterSecond from './src/Views/RegisterSecond';
-import 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
 
-export default function App() {
+import MainBottomTabNavigator from './src/Navigators/MainBottomTabNavigator';
+import RegisterNavigation from './src/Navigators/RegisterNavigation';
+import LoginStackNavigator from './src/Navigators/LoginStackNavigator';
+import { RegisterProvider } from './src/Context/RegisterContext';
+
+import 'react-native-gesture-handler';
+
+export default function App () {
     const Stack = createNativeStackNavigator();
     const [isLoading, setIsLoading] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(async () => {
         const id = await AsyncStorage.getItem('spotify_id');
+
         console.log('id', id);
         setIsLoggedIn(id !== null);
         setIsLoading(false);
@@ -37,9 +37,9 @@ export default function App() {
         <RegisterProvider>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName={isLoggedIn ? 'Main' : 'LoginNavigator'}>
-                    <Stack.Screen name="LoginNavigator" component={LoginStackNavigator} options={{ headerShown: false }} />
-                    <Stack.Screen name='Main' component={MainBottomTabNavigator} options={{ headerShown: false }} />
-                    <Stack.Screen name="Register" component={RegisterNavigation} options={{ headerShown: false }} />
+                    <Stack.Screen component={LoginStackNavigator} name="LoginNavigator" options={{ headerShown: false }} />
+                    <Stack.Screen component={MainBottomTabNavigator} name='Main' options={{ headerShown: false }} />
+                    <Stack.Screen component={RegisterNavigation} name="Register" options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />
@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     button: {
-        backgroundColor: "blue",
+        backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-        borderRadius: 5,
+        borderRadius: 5
     },
     buttonText: {
         fontSize: 20,
-        color: '#fff',
-    },
+        color: '#fff'
+    }
 });

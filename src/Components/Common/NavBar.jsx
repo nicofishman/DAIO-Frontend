@@ -1,45 +1,46 @@
-import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { StyleSheet, View, TouchableOpacity, Dimensions } from 'react-native';
+import React from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useRoute } from '@react-navigation/native';
-import { Dimensions } from 'react-native';
 import Svg, { Image } from 'react-native-svg';
 
 const NavBar = (props) => {
     const { name: routeName } = useRoute();
-    if (!props.navigation) return null
+
+    if (!props.navigation) return null;
+
     return (
 
         <View style={styles.navbar}>
+
             <TouchableOpacity style={styles.button}
                 onPress={() => props.navigation.navigate('Config')}
             >
-                <MaterialCommunityIcons style={[styles.icon, routeName === 'Config' && styles.active]} name="account-circle" /></TouchableOpacity>
+                <MaterialCommunityIcons name="account-circle" style={[styles.icon, routeName === 'Config' && styles.active]} /></TouchableOpacity>
             <TouchableOpacity style={styles.button}
                 onPress={() => props.navigation.navigate('Match')}
             >
-                <Svg width={50} height={50} style={[styles.icon, styles.daioLogo]}>
+                <Svg height={50} style={[styles.icon, styles.daioLogo]} width={50}>
                     <Image
-                        href={require('../../Assets/logo.png')}
-                        width={50}
                         height={50}
+                        href={require('../../Assets/logo.png')}
                         style={[routeName === 'Match' && styles.active]}
+                        width={50}
                     />
                 </Svg>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}
                 onPress={() => props.navigation.navigate('Chat')}
             >
-                <Ionicons style={[styles.icon, routeName === 'Chat' && styles.active]} name="chatbubbles" />
+                <Ionicons name="chatbubbles" style={[styles.icon, routeName === 'Chat' && styles.active]} />
             </TouchableOpacity>
 
-
         </View>
-    )
-}
+    );
+};
 
-export default NavBar
+export default NavBar;
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -59,18 +60,18 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     icon: {
         fontSize: 50,
         color: '#aaa'
     },
     active: {
-        color: '#888',
+        color: '#888'
     },
     daioLogo: {
-        //make saturation 0
-        tintColor: 'gray',
+        // make saturation 0
+        tintColor: 'gray'
     }
 
-})
+});

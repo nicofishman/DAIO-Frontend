@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SpotifyLogin = ({ title, fnOnPress }) => {
@@ -13,14 +13,14 @@ const SpotifyLogin = ({ title, fnOnPress }) => {
                     fnOnPress();
                 }}
             >
-                <Icon style={styles.icon} name="spotify" />
+                <Icon name="spotify" style={styles.icon} />
                 <Text style={styles.text}>{title}</Text>
             </TouchableOpacity>
         </View>
-    )
-}
+    );
+};
 
-export default SpotifyLogin
+export default SpotifyLogin;
 
 const styles = StyleSheet.create({
     container: {
@@ -29,21 +29,21 @@ const styles = StyleSheet.create({
         height: 30,
         borderRadius: 50,
         justifyContent: 'center',
-        marginVertical: 10,
+        marginVertical: 10
     },
     text: {
         color: '#fff',
         fontSize: 16,
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     button: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     icon: {
         color: '#fff',
         fontSize: 20,
-        marginRight: 10,
+        marginRight: 10
     }
-})
+});

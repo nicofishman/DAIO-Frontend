@@ -1,35 +1,35 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import Config from '../Views/Config';
 import Match from '../Views/Match';
 import Chat from '../Views/Chat';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavBar from '../Components/Common/NavBar';
-import { getUserData } from '../Handlers/AuthHandler'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getUserData } from '../Handlers/AuthHandler';
 import { InteractionsProvider } from '../Context/InteractionsContext';
 
 const MainBottomTabNavigator = () => {
     const Tab = createBottomTabNavigator();
+
     useEffect(() => {
         (async () => {
             const myUser = await getUserData();
+
             await AsyncStorage.setItem('spotify_id', myUser.id);
-        })()
-    }, [])
+        })();
+    }, []);
+
     return (
         <InteractionsProvider>
-            <Tab.Navigator options={{ headerShown: false }} initialRouteName="Match" tabBar={props => <NavBar />}>
+            <Tab.Navigator initialRouteName="Match" options={{ headerShown: false }} tabBar={() => <NavBar />}>
                 {/* add icons */}
-                <Tab.Screen name="Config" component={Config} options={{ headerShown: false }} />
-                <Tab.Screen name="Match" component={Match} options={{ headerShown: false }} />
-                <Tab.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
+                <Tab.Screen component={Config} name="Config" options={{ headerShown: false }} />
+                <Tab.Screen component={Match} name="Match" options={{ headerShown: false }} />
+                <Tab.Screen component={Chat} name="Chat" options={{ headerShown: false }} />
             </Tab.Navigator>
         </InteractionsProvider>
     );
-}
+};
 
-export default MainBottomTabNavigator
-
-const styles = StyleSheet.create({})
+export default MainBottomTabNavigator;

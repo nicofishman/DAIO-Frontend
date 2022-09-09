@@ -1,14 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 
-const Artists = ({ artists }) => {
+const Artists = () => {
     return (
         <View>
             <Text>Artists</Text>
         </View>
-    )
-}
+    );
+};
 
-export default Artists
-
-const styles = StyleSheet.create({})
+export default Artists;

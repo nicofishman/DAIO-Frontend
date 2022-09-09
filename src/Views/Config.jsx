@@ -1,29 +1,28 @@
-import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import NavBar from '../Components/Common/NavBar'
+import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Svg, {
-    Ellipse,
+    Ellipse
 } from 'react-native-svg';
-import { getUserById } from '../Handlers/AuthHandler'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useFonts } from 'expo-font';
+
+import NavBar from '../Components/Common/NavBar';
+import { getUserById, updatePreferences } from '../Handlers/AuthHandler';
 import Avatar from '../Components/Common/Avatar';
 import { useRegisterContext } from '../Context/RegisterContext';
 import SongBox from '../Components/Preferences/SongBox';
 import ArtistBox from '../Components/Preferences/ArtistBox';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useFonts } from 'expo-font';
-import { updatePreferences } from '../Handlers/AuthHandler';
-
 
 const Config = ({ navigation, route }) => {
-    const [user, setUser] = useState(undefined)
-    const [loading, setLoading] = useState(true)
-    const [editing, setEditing] = useState(false)
-    const [editingAvatar, setEditingAvatar] = useState(false)
-    const [backgroundValues, setBackgroundValues] = useState([300, 300, 170]) //height, rx, ry
-    const [boxPreferences, setBoxPreferences] = useState("CANCIONES")
-    //const [editando, setEditando] = useState(true) // hacer que solo aparezca con un cambio hecho
+    const [user, setUser] = useState(undefined);
+    const [loading, setLoading] = useState(true);
+    const [editing, setEditing] = useState(false);
+    const [editingAvatar, setEditingAvatar] = useState(false);
+    const [backgroundValues, setBackgroundValues] = useState([300, 300, 170]); // height, rx, ry
+    const [boxPreferences, setBoxPreferences] = useState('CANCIONES');
+    // const [editando, setEditando] = useState(true) // hacer que solo aparezca con un cambio hecho
     const {
         username,
         instagram,
@@ -39,265 +38,270 @@ const Config = ({ navigation, route }) => {
         handleChangeDesc,
         setSongPreference,
         setArtistPreference
-    } = useRegisterContext()
+    } = useRegisterContext();
 
     const [loaded] = useFonts({
         Quicksand: require('../../assets/fonts/Quicksand/Quicksand.ttf'),
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
+        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
     });
 
     const setContext = async (user) => {
         console.log(user.username);
-        setUsername(user.username)
-        setAvatarId(user.avatarId)
-        handleChangeDesc(user.description)
-        setInstagram(user.instagram)
-        setSongPreference(user.tracks)
-        setArtistPreference(user.artists)
-    }
+        setUsername(user.username);
+        setAvatarId(user.avatarId);
+        handleChangeDesc(user.description);
+        setInstagram(user.instagram);
+        setSongPreference(user.tracks);
+        setArtistPreference(user.artists);
+    };
 
     useEffect(() => {
-        getUser()
-    }, [])
+        getUser();
+    }, []);
 
     const getUser = async () => {
-        const spotiId = await AsyncStorage.getItem('spotify_id')
-        const res = await getUserById(spotiId)
-        await setContext(res)
-        setUser(res)
-        setLoading(false)
-    }
+        const spotiId = await AsyncStorage.getItem('spotify_id');
+        const res = await getUserById(spotiId);
+
+        await setContext(res);
+        setUser(res);
+        setLoading(false);
+    };
 
     const logOut = async () => {
         console.log('Logging out');
         await AsyncStorage.setItem('access_token', '').then(async () => {
-            await AsyncStorage.setItem('spotify_id', '')
+            await AsyncStorage.setItem('spotify_id', '');
             navigation.navigate('LoginNavigator', { screen: 'CreateOrSignInAcount' });
         }).catch(err => {
             console.log(err);
         });
-    }
+    };
 
-    function editProfile() {
+    function editProfile () {
         if (editing) {
-            setEditing(false)
-            setBackgroundValues([300, 300, 170])
+            setEditing(false);
+            setBackgroundValues([300, 300, 170]);
         } else {
-            setEditing(true)
-            setBackgroundValues([860, 540, 540])
+            setEditing(true);
+            setBackgroundValues([860, 540, 540]);
         }
     }
 
-    function editAvatar() {
+    function editAvatar () {
         if (editingAvatar) {
-            setEditingAvatar(false)
+            setEditingAvatar(false);
         } else {
-            setEditingAvatar(true)
+            setEditingAvatar(true);
         }
     }
 
     const saveProfile = async () => {
-        const spotiId = await AsyncStorage.getItem('spotify_id')
+        const spotiId = await AsyncStorage.getItem('spotify_id');
         const userSend = {
             spotifyId: spotiId,
-            username: username,
+            username,
             description: descripcion,
-            avatarId: avatarId,
-            instagram: instagram,
+            avatarId,
+            instagram,
             tracks: songPreference,
             artists: artistPreference
-        }
-        await updatePreferences(userSend)
-        await getUser()
-    }
+        };
+
+        await updatePreferences(userSend);
+        await getUser();
+    };
 
     return (
         <>
             <SafeAreaView style={styles.container}>
                 {
-                    loading && loaded ? (
-                        <View style={{ top: windowHeight / 2 }}>
-                            <ActivityIndicator size={100} color="#fff" />
-                        </View>
-                    ) : (
-                        <>
-                            <StatusBar />
-                            {/* Avatar-Nombre-Descripcion*/}
-                            <Svg style={{ position: 'absolute' }} width={windowWidth} height={backgroundValues[0]}>
-                                <Ellipse
-                                    cx='200'
-                                    cy='80'
-                                    rx={backgroundValues[1]}
-                                    ry={backgroundValues[2]}
-                                    fill="#f1f1f1"
-                                />
-                            </Svg>
-                            {/* Logo cerrar sesión */}
-                            {
-                                !editing ? (
-                                    <>
-                                        <SafeAreaView style={{ position: 'absolute', width: Dimensions.get('screen').width, height: Dimensions.get('screen').height }}>
-                                            <TouchableWithoutFeedback onPress={() => logOut()}>
-                                                <MaterialIcons name="logout" size={30} color="#383838" onPress={logOut} style={styles.logOutIcon} />
-                                            </TouchableWithoutFeedback>
-                                        </SafeAreaView>
-                                        {/* Visualizacion del Perfil */}
-                                        <View style={{ marginTop: 50 }}>
-                                            {user && (
-                                                <View style={{ flexDirection: 'row' }}>
-                                                    <Avatar id={avatarId} width={130} height={130} />
-                                                    <View style={styles.userInfo}>
-                                                        <Text
-                                                            style={{ color: 'black', fontWeight: 'bold', fontFamily: 'QuicksandRegular', fontSize: 24 }}
-                                                            numberOfLines={2}
-                                                        >
-                                                            {username}
-                                                        </Text>
-                                                        <Text numberOfLines={4} style={{ fontSize: 14 }}>{descripcion}</Text>
-                                                        <View style={{ flexDirection: 'row', maxWidth: 190, top: 5 }}>
-                                                            <MaterialCommunityIcons color={'#bf2a88'} size={20} name='instagram' />
-                                                            <Text numberOfLines={1} ellipsizeMode='middle' >@{instagram}</Text>
+                    loading &&
+                    loaded
+                        ? (
+                            <View style={{ top: windowHeight / 2 }}>
+                                <ActivityIndicator color="#fff" size={100} />
+                            </View>
+                        ) : (
+                            <>
+                                <StatusBar />
+                                {/* Avatar-Nombre-Descripcion */}
+                                <Svg height={backgroundValues[0]} style={{ position: 'absolute' }} width={windowWidth}>
+                                    <Ellipse
+                                        cx='200'
+                                        cy='80'
+                                        fill="#f1f1f1"
+                                        rx={backgroundValues[1]}
+                                        ry={backgroundValues[2]}
+                                    />
+                                </Svg>
+                                {/* Logo cerrar sesión */}
+                                {
+                                    !editing ? (
+                                        <>
+                                            <SafeAreaView style={{ position: 'absolute', width: Dimensions.get('screen').width, height: Dimensions.get('screen').height }}>
+                                                <TouchableWithoutFeedback onPress={() => logOut()}>
+                                                    <MaterialIcons color="#383838" name="logout" size={30} style={styles.logOutIcon} onPress={logOut} />
+                                                </TouchableWithoutFeedback>
+                                            </SafeAreaView>
+                                            {/* Visualizacion del Perfil */}
+                                            <View style={{ marginTop: 50 }}>
+                                                {user && (
+                                                    <View style={{ flexDirection: 'row' }}>
+                                                        <Avatar height={130} id={avatarId} width={130} />
+                                                        <View style={styles.userInfo}>
+                                                            <Text
+                                                                numberOfLines={2}
+                                                                style={{ color: 'black', fontWeight: 'bold', fontFamily: 'QuicksandRegular', fontSize: 24 }}
+                                                            >
+                                                                {username}
+                                                            </Text>
+                                                            <Text numberOfLines={4} style={{ fontSize: 14 }}>{descripcion}</Text>
+                                                            <View style={{ flexDirection: 'row', maxWidth: 190, top: 5 }}>
+                                                                <MaterialCommunityIcons color={'#bf2a88'} name='instagram' size={20} />
+                                                                <Text ellipsizeMode='middle' numberOfLines={1} >@{instagram}</Text>
+                                                            </View>
                                                         </View>
                                                     </View>
-                                                </View>
-                                            )}
-                                        </View>
-                                    </>
-
-                                ) : (
-                                    <View style={{ width: windowWidth, flex: 0.8, top: StatusBar.currentHeight + 10 }}>
-                                        <ScrollView style={{ marginBottom: 80 }}>
-                                            <View style={{ position: 'relative', width: 130, alignSelf: 'center', marginBottom: 10 }}>
-                                                <Avatar id={avatarId} width={130} height={130} />
-                                                <TouchableOpacity style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} activeOpacity={1} onPress={() => editAvatar()}>
-                                                    <MaterialIcons style={{ padding: 10 }} name={editingAvatar ? "close" : "edit"} size={30} color="black" />
-                                                </TouchableOpacity>
+                                                )}
                                             </View>
-                                            {
-                                                editingAvatar && (
-                                                        <View style={{width: 280, backgroundColor: '#fff', alignSelf:'center', padding: 10, borderRadius: 20}}>
-                                                        {
-                                                            AvatarArray.map((row, rowIndex) => {
-                                                                return (
-                                                                    <View key={row} style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                                                        {row.map((image, index) => {
-                                                                            return (
-                                                                                <TouchableWithoutFeedback key={index} onPress={() => {
-                                                                                    setAvatarId(index + (rowIndex * 3))
-                                                                                }}>
-                                                                                    <Image
-                                                                                        key={index}
-                                                                                        source={image}
-                                                                                        style={{ width: 80, height: 80, marginHorizontal: 3, marginVertical: 3 }}
-                                                                                    />
-                                                                                </TouchableWithoutFeedback>
-                                                                            )
-                                                                        })}
-                                                                    </View>
-                                                                )
-                                                            })
-                                                        }
-                                                    </View>
-                                                )
-                                            }
-                                            <View style={{ width: windowWidth }}>
-                                                <Text style={styles.inputTitle}>• Nombre</Text>
-                                                <TextInput
-                                                    style={styles.input}
-                                                    onChangeText={handleChangeNombre}
-                                                    value={username}
-                                                    caretHidden={true}
-                                                    placeholder={'Ingresa tu nombre'}
-                                                    placeholderTextColor="#d4d4d4"
-                                                    spellCheck={false}
-                                                    autoCorrect={false}
-                                                    maxLength={18}
-                                                />
-                                                <Text style={styles.inputTitle}>• Descripcion</Text>
-                                                <TextInput
-                                                    style={styles.input}
-                                                    onChangeText={handleChangeDesc}
-                                                    value={descripcion}
-                                                    caretHidden={true}
-                                                    placeholder={'Ingresa una descripcion'}
-                                                    placeholderTextColor="#d4d4d4"
-                                                    spellCheck={false}
-                                                    autoCorrect={false}
-                                                    maxLength={150}
-                                                />
-                                                <Text style={styles.inputTitle}>• Instagram</Text>
-                                                <TextInput
-                                                    style={styles.input}
-                                                    onChangeText={handleChangeInstagram}
-                                                    value={instagram}
-                                                    caretHidden={true}
-                                                    placeholder={'Tu instagram'}
-                                                    placeholderTextColor="#d4d4d4"
-                                                    spellCheck={false}
-                                                    autoCorrect={false}
-                                                    maxLength={30}
-                                                />
-                                            </View>
-                                        </ScrollView>
-
-                                    </View>
-                                )}
-
-                            <TouchableOpacity style={[styles.circle]} activeOpacity={1} onPress={() => editProfile()}>
-                                <MaterialIcons name={editing ? "close" : "edit"} size={40} color="black" />
-                            </TouchableOpacity>
-
-                            {/* Canciones-Artistas */}
-                            {!editing && (
-                                boxPreferences === 'CANCIONES' ? (
-                                    <>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 40 }}>
-                                            <TouchableOpacity style={[styles.buttonSelect, { backgroundColor: '#86C3EB' }]} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text style={styles.fontQuicksandBold}>CANCIONES</Text></TouchableOpacity>
-                                            <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text style={styles.fontQuicksandBold}>ARTISTAS</Text></TouchableOpacity>
-                                        </View>
-                                        <SongBox />
-                                    </>
-                                ) :
-                                    boxPreferences === 'ARTISTAS' && (
-                                        <>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30, marginTop: 40 }}>
-                                                <TouchableOpacity style={styles.buttonSelect} activeOpacity={1} onPress={() => setBoxPreferences('CANCIONES')}><Text style={styles.fontQuicksandBold}>CANCIONES</Text></TouchableOpacity>
-                                                <TouchableOpacity style={[styles.buttonSelect, styles.shadowProp, { backgroundColor: '#eb8687' }]} activeOpacity={1} onPress={() => setBoxPreferences('ARTISTAS')}><Text style={styles.fontQuicksandBold}>ARTISTAS</Text></TouchableOpacity>
-                                            </View>
-                                            <ArtistBox />
                                         </>
-                                    )
-                            )
-                            }
-                            <TouchableOpacity onPress={saveProfile} style={styles.saveChanges}>
-                                {
-                                    loaded &&
-                                    <Text style={styles.saveChanges_text}>Guardar cambios</Text>
+
+                                    ) : (
+                                        <View style={{ width: windowWidth, flex: 0.8, top: StatusBar.currentHeight + 10 }}>
+                                            <ScrollView style={{ marginBottom: 80 }}>
+                                                <View style={{ position: 'relative', width: 130, alignSelf: 'center', marginBottom: 10 }}>
+                                                    <Avatar height={130} id={avatarId} width={130} />
+                                                    <TouchableOpacity activeOpacity={1} style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} onPress={() => editAvatar()}>
+                                                        <MaterialIcons color="black" name={editingAvatar ? 'close' : 'edit'} size={30} style={{ padding: 10 }} />
+                                                    </TouchableOpacity>
+                                                </View>
+                                                {
+                                                    editingAvatar && (
+                                                        <View style={{ width: 280, backgroundColor: '#fff', alignSelf: 'center', padding: 10, borderRadius: 20 }}>
+                                                            {
+                                                                AvatarArray.map((row, rowIndex) => {
+                                                                    return (
+                                                                        <View key={row} style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                                                                            {row.map((image, index) => {
+                                                                                return (
+                                                                                    <TouchableWithoutFeedback key={index} onPress={() => {
+                                                                                        setAvatarId(index + (rowIndex * 3));
+                                                                                    }}>
+                                                                                        <Image
+                                                                                            key={index}
+                                                                                            source={image}
+                                                                                            style={{ width: 80, height: 80, marginHorizontal: 3, marginVertical: 3 }}
+                                                                                        />
+                                                                                    </TouchableWithoutFeedback>
+                                                                                );
+                                                                            })}
+                                                                        </View>
+                                                                    );
+                                                                })
+                                                            }
+                                                        </View>
+                                                    )
+                                                }
+                                                <View style={{ width: windowWidth }}>
+                                                    <Text style={styles.inputTitle}>• Nombre</Text>
+                                                    <TextInput
+                                                        autoCorrect={false}
+                                                        caretHidden={true}
+                                                        maxLength={18}
+                                                        placeholder={'Ingresa tu nombre'}
+                                                        placeholderTextColor="#d4d4d4"
+                                                        spellCheck={false}
+                                                        style={styles.input}
+                                                        value={username}
+                                                        onChangeText={handleChangeNombre}
+                                                    />
+                                                    <Text style={styles.inputTitle}>• Descripcion</Text>
+                                                    <TextInput
+                                                        autoCorrect={false}
+                                                        caretHidden={true}
+                                                        maxLength={150}
+                                                        placeholder={'Ingresa una descripcion'}
+                                                        placeholderTextColor="#d4d4d4"
+                                                        spellCheck={false}
+                                                        style={styles.input}
+                                                        value={descripcion}
+                                                        onChangeText={handleChangeDesc}
+                                                    />
+                                                    <Text style={styles.inputTitle}>• Instagram</Text>
+                                                    <TextInput
+                                                        autoCorrect={false}
+                                                        caretHidden={true}
+                                                        maxLength={30}
+                                                        placeholder={'Tu instagram'}
+                                                        placeholderTextColor="#d4d4d4"
+                                                        spellCheck={false}
+                                                        style={styles.input}
+                                                        value={instagram}
+                                                        onChangeText={handleChangeInstagram}
+                                                    />
+                                                </View>
+                                            </ScrollView>
+
+                                        </View>
+                                    )}
+
+                                <TouchableOpacity activeOpacity={1} style={[styles.circle]} onPress={() => editProfile()}>
+                                    <MaterialIcons color="black" name={editing ? 'close' : 'edit'} size={40} />
+                                </TouchableOpacity>
+
+                                {/* Canciones-Artistas */}
+                                {!editing && (
+                                    boxPreferences === 'CANCIONES'
+                                        ? (
+                                            <>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 40 }}>
+                                                    <TouchableOpacity activeOpacity={1} style={[styles.buttonSelect, { backgroundColor: '#86C3EB' }]} onPress={() => setBoxPreferences('CANCIONES')}><Text style={styles.fontQuicksandBold}>CANCIONES</Text></TouchableOpacity>
+                                                    <TouchableOpacity activeOpacity={1} style={styles.buttonSelect} onPress={() => setBoxPreferences('ARTISTAS')}><Text style={styles.fontQuicksandBold}>ARTISTAS</Text></TouchableOpacity>
+                                                </View>
+                                                <SongBox />
+                                            </>
+                                        )
+                                        : boxPreferences === 'ARTISTAS' && (
+                                            <>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30, marginTop: 40 }}>
+                                                    <TouchableOpacity activeOpacity={1} style={styles.buttonSelect} onPress={() => setBoxPreferences('CANCIONES')}><Text style={styles.fontQuicksandBold}>CANCIONES</Text></TouchableOpacity>
+                                                    <TouchableOpacity activeOpacity={1} style={[styles.buttonSelect, styles.shadowProp, { backgroundColor: '#eb8687' }]} onPress={() => setBoxPreferences('ARTISTAS')}><Text style={styles.fontQuicksandBold}>ARTISTAS</Text></TouchableOpacity>
+                                                </View>
+                                                <ArtistBox />
+                                            </>
+                                        )
+                                )
                                 }
-                            </TouchableOpacity>
-                            {/* <SpotifyLogin style={styles.logOut} title='Cerrar Sesión' fnOnPress={logOut} /> */}
-                        </>
-                    )
+                                <TouchableOpacity style={styles.saveChanges} onPress={saveProfile}>
+                                    {
+                                        loaded &&
+                                    <Text style={styles.saveChanges_text}>Guardar cambios</Text>
+                                    }
+                                </TouchableOpacity>
+                                {/* <SpotifyLogin style={styles.logOut} title='Cerrar Sesión' fnOnPress={logOut} /> */}
+                            </>
+                        )
                 }
             </SafeAreaView>
             <NavBar navigation={navigation} route={route} />
         </>
-    )
-}
+    );
+};
 
-export default Config
+export default Config;
 
-let AvatarArray = [
+const AvatarArray = [
     [require('../Assets/Avatars/AvatarsToChoose/avatar1.png'),
-    require('../Assets/Avatars/AvatarsToChoose/avatar2.png'),
-    require('../Assets/Avatars/AvatarsToChoose/avatar3.png')],
+        require('../Assets/Avatars/AvatarsToChoose/avatar2.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar3.png')],
     [require('../Assets/Avatars/AvatarsToChoose/avatar4.png'),
-    require('../Assets/Avatars/AvatarsToChoose/avatar5.png'),
-    require('../Assets/Avatars/AvatarsToChoose/avatar6.png')],
+        require('../Assets/Avatars/AvatarsToChoose/avatar5.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar6.png')],
     [require('../Assets/Avatars/AvatarsToChoose/avatar7.png'),
-    require('../Assets/Avatars/AvatarsToChoose/avatar8.png'),
-    require('../Assets/Avatars/AvatarsToChoose/avatar9.png')]
+        require('../Assets/Avatars/AvatarsToChoose/avatar8.png'),
+        require('../Assets/Avatars/AvatarsToChoose/avatar9.png')]
 ];
 
 /*
@@ -327,9 +331,6 @@ function showIconSelected() {
 }
  */
 
-
-
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -349,7 +350,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 150
     },
     logOut: {
-        bottom: 0,
+        bottom: 0
     },
     circle: {
         width: windowWidth * 0.175,
@@ -358,7 +359,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         left: windowWidth * 0.3,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     buttonSelect: {
         width: windowWidth * 0.4,
@@ -373,7 +374,7 @@ const styles = StyleSheet.create({
         width: 180,
         height: 30,
         borderRadius: 50,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     saveChanges_text: {
         color: '#ffffff',
@@ -398,15 +399,15 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         backgroundColor: '#fff',
         paddingVertical: 6,
-        fontSize: 16,
+        fontSize: 16
 
     },
     inputTitle: {
         fontFamily: 'QuicksandBold',
         fontSize: 18,
-        marginLeft: 10,
+        marginLeft: 10
     },
     fontQuicksandBold: {
         fontFamily: 'QuicksandBold'
     }
-})
+});

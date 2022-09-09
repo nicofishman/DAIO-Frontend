@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native';
+import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useRegisterContext } from '../../Context/RegisterContext';
 import { useNavigation } from '@react-navigation/native';
+
+import { useRegisterContext } from '../../Context/RegisterContext';
 import { getArtistsById } from '../../Handlers/AuthHandler';
 
 const SongSearch = ({ song }) => {
@@ -11,8 +12,10 @@ const SongSearch = ({ song }) => {
 
     const handleSelect = async () => {
         const artistsData = await getArtistsById(song.artists.map(art => art.id));
+
         console.log(artistsData);
         const genres = artistsData.map(art => art.genres).flat();
+
         console.log(song.id, genres);
         setSongPreference([...songPreference, {
             id: song.id,
@@ -22,34 +25,35 @@ const SongSearch = ({ song }) => {
             artists: artistsData,
             preview_url: song.preview_url,
             duration: song.duration_ms,
-            genres: genres,
+            genres,
             albumId: song.album.id,
             albumName: song.album.name,
-            albumImage: song.album.images[0].url,
+            albumImage: song.album.images[0].url
         }]);
         navigation.goBack();
-    }
+    };
 
-    let artists = song.artists.map(art => art.name).join(', ');
+    const artists = song.artists.map(art => art.name).join(', ');
+
     return (
         <View style={[styles.container, styles.shadowBox]}>
             <View style={{ justifyContent: 'flex-start', flexDirection: 'row', flex: 1, overflow: 'hidden' }}>
-                <Image style={styles.image} source={{ "uri": song.album.images[0].url }} />
+                <Image source={{ uri: song.album.images[0].url }} style={styles.image} />
                 <View style={styles.textSong}>
-                    <Text style={styles.title} numberOfLines={2}>{song.name}</Text>
-                    <Text style={styles.artists} numberOfLines={1}>{artists}</Text>
+                    <Text numberOfLines={2} style={styles.title}>{song.name}</Text>
+                    <Text numberOfLines={1} style={styles.artists}>{artists}</Text>
                 </View>
             </View>
             <View style={styles.addSong}>
                 <TouchableWithoutFeedback onPress={handleSelect}>
-                    <AntDesign style={styles.icon} name="pluscircleo" />
+                    <AntDesign name="pluscircleo" style={styles.icon} />
                 </TouchableWithoutFeedback>
             </View>
         </View>
-    )
-}
+    );
+};
 
-export default SongSearch
+export default SongSearch;
 
 const styles = StyleSheet.create({
     container: {
@@ -59,12 +63,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#535353',
         borderRadius: 5,
-        marginBottom: 15,
+        marginBottom: 15
     },
     textSong: {
         flexDirection: 'column',
         justifyContent: 'center',
-        marginLeft: 10,
+        marginLeft: 10
     },
     box: {
     },
@@ -75,7 +79,7 @@ const styles = StyleSheet.create({
     },
     artists: {
         fontSize: 12,
-        color: '#999',
+        color: '#999'
     },
     image: {
         height: 60,
@@ -84,14 +88,14 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 5
     },
     shadowBox: {
-        shadowColor: "#000",
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 4,
+            height: 4
         },
         shadowOpacity: 0.32,
         shadowRadius: 5.46,
-        elevation: 4,
+        elevation: 4
     },
     addSong: {
         paddingHorizontal: 15,
@@ -103,6 +107,6 @@ const styles = StyleSheet.create({
     },
     icon: {
         fontSize: 24,
-        color: '#e0e0e0',
+        color: '#e0e0e0'
     }
-})
+});

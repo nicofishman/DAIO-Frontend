@@ -1,68 +1,70 @@
-import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
-import { getSpotifyCredentials, getUserData, getUsers } from '../Handlers/AuthHandler'
+import querystring from 'querystring';
+
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
-import { useRegisterContext } from '../Context/RegisterContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import SpotifyLogin from '../Components/SpotifyLogin';
-import querystring from 'querystring';
 
-async function save(key, value) {
+import { useRegisterContext } from '../Context/RegisterContext';
+import { getSpotifyCredentials, getUserData, getUsers } from '../Handlers/AuthHandler';
+import SpotifyLogin from '../Components/SpotifyLogin';
+
+async function save (key, value) {
     await AsyncStorage.setItem(key, value);
 }
 
 // Endpoint
 const discovery = {
     authorizationEndpoint: 'https://accounts.spotify.com/authorize',
-    tokenEndpoint: 'https://accounts.spotify.com/api/token',
+    tokenEndpoint: 'https://accounts.spotify.com/api/token'
 };
 
-
-export default function Login({ navigation }) {
-    const [data, setData] = useState('User is not logged in');
+export default function Login ({ navigation }) {
     const [accessToken, setAccessToken] = useState(undefined);
-    const [beingCalled, setBeingCalled] = useState(false)
 
-    const [credentials, setCredentials] = useState({})
-    const [loading, setLoading] = useState(true)
+    const [credentials, setCredentials] = useState({});
+    const [loading, _setLoading] = useState(true);
 
-    const { setSpotifyId, handleChangeNombre } = useRegisterContext()
+    const { setSpotifyId, handleChangeNombre } = useRegisterContext();
 
-    const [requestCode, responseCode, spotifyPromptAsync] = useAuthRequest(
+    const [_requestCode, responseCode, _spotifyPromptAsync] = useAuthRequest(
         {
-            responseType: "code",
+            responseType: 'code',
             clientId: credentials.clientId,
             scopes: ['user-read-email', 'playlist-modify-public', 'user-top-read'],
             // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
             // this must be set to false
             usePKCE: false,
-            redirectUri: makeRedirectUri(credentials.redirectUri),
+            redirectUri: makeRedirectUri(credentials.redirectUri)
         },
         discovery
     );
+
     useEffect(async () => {
         const spotifyCredentials = await getSpotifyCredentials();
-        setCredentials(spotifyCredentials)
-        const access_token = await AsyncStorage.getItem('access_token');
-        if (access_token) {
-            setAccessToken(access_token)
+
+        setCredentials(spotifyCredentials);
+        const accessToken = await AsyncStorage.getItem('access_token');
+
+        if (accessToken) {
+            setAccessToken(accessToken);
         } else {
-            setAccessToken(undefined)
+            setAccessToken(undefined);
         }
     }, []);
 
     const getTokenWithCode = async (code) => {
         const url = discovery.tokenEndpoint;
         const postData = {
-            code: code,
+            code,
             redirect_uri: makeRedirectUri(credentials.redirectUri),
-            grant_type: 'authorization_code',
-        }
+            grant_type: 'authorization_code'
+        };
         const options = {
             headers: {
-                'Authorization': 'Basic ' + credentials.encodedClientIdAndSecret,
-                'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization: 'Basic ' + credentials.encodedClientIdAndSecret,
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
         const responseToken = await axios.post(url, querystring.stringify(postData), options)
@@ -72,20 +74,23 @@ export default function Login({ navigation }) {
             .catch(error => {
                 console.log(error.response.data);
             });
+
         return responseToken;
-    }
+    };
 
     useEffect(async () => {
         if (responseCode?.type === 'success') {
             const { code } = responseCode.params;
-            const { access_token, refresh_token, expires_in } = await getTokenWithCode(code);
-            await save('access_token', access_token)
-            await save('refresh_token', refresh_token)
-            await save('refresh_date', (new Date().getTime() + expires_in * 1000).toString())
-            const userData = await getUserData(access_token);
+            const { access_token: accessToken, refresh_token: refreshToken, expires_in: expiresIn } = await getTokenWithCode(code);
+
+            await save('access_token', accessToken);
+            await save('refresh_token', refreshToken);
+            await save('refresh_date', (new Date().getTime() + expiresIn * 1000).toString());
+            const userData = await getUserData(accessToken);
+
             await save('spotify_id', userData.id);
-            setAccessToken(access_token)
-            handleLogin(access_token)
+            setAccessToken(accessToken);
+            handleLogin(accessToken);
         }
     }, [responseCode]);
 
@@ -93,23 +98,23 @@ export default function Login({ navigation }) {
         const user = await getUserData(token);
         const usersInDb = await getUsers();
         const isUserInDb = usersInDb.some(userInDb => userInDb.spotifyId === user.id);
+
         if (!isUserInDb) {
-            //TODO: SETSPOTIFYID ESTA VACIO
-            setSpotifyId(user.id)
-            handleChangeNombre(user.id)
+            // TODO: SETSPOTIFYID ESTA VACIO
+            setSpotifyId(user.id);
+            handleChangeNombre(user.id);
             navigation.navigate('Register', { screen: 'RegisterFirst' }, { user, accessToken });
         } else {
             navigation.navigate('Main', { screen: 'Match' });
         }
-    }
+    };
 
     return (
         <>
             {
-                loading ?
-                    <ActivityIndicator style={{ flex: 2.3 }} size={70} color='#e38889' />
-                    :
-                    (
+                loading
+                    ? <ActivityIndicator color='#e38889' size={70} style={{ flex: 2.3 }} />
+                    : (
                         <View style={styles.container}>
                             <SpotifyLogin title='Spotify Login' />
                         </View>
@@ -124,6 +129,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     }
-})
+});

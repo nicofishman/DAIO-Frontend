@@ -1,23 +1,23 @@
-import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import React from 'react';
+import { StyleSheet, View, Button } from 'react-native';
 
 const Pochi = ({ navigation }) => {
     return (
         <View style={styles.loading}>
             <Button
-                onPress={() => navigation.navigate("Main", { screen: 'Loading' })}
                 title="Loading"
-            ></Button>
+                onPress={() => navigation.navigate('Main', { screen: 'Loading' })}
+            />
         </View>
-    )
-}
+    );
+};
 
-export default Pochi
+export default Pochi;
 
 const styles = StyleSheet.create({
     loading: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: 'center',
+        alignItems: 'center'
     }
-})
+});

@@ -1,15 +1,14 @@
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Linking, ImageBackground, Image, Alert } from 'react-native'
-import React, { useCallback } from 'react'
-import Entypo from 'react-native-vector-icons/Entypo'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Linking, ImageBackground, Image, Alert } from 'react-native';
+import React, { useCallback } from 'react';
+import Entypo from 'react-native-vector-icons/Entypo';
 
-const SendIntentButton = ({ action, extras, children }) => {
+const SendIntentButton = ({ action, children }) => {
     const handlePress = useCallback(async () => {
         await Linking.openURL(action)
             .catch(() => {
                 console.log('Don\'t know how to open URI: ' + action);
                 Alert.alert('No se pudo abrir el enlace');
-            })
-
+            });
     }, [action]);
 
     return (
@@ -20,24 +19,27 @@ const SendIntentButton = ({ action, extras, children }) => {
 };
 
 const SongCard = ({ song, setVisualSong, isSelected, index }) => {
-    let artists = ''
+    let artists = '';
+
     song.artists.forEach((artist, artistIndex) => {
-        artists += artist.name
+        artists += artist.name;
         if (artistIndex !== song.artists.length - 1) {
-            artists += ', '
+            artists += ', ';
         }
-    })
+    });
+
     const seconds = Math.floor((song.duration / 1000) % 60);
     const minutes = Math.floor((song.duration / (1000 * 60)) % 60);
+
     return (
-        isSelected ?
-            <TouchableWithoutFeedback onPress={() => {
+        isSelected
+            ? <TouchableWithoutFeedback onPress={() => {
                 setVisualSong(-1);
             }}>
                 <ImageBackground
-                    source={{ "uri": song.albumImage }}
+                    imageStyle={{ opacity: 0.4, overflow: 'hidden' }}
                     resizeMode='cover'
-                    style={[styles.imageBackground, styles.shadowBox, { height: styles.songCardDetails.height, backgroundColor: '#fff' }]} imageStyle={{ opacity: 0.4, overflow: 'hidden' }}>
+                    source={{ uri: song.albumImage }} style={[styles.imageBackground, styles.shadowBox, { height: styles.songCardDetails.height, backgroundColor: '#fff' }]}>
                     <View style={[styles.songCardDetails, { opacity: 1 }]}>
                         <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between' }}>
                             <Text numberOfLines={1} style={styles.titleSong}>{song.name}</Text>
@@ -47,7 +49,7 @@ const SongCard = ({ song, setVisualSong, isSelected, index }) => {
                         </View>
                         <View style={styles.songDetails}>
                             <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                                <Image style={styles.songImgDetails} source={{ "uri": song.albumImage }} />
+                                <Image source={{ uri: song.albumImage }} style={styles.songImgDetails} />
                                 <View style={[styles.artistSong, { flexDirection: 'column', height: 50, justifyContent: 'space-evenly' }]}>
                                     <Text numberOfLines={1} style={[styles.artistSongDetails]}>{artists}</Text>
                                     <Text ellipsizeMode='tail' numberOfLines={1} style={styles.albumDetail}>{`Album: ${song.albumName}`}</Text>
@@ -58,8 +60,7 @@ const SongCard = ({ song, setVisualSong, isSelected, index }) => {
                     </View>
                 </ImageBackground>
             </TouchableWithoutFeedback>
-            :
-            <TouchableWithoutFeedback
+            : <TouchableWithoutFeedback
                 onPress={() => {
                     setVisualSong(index);
                 }}
@@ -67,46 +68,46 @@ const SongCard = ({ song, setVisualSong, isSelected, index }) => {
                 <View key={index} style={[styles.songCard, styles.shadowBox]}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <View style={{ flexDirection: 'column', flex: 1 }}>
-                            <Text style={styles.titleSong} numberOfLines={1}>{song.name}</Text>
+                            <Text numberOfLines={1} style={styles.titleSong}>{song.name}</Text>
                             <View style={{ flex: 1 }}>
-                                <Text style={styles.artistSong} numberOfLines={1}>{artists}</Text>
+                                <Text numberOfLines={1} style={styles.artistSong}>{artists}</Text>
                             </View>
                         </View>
-                        <Image style={[styles.songImgDetails, { marginTop: 5, marginRight: 10 }]} source={{ "uri": song.albumImage }} />
+                        <Image source={{ uri: song.albumImage }} style={[styles.songImgDetails, { marginTop: 5, marginRight: 10 }]} />
                     </View>
 
                 </View>
             </TouchableWithoutFeedback>
-    )
-}
+    );
+};
 
-export default SongCard
+export default SongCard;
 
 const styles = StyleSheet.create({
     imageBackground: {
         width: '100%',
         height: '100%',
         borderRadius: 10,
-        overflow: 'hidden',
+        overflow: 'hidden'
     },
     songCardDetails: {
         flex: 1,
         height: 105,
         marginBottom: 2,
-        borderRadius: 10,
+        borderRadius: 10
     },
     titleSong: {
         fontSize: 16,
         marginHorizontal: 10,
         marginTop: 10,
         color: '#1c1c1c',
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     songDetails: {
         flexDirection: 'row',
         top: 10,
         justifyContent: 'space-between',
-        flex: 1,
+        flex: 1
     },
     songImgDetails: {
         width: 50,
@@ -117,21 +118,21 @@ const styles = StyleSheet.create({
     artistSong: {
         fontSize: 14,
         marginLeft: 10,
-        color: '#6e6e6e',
+        color: '#6e6e6e'
         // width: '90%',
     },
     artistSongDetails: {
         color: 'black',
         flex: 1,
-        width: '70%',
+        width: '70%'
     },
     albumDetail: {
-        backgroundColor: "#dedede",
-        color: "black",
+        backgroundColor: '#dedede',
+        color: 'black',
         paddingHorizontal: 10,
         borderRadius: 10,
         fontSize: 12,
-        marginRight: 100,
+        marginRight: 100
     },
     songDuration: {
         position: 'absolute',
@@ -139,29 +140,28 @@ const styles = StyleSheet.create({
         right: 10,
         bottom: 10,
         color: '#6e6e6e',
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     songCard: {
         height: 60,
         marginBottom: 10,
         backgroundColor: '#ffffff',
-        marginBottom: 2,
-        borderRadius: 10,
+        borderRadius: 10
     },
     shadowBox: {
-        shadowColor: "#000",
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 4,
+            height: 4
         },
         shadowOpacity: 0.92,
         shadowRadius: 5.46,
-        elevation: 4,
+        elevation: 4
     },
     spotifyIcon: {
         fontSize: 20,
         color: '#1c1c1c',
         marginRight: 10,
-        marginTop: 10,
+        marginTop: 10
     }
-})
+});

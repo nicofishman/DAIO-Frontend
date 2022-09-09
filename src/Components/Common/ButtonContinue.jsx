@@ -1,71 +1,70 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, Text, TouchableWithoutFeedback, Animated, Dimensions } from 'react-native'
-import { useFonts } from 'expo-font'
+import React, { useState } from 'react';
+import { View, StyleSheet, TouchableWithoutFeedback, Animated, Dimensions } from 'react-native';
+import { useFonts } from 'expo-font';
 const ButtonContinue = ({ onPress }) => {
-    const [animationBackground, setAnimationBackground] = useState(new Animated.Value(0))
-    const [animationTextColor, setAnimationColorText] = useState(new Animated.Value(0))
+    const [animationBackground, _setAnimationBackground] = useState(new Animated.Value(0));
+    const [animationTextColor, _setAnimationColorText] = useState(new Animated.Value(0));
 
     const [loaded] = useFonts({
-        QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
-    })
+        QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+    });
+
     if (!loaded) {
         return null;
     }
+
     const handleAnimationIn = () => {
         Animated.timing(animationBackground, {
             toValue: 1,
             duration: 80,
             useNativeDriver: false
-        }).start()
+        }).start();
         Animated.timing(animationTextColor, {
             toValue: 1,
             duration: 300,
             useNativeDriver: false
-        }).start()
-    }
+        }).start();
+    };
     const handleAnimationOut = () => {
         Animated.timing(animationBackground, {
             toValue: 0,
             duration: 200,
             useNativeDriver: false
-        }).start()
+        }).start();
         Animated.timing(animationTextColor, {
             toValue: 0,
             duration: 300,
             useNativeDriver: false
-        }).start()
-    }
+        }).start();
+    };
     const boxInterpolation = animationBackground.interpolate({
         inputRange: [0, 1],
-        outputRange: ["rgb(255, 255, 255)", "rgb(94, 157, 181)"]
-    })
+        outputRange: ['rgb(255, 255, 255)', 'rgb(94, 157, 181)']
+    });
     const boxInterpolationText = animationBackground.interpolate({
         inputRange: [0, 1],
-        outputRange: ["rgb(94, 157, 181)", "rgb(255, 255, 255)"]
-    })
+        outputRange: ['rgb(94, 157, 181)', 'rgb(255, 255, 255)']
+    });
 
     const animatedStyle = {
         backgroundColor: boxInterpolation,
         color: boxInterpolationText
     };
+
     return (
         <View style={{ position: 'absolute', bottom: 20 }} >
             <TouchableWithoutFeedback
+                onPress={onPress}
                 onPressIn={handleAnimationIn}
                 onPressOut={handleAnimationOut}
-                onPress={onPress}
             >
-                <Animated.Text useNativeDriver style={[styles.textButton, animatedStyle,]}>CONTINUAR</Animated.Text>
+                <Animated.Text useNativeDriver style={[styles.textButton, animatedStyle]}>CONTINUAR</Animated.Text>
             </TouchableWithoutFeedback>
         </View>
     );
-}
+};
 
-
-export default ButtonContinue
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+export default ButtonContinue;
 
 const styles = StyleSheet.create({
     textButton: {
@@ -73,13 +72,13 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontFamily: 'QuicksandBold',
         letterSpacing: 0,
-        textAlign: "center",
-        textAlignVertical: "center",
+        textAlign: 'center',
+        textAlignVertical: 'center',
         borderColor: '#5E9DB5',
         color: '#5E9DB5',
         borderWidth: 3,
         paddingVertical: 10,
         paddingHorizontal: 80,
-        borderRadius: 50,
+        borderRadius: 50
     }
-})
+});

@@ -1,102 +1,103 @@
-import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, ActivityIndicator, Image, SafeAreaView, ScrollView, Alert } from 'react-native'
-import React from 'react'
+import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, ActivityIndicator, Image, SafeAreaView, ScrollView, Alert } from 'react-native';
+import React from 'react';
+import * as Progress from 'react-native-progress';
+import { useFonts } from 'expo-font';
+
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
-import ButtonBack from '../Components/Common/ButtonBack'
-import * as Progress from 'react-native-progress';
-import { useFonts } from 'expo-font'
+import ButtonBack from '../Components/Common/ButtonBack';
 
 const RegisterDescription = ({ navigation }) => {
     const { descripcion, handleChangeDesc, charsLeft, progressBar, setProgressBar } = useRegisterContext();
 
     const [loaded] = useFonts({
         QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
+        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
     });
 
     const continuar = () => {
         if (descripcion.length > 0) {
             setProgressBar(0.50);
             setTimeout(() => {
-                navigation.navigate('RegisterSecond')
+                navigation.navigate('RegisterSecond');
             }, 500);
-        }
-        else {
+        } else {
             Alert.alert('Cuidado!', 'Debes ingresar una descripción');
         }
-    }
+    };
     const volver = () => {
         setProgressBar(0);
-        navigation.goBack()
-    }
+        navigation.goBack();
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             {
-                loaded ? (
-                    <>
-                        <Progress.Bar
-                            progress={progressBar}
-                            width={windowWidth}
-                            style={styles.progressBar}
-                            color='rgb(94, 157, 181)'
-                        />
-                        <View style={styles.buttonBack} >
-                            <ButtonBack onPress={volver} />
-                        </View>
-                        <ScrollView style={{ top: 150 }}>
-                            <Text style={styles.textTitle}>Descripción</Text>
-                            <View>
-                                <TextInput
-                                    style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
-                                    placeholder={'"Me gusta el arte, todo tipo de arte..."'}
-                                    onChangeText={handleChangeDesc}
-                                    value={descripcion}
-                                    multiline={true}
-                                    numberOfLines={8}
-                                />
-                                <View style={styles.charsLeft}>
-                                    <Text style={styles.charsLeftText}>
-                                        {charsLeft}/150
-                                    </Text>
-                                </View>
+                loaded
+                    ? (
+                        <>
+                            <Progress.Bar
+                                color='rgb(94, 157, 181)'
+                                progress={progressBar}
+                                style={styles.progressBar}
+                                width={windowWidth}
+                            />
+                            <View style={styles.buttonBack} >
+                                <ButtonBack onPress={volver} />
                             </View>
-                            {
-                                descripcion.length <= 0 &&
+                            <ScrollView style={{ top: 150 }}>
+                                <Text style={styles.textTitle}>Descripción</Text>
+                                <View>
+                                    <TextInput
+                                        multiline={true}
+                                        numberOfLines={8}
+                                        placeholder={'"Me gusta el arte, todo tipo de arte..."'}
+                                        style={[styles.inputDesc, descripcion.length <= 0 && styles.inputYellow]}
+                                        value={descripcion}
+                                        onChangeText={handleChangeDesc}
+                                    />
+                                    <View style={styles.charsLeft}>
+                                        <Text style={styles.charsLeftText}>
+                                            {charsLeft}/150
+                                        </Text>
+                                    </View>
+                                </View>
+                                {
+                                    descripcion.length <= 0 &&
                                 <Text style={styles.noDescription}>
                                     <Text style={styles.noDescription}>Escriba una breve descripción de su persona</Text>
                                     <Text style={styles.noDescription}>, así los demas usuarios podran </Text>
                                     <Text style={styles.noDescriptionUnderine}>conocerte mejor</Text>
                                     <Text style={styles.noDescription}>.</Text>
                                 </Text>
-                            }
-                        </ScrollView>
-                        <ButtonContinue onPress={continuar} />
-                        <Image style={styles.backgroundImg} source={require('../Assets/register/registerFirstBackground.png')} />
+                                }
+                            </ScrollView>
+                            <ButtonContinue onPress={continuar} />
+                            <Image source={require('../Assets/register/registerFirstBackground.png')} style={styles.backgroundImg} />
 
-                        <StatusBar
-                            barStyle="dark-content"
-                            backgroundColor={'transparent'}
-                        />
-                    </>
-                ) : (
-                    <ActivityIndicator />
-                )}
+                            <StatusBar
+                                backgroundColor={'transparent'}
+                                barStyle="dark-content"
+                            />
+                        </>
+                    )
+                    : (
+                        <ActivityIndicator />
+                    )}
         </SafeAreaView>
-    )
-}
+    );
+};
 
-export default RegisterDescription
+export default RegisterDescription;
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#fcfcfc',
-        alignItems: 'center',
+        alignItems: 'center'
         // fontFamily: 'Capriola_400Regular' ?? 'Comic Sans Ms',
     },
     backgroundImg: {
@@ -105,11 +106,11 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         width: windowWidth,
         height: 260,
-        top: 50,
+        top: 50
     },
     textTitle: {
         fontSize: 28,
-        color: "#1f1f1f",
+        color: '#1f1f1f',
         marginBottom: 5,
         fontFamily: 'QuicksandBold'
     },
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     },
     inputYellow: {
         borderColor: '#F1F1F1',
-        borderWidth: 2,
+        borderWidth: 2
 
     },
     charsLeft: {
@@ -151,17 +152,17 @@ const styles = StyleSheet.create({
         color: '#8f8f8f',
         bottom: -85,
         fontStyle: 'italic',
-        textDecorationLine: 'underline',
+        textDecorationLine: 'underline'
     },
     progressBar: {
         borderRadius: 0,
         borderWidth: 0,
         top: StatusBar.currentHeight,
-        position: "absolute"
+        position: 'absolute'
     },
     buttonBack: {
         position: 'absolute',
         top: StatusBar.currentHeight + 20,
         left: 35
-    },
-})
+    }
+});

@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
-import ArtistCard from './ArtistCard'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import React from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import ArtistCard from './ArtistCard';
 
 const Back = ({ artistas, isFlipped, setIsFlipped }) => {
     return (
         <View style={styles.artistAll}>
             <View style={styles.arrowAndText}>
                 <TouchableWithoutFeedback onPress={() => setIsFlipped(!isFlipped)}>
-                    <Ionicons style={[styles.flipCardArrow, styles.shadowBox]} name="ios-return-up-back"></Ionicons>
+                    <Ionicons name="ios-return-up-back" style={[styles.flipCardArrow, styles.shadowBox]} />
                 </TouchableWithoutFeedback>
                 <Text style={[styles.tituloCoA, styles.tituloArtistas, styles.shadowBox]}>Artistas</Text>
             </View>
@@ -16,27 +17,27 @@ const Back = ({ artistas, isFlipped, setIsFlipped }) => {
                 {
                     artistas.sort((a, b) => a.orden - b.orden).map((artist, index) => {
                         return (
-                            <ArtistCard key={index} index={index} artist={artist} />
-                        )
+                            <ArtistCard key={index} artist={artist} index={index} />
+                        );
                     })
                 }
             </View>
         </View>
-    )
-}
+    );
+};
 
-export default Back
+export default Back;
 
 const styles = StyleSheet.create({
     artistAll: {
         height: '100%',
         flexDirection: 'column',
-        marginVertical: 10,
+        marginVertical: 10
     },
     artistContainer: {
         justifyContent: 'space-evenly',
         height: '100%',
-        paddingBottom: 35,
+        paddingBottom: 35
     },
     arrowAndText: {
         flexDirection: 'row',
@@ -54,19 +55,19 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     shadowBox: {
-        shadowColor: "#000",
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 4,
+            height: 4
         },
         shadowOpacity: 0.32,
         shadowRadius: 5.46,
-        elevation: 4,
+        elevation: 4
     },
     tituloCoA: {
         fontSize: 16,
         alignSelf: 'center',
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     tituloArtistas: {
         backgroundColor: '#eb787c',
@@ -74,6 +75,6 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingLeft: 18,
         borderTopLeftRadius: 50,
-        borderBottomLeftRadius: 50,
-    },
-})
+        borderBottomLeftRadius: 50
+    }
+});

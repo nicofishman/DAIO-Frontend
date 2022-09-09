@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 const ArtistCard = ({ index, artist }) => {
     return (
@@ -7,21 +6,21 @@ const ArtistCard = ({ index, artist }) => {
             <View style={[styles.artistDetails, styles.shadowBox, { position: 'relative' }]}>
                 <Text numberOfLines={1} style={styles.artistDetailsName}>{artist.name}</Text>
                 <View style={styles.artistDetailsText}>
-                    <Text style={styles.artistDetailsText} numberOfLines={2}>
+                    <Text numberOfLines={2} style={styles.artistDetailsText}>
                         {artist.genres.join(', ')}
                     </Text>
                 </View>
                 <Image
                     key={artist.image}
-                    style={[styles.artistImg]}
                     source={{ uri: artist.image }}
+                    style={[styles.artistImg]}
                 />
             </View>
         </View>
-    )
-}
+    );
+};
 
-export default ArtistCard
+export default ArtistCard;
 
 const styles = StyleSheet.create({
     artistDetails: {
@@ -38,16 +37,16 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 50,
         borderBottomRightRadius: 50,
         zIndex: -1,
-        right: 15,
+        right: 15
     },
     artistDetailsName: {
         fontSize: 24,
         color: '#000',
-        width: '65%',
+        width: '65%'
     },
     artistDetailsText: {
         color: '#000',
-        width: '75%',
+        width: '75%'
     },
     artistImg: {
         width: 100,
@@ -55,16 +54,16 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         position: 'absolute',
         right: 0,
-        top: 0,
+        top: 0
     },
     shadowBox: {
-        shadowColor: "#000",
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 7,
+            height: 7
         },
         shadowOpacity: 0.9,
         shadowRadius: 19.46,
-        elevation: 13,
-    },
-})
+        elevation: 13
+    }
+});

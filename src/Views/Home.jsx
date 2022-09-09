@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import NavBar from '../Components/Common/NavBar'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 
+import NavBar from '../Components/Common/NavBar';
 
 const Home = ({ navigation, route }) => {
-
     return (
         <>
             <View style={styles.container}>
@@ -12,16 +11,16 @@ const Home = ({ navigation, route }) => {
             </View>
             <NavBar navigation={navigation} route={route} />
         </>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fafa',
         alignItems: 'center',
-        justifyContent: 'center',
-    },
-})
+        justifyContent: 'center'
+    }
+});

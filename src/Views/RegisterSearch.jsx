@@ -1,83 +1,92 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import { searchTrack, searchArtist } from '../Handlers/AuthHandler';
 import SongSearch from '../Components/Search/SongSearch';
 import ArtistSearch from '../Components/Search/ArtistSearch';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import ButtonContinue from '../Components/Common/ButtonContinue';
-import { useRegisterContext } from '../Context/RegisterContext';
 
-const RegisterSearch = ({ navigation, route }) => {
-    const [text, setText] = useState("");
-    const [search, setSearch] = useState('')
-    const [accessToken, setAccessToken] = useState(null)
-    const { type } = route.params
+const RegisterSearch = ({ route }) => {
+    const [text, setText] = useState('');
+    const [search, setSearch] = useState('');
+    const [accessToken, setAccessToken] = useState(null);
+    const { type } = route.params;
 
     // NO PERMITIR ARTISTA-CANCION SI ESTA ELEGIDO YA
 
     useEffect(() => {
         (async () => {
-            let result = await AsyncStorage.getItem("access_token");
-            setAccessToken(result)
+            const result = await AsyncStorage.getItem('access_token');
+
+            setAccessToken(result);
         })();
-    }, [])
+    }, []);
 
     const onChangeText = async (e) => {
         setText(e);
         if (text.length === 0 || !e) {
             setSearch('');
+
             return;
         }
         if (type === 'cancion') {
             const res = await searchTrack(e, accessToken);
+
             setSearch(res);
         } else if (type === 'artista') {
             const res = await searchArtist(e, accessToken);
+
             setSearch(res);
         }
-    }
+    };
 
     return (
         <>
             <View style={styles.container}>
                 <View style={styles.inputBar}>
                     <TextInput
-                        style={styles.input}
-                        onChangeText={onChangeText}
-                        value={text}
                         caretHidden={true}
                         placeholder={`Buscar ${type}...`}
                         placeholderTextColor="#b3b3b3"
+                        style={styles.input}
+                        value={text}
+                        onChangeText={onChangeText}
                     />
-                    <Ionicons style={styles.iconSearch} name="search-outline"></Ionicons>
+                    <Ionicons name="search-outline" style={styles.iconSearch} />
                 </View>
-                <View style={styles.line}></View>
-                {search ?
-                    type === 'cancion' ? search.map((item, index) => {
-                        return index <= 4 ? (
-                            <SongSearch song={item} key={index} />
-                        ) : null
-                    }) : search.map((item, index) => {
-                        return index <= 4 ? (
-                            <ArtistSearch artist={item} key={index} />
-                        ) : null
-                    })
+                <View style={styles.line} />
+                {search
+                    ? type === 'cancion'
+                        ? search.map((item, index) => {
+                            return index <= 4
+                                ? (
+                                    <SongSearch key={index} song={item} />
+                                )
+                                : null;
+                        })
+                        : search.map((item, index) => {
+                            return index <= 4
+                                ? (
+                                    <ArtistSearch key={index} artist={item} />
+                                )
+                                : null;
+                        })
                     : null
                 }
             </View>
         </>
-    )
-}
+    );
+};
 
-export default RegisterSearch
+export default RegisterSearch;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#191414',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     buttonGroup: {
         flexDirection: 'row',
@@ -85,13 +94,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 10,
         marginBottom: 10,
-        padding: 10,
+        padding: 10
     },
     input: {
         height: 40,
         padding: 5,
         color: '#e0e0e0',
-        fontSize: 18,
+        fontSize: 18
     },
     inputBar: {
         flexDirection: 'row',
@@ -102,7 +111,7 @@ const styles = StyleSheet.create({
         height: 100,
         width: 300,
         backgroundColor: '#ccc',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     line: {
         width: 300,
@@ -118,4 +127,4 @@ const styles = StyleSheet.create({
         marginRight: 10,
         color: '#535353'
     }
-})
+});
