@@ -1,7 +1,6 @@
-import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Button, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Common/NavBar'
-import SpotifyLogin from '../Components/SpotifyLogin'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Svg, {
     Ellipse,
@@ -15,7 +14,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
 import { updatePreferences } from '../Handlers/AuthHandler';
-import { LinearGradient } from 'expo-linear-gradient';
 
 
 const Config = ({ navigation, route }) => {
@@ -178,11 +176,11 @@ const Config = ({ navigation, route }) => {
                                             </View>
                                             {
                                                 editingAvatar && (
-                                                    <>
+                                                        <View style={{width: 280, backgroundColor: '#fff', alignSelf:'center', padding: 10, borderRadius: 20}}>
                                                         {
                                                             AvatarArray.map((row, rowIndex) => {
                                                                 return (
-                                                                    <View key={row} style={{ flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center' }}>
+                                                                    <View key={row} style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                                                         {row.map((image, index) => {
                                                                             return (
                                                                                 <TouchableWithoutFeedback key={index} onPress={() => {
@@ -200,7 +198,7 @@ const Config = ({ navigation, route }) => {
                                                                 )
                                                             })
                                                         }
-                                                    </>
+                                                    </View>
                                                 )
                                             }
                                             <View style={{ width: windowWidth }}>
@@ -302,6 +300,7 @@ let AvatarArray = [
     require('../Assets/Avatars/AvatarsToChoose/avatar9.png')]
 ];
 
+/*
 function showIconSelected() {
     switch (avatarId) {
         case -1:
@@ -326,6 +325,7 @@ function showIconSelected() {
             return <Image source={require('../Assets/Avatars/AvatarsToChoose/avatar9.png')} style={styles.avatar} />
     }
 }
+ */
 
 
 
