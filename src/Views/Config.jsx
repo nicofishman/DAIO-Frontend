@@ -160,7 +160,7 @@ const Config = ({ navigation, route }) => {
                                                             <Text numberOfLines={4} style={{ fontSize: 14 }}>{descripcion}</Text>
                                                             <View style={{ flexDirection: 'row', maxWidth: 190, top: 5 }}>
                                                                 <MaterialCommunityIcons color={'#bf2a88'} name='instagram' size={20} />
-                                                                <Text ellipsizeMode='middle' numberOfLines={1} >@{instagram}</Text>
+                                                                <Text ellipsizeMode='tail' numberOfLines={1} >@{instagram}</Text>
                                                             </View>
                                                         </View>
                                                     </View>
@@ -337,7 +337,7 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3b3b3b',
+        backgroundColor: '#fafafa',
         alignItems: 'center',
         position: 'relative'
     },
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         marginHorizontal: 1,
         alignItems: 'center',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#e3e3e3',
         borderRadius: 4
     },
     saveChanges: {

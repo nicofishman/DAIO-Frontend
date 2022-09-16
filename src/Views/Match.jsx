@@ -133,7 +133,7 @@ export default Match;
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const BACKGROUND_COLOR = '#454545';
+const BACKGROUND_COLOR = '#fafafa';
 
 const styles = StyleSheet.create({
     container: {
@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    // backgroundColor: '#69f079',
     handleBox: {
         paddingVertical: 5,
         height: 70,

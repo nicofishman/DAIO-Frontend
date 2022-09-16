@@ -33,7 +33,8 @@ const RegisterThird = ({ navigation }) => {
             description: descripcion,
             avatarId,
             tracks: songPreference,
-            artists: artistPreference
+            artists: artistPreference,
+            instagram: instagram
         });
         setProgressBar(0.75);
         setTimeout(() => {

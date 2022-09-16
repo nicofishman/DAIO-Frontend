@@ -1,6 +1,6 @@
 import querystring from 'querystring';
 
-import { View, StyleSheet, Image, Dimensions, StatusBar } from 'react-native';
+import { View, StyleSheet, Image, Dimensions, StatusBar, Text} from 'react-native';
 import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
@@ -80,7 +80,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
         if (responseCode?.type === 'success') {
             const { code } = responseCode.params;
             const { access_token: accessToken, refresh_token: refreshToken, expires_in: expiresIn } = await getTokenWithCode(code);
-
+            console.log('access_token', accessToken);
             await AsyncStorage.setItem('access_token', accessToken);
             await AsyncStorage.setItem('refresh_token', refreshToken);
             await AsyncStorage.setItem('refresh_date', (new Date().getTime() + expiresIn * 1000).toString());
@@ -111,7 +111,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
     };
 
     const [loaded] = useFonts({
-        QuicksandLight: require('../../assets/fonts/Quicksand/Quicksand-Light.ttf')
+        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf')
     });
 
     if (!loaded) {
@@ -128,23 +128,19 @@ const CreateOrSignInAcount = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={{ width: windowWidth, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: windowWidth, alignItems: 'center', justifyContent: 'center', marginBottom: windowHeight*.3 }}>
                 <Image source={require('../Assets/Common/logoDAIO.png')} style={styles.logo} />
                 <Image source={require('../Assets/register/createOrSignInAcountBackground1.png')} style={styles.backgroundImg1} />
                 <Image source={require('../Assets/register/createOrSignInAcountBackground2.png')} style={styles.backgroundImg2} />
             </View>
 
-            {/* <View style={{ top: 180 }}>
-                <Text style={{ width: windowWidth * 0.75, left: 10, fontSize: 12, fontFamily: 'QuicksandLight' }}>
-                    <Text>Al apretar "Crear Cuenta" o "Iniciar Sesion", está aceptando nuestros </Text>
-                    <Text style={{ fontStyle: 'italic', textDecorationLine: 'underline' }}>terminos y condiciones</Text>
-                    <Text>. En estos dejamos en claro todos los robos de datos y actividades inmorales contra su persona.</Text>
-                </Text>
-            </View> */}
-            <View style={{ position: 'absolute', bottom: 80 }}>
-                <ButtonCreateAccount onPress={() => spotifyPromptAsync()} />
-                <ButtonLoginAccount onPress={() => spotifyPromptAsync()} />
-            </View>
+            <Text style={{ width: windowWidth * 0.75, fontSize: 12, fontFamily: 'QuicksandRegular', marginBottom: windowHeight*.04 }}>
+                <Text>Al apretar "Crear Cuenta" o "Iniciar Sesion", lo redirigirá a </Text>
+                <Text style={{ fontStyle: 'italic', textDecorationLine: 'underline' }}>iniciar sesion con Spotify</Text>
+                <Text>.</Text>
+            </Text>
+            <ButtonCreateAccount onPress={() => spotifyPromptAsync()} />
+            <ButtonLoginAccount onPress={() => spotifyPromptAsync()} />
             <StatusBar
                 backgroundColor={'transparent'}
                 barStyle="dark-content"
@@ -156,6 +152,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
 export default CreateOrSignInAcount;
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
@@ -166,7 +163,7 @@ const styles = StyleSheet.create({
     logo: {
         resizeMode: 'contain',
         top: 100,
-        width: 160
+        width: 160,
     },
     backgroundImg1: {
         position: 'absolute',
