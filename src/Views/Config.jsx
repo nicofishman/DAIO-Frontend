@@ -7,13 +7,13 @@ import Svg, {
 } from 'react-native-svg';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useFonts } from 'expo-font';
-
 import NavBar from '../Components/Common/NavBar';
 import { getUserById, updatePreferences } from '../Handlers/AuthHandler';
 import Avatar from '../Components/Common/Avatar';
 import { useRegisterContext } from '../Context/RegisterContext';
 import SongBox from '../Components/Preferences/SongBox';
 import ArtistBox from '../Components/Preferences/ArtistBox';
+import Toast from 'react-native-toast-message'
 
 const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined);
@@ -42,8 +42,8 @@ const Config = ({ navigation, route }) => {
 
     const [loaded] = useFonts({
         Quicksand: require('../../assets/fonts/Quicksand/Quicksand.ttf'),
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
+        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf')
     });
 
     const setContext = async (user) => {
@@ -105,6 +105,10 @@ const Config = ({ navigation, route }) => {
 
     const saveProfile = async () => {
         const spotiId = await AsyncStorage.getItem('spotify_id');
+        if (songPreference.length !== 5 || artistPreference.length !== 3) {
+            showToast('error', 'No se pudo actualizar el perfil ❌', 'Seleccione todos los artistas y canciones');
+            return
+        }
         const userSend = {
             spotifyId: spotiId,
             username,
@@ -116,18 +120,28 @@ const Config = ({ navigation, route }) => {
         };
 
         await updatePreferences(userSend);
+        showToast('success', 'Se actualizó correctamente el perfil 🤙');
         await getUser();
     };
 
+    const showToast = ( type, title, desc) => {
+        Toast.show({
+            type: type,
+            text1: title,
+            text2: desc,
+            
+        });
+    }
+
+    // ANIMATION
     return (
         <>
             <SafeAreaView style={styles.container}>
                 {
-                    loading &&
-                    loaded
+                    loading && loaded
                         ? (
                             <View style={{ top: windowHeight / 2 }}>
-                                <ActivityIndicator color="#fff" size={100} />
+                                <ActivityIndicator color="#ff7374" size={100} />
                             </View>
                         ) : (
                             <>
@@ -180,7 +194,7 @@ const Config = ({ navigation, route }) => {
                                                 <View style={{ position: 'relative', width: 130, alignSelf: 'center', marginBottom: 10 }}>
                                                     <Avatar height={130} id={avatarId} width={130} />
                                                     <TouchableOpacity activeOpacity={1} style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} onPress={() => editAvatar()}>
-                                                        <MaterialIcons color="black" name={editingAvatar ? 'close' : 'edit'} size={30} style={{ padding: 10 }} />
+                                                        <MaterialIcons color="#fff" name={editingAvatar ? 'close' : 'edit'} size={30} style={{ padding: 10 }} />
                                                     </TouchableOpacity>
                                                 </View>
                                                 {
@@ -286,10 +300,13 @@ const Config = ({ navigation, route }) => {
                                     <Text style={styles.saveChanges_text}>Guardar cambios</Text>
                                     }
                                 </TouchableOpacity>
+                                <Toast />
+
+
                                 {/* <SpotifyLogin style={styles.logOut} title='Cerrar Sesión' fnOnPress={logOut} /> */}
                             </>
                         )
-                }
+                    }
             </SafeAreaView>
             <NavBar navigation={navigation} route={route} />
         </>
@@ -362,7 +379,7 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.175,
         height: windowWidth * 0.175,
         borderRadius: windowWidth * 0.175,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#fff',
         left: windowWidth * 0.3,
         justifyContent: 'center',
         alignItems: 'center'

@@ -2,12 +2,19 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
-
+import { useFonts } from 'expo-font';
 import { useRegisterContext } from '../../Context/RegisterContext';
 
 const SongBox = () => {
     const { songPreference, setSongPreference } = useRegisterContext();
     const navigation = useNavigation();
+
+    const [loaded] = useFonts({
+        Quicksand: require('../../../assets/fonts/Quicksand/Quicksand.ttf'),
+        QuicksandRegular: require('../../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
+        QuicksandMedium: require('../../../assets/fonts/Quicksand/Quicksand-Medium.ttf'),
+        QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+    });
 
     const removeSong = (id) => {
         setSongPreference(songPreference.filter(song => song.id !== id));
@@ -107,7 +114,7 @@ const styles = StyleSheet.create({
         width: 290,
         height: 40,
         borderRadius: 4,
-        backgroundColor: '#f3f3f3',
+        backgroundColor: '#d4d4d4',
         shadowColor: 'rgba(0, 0, 0, 0.25)',
         shadowOffset: {
             width: 2,
@@ -122,7 +129,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     text: {
-        marginHorizontal: 7
+        marginHorizontal: 7,
+        color: '#000',
+        fontFamily: 'QuicksandMedium'
     },
     trashBox: {
         right: 3,

@@ -113,7 +113,7 @@ const Match = ({ navigation, route }) => {
                     renderNoMoreCards={() => {
                         return (
                             isLoading
-                                ? <ActivityIndicator color='#ffffff' size={60} style={{ flex: 2.3 }} />
+                                ? <ActivityIndicator color='#ff7374' size={60} style={{ flex: 2.3 }} />
                                 : <StatusCard text='No hay más usuarios por hoy... Volvé más tarde' />
                         );
                     }}
