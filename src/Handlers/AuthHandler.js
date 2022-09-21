@@ -124,7 +124,6 @@ const refreshLogin = async (refreshToken) => {
 export const getUserData = async () => {
     const { accessToken: accessTokenRes } = await checkRefreshToken();
     const userData = await axios.get('http://daio-backend.herokuapp.com/spotify/me', { headers: { accessToken: accessTokenRes } });
-
     return userData.data;
 };
 
@@ -216,7 +215,7 @@ export const getArtistsById = async (artistId) => {
                 artistData.push(response.data);
             })
             .catch(error => {
-                console.log('error');
+                console.log('error', error);
             });
     }));
 

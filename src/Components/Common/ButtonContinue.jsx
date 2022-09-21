@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Animated, Dimensions } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
 import { useFonts } from 'expo-font';
 const ButtonContinue = ({ onPress }) => {
     const [animationBackground, _setAnimationBackground] = useState(new Animated.Value(0));
@@ -51,7 +51,7 @@ const ButtonContinue = ({ onPress }) => {
         color: boxInterpolationText
     };
 
-    return (
+    return loaded && (
         <View style={{ position: 'absolute', bottom: 20 }} >
             <TouchableWithoutFeedback
                 onPress={onPress}

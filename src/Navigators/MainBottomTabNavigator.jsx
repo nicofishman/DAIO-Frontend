@@ -14,9 +14,11 @@ const MainBottomTabNavigator = () => {
 
     useEffect(() => {
         (async () => {
-            const myUser = await getUserData();
-
-            await AsyncStorage.setItem('spotify_id', myUser.id);
+            const userToken = await AsyncStorage.getItem('spotify_id');
+            if (userToken === null) {
+                const myUser = await getUserData();
+                await AsyncStorage.setItem('spotify_id', myUser.id);
+            }
         })();
     }, []);
 

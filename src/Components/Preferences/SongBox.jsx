@@ -29,7 +29,7 @@ const SongBox = () => {
         });
     };
 
-    return (
+    return loaded && (
         <View style={styles.box}>
             <View style={styles.songsBox}>
                 {
