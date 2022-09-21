@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+import { useFonts, Quicksand_500Medium } from '@expo-google-fonts/quicksand';
 import { useRegisterContext } from '../../Context/RegisterContext';
 
 const SongBox = () => {
@@ -10,10 +10,7 @@ const SongBox = () => {
     const navigation = useNavigation();
 
     const [loaded] = useFonts({
-        Quicksand: require('../../../assets/fonts/Quicksand/Quicksand.ttf'),
-        QuicksandRegular: require('../../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandMedium: require('../../../assets/fonts/Quicksand/Quicksand-Medium.ttf'),
-        QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        Quicksand_500Medium
     });
 
     const removeSong = (id) => {
@@ -131,7 +128,7 @@ const styles = StyleSheet.create({
     text: {
         marginHorizontal: 7,
         color: '#000',
-        fontFamily: 'QuicksandMedium'
+        fontFamily: 'Quicksand_500Medium'
     },
     trashBox: {
         right: 3,

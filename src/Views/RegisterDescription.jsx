@@ -1,7 +1,7 @@
 import { StyleSheet, StatusBar, Text, View, TextInput, Dimensions, ActivityIndicator, Image, SafeAreaView, ScrollView, Alert } from 'react-native';
 import React from 'react';
 import * as Progress from 'react-native-progress';
-import { useFonts } from 'expo-font';
+import { useFonts, Quicksand_400Regular, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
 
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonContinue from '../Components/Common/ButtonContinue';
@@ -11,8 +11,8 @@ const RegisterDescription = ({ navigation }) => {
     const { descripcion, handleChangeDesc, charsLeft, progressBar, setProgressBar } = useRegisterContext();
 
     const [loaded] = useFonts({
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        Quicksand_400Regular,
+        Quicksand_700Bold
     });
 
     const continuar = () => {
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         color: '#1f1f1f',
         marginBottom: 5,
-        fontFamily: 'QuicksandBold'
+        fontFamily: 'Quicksand_700Bold'
     },
     inputDesc: {
         width: windowWidth * 0.8,
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 10,
         backgroundColor: '#F5F5F5',
-        fontFamily: 'QuicksandRegular'
+        fontFamily: 'Quicksand_400Regular'
     },
     inputYellow: {
         borderColor: '#F1F1F1',
@@ -138,14 +138,14 @@ const styles = StyleSheet.create({
     charsLeftText: {
         textAlign: 'right',
         color: '#8f8f8f',
-        fontFamily: 'QuicksandRegular'
+        fontFamily: 'Quicksand_400Regular'
     },
     noDescription: {
         width: windowWidth * 0.8,
         color: '#8f8f8f',
         paddingLeft: 2,
         fontStyle: 'italic',
-        fontFamily: 'QuicksandRegular'
+        fontFamily: 'Quicksand_400Regular'
     },
     noDescriptionUnderine: {
         width: windowWidth * 0.8,

@@ -2,7 +2,7 @@ import { StyleSheet, View, StatusBar, Image, Dimensions, Text, ActivityIndicator
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Progress from 'react-native-progress';
-import { useFonts } from 'expo-font';
+import { useFonts, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
 
 import ArtistBox from '../Components/Preferences/ArtistBox';
 import { getUserTopArtists, getUserTopTracks } from '../Handlers/AuthHandler';
@@ -15,8 +15,7 @@ const RegisterSecond = ({ navigation }) => {
     const { setSongPreference, setArtistPreference, progressBar, setProgressBar } = useRegisterContext();
     const [loading, setLoading] = useState(true);
     const [loaded] = useFonts({
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        Quicksand_700Bold
     });
 
     const continuar = () => {
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.75,
         fontSize: 28,
         color: '#1f1f1f',
-        fontFamily: 'QuicksandBold'
+        fontFamily: 'Quicksand_700Bold'
     },
     progressBar: {
         borderRadius: 0,

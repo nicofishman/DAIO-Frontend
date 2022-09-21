@@ -1,6 +1,5 @@
 import { View, Text, ActivityIndicator, SafeAreaView, StyleSheet, StatusBar, Dimensions, TextInput } from 'react-native';
 import React from 'react';
-import { useFonts } from 'expo-font';
 import * as Progress from 'react-native-progress';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -9,13 +8,13 @@ import ButtonBack from '../Components/Common/ButtonBack';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import { useRegisterContext } from '../Context/RegisterContext';
 import { addUser } from '../Handlers/AuthHandler';
+import {Quicksand_700Bold, useFonts} from "@expo-google-fonts/quicksand";
 
 const RegisterThird = ({ navigation }) => {
     const { instagram, setInstagram, artistPreference, songPreference, username, descripcion, spotifyId, avatarId, progressBar, setProgressBar } = useRegisterContext();
 
     const [loaded] = useFonts({
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        Quicksand_700Bold
     });
 
     const volver = () => {
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.75,
         fontSize: 28,
         color: '#1f1f1f',
-        fontFamily: 'QuicksandBold'
+        fontFamily: 'Quicksand_700Bold'
     },
     input: {
         color: '#000',

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
-import { useFonts } from 'expo-font';
+import { Quicksand_700Bold, useFonts } from '@expo-google-fonts/quicksand';
+
 const ButtonContinue = ({ onPress }) => {
     const [animationBackground, _setAnimationBackground] = useState(new Animated.Value(0));
     const [animationTextColor, _setAnimationColorText] = useState(new Animated.Value(0));
 
     const [loaded] = useFonts({
-        QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        Quicksand_700Bold
     });
 
     if (!loaded) {
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     textButton: {
         flex: 1,
         fontSize: 22,
-        fontFamily: 'QuicksandBold',
+        fontFamily: 'Quicksand_700Bold',
         letterSpacing: 0,
         textAlign: 'center',
         textAlignVertical: 'center',

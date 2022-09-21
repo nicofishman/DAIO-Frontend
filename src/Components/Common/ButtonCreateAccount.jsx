@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import React from 'react';
-import { useFonts } from 'expo-font';
+import { Quicksand_700Bold, useFonts } from '@expo-google-fonts/quicksand';
 
 const ButtonCreateAccount = ({ onPress }) => {
     const [loaded] = useFonts({
-        QuicksandBold: require('../../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        Quicksand_700Bold
     });
 
     if (!loaded) {
@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 30,
         backgroundColor: '#f28384',
-        fontFamily: 'QuicksandBold'
+        fontFamily: 'Quicksand_700Bold'
     }
 });

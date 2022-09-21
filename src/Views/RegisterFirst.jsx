@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, View, Image, Text, Dimensions, StatusBar, SafeAr
 import React, { useEffect, useState } from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import * as Progress from 'react-native-progress';
-import { useFonts } from 'expo-font';
+import { useFonts, Quicksand_700Bold, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
 
 import { useRegisterContext } from '../Context/RegisterContext';
 import ButtonBack from '../Components/Common/ButtonBack';
@@ -15,8 +15,8 @@ const RegisterFirst = ({ navigation }) => {
     const [iconText, setIconText] = useState('edit');
 
     const [loaded] = useFonts({
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
+        Quicksand_400Regular,
+        Quicksand_700Bold
     });
 
     const volver = () => {
@@ -140,7 +140,7 @@ const RegisterFirst = ({ navigation }) => {
                                                 })
                                             }
                                         </View>
-                                        <Text style={{ alignSelf: 'center', marginTop: 20, fontFamily: 'QuicksandRegular' }}>Elige un avatar para que te puedan identificar</Text>
+                                        <Text style={{ alignSelf: 'center', marginTop: 20, fontFamily: 'Quicksand_400Regular' }}>Elige un avatar para que te puedan identificar</Text>
                                     </View>
 
                                 )
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     textTitle: {
         fontSize: 28,
         color: '#1f1f1f',
-        fontFamily: 'QuicksandBold',
+        fontFamily: 'Quicksand_700Bold',
         marginBottom: 5
     },
     input: {

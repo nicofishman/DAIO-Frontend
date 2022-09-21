@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import axios from 'axios';
-import { useFonts } from 'expo-font';
+import { useFonts, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
 
 import ButtonCreateAccount from '../Components/Common/ButtonCreateAccount';
 import ButtonLoginAccount from '../Components/Common/ButtonLoginAccount';
@@ -111,7 +111,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
     };
 
     const [loaded] = useFonts({
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf')
+        Quicksand_400Regular
     });
 
     if (!loaded) {
@@ -134,7 +134,7 @@ const CreateOrSignInAcount = ({ navigation }) => {
                 <Image source={require('../Assets/register/createOrSignInAcountBackground2.png')} style={styles.backgroundImg2} />
             </View>
 
-            <Text style={{ width: windowWidth * 0.75, fontSize: 12, fontFamily: 'QuicksandRegular', marginBottom: windowHeight*.04 }}>
+            <Text style={{ width: windowWidth * 0.75, fontSize: 12, fontFamily: 'Quicksand_400Regular', marginBottom: windowHeight*.04 }}>
                 <Text>Al apretar "Crear Cuenta" o "Iniciar Sesion", lo redirigirá a </Text>
                 <Text style={{ fontStyle: 'italic', textDecorationLine: 'underline' }}>iniciar sesion con Spotify</Text>
                 <Text>.</Text>

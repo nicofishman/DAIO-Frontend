@@ -6,7 +6,7 @@ import Svg, {
     Ellipse
 } from 'react-native-svg';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useFonts } from 'expo-font';
+import { useFonts, Quicksand_700Bold, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
 import NavBar from '../Components/Common/NavBar';
 import { getUserById, updatePreferences } from '../Handlers/AuthHandler';
 import Avatar from '../Components/Common/Avatar';
@@ -41,9 +41,8 @@ const Config = ({ navigation, route }) => {
     } = useRegisterContext();
 
     const [loaded] = useFonts({
-        Quicksand: require('../../assets/fonts/Quicksand/Quicksand.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf'),
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf')
+        Quicksand_700Bold,
+        Quicksand_400Regular
     });
 
     const setContext = async (user) => {
@@ -67,6 +66,7 @@ const Config = ({ navigation, route }) => {
         await setContext(res);
         setUser(res);
         setLoading(false);
+        return res;
     };
 
     const logOut = async () => {
@@ -129,7 +129,7 @@ const Config = ({ navigation, route }) => {
             type: type,
             text1: title,
             text2: desc,
-            
+
         });
     }
 
@@ -173,7 +173,7 @@ const Config = ({ navigation, route }) => {
                                                         <View style={styles.userInfo}>
                                                             <Text
                                                                 numberOfLines={2}
-                                                                style={{ color: 'black', fontWeight: 'bold', fontFamily: 'QuicksandRegular', fontSize: 24 }}
+                                                                style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Quicksand_400Regular', fontSize: 24 }}
                                                             >
                                                                 {username}
                                                             </Text>
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 16,
         textAlign: 'center',
-        fontFamily: 'QuicksandBold'
+        fontFamily: 'Quicksand_700Bold'
     },
     userInfo: {
         flexDirection: 'column',
@@ -417,7 +417,7 @@ const styles = StyleSheet.create({
         top: StatusBar.currentHeight
     },
     input: {
-        fontFamily: 'QuicksandRegular',
+        fontFamily: 'Quicksand_400Regular',
         paddingLeft: 10,
         marginBottom: 20,
         backgroundColor: '#fff',
@@ -426,11 +426,11 @@ const styles = StyleSheet.create({
 
     },
     inputTitle: {
-        fontFamily: 'QuicksandBold',
+        fontFamily: 'Quicksand_700Bold',
         fontSize: 18,
         marginLeft: 10
     },
     fontQuicksandBold: {
-        fontFamily: 'QuicksandBold'
+        fontFamily: 'Quicksand_700Bold'
     }
 });

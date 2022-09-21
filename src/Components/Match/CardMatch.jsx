@@ -1,22 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useFonts } from 'expo-font';
+import { useFonts, Quicksand_700Bold, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
 
 import InnerCard from './CardMatch/InnerCard';
 
 const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualSong }) => {
     const [loaded] = useFonts({
-        Capriola: require('../../../assets/fonts/Capriola.ttf'),
-        Quicksand: require('../../../assets/fonts/Quicksand/Quicksand.ttf'),
-        QuicksandRegular: require('../../../assets/fonts/Quicksand/Quicksand-Regular.ttf')
+        Quicksand_400Regular,
+        Quicksand_700Bold
     });
 
     if (!loaded) {
         return null;
     }
 
-    return (
+    return loaded && (
         <LinearGradient colors={['#cce6ff', '#fff', '#e3e3e3', '#fff', '#ffcccc']} style={styles.card}>
             <Text style={[styles.textName]}>{data.username}</Text>
             <Text style={styles.textDesc}>{data.description}</Text>
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
         marginLeft: 20,
         marginTop: 10,
-        fontFamily: 'QuicksandRegular'
+        fontFamily: 'Quicksand_400Regular'
     },
     textDesc: {
         fontSize: 16,
@@ -51,6 +50,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlign: 'justify',
         overflow: 'hidden',
-        fontFamily: 'Quicksand'
+        fontFamily: 'Quicksand_700Bold'
     }
 });

@@ -1,6 +1,5 @@
 import { StyleSheet, View, FlatList, Text, StatusBar, RefreshControl, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { useFonts } from 'expo-font';
 
 import NavBar from '../Components/Common/NavBar';
 import Interaction from '../Components/Interactions/Interaction';
@@ -9,12 +8,6 @@ import { useInteractionsContext } from '../Context/InteractionsContext';
 const Chat = ({ navigation, route }) => {
     const { refreshInteractions, likeList, matchList } = useInteractionsContext();
     const [refreshing, setRefreshing] = useState(false);
-
-    const [loaded] = useFonts({
-        QuicksandRegular: require('../../assets/fonts/Quicksand/Quicksand-Regular.ttf'),
-        QuicksandBold: require('../../assets/fonts/Quicksand/Quicksand-Bold.ttf')
-    });
-
     const updateInt = async () => {
         await refreshInteractions();
         setRefreshing(false);
@@ -26,7 +19,7 @@ const Chat = ({ navigation, route }) => {
         })();
     }, []);
 
-    return loaded && (
+    return (
         <SafeAreaView style={styles.container}>
             <View style={[!matchList.length > 0 ? { height: '20%', alignItems: 'center' } : { flex: 0.4 }]}>
                 <Text style={styles.title}>Tus Matches</Text>
@@ -43,7 +36,7 @@ const Chat = ({ navigation, route }) => {
                                 )}
                                 style={[styles.flatList, !matchList.length && { backgroundColor: 'red' }]}
                             />
-                            : <Text style={styles.noMatches}>No tienes ninguna match</Text>
+                            : <Text>No tienes ninguna match</Text>
                     }
                 </View>
             </View>
@@ -68,7 +61,7 @@ const Chat = ({ navigation, route }) => {
                                 )}
                                 style={[styles.flatList, { marginBottom: 70 }]}
                             />
-                            : <Text style={styles.noMatches}>No tienes ninguna match</Text>
+                            : <Text>No tienes ninguna match</Text>
                     }
 
                 </View>
