@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: StatusBar.currentHeight + 10,
-        backgroundColor: '#fef'
+        backgroundColor: '#fafafa'
     },
     flatList: {
         // backgroundColor: '#fff',

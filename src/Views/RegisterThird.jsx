@@ -3,12 +3,12 @@ import React from 'react';
 import * as Progress from 'react-native-progress';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { Quicksand_700Bold, useFonts } from '@expo-google-fonts/quicksand';
 
 import ButtonBack from '../Components/Common/ButtonBack';
 import ButtonContinue from '../Components/Common/ButtonContinue';
 import { useRegisterContext } from '../Context/RegisterContext';
 import { addUser } from '../Handlers/AuthHandler';
-import {Quicksand_700Bold, useFonts} from "@expo-google-fonts/quicksand";
 
 const RegisterThird = ({ navigation }) => {
     const { instagram, setInstagram, artistPreference, songPreference, username, descripcion, spotifyId, avatarId, progressBar, setProgressBar } = useRegisterContext();
@@ -33,7 +33,7 @@ const RegisterThird = ({ navigation }) => {
             avatarId,
             tracks: songPreference,
             artists: artistPreference,
-            instagram: instagram
+            instagram
         });
         setProgressBar(0.75);
         setTimeout(() => {
@@ -57,7 +57,7 @@ const RegisterThird = ({ navigation }) => {
                                 <ButtonBack onPress={volver} />
                             </View>
                             <View style={{ flex: 1 }}>
-                                <Text style={styles.textTitle}>Ingresa tu Instaram para hablar con tus match</Text>
+                                <Text style={styles.textTitle}>Ingresa tu Instagram para hablar con tus match</Text>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2, borderBottomColor: '#000', width: windowWidth * 0.7, marginTop: 15 }}>
                                     <AntDesign color="#de4ba1" name="instagram" size={30} style={{ marginRight: 10 }} />
                                     <TextInput

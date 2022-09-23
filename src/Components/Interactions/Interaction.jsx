@@ -29,8 +29,9 @@ const Interaction = ({ item }) => {
             {
                 item.isMatch &&
                 <SendIntentButton action={item.interactedWith.instagram}>
+
                     <View style={styles.instagram}>
-                        <AntDesign color="black" name="instagram" size={30} />
+                        <AntDesign color="black" name="instagram" size={30} style={{ opacity: 1 }} />
                         <Text numberOfLines={1} style={{ paddingHorizontal: 10, marginRight: 8 }}>@{item.interactedWith.instagram}</Text>
                     </View>
                 </SendIntentButton>
@@ -67,10 +68,10 @@ const styles = StyleSheet.create({
     instagram: {
         flex: 1,
         backgroundColor: '#ccc',
-        paddingHorizontal: 10,
         height: '85%',
         alignItems: 'center',
         flexDirection: 'row',
-        borderRadius: 25
+        borderRadius: 25,
+        paddingHorizontal: 10
     }
 });

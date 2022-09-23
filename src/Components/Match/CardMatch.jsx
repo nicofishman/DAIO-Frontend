@@ -17,8 +17,8 @@ const CardMatch = ({ data, visualArtist, visualSong, setVisualArtist, setVisualS
 
     return loaded && (
         <LinearGradient colors={['#cce6ff', '#fff', '#e3e3e3', '#fff', '#ffcccc']} style={styles.card}>
-            <Text style={[styles.textName]}>{data.username}</Text>
-            <Text style={styles.textDesc}>{data.description}</Text>
+            <Text numberOfLines={1} style={[styles.textName]}>{data.username}</Text>
+            <Text numberOfLines={3} style={styles.textDesc}>{data.description}</Text>
             <InnerCard setVisualArtist={setVisualArtist} setVisualSong={setVisualSong} user={data} visualArtist={visualArtist} visualSong={visualSong} />
             <View style={{ width: '100%', height: '8%' }} />
         </LinearGradient>

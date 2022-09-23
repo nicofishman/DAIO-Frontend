@@ -77,7 +77,7 @@ const Match = ({ navigation, route }) => {
     return (
         <>
             <ScrollView contentContainerStyle={styles.container}
-                refreshControl={ cardToMatch && cardToMatch.length === 0 &&
+                refreshControl={
                     <RefreshControl refreshing={isRefreshing} onRefresh={() => refreshUsers(false)} />
                 }
             >

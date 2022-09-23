@@ -58,6 +58,10 @@ const Config = ({ navigation, route }) => {
 
     useEffect(() => {
         getUser();
+
+        return () => {
+            setLoading(true);
+        };
     }, []);
 
     const getUser = async () => {
@@ -140,6 +144,11 @@ const Config = ({ navigation, route }) => {
     return (
         <>
             <SafeAreaView style={styles.container}>
+                <SafeAreaView style={{ position: 'absolute', width: Dimensions.get('screen').width, height: Dimensions.get('screen').height }}>
+                    <TouchableWithoutFeedback onPress={() => logOut()}>
+                        <MaterialIcons color="#383838" name="logout" size={30} style={styles.logOutIcon} onPress={logOut} />
+                    </TouchableWithoutFeedback>
+                </SafeAreaView>
                 {
                     loading && loaded
                         ? (
@@ -190,14 +199,13 @@ const Config = ({ navigation, route }) => {
                                                 )}
                                             </View>
                                         </>
-
                                     ) : (
                                         <View style={{ width: windowWidth, flex: 0.8, top: StatusBar.currentHeight + 10 }}>
                                             <ScrollView style={{ marginBottom: 80 }}>
                                                 <View style={{ position: 'relative', width: 130, alignSelf: 'center', marginBottom: 10 }}>
                                                     <Avatar height={130} id={avatarId} width={130} />
-                                                    <TouchableOpacity activeOpacity={1} style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: 'pink', borderRadius: 40 }} onPress={() => editAvatar()}>
-                                                        <MaterialIcons color="#fff" name={editingAvatar ? 'close' : 'edit'} size={30} style={{ padding: 10 }} />
+                                                    <TouchableOpacity activeOpacity={1} style={{ position: 'absolute', bottom: 0, right: 0, backgroundColor: '#fff', borderRadius: 40 }} onPress={() => editAvatar()}>
+                                                        <MaterialIcons color="#000" name={editingAvatar ? 'close' : 'edit'} size={30} style={{ padding: 10 }} />
                                                     </TouchableOpacity>
                                                 </View>
                                                 {
@@ -228,7 +236,7 @@ const Config = ({ navigation, route }) => {
                                                     )
                                                 }
                                                 <View style={{ width: windowWidth }}>
-                                                    <Text style={styles.inputTitle}>• Nombre</Text>
+                                                    <Text style={styles.inputTitle}><Text style={{ color: '#81B2D2' }}>• </Text>Nombre</Text>
                                                     <TextInput
                                                         autoCorrect={false}
                                                         caretHidden={true}
@@ -240,7 +248,7 @@ const Config = ({ navigation, route }) => {
                                                         value={username}
                                                         onChangeText={handleChangeNombre}
                                                     />
-                                                    <Text style={styles.inputTitle}>• Descripcion</Text>
+                                                    <Text style={styles.inputTitle}><Text style={{ color: '#81B2D2' }}>• </Text>Descripcion</Text>
                                                     <TextInput
                                                         autoCorrect={false}
                                                         caretHidden={true}
@@ -252,7 +260,7 @@ const Config = ({ navigation, route }) => {
                                                         value={descripcion}
                                                         onChangeText={handleChangeDesc}
                                                     />
-                                                    <Text style={styles.inputTitle}>• Instagram</Text>
+                                                    <Text style={styles.inputTitle}><Text style={{ color: '#81B2D2' }}>• </Text>Instagram</Text>
                                                     <TextInput
                                                         autoCorrect={false}
                                                         caretHidden={true}
@@ -266,7 +274,6 @@ const Config = ({ navigation, route }) => {
                                                     />
                                                 </View>
                                             </ScrollView>
-
                                         </View>
                                     )}
 
@@ -300,7 +307,7 @@ const Config = ({ navigation, route }) => {
                                 <TouchableOpacity style={styles.saveChanges} onPress={saveProfile}>
                                     {
                                         loaded &&
-                                    <Text style={styles.saveChanges_text}>Guardar cambios</Text>
+                                    <Text style={styles.saveChangesText}>Guardar cambios</Text>
                                     }
                                 </TouchableOpacity>
                                 <Toast />
@@ -381,7 +388,7 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.175,
         height: windowWidth * 0.175,
         borderRadius: windowWidth * 0.175,
-        backgroundColor: '#fff',
+        backgroundColor: '#FFD9D9',
         left: windowWidth * 0.3,
         justifyContent: 'center',
         alignItems: 'center'
@@ -401,7 +408,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         justifyContent: 'center'
     },
-    saveChanges_text: {
+    saveChangesText: {
         color: '#ffffff',
         fontSize: 16,
         textAlign: 'center',
