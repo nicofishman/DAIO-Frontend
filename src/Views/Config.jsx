@@ -7,13 +7,14 @@ import Svg, {
 } from 'react-native-svg';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useFonts, Quicksand_700Bold, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
+import Toast from 'react-native-toast-message';
+
 import NavBar from '../Components/Common/NavBar';
 import { getUserById, updatePreferences } from '../Handlers/AuthHandler';
 import Avatar from '../Components/Common/Avatar';
 import { useRegisterContext } from '../Context/RegisterContext';
 import SongBox from '../Components/Preferences/SongBox';
 import ArtistBox from '../Components/Preferences/ArtistBox';
-import Toast from 'react-native-toast-message'
 
 const Config = ({ navigation, route }) => {
     const [user, setUser] = useState(undefined);
@@ -66,6 +67,7 @@ const Config = ({ navigation, route }) => {
         await setContext(res);
         setUser(res);
         setLoading(false);
+
         return res;
     };
 
@@ -105,9 +107,11 @@ const Config = ({ navigation, route }) => {
 
     const saveProfile = async () => {
         const spotiId = await AsyncStorage.getItem('spotify_id');
+
         if (songPreference.length !== 5 || artistPreference.length !== 3) {
             showToast('error', 'No se pudo actualizar el perfil ❌', 'Seleccione todos los artistas y canciones');
-            return
+
+            return;
         }
         const userSend = {
             spotifyId: spotiId,
@@ -124,14 +128,13 @@ const Config = ({ navigation, route }) => {
         await getUser();
     };
 
-    const showToast = ( type, title, desc) => {
+    const showToast = (type, title, desc) => {
         Toast.show({
-            type: type,
+            type,
             text1: title,
-            text2: desc,
-
+            text2: desc
         });
-    }
+    };
 
     // ANIMATION
     return (
@@ -302,11 +305,10 @@ const Config = ({ navigation, route }) => {
                                 </TouchableOpacity>
                                 <Toast />
 
-
                                 {/* <SpotifyLogin style={styles.logOut} title='Cerrar Sesión' fnOnPress={logOut} /> */}
                             </>
                         )
-                    }
+                }
             </SafeAreaView>
             <NavBar navigation={navigation} route={route} />
         </>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -16,6 +16,8 @@ export default function App () {
     const Stack = createNativeStackNavigator();
     const [isLoading, setIsLoading] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    LogBox.ignoreLogs(['Warning: Can\'t perform a React state update on an unmounted component.']);
 
     useEffect(async () => {
         const id = await AsyncStorage.getItem('spotify_id');
