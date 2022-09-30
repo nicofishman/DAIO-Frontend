@@ -1,4 +1,4 @@
-import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import { StyleSheet, ActivityIndicator, SafeAreaView, Text, TextInput, View, Dimensions, Image, StatusBar, TouchableOpacity, TouchableWithoutFeedback, ScrollView, ImageBackground } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -160,13 +160,19 @@ const Config = ({ navigation, route }) => {
                                 <StatusBar />
                                 {/* Avatar-Nombre-Descripcion */}
                                 <Svg height={backgroundValues[0]} style={{ position: 'absolute' }} width={windowWidth}>
-                                    <Ellipse
-                                        cx='200'
-                                        cy='80'
-                                        fill="#f1f1f1"
-                                        rx={backgroundValues[1]}
-                                        ry={backgroundValues[2]}
+                                        <Ellipse
+                                            cx='200'
+                                            cy='80'
+                                            fill="#f1f1f1"
+                                            rx={backgroundValues[1]}
+                                            ry={backgroundValues[2]}
+                                        />
+                                    <ImageBackground
+                                        resizeMode='cover'
+                                        source={require('../Assets/Config/loginBackground1.png')}
+                                        style={[{ height: '90%' }]}
                                     />
+
                                 </Svg>
                                 {/* Logo cerrar sesión */}
                                 {
@@ -388,10 +394,13 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.175,
         height: windowWidth * 0.175,
         borderRadius: windowWidth * 0.175,
-        backgroundColor: '#FFD9D9',
+        backgroundColor: '#fafafa',
         left: windowWidth * 0.3,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#f5f5f5',
+        elevation: 5
     },
     buttonSelect: {
         width: windowWidth * 0.4,
